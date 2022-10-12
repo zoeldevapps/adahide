@@ -1,6 +1,5 @@
-import {h} from 'preact'
 import actions from '../../../actions'
-import {connect} from '../../../libs/unistore/preact'
+import {connect} from 'unistore/react'
 import {LinkIconToPool} from './common'
 import printAda from '../../../helpers/printAda'
 import {getCardanoscanUrl} from '../../../helpers/common'
@@ -202,4 +201,4 @@ const StakingHistoryPage = (_props: Props) => {
   )
 }
 
-export default connect(null, actions)(StakingHistoryPage)
+export default connect([], actions)(StakingHistoryPage)

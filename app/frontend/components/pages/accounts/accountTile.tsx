@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import printAda from '../../../helpers/printAda'
@@ -158,7 +158,7 @@ const AccountTile = ({
           <DelegateButton />
         </div>
       ) : (
-        <div className="account-action-buttons desktop" style="width: 98px;" />
+        <div className="account-action-buttons desktop" style={{width: '98px'}} />
       )}
     </div>
   )

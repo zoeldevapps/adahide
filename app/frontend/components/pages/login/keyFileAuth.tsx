@@ -1,5 +1,4 @@
-import {h} from 'preact'
-import {useState, useEffect, useRef} from 'preact/hooks'
+import {useState, useEffect, useRef} from 'react'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import debugLog from '../../../helpers/debugLog'
@@ -9,7 +8,7 @@ import FileLoader from '../../common/fileLoader'
 import * as KeypassJson from '../../../wallet/keypass-json'
 import {CryptoProviderType} from '../../../wallet/types'
 
-const LoadKeyFile = (): h.JSX.Element => {
+const LoadKeyFile = (): JSX.Element => {
   const {loadingAction, loadWallet, stopLoadingAction} = useActions(actions)
 
   const [fileName, setFileName] = useState<string>('')
@@ -35,7 +34,7 @@ const LoadKeyFile = (): h.JSX.Element => {
   }, [])
 
   useEffect(() => {
-    encrypted && filePasswordField.current.focus()
+    encrypted && filePasswordField.current?.focus()
   }, [encrypted])
 
   const onPasswordInput = (e) => {

@@ -1,5 +1,4 @@
-import {Fragment, h} from 'preact'
-import {useState, useEffect} from 'preact/hooks'
+import {Fragment, useState, useEffect} from 'react'
 import {encryptWithPassword} from '../../../helpers/catalyst'
 import QRious from '../../../libs/qrious'
 import Alert from '../../common/alert'
@@ -16,7 +15,7 @@ const QRPage = ({
   previousStep: () => void
   privateVotingKey: string
   pin: string
-}): h.JSX.Element => {
+}): JSX.Element => {
   const [encryptedKey, setEncryptedKey] = useState('')
   useEffect(() => {
     async function prepareQRKey() {

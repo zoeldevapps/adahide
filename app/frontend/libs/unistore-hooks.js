@@ -2,8 +2,7 @@
  * Inspired heavily by https://github.com/reduxjs/react-redux
  */
 
-import {useRef, useContext, useEffect, useLayoutEffect, useReducer, useMemo} from 'preact/hooks'
-import {createContext} from 'preact'
+import {useRef, useContext, useEffect, useLayoutEffect, useReducer, useMemo, createContext} from 'react'
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 

@@ -1,5 +1,4 @@
-import {h} from 'preact'
-import {connect} from '../helpers/connect'
+import {connect} from 'unistore/react'
 import {TopLevelRouter} from './router'
 import Welcome from './common/welcome'
 import ContactForm from './common/contactForm'
@@ -12,14 +11,15 @@ import {ADALITE_CONFIG} from '../config'
 import Exchange from './pages/exchange/exchange'
 import NufiPreviewPage from './pages/nufiPreview/nufiPreviewPage'
 import ErrorBoundary from './errorBoundary'
+import {State} from '../state'
 
 const {ADALITE_LOGOUT_AFTER} = ADALITE_CONFIG
 
-const Navbar = connect((state) => ({walletIsLoaded: state.walletIsLoaded}))(({walletIsLoaded}) =>
+const Navbar = connect((state: State) => ({walletIsLoaded: state.walletIsLoaded}))(({walletIsLoaded}) =>
   walletIsLoaded ? <NavbarAuth /> : <NavbarUnauth />
 )
 
-const App = connect((state) => ({
+const App = connect((state: State) => ({
   pathname: state.router.pathname,
   displayWelcome: state.displayWelcome,
   shouldShowContactFormModal: state.shouldShowContactFormModal,

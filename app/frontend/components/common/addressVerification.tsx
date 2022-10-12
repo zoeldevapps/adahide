@@ -1,5 +1,5 @@
 import {getDeviceBrandName, isHwWallet} from '../../wallet/helpers/cryptoProviderUtils'
-import {h} from 'preact'
+
 import actions from '../../actions'
 import {useActions, useSelector} from '../../helpers/connect'
 import {useGetCryptoProviderType} from '../../selectors'

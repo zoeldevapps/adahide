@@ -1,16 +1,14 @@
-import {h} from 'preact'
-import {connect} from '../../helpers/connect'
+import {State} from '../../state'
+import {connect} from 'unistore/react'
 import actions from '../../actions'
 import tooltip from './tooltip'
 
-interface Props {
+type Props = {
   fileName: string
   readFile: (targetFile: any) => void
   fileDescription: string
   acceptedFiles: string
   error: any
-  loadingAction: any
-  stopLoadingAction: any
   isDisabled?: boolean
   disabledReason?: string
 }
@@ -22,10 +20,9 @@ const FileLoader = ({
   acceptedFiles,
   error,
   loadingAction,
-  stopLoadingAction,
   isDisabled,
   disabledReason,
-}: Props) => {
+}) => {
   const NoFileContent = () => (
     <div className="dropzone-content">
       <p className="dropzone-paragraph">Drop a {fileDescription} file here</p>
@@ -94,8 +91,8 @@ const FileLoader = ({
   )
 }
 
-export default connect(
-  (state) => ({
+export default connect<Props, unknown, any, unknown>(
+  (state: State) => ({
     sendSentry: state.sendSentry,
   }),
   actions

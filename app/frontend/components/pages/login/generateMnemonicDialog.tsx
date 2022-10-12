@@ -1,11 +1,10 @@
-import {h} from 'preact'
 import {useActions} from '../../../helpers/connect'
-import {useMemo} from 'preact/hooks'
+import {useMemo} from 'react'
 import actions from '../../../actions'
 import Modal from '../../common/modal'
 import {generateMnemonic} from '../../../wallet/mnemonic'
 
-const GenerateMnemonicDialog = (): h.JSX.Element => {
+const GenerateMnemonicDialog = (): JSX.Element => {
   const {closeGenerateMnemonicDialog} = useActions(actions)
   const newWalletMnemonic = useMemo(() => generateMnemonic(15), [])
 

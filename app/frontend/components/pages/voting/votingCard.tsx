@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import actions from '../../../actions'
 import {useActions, useSelector} from '../../../helpers/connect'
 import tooltip from '../../common/tooltip'
@@ -32,7 +31,7 @@ const AppDownloadInfo = ({url, imageSrc}: {url: string; imageSrc: string}) => (
   </div>
 )
 
-const VotingCard = (): h.JSX.Element => {
+const VotingCard = (): JSX.Element => {
   const {openVotingDialog} = useActions(actions)
   const {walletOperationStatusType} = useSelector((state) => ({
     walletOperationStatusType: state.walletOperationStatusType,

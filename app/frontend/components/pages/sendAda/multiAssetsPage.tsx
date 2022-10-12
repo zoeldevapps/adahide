@@ -1,17 +1,16 @@
-import {Fragment, h} from 'preact'
+import {Fragment, useState} from 'react'
 import {useSelector} from '../../../helpers/connect'
 import {getSourceAccountInfo, State} from '../../../state'
 import {AssetFamily, Token} from '../../../types'
 import {encodeAssetFingerprint} from '../../../wallet/shelley/helpers/addresses'
 import {FormattedAssetItem, FormattedAssetItemProps} from '../../common/asset'
 import CopyOnClick from '../../common/copyOnClick'
-import {useState} from 'preact/hooks'
 import styles from './multiAssetsPage.module.scss'
 import {DropdownCaret} from '../../common/svg'
 
 type ItemProps = {
   title: string
-  displayElement: h.JSX.Element
+  displayElement: JSX.Element
   copyValue?: string
 }
 

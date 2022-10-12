@@ -1,4 +1,4 @@
-import {h, ComponentChildren} from 'preact'
+import {ReactNode} from 'react'
 
 interface Props {
   alertType:
@@ -14,7 +14,7 @@ interface Props {
     | 'wanted'
     | 'info'
     | 'nufi-announcement sidebar'
-  children: ComponentChildren
+  children: ReactNode
 }
 
 const Alert = ({children, alertType = 'success'}: Props) => (

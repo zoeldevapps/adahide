@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 
 type ViewAddressOnProps = {
   name: string
@@ -6,7 +6,7 @@ type ViewAddressOnProps = {
   inline?: boolean
 }
 
-const ViewAddressOn = ({name, url, inline}: ViewAddressOnProps): h.JSX.Element =>
+const ViewAddressOn = ({name, url, inline}: ViewAddressOnProps): JSX.Element =>
   inline ? (
     <a className="address-link" href={url} target="_blank" rel="noopener">
       {name}

@@ -1,5 +1,3 @@
-import {h, JSX} from 'preact'
-
 type NufiListProps = {
   title?: string
   list: string[]

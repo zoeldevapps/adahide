@@ -1,5 +1,3 @@
-import {h} from 'preact'
-
 const ExportCard = () => (
   <div className="export card">
     <div className="export-head">

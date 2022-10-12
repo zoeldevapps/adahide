@@ -1,5 +1,4 @@
-import {h} from 'preact'
-import {useState, useEffect} from 'preact/hooks'
+import {useState, useEffect} from 'react'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import KeyFileAuth from './keyFileAuth'

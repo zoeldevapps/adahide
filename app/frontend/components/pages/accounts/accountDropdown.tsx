@@ -1,6 +1,5 @@
-import {h} from 'preact'
 import {useSelector} from '../../../helpers/connect'
-import {useState, useCallback} from 'preact/hooks'
+import {useState, useCallback} from 'react'
 
 import range from '../../../wallet/helpers/range'
 import {formatAccountIndex} from '../../../helpers/formatAccountIndex'

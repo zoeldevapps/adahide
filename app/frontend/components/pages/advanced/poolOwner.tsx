@@ -1,6 +1,5 @@
-import {h} from 'preact'
-import {useState, useEffect} from 'preact/hooks'
-import {connect} from '../../../libs/unistore/preact'
+import {useState, useEffect} from 'react'
+import {connect} from 'unistore/react'
 import actions from '../../../actions'
 import FileLoader from '../../common/fileLoader'
 import tooltip from '../../common/tooltip'

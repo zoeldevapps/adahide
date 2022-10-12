@@ -1,9 +1,8 @@
-import {h} from 'preact'
 import {connect, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import {ADALITE_CONFIG} from '../../../config'
 import NufiBanner from '../nufiBanner'
-import {useEffect} from 'preact/hooks'
+import {useEffect} from 'react'
 const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
 
 const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {

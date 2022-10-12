@@ -1,9 +1,8 @@
-import {h} from 'preact'
 import AddressItem from './addressItem'
-import {useState} from 'preact/hooks'
+import {useState} from 'react'
 import {useActiveAccount} from '../../../selectors'
 
-const MyAddresses = (): h.JSX.Element => {
+const MyAddresses = (): JSX.Element => {
   const {visibleAddresses: addresses} = useActiveAccount()
 
   const [expandedAddress, setExpandedAddress] = useState(0)

@@ -1,9 +1,9 @@
 import actions from '../../../actions'
 import {getErrorHelpType} from '../../../errors'
-import {connect} from '../../../libs/unistore/preact'
+import {connect} from 'unistore/react'
 import {State} from '../../../state'
 import {getErrorMessage} from '../../../errors/errorMessages'
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import TransactionErrorModal from '../sendAda/transactionErrorModal'
 import WalletLoadingErrorModal from '../login/walletLoadingErrorModal'
 

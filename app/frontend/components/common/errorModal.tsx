@@ -1,5 +1,3 @@
-import {h} from 'preact'
-
 import Modal from './modal'
 import Alert from './alert'
 import HelpSection from './helpSection'

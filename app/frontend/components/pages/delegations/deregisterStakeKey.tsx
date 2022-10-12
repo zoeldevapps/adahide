@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {useActions, useSelector} from '../../../helpers/connect'
 import actions from '../../../actions'
 import {useIsActiveAccountDelegating} from '../../../selectors'

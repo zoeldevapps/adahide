@@ -1,11 +1,11 @@
-import {h} from 'preact'
-import {useState, useCallback} from 'preact/hooks'
+import {useState, useCallback} from 'react'
 import {connect} from '../../helpers/connect'
 import actions from '../../actions'
 import Modal from './modal'
 import Alert from './alert'
 import submitFeedbackToSentry from '../../helpers/submitFeedbackToSentry'
 import Sentry from '@sentry/browser'
+import {State} from '../../state'
 
 interface Props {
   sendSentry: any
@@ -88,8 +88,8 @@ const UnexpectedErrorModal = ({sendSentry, closeUnexpectedErrorModal, reloadPage
   )
 }
 
-export default connect(
-  (state) => ({
+export default connect<Omit<Props, 'sendSentry' | 'closeUnexpectedErrorModal'>, unknown, unknown, unknown>(
+  (state: State) => ({
     sendSentry: state.sendSentry,
   }),
   actions

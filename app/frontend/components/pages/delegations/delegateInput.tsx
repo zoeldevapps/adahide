@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import {useSelector} from '../../../helpers/connect'
 import {ADALITE_CONFIG} from '../../../../frontend/config'
 import assert from 'assert'
@@ -9,7 +9,7 @@ type StakePoolLabelProps = {
   tickerSearchEnabled: boolean
 }
 
-const StakePoolLabel = ({isTicker, isPoolHash, tickerSearchEnabled}: StakePoolLabelProps): h.JSX.Element => (
+const StakePoolLabel = ({isTicker, isPoolHash, tickerSearchEnabled}: StakePoolLabelProps): JSX.Element => (
   <Fragment>
     {tickerSearchEnabled && (
       <Fragment>
@@ -27,7 +27,7 @@ type Props = {
   onChange: (event: any) => any
 }
 
-const DelegateInput = ({disabled, value, onChange}: Props): h.JSX.Element => {
+const DelegateInput = ({disabled, value, onChange}: Props): JSX.Element => {
   const {validStakepoolDataProvider} = useSelector((state) => ({
     validStakepoolDataProvider: state.validStakepoolDataProvider,
   }))

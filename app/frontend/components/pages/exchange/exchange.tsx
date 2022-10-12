@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import styles from './exchange.module.scss'
 import {ADALITE_CONFIG} from '../../../config'
 const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION

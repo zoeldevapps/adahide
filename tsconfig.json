@@ -8,24 +8,11 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es5",
-    "jsx": "react",
-    "jsxFactory": "h",
+    "jsx": "react-jsx",
     "baseUrl": ".",
-    "paths": {
-      "preact": ["app/node_modules/preact/dist/preact.d.ts"]
-    },
     "noErrorTruncation": true,
     "downlevelIteration": true,
-    "lib": [
-      "ES2015",
-      "ES2016",
-      "ES2017",
-      "ES2018",
-      "ES2019",
-      "ES2020",
-      "ESNext",
-      "dom"
-    ]
+    "lib": ["ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ESNext", "dom", "dom.iterable"]
   },
   "include": ["app/**/*"],
   "exclude": [

@@ -1,5 +1,4 @@
-/* eslint-disable react/no-deprecated */
-import {h, Component} from 'preact'
+import {Component} from 'react'
 import Tag from './tag'
 
 interface Props {
@@ -20,21 +19,24 @@ class Modal extends Component<Props, {}> {
     document.body.classList.remove('no-scroll')
   }
 
-  render({
-    children,
-    onRequestClose,
-    bodyClass = '',
-    title = '',
-    showWarning = false,
-    closeOnClickOutside = true,
-  }) {
+  render() {
+    const {
+      children,
+      onRequestClose,
+      bodyClass = '',
+      title = '',
+      showWarning = false,
+      closeOnClickOutside = true,
+    } = this.props
     return (
       <div className="modal">
-        <div className="modal-overlay" onClick={closeOnClickOutside ? onRequestClose : null} />
+        <div className="modal-overlay" onClick={closeOnClickOutside ? onRequestClose : undefined} />
         <div
           className={`modal-body ${bodyClass}`}
           onKeyDown={(e) => {
-            e.key === 'Escape' && onRequestClose()
+            if (e.key === 'Escape' && onRequestClose) {
+              onRequestClose()
+            }
           }}
         >
           <div className="modal-content">

@@ -1,16 +1,15 @@
-import {h} from 'preact'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Modal from '../../common/modal'
-import {useEffect, useRef} from 'preact/hooks'
+import {useEffect, useRef} from 'react'
 import {sessionStorageVars} from '../../../sessionStorage'
 
-const LogoutNotification = (): h.JSX.Element => {
+const LogoutNotification = () => {
   const {closeLogoutNotification} = useActions(actions)
   const understandBtn = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    understandBtn.current.focus()
+    understandBtn.current?.focus()
 
     if (window.sessionStorage.getItem(sessionStorageVars.INACTIVITY_LOGOUT)) {
       window.sessionStorage.removeItem(sessionStorageVars.INACTIVITY_LOGOUT)

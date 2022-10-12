@@ -1,7 +1,7 @@
 import printAda from '../../../helpers/printAda'
 import {getErrorMessage} from '../../../errors'
 import {Stakepool, Lovelace} from '../../../types'
-import {h} from 'preact'
+
 import tooltip from '../../common/tooltip'
 import BigNumber from 'bignumber.js'
 
@@ -18,15 +18,11 @@ type StakePoolInfoProps = {
   validationError: Error | null
 }
 
-export const StakePoolInfo = ({
-  pool,
-  gettingPoolInfo,
-  validationError,
-}: StakePoolInfoProps): h.JSX.Element => {
+export const StakePoolInfo = ({pool, gettingPoolInfo, validationError}: StakePoolInfoProps): JSX.Element => {
   const print = (
     fieldValue: string | number | null | undefined,
-    format?: (fieldValue: string | number) => string | h.JSX.Element
-  ): string | h.JSX.Element => {
+    format?: (fieldValue: string | number) => string | JSX.Element
+  ): string | JSX.Element => {
     if (pool) {
       if (fieldValue != null) {
         if (format) {

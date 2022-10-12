@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {connect} from '../../../helpers/connect'
 import actions from '../../../actions'
 
@@ -25,4 +24,4 @@ const PremiumBanner = ({closePremiumBanner}: Props) => {
   )
 }
 
-export default connect(() => null, actions)(PremiumBanner)
+export default connect([], actions)(PremiumBanner)

@@ -1,5 +1,4 @@
 import {MainTabs, SubTabs} from '../../../constants'
-import {h} from 'preact'
 
 type MainTabProps = {
   name: MainTabs

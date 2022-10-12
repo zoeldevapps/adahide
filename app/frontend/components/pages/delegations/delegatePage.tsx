@@ -1,5 +1,4 @@
-import {h, Fragment} from 'preact'
-import {useState, useEffect, useRef, useCallback} from 'preact/hooks'
+import {Fragment, useState, useEffect, useRef, useCallback} from 'react'
 import {useActions, useSelector} from '../../../helpers/connect'
 import actions from '../../../actions'
 import tooltip from '../../common/tooltip'
@@ -16,7 +15,7 @@ import {StakepoolDataProvider} from '../../../../frontend/helpers/dataProviders/
 import {shouldDisableSendingButton} from '../../../helpers/common'
 import assert from 'assert'
 
-const CalculatingFee = (): h.JSX.Element => <div className="validation-message send">Calculating fee...</div>
+const CalculatingFee = (): JSX.Element => <div className="validation-message send">Calculating fee...</div>
 
 type DelegationValidationProps = {
   delegationValidationError: any
@@ -27,7 +26,7 @@ type DelegationValidationProps = {
 const DelegationValidation = ({
   delegationValidationError,
   txSuccessTab,
-}: DelegationValidationProps): h.JSX.Element =>
+}: DelegationValidationProps): JSX.Element =>
   txSuccessTab === 'stake' && !delegationValidationError ? (
     <div className="validation-message transaction-success">Transaction successful!</div>
   ) : (
@@ -36,7 +35,7 @@ const DelegationValidation = ({
     )
   )
 
-const BigDelegatorOffer = (): h.JSX.Element => (
+const BigDelegatorOffer = (): JSX.Element => (
   <div className="banner delegation-offer delegation-offer-text">
     Due to factors such as pool saturation, maximizing staking rewards is no easy task for high balance
     wallets like yours. Get our premium assistance via{' '}
@@ -105,7 +104,7 @@ interface Props {
   title: string
 }
 
-const Delegate = ({withAccordion, title}: Props): h.JSX.Element => {
+const Delegate = ({withAccordion, title}: Props): JSX.Element => {
   const {
     txSuccessTab,
     stakePool,

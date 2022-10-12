@@ -1,5 +1,4 @@
-import {h} from 'preact'
-import {connect} from '../helpers/connect'
+import {connect} from 'unistore/react'
 
 import DashboardPage from './pages/dashboard/dashboardPage'
 import MyAddresses from './pages/receiveAda/myAddresses'
@@ -7,8 +6,9 @@ import SendPage from './pages/sendAda/sendAdaPage'
 import LoginPage from './pages/login/loginPage'
 import ExportWalletPage from './pages/exportWallet/exportWalletPage'
 import StakingPage from './pages/staking/stakingPage'
+import {State} from '../state'
 
-const TopLevelRouter = connect((state) => ({
+const TopLevelRouter = connect((state: State) => ({
   pathname: state.router.pathname,
   walletIsLoaded: state.walletIsLoaded,
 }))(({pathname, walletIsLoaded}) => {

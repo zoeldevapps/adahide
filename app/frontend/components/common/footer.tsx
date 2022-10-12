@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {useSelector, useActions} from '../../helpers/connect'
 import actions from '../../actions'
 import Branding from './branding'

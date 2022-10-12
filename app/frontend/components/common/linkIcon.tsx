@@ -1,5 +1,3 @@
-import {h} from 'preact'
-
 const LinkIcon = ({url}) => {
   return (
     <span className="link">

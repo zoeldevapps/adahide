@@ -1,16 +1,15 @@
-import {h} from 'preact'
-import {useEffect, useLayoutEffect, useRef, useState} from 'preact/hooks'
+import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import onSubTreeBlur from '../../../frontend/helpers/onSubTreeBlur'
 
 interface Props<T> {
   wrapperClassName?: string
-  label?: string | h.JSX.Element
+  label?: string | JSX.Element
   labelClassName?: string
   items: T[]
   selectedItem: T | undefined
-  displaySelectedItem?: (t: T | undefined) => string | h.JSX.Element
+  displaySelectedItem?: (t: T | undefined) => string | JSX.Element
   displaySelectedItemClassName?: string
-  displayItem?: (t: T) => string | h.JSX.Element
+  displayItem?: (t: T) => string | JSX.Element
   onSelect: (t: T) => void
   showSearch: boolean
   searchPredicate?: (query: string, t: T) => boolean
@@ -54,7 +53,9 @@ const SearchableSelect = <T extends {}>({
   }
 
   useEffect(() => {
-    dropdownEl.current.scrollTop = 0
+    if (dropdownEl.current) {
+      dropdownEl.current.scrollTop = 0
+    }
   })
 
   useLayoutEffect(() => {
@@ -86,14 +87,14 @@ const SearchableSelect = <T extends {}>({
         )}`}
         onClick={() => showDropdown(!disabled && !visible)}
       >
-        {displaySelectedItem ? displaySelectedItem(selectedItem) : <div>{selectedItem}</div>}
+        {displaySelectedItem ? displaySelectedItem(selectedItem) : <div>{`${selectedItem}`}</div>}
       </div>
       <div
         ref={dropdownEl}
         className={`searchable-select-dropdown ${visible ? '' : 'hide'} ${optionalClassName(
           dropdownClassName
         )}`}
-        style={getDropdownWidth ? `width: ${dropdownWidth}` : ''}
+        style={getDropdownWidth ? {width: dropdownWidth} : undefined}
       >
         {showSearch && (
           <input
@@ -116,7 +117,7 @@ const SearchableSelect = <T extends {}>({
                   onSelect(item)
                 }}
               >
-                {displayItem ? displayItem(item) : <div>{item}</div>}
+                {displayItem ? displayItem(item) : <div>{`${item}`}</div>}
               </div>
             ))}
         </div>

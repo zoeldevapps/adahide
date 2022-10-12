@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import CopyOnClick from '../../common/copyOnClick'
 import AddressVerification from '../../common/addressVerification'
 import QRious from '../../../libs/qrious'
@@ -13,7 +13,7 @@ interface Props {
   expand: () => void
 }
 
-const AddressItem = ({address, bip32path, isExpanded, expand}: Props): h.JSX.Element => {
+const AddressItem = ({address, bip32path, isExpanded, expand}: Props): JSX.Element => {
   const explorerLinksInline = (
     <div>
       <ViewAddressOn name="CardanoScan" url={`${getCardanoscanUrl()}/address/${address}`} />

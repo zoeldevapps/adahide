@@ -37,11 +37,14 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "pbkdf2": "^3.1.2",
-    "preact": "^10.5.11",
-    "react-device-detect": "^1.17.0"
+    "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "unistore": "^3.5.2"
   },
   "devDependencies": {
     "@types/fetch-mock": "^6",
+    "@types/react": "^18.0.21",
     "assert": "^2.0.0",
     "fetch-mock": "^6",
     "fetch-readablestream": "^0.2.0",

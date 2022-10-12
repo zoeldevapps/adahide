@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Modal from '../../common/modal'

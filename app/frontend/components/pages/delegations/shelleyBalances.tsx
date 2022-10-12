@@ -1,8 +1,8 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import printAda from '../../../helpers/printAda'
 import {AdaIcon} from '../../common/svg'
 import actions from '../../../actions'
-import {connect} from '../../../libs/unistore/preact'
+import {connect} from 'unistore/react'
 import tooltip, {visitNufiTooltip} from '../../common/tooltip'
 import NufiPageLink from '../../common/nufiPageLink'
 import toLocalDate from '../../../../frontend/helpers/toLocalDate'
@@ -40,8 +40,10 @@ const ShelleyBalances = ({
         </h2>
         <div className="staking-balances-row">
           <div className="staking-balances-amount">
-            {isNaN(Number(balance)) ? balance : `${printAda(balance)}`}
-            <AdaIcon />
+            <>
+              {isNaN(Number(balance)) ? balance : `${printAda(balance)}`}
+              <AdaIcon />
+            </>
           </div>
           <button className="button secondary balance refresh" onClick={debouncedReloadWalletInfo}>
             Refresh
@@ -102,8 +104,10 @@ const ShelleyBalances = ({
           </h2>
           <div className="balance-row">
             <div className="balance-amount-staking">
-              {isNaN(Number(stakingBalance)) ? stakingBalance : `${printAda(stakingBalance)}`}
-              <AdaIcon />
+              <>
+                {isNaN(Number(stakingBalance)) ? stakingBalance : `${printAda(stakingBalance)}`}
+                <AdaIcon />
+              </>
             </div>
           </div>
 

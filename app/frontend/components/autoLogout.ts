@@ -1,5 +1,5 @@
-import {Component} from 'preact'
-import {connect} from '../helpers/connect'
+import {Component} from 'react'
+import {connect} from 'unistore/react'
 import actions from '../actions'
 import {ADALITE_CONFIG} from '../config'
 import {sessionStorageVars} from '../sessionStorage'

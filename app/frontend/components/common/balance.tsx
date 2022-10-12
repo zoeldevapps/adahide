@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import printAda from '../../helpers/printAda'
 import Conversions from './conversions'
 import {AdaIcon} from './svg'
@@ -18,8 +17,10 @@ const Balance = () => {
       <h2 className={`card-title ${styles.balanceTitle}`}>Available balance</h2>
       <div className={styles.balanceRow}>
         <div className="balance-amount" data-cy="SendBalanceAmount">
-          {isNaN(Number(balance)) ? balance : `${printAda(balance)}`}
-          <AdaIcon />
+          <>
+            {isNaN(Number(balance)) ? balance : `${printAda(balance)}`}
+            <AdaIcon />
+          </>
         </div>
         <button className={'button secondary balance refresh'} onClick={debouncedReloadWalletInfo}>
           Refresh

@@ -1,6 +1,6 @@
 import CopyOnClick from '../../common/copyOnClick'
 import LinkIcon from '../../common/linkIcon'
-import {h} from 'preact'
+
 import {getCardanoscanUrl} from '../../../helpers/common'
 
 export const CopyPoolId = ({value}) => {

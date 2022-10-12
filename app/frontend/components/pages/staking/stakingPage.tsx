@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import {h} from 'preact'
-import {useState, useCallback} from 'preact/hooks'
+
+import {useState, useCallback} from 'react'
 import submitEmailRaw from '../../../helpers/submitEmailRaw'
 import debugLog from '../../../helpers/debugLog'
 

@@ -1,5 +1,4 @@
-import {h} from 'preact'
-import {useEffect, useRef, useState} from 'preact/hooks'
+import {useEffect, useRef, useState} from 'react'
 import actions from '../../../actions'
 import assertUnreachable from '../../../helpers/assertUnreachable'
 import {stripNonNumericCharacters} from '../../../helpers/common'
@@ -32,7 +31,7 @@ const _generateCatalystKeyPair = async (): Promise<Buffer> => {
   return rootSecret
 }
 
-const VotingDialog = (): h.JSX.Element => {
+const VotingDialog = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<RegistrationSteps>(RegistrationSteps.PIN)
   // https://github.com/preactjs/preact/issues/1899
   // PIN is encapsulated due to bug in preact which makes inputs uncontrolled

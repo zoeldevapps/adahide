@@ -1,12 +1,14 @@
-import {Component, h} from 'preact'
+import {Component, ReactNode} from 'react'
 import {captureException} from '@sentry/browser'
-import {connect} from '../helpers/connect'
+import {connect} from 'unistore/react'
 import actions from '../actions'
 import UnexpectedErrorModal from './common/unexpectedErrorModal'
 
 interface Props {
   shouldShowUnexpectedErrorModal: boolean
+  children: ReactNode
 }
+
 class ErrorBoundary extends Component<Props, {}> {
   state = {errorCaughtAtBoundary: null}
 
@@ -32,7 +34,7 @@ class ErrorBoundary extends Component<Props, {}> {
   }
 }
 
-export default connect(
+export default connect<Omit<Props, 'shouldShowUnexpectedErrorModal'>, unknown, any, unknown>(
   (state) => ({
     shouldShowUnexpectedErrorModal: state.shouldShowUnexpectedErrorModal,
   }),

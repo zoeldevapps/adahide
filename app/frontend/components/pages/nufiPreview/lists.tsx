@@ -1,5 +1,5 @@
 import {WebIcon, ExtensionIcon, ListItemIcon} from './icons'
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import {NufiCard, NufiList} from './utils'
 
 export const partners = [

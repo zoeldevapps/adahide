@@ -1,10 +1,11 @@
-import {h, Component, Fragment} from 'preact'
-import {connect} from '../../helpers/connect'
+import {Component, Fragment} from 'react'
+import {connect} from 'unistore/react'
 import actions from '../../actions'
 import Modal from './modal'
 import Alert from './alert'
 import ImageModal from './imageModal'
 import {localStorageVars} from '../../localStorage'
+import {State} from '../../state'
 
 const NewsSection = ({children, date}) => (
   <Fragment>
@@ -23,6 +24,7 @@ const Article = ({children, title, icon}) => (
 )
 
 interface Props {
+  displayInfoModal: State['displayInfoModal']
   closeInfoModal: (dontShowAgain: boolean) => void
 }
 
@@ -52,7 +54,8 @@ class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean; should
     })
   }
 
-  render({closeInfoModal}, {dontShowAgainCheckbox, shouldShowImage}) {
+  render() {
+    const {dontShowAgainCheckbox, shouldShowImage} = this.state
     return (
       <Modal>
         <section className="welcome">
@@ -778,7 +781,7 @@ class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean; should
 }
 
 export default connect(
-  (state) => ({
+  (state: State) => ({
     displayInfoModal: state.displayInfoModal,
   }),
   actions

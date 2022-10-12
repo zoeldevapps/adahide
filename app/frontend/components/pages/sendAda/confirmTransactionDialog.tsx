@@ -1,5 +1,4 @@
-import {h, Fragment} from 'preact'
-import {useState} from 'preact/hooks'
+import {Fragment, useState} from 'react'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import printAda from '../../../helpers/printAda'

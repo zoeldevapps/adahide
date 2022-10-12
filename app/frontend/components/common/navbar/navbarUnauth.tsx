@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {connect} from '../../../helpers/connect'
 import actions from '../../../actions'
 import {ADALITE_CONFIG} from '../../../config'

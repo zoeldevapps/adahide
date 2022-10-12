@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Modal from '../../common/modal'

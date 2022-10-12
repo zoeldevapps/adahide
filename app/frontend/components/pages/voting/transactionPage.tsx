@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import actions from '../../../actions'
 import {useActions, useSelector} from '../../../helpers/connect'
 import {HexString} from '../../../types'
@@ -16,7 +16,7 @@ const TransactionPage = ({
   nextStep: () => void
   previousStep: () => void
   votingPublicKey: HexString
-}): h.JSX.Element => {
+}): JSX.Element => {
   const {registerVotingKey} = useActions(actions)
   const {txSuccessTab, walletOperationStatusType} = useSelector((state) => ({
     txSuccessTab: state.txSuccessTab,

@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {CloseIcon, CheckIcon, PlayIcon} from './icons'
 import {heroTickList, nufiComparisonContent, partners, importSection} from './lists'
 import {NufiList, ComparisonRow, ComparisonLabel, YoutubeEmbed} from './utils'

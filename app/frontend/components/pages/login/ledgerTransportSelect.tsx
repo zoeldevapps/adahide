@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import SearchableSelect from '../../common/searchableSelect'
 import {LedgerTransportChoice} from '../../../types'
 import styles from './ledgerTransportSelect.module.scss'

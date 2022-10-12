@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {Component} from 'react'
 import {connect} from '../../helpers/connect'
 import actions from '../../actions'
 import Modal from './modal'
@@ -46,7 +46,8 @@ class Welcome extends Component<WelcomeProps, {dontShowAgainCheckbox: boolean}> 
     this.props.closeWelcome(this.state.dontShowAgainCheckbox)
   }
 
-  render({closeWelcome}, {dontShowAgainCheckbox}) {
+  render() {
+    const {dontShowAgainCheckbox} = this.state
     return (
       <Modal>
         <section className="welcome">
@@ -112,4 +113,4 @@ class Welcome extends Component<WelcomeProps, {dontShowAgainCheckbox: boolean}> 
   }
 }
 
-export default connect(null, actions)(Welcome)
+export default connect([], actions)(Welcome)

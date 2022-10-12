@@ -1,5 +1,4 @@
 import toLocalDate from '../../../frontend/helpers/toLocalDate'
-import {h} from 'preact'
 
 export const EpochDateTime = ({
   epoch,

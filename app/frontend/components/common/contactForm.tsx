@@ -1,5 +1,5 @@
-import {h, Component} from 'preact'
-import {connect} from '../../helpers/connect'
+import {Component} from 'react'
+import {connect} from 'unistore/react'
 import actions from '../../actions'
 import Modal from './modal'
 
@@ -87,7 +87,7 @@ class ContactForm extends Component<Props, {submitted: boolean}> {
                 Thank you for your message. We will contact you shortly.
               </div>
             )}
-            <input type="text" name="_gotcha" style="display:none" />
+            <input type="text" name="_gotcha" style={{display: 'none'}} />
             <div className="contact-form-bottom">
               <button
                 onClick={this.closeContactFormModal}
@@ -118,4 +118,4 @@ class ContactForm extends Component<Props, {submitted: boolean}> {
   }
 }
 
-export default connect(null, actions)(ContactForm)
+export default connect([], actions)(ContactForm)

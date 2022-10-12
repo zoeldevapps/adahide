@@ -1,5 +1,4 @@
-import {Fragment, h, JSX} from 'preact'
-import {useState, useEffect} from 'preact/hooks'
+import {Fragment, ReactNode, useState, useEffect} from 'react'
 
 import {useActions, useSelector} from '../../../helpers/connect'
 import actions from '../../../actions'
@@ -21,7 +20,7 @@ const DelayRendering = ({children}) => {
   return <Fragment>{show && children}</Fragment>
 }
 
-const PinkSpinner = ({message, helperText}: {message: string; helperText?: JSX.Element}) => {
+const PinkSpinner = ({message, helperText}: {message: string; helperText?: ReactNode}) => {
   return (
     <div className={`header-message ${helperText ? 'helper-text-wrapper' : ''}`}>
       {message.split('\n').map((line, i) => (

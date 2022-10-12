@@ -1,4 +1,4 @@
-import {h, Component, ComponentChildren} from 'preact'
+import {Component, ReactNode} from 'react'
 
 import debugLog from '../../helpers/debugLog'
 import tooltip from './tooltip'
@@ -9,7 +9,7 @@ interface Props {
   elementClass?: string
   copy?: boolean
   enableTooltip?: boolean
-  children: ComponentChildren
+  children: ReactNode
   inline?: boolean
   tooltipMessage?: string
   stopPropagation?: boolean
@@ -79,6 +79,7 @@ class CopyOnClick extends Component<Props, {copied: boolean}> {
   }
 }
 
+// @ts-ignore
 CopyOnClick.defaultProps = {
   preventDefault: true,
 }

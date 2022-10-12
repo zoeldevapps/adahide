@@ -1,11 +1,10 @@
-import {Fragment, h} from 'preact'
-import {useState, useCallback} from 'preact/hooks'
+import {Fragment, useState, useCallback} from 'react'
 import {DropdownCaret} from './svg'
 
 interface Props {
   initialVisibility: Boolean
-  header: h.JSX.Element
-  body: h.JSX.Element
+  header: JSX.Element
+  body: JSX.Element
 }
 
 const Accordion = ({initialVisibility, header, body}: Props) => {

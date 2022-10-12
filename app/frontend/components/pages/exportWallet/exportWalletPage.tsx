@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {Component} from 'react'
 import {connect} from '../../../helpers/connect'
 
 import actions from '../../../actions'

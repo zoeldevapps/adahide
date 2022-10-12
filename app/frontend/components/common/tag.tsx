@@ -1,5 +1,3 @@
-import {h} from 'preact'
-
 interface Props {
   type: string
   text: string

@@ -1,7 +1,7 @@
-import {Fragment, h} from 'preact'
+import {Fragment} from 'react'
 import styles from './voting.module.scss'
 
-const ProgressStep = ({active, name}: {active: boolean; name: string}): h.JSX.Element => {
+const ProgressStep = ({active, name}: {active: boolean; name: string}): JSX.Element => {
   return (
     <Fragment>
       <div className={`${styles.progressStep} ${active ? styles.active : ''}`} />
@@ -10,7 +10,7 @@ const ProgressStep = ({active, name}: {active: boolean; name: string}): h.JSX.El
   )
 }
 
-const ProgressBar = ({stepNames, activeStep}: {stepNames: string[]; activeStep: number}): h.JSX.Element => {
+const ProgressBar = ({stepNames, activeStep}: {stepNames: string[]; activeStep: number}): JSX.Element => {
   return (
     <div className={styles.progressBar}>
       {stepNames.map((step, i) => (

@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import {getErrorMessage} from '../../../errors'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
@@ -8,11 +7,11 @@ import tooltip from '../../common/tooltip'
 import Alert from '../../common/alert'
 import sanitizeMnemonic from '../../../helpers/sanitizeMnemonic'
 import {ADALITE_CONFIG} from '../../../config'
-import {useEffect, useRef} from 'preact/hooks'
+import {useEffect, useRef} from 'react'
 
 const {ADALITE_DEMO_WALLET_MNEMONIC} = ADALITE_CONFIG
 
-const MnemonicAuth = (): h.JSX.Element => {
+const MnemonicAuth = (): JSX.Element => {
   const {formData, shouldShowMnemonicInfoAlert, autoLogin, displayWelcome} = useSelector((state) => ({
     formData: state.mnemonicAuthForm,
     displayWelcome: state.displayWelcome,
@@ -27,7 +26,7 @@ const MnemonicAuth = (): h.JSX.Element => {
 
   useEffect(() => {
     if (!formData.mnemonicInputValue && !displayWelcome) {
-      mnemonicField.current.focus()
+      mnemonicField.current?.focus()
     }
   }, [formData.mnemonicInputValue, displayWelcome])
 
@@ -68,7 +67,7 @@ const MnemonicAuth = (): h.JSX.Element => {
         onBlur={updateMnemonicValidationError}
         autoComplete="off"
         ref={mnemonicField}
-        onKeyDown={(e) => e.key === 'Enter' && goBtn?.current.click()}
+        onKeyDown={(e) => e.key === 'Enter' && goBtn.current?.click()}
       />
       <div className="validation-row">
         <button
@@ -91,7 +90,7 @@ const MnemonicAuth = (): h.JSX.Element => {
             // resulting in AccountExplorationError
             e.key === 'Enter' && (e.target as HTMLButtonElement).click()
             if (e.key === 'Tab') {
-              mnemonicField.current.focus()
+              mnemonicField.current?.focus()
               e.preventDefault()
             }
           }}

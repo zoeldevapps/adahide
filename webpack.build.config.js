@@ -25,7 +25,9 @@ if (!isProd) {
     './app/public/css/1024-1112px.css',
   ]
   // Check if "cssPathnames" are up-to-date with css files stored in "app/public/css" folder
-  if (JSON.stringify([...cssPathnames].sort()) !== JSON.stringify(glob.sync('./app/public/css/**/*.css').sort())) {
+  if (
+    JSON.stringify([...cssPathnames].sort()) !== JSON.stringify(glob.sync('./app/public/css/**/*.css').sort())
+  ) {
     throw new Error('Webpack: CSS pathnames are outdated!')
   }
 
@@ -34,7 +36,7 @@ if (!isProd) {
 }
 // This one must be after global css, so that css-modules which are imported from js
 // can override global css
-entry.push('./app/frontend/walletApp.js')
+entry.push('./app/frontend/walletApp.tsx')
 
 module.exports = {
   entry,
@@ -142,18 +144,17 @@ module.exports = {
     },
     alias: {
       'babel-runtime': '@babel/runtime', // so both ledger and trezor-connect use the same library for babel runtime
-      'unistore': `${__dirname}/app/frontend/libs/unistore`,
       'file-saver': `${__dirname}/app/frontend/libs/file-saver`,
-      'qrious': `${__dirname}/app/frontend/libs/qrious`,
-      'react': 'preact/compat',
+      qrious: `${__dirname}/app/frontend/libs/qrious`,
     },
-    extensions: ['.tsx', '.ts', '.js', '.wasm'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.wasm'],
   },
   plugins: [
     !isProd && new webpack.HotModuleReplacementPlugin(),
-    isProd && new MiniCssExtractPlugin({
-      filename: 'css/modules.css',
-    }),
+    isProd &&
+      new MiniCssExtractPlugin({
+        filename: 'css/modules.css',
+      }),
     // Auto-import `Buffer`:
     // https://github.com/webpack/changelog-v5/issues/10#issuecomment-615877593
     new webpack.ProvidePlugin({

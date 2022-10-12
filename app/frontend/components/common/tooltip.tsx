@@ -1,5 +1,3 @@
-import {h, JSX} from 'preact'
-
 const tooltip = (message, enabled, displayAlways?: boolean) => {
   return displayAlways !== undefined
     ? {

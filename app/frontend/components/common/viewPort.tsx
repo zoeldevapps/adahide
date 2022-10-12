@@ -1,5 +1,5 @@
 import {ScreenType} from '../../types'
-import {useState, useEffect} from 'preact/hooks'
+import {useState, useEffect} from 'react'
 
 // we could export this and use it in other places, in that case
 // we should optimalize it with context

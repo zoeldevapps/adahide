@@ -1,5 +1,5 @@
-import {Fragment, h} from 'preact'
-import {connect} from '../../../libs/unistore/preact'
+import {Fragment} from 'react'
+import {connect} from 'unistore/react'
 import actions from '../../../actions'
 import printAda from '../../../helpers/printAda'
 import {State} from '../../../state'

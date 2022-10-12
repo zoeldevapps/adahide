@@ -1,4 +1,4 @@
-import {Fragment, h} from 'preact'
+import {Fragment, useCallback, useMemo, useRef} from 'react'
 import {useActions, useSelector} from '../../../helpers/connect'
 import actions from '../../../actions'
 
@@ -10,7 +10,6 @@ import SearchableSelect from '../../common/searchableSelect'
 
 import AccountDropdown from '../accounts/accountDropdown'
 import {getSourceAccountInfo} from '../../../state'
-import {useCallback, useMemo, useRef} from 'preact/hooks'
 import {
   AssetFamily,
   Lovelace,
@@ -296,7 +295,7 @@ const SendAdaPage = ({
       value={sendAddress}
       onInput={updateAddress}
       autoComplete="off"
-      onKeyDown={(e) => e.key === 'Enter' && amountField?.current.focus()}
+      onKeyDown={(e) => e.key === 'Enter' && amountField.current?.focus()}
       disabled={isModal || shouldDisableSendingButton(walletOperationStatusType)}
     />
   )
@@ -370,8 +369,7 @@ const SendAdaPage = ({
           ref={amountField}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && submitTxBtn) {
-              // eslint-disable-next-line no-unused-expressions
-              submitTxBtn?.current.click()
+              submitTxBtn.current?.click()
               e.preventDefault()
             }
           }}

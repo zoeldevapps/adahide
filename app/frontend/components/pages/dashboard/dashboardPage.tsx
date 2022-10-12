@@ -1,4 +1,4 @@
-import {h, Fragment} from 'preact'
+import {Fragment, useState} from 'react'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Balance from '../../common/balance'
@@ -23,7 +23,6 @@ import Keys from '../advanced/keys'
 import AccountsDashboard from '../accounts/accountsDashboard'
 import PoolOwner from '../advanced/poolOwner'
 import ErrorModals from './errorModals'
-import {useState} from 'preact/hooks'
 import {SubTabs, MainTabs} from '../../../constants'
 import {useViewport, isSmallerThanDesktop} from '../../common/viewPort'
 import {ScreenType} from '../../../types'
@@ -258,7 +257,7 @@ const DashboardPage = () => {
 
   const screenType = useViewport()
 
-  const MainPages: {[key in MainTabs]: h.JSX.Element} = {
+  const MainPages: {[key in MainTabs]: JSX.Element} = {
     [MainTabs.ACCOUNT]: <AccountsPage screenType={screenType} />,
     [MainTabs.STAKING]: <StakingPage screenType={screenType} />,
     [MainTabs.SEND]: <SendingPage screenType={screenType} shouldShowExportOption={shouldShowExportOption} />,
@@ -303,7 +302,7 @@ const DashboardPage = () => {
           ))}
         </ul>
         {window.innerWidth < 1024 && <NufiBanner variant="static" />}
-        <div style={'min-width: 200px;'}>
+        <div style={{minWidth: '200px'}}>
           <WalletOperationStatusType />
         </div>
       </div>

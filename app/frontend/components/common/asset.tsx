@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import printAda from '../../helpers/printAda'
 import {AssetFamily, Lovelace, RegisteredTokenMetadata, Token} from '../../types'
 import {AdaIcon, HomePageIcon, CircleFillIcon, StarIcon} from './svg'
@@ -111,15 +110,15 @@ const getLabelVariants = (args: GetLabelVariantsArgs) => {
 
 type FormattedHumanReadableLabelVariants = {
   type: FormattedHumanReadableLabelType
-  label: h.JSX.Element
-  labelWithIcon: h.JSX.Element
-  labelShortWithIcon: h.JSX.Element
+  label: JSX.Element
+  labelWithIcon: JSX.Element
+  labelShortWithIcon: JSX.Element
 }
 
 const getFormattedLabelVariants = (args: GetLabelVariantsArgs): FormattedHumanReadableLabelVariants => {
   const {type, label, labelShort} = getLabelVariants(args)
 
-  const LabelWrapper = ({children}: {children: h.JSX.Element | h.JSX.Element[]}) => (
+  const LabelWrapper = ({children}: {children: JSX.Element | JSX.Element[]}) => (
     <div
       className={`${styles.iconName} ${
         type === FormattedHumanReadableLabelType.FINGERPRINT ? 'flex-nowrap shrinkable' : ''
@@ -164,18 +163,18 @@ export const FormattedAssetItem = ({
   children,
 }: FormattedAssetItemProps & {
   children: (props: {
-    icon: h.JSX.Element
+    icon: JSX.Element
     formattedHumanReadableLabelVariants: FormattedHumanReadableLabelVariants
-    formattedOnChainName: h.JSX.Element | null
-    formattedOffChainName: h.JSX.Element | null
-    formattedAssetLink: h.JSX.Element | null
+    formattedOnChainName: JSX.Element | null
+    formattedOffChainName: JSX.Element | null
+    formattedAssetLink: JSX.Element | null
     formattedAmount: string
-    formattedPolicy: h.JSX.Element | null
-    formattedFingerprint: h.JSX.Element | null
-    formattedDescription: h.JSX.Element | null
-    formattedTicker: h.JSX.Element | null
-    formattedUrl: h.JSX.Element | null
-  }) => h.JSX.Element
+    formattedPolicy: JSX.Element | null
+    formattedFingerprint: JSX.Element | null
+    formattedDescription: JSX.Element | null
+    formattedTicker: JSX.Element | null
+    formattedUrl: JSX.Element | null
+  }) => JSX.Element
 }) => {
   const missingValue = 'N / A'
 

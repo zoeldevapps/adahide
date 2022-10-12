@@ -1,8 +1,7 @@
-import devtools from './libs/unistore/devtools'
+import devtools from 'unistore/devtools'
+import createDefaultStore from 'unistore'
 import {ADALITE_CONFIG} from './config'
 import {initialState} from './state'
-
-const createDefaultStore = require('./libs/unistore').default
 
 const createStore = () =>
   ADALITE_CONFIG.ADALITE_ENABLE_DEBUGGING === 'true'

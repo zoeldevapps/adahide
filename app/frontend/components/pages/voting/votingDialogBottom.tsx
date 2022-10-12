@@ -1,4 +1,3 @@
-import {h} from 'preact'
 import styles from './voting.module.scss'
 
 const VotingDialogBottom = ({

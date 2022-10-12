@@ -1,4 +1,4 @@
-import {h, Fragment} from 'preact'
+import {Fragment} from 'react'
 import {Base64} from 'js-base64'
 import {encodeAssetFingerprint} from '../../../wallet/shelley/helpers/addresses'
 import printAda from '../../../helpers/printAda'
@@ -30,7 +30,7 @@ import printTokenAmount from '../../../helpers/printTokenAmount'
 import {getCardanoscanUrl} from '../../../helpers//common'
 import BigNumber from 'bignumber.js'
 
-const FormattedAmount = ({amount}: {amount: Lovelace}): h.JSX.Element => {
+const FormattedAmount = ({amount}: {amount: Lovelace}): JSX.Element => {
   const value = printAda(amount)
   return (
     <div className={`transaction-amount ${amount.gt(0) ? 'credit' : 'debit'}`}>
@@ -40,7 +40,7 @@ const FormattedAmount = ({amount}: {amount: Lovelace}): h.JSX.Element => {
   )
 }
 
-const FormattedFee = ({fee}: {fee: Lovelace}): h.JSX.Element => {
+const FormattedFee = ({fee}: {fee: Lovelace}): JSX.Element => {
   const value = printAda(fee)
   return (
     <div className="transaction-fee nowrap">
@@ -50,7 +50,7 @@ const FormattedFee = ({fee}: {fee: Lovelace}): h.JSX.Element => {
   )
 }
 
-const FormattedTransaction = ({txid}: {txid: HexString}): h.JSX.Element => (
+const FormattedTransaction = ({txid}: {txid: HexString}): JSX.Element => (
   <div className="blockexplorer-link">
     <span>View on </span>
     <span>
@@ -119,7 +119,7 @@ interface Props {
   stakingHistory: Array<StakingHistoryObject>
 }
 
-const ExportCSV = ({transactionHistory, stakingHistory}: Props): h.JSX.Element => {
+const ExportCSV = ({transactionHistory, stakingHistory}: Props): JSX.Element => {
   const tokensMetadata = useSelector((state) => state.tokensMetadata)
 
   const withdrawalHistory: {[key: string]: Lovelace} = stakingHistory
@@ -293,7 +293,7 @@ const ExportCSV = ({transactionHistory, stakingHistory}: Props): h.JSX.Element =
   )
 }
 
-const TransactionHistory = (): h.JSX.Element => {
+const TransactionHistory = (): JSX.Element => {
   const {transactionHistory, stakingHistory} = useActiveAccount()
 
   return (

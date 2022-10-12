@@ -1,9 +1,8 @@
-import {h} from 'preact'
 import actions from '../../../actions'
 import {MainTabs} from '../../../../frontend/constants'
 import {useActions} from '../../../helpers/connect'
 
-const ReceiveRedirect = (): h.JSX.Element => {
+const ReceiveRedirect = (): JSX.Element => {
   const {setActiveMainTab} = useActions(actions)
   const redirect = () => {
     setActiveMainTab(MainTabs.RECEIVE)

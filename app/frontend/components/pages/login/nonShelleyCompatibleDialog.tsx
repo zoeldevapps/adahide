@@ -1,10 +1,9 @@
-import {h} from 'preact'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Modal from '../../common/modal'
 import Alert from '../../common/alert'
 
-const NonShelleyCompatibleWarningDialog = (): h.JSX.Element => {
+const NonShelleyCompatibleWarningDialog = (): JSX.Element => {
   const {closeNonShelleyCompatibleDialog} = useActions(actions)
   return (
     <Modal

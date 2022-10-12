@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js'
-import {h} from 'preact'
 import {printConversionRate} from '../../helpers/printConversionRates'
 
 interface Props {
