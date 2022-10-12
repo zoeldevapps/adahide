@@ -62,22 +62,10 @@ const AdaLiteLogo = () => (
     <title>Adalite logo</title>
     <g id="Layer_2">
       <g id="Layer_1-2">
-        <path
-          className="cls-1"
-          d="M26.87,2.69a5.37,5.37,0,1,1-7.34-2A5.37,5.37,0,0,1,26.87,2.69Z"
-        />
-        <path
-          className="cls-1"
-          d="M36.18,18.81a5.37,5.37,0,1,1-7.33-2A5.38,5.38,0,0,1,36.18,18.81Z"
-        />
-        <path
-          className="cls-1"
-          d="M45.49,34.94a5.37,5.37,0,1,1-7.33-2A5.37,5.37,0,0,1,45.49,34.94Z"
-        />
-        <path
-          className="cls-1"
-          d="M7.24,23.46A3.93,3.93,0,1,0,12.6,22,3.92,3.92,0,0,0,7.24,23.46Z"
-        />
+        <path className="cls-1" d="M26.87,2.69a5.37,5.37,0,1,1-7.34-2A5.37,5.37,0,0,1,26.87,2.69Z" />
+        <path className="cls-1" d="M36.18,18.81a5.37,5.37,0,1,1-7.33-2A5.38,5.38,0,0,1,36.18,18.81Z" />
+        <path className="cls-1" d="M45.49,34.94a5.37,5.37,0,1,1-7.33-2A5.37,5.37,0,0,1,45.49,34.94Z" />
+        <path className="cls-1" d="M7.24,23.46A3.93,3.93,0,1,0,12.6,22,3.92,3.92,0,0,0,7.24,23.46Z" />
         <path className="cls-1" d="M.36,39A2.69,2.69,0,1,0,4,38,2.69,2.69,0,0,0,.36,39Z" />
         <path
           className="cls-2"
@@ -214,11 +202,7 @@ const CloseIcon = () => (
 )
 
 const LinkIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 26.458 26.458"
-    style="width: 2.5rem; height: 2.5rem;"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.458 26.458" style="width: 2.5rem; height: 2.5rem;">
     <path d="M3.78 13.22v9.185h18.37v-6.68H19.923v4.454H6.007V6.262H10.46V4.036H3.78z" />
     <path d="M15.275 5.65l1.587 1.587-2.505 2.504-2.505 2.478 1.03 1.057 1.03 1.058 2.532-2.505 2.505-2.505 1.615 1.586 1.586 1.615V4.036H13.69z" />
   </svg>
@@ -290,12 +274,7 @@ const DropdownCaret = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <g
-        id="select"
-        transform="translate(-348.000000, -31.000000)"
-        stroke="#20323F"
-        strokeWidth="1.3"
-      >
+      <g id="select" transform="translate(-348.000000, -31.000000)" stroke="#20323F" strokeWidth="1.3">
         <g id="Group-4">
           <polyline id="Path-7" points="349 32 354 36 359 32" />
         </g>
@@ -332,13 +311,7 @@ const CircleFillIcon = () => (
 )
 
 const WarningIcon = () => (
-  <svg
-    width="22px"
-    height="19px"
-    viewBox="0 0 22 19"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="22px" height="19px" viewBox="0 0 22 19" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g id="design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="01-06-create-wallet" transform="translate(-1034.000000, -311.000000)">
         <g id="Group-15" transform="translate(324.000000, 239.000000)">

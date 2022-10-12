@@ -12,7 +12,7 @@ import {
 import {TxCertificate, TxInput, TxOutput, TxWithdrawal} from '../../../../frontend/wallet/types'
 import {InternalError, InternalErrorReason} from '../../../errors'
 import {parseStakepoolRegistrationCertificate} from './poolCertificateUtils'
-import * as _ from 'lodash'
+import _ from 'lodash'
 import {TxPlan} from '../transaction/types'
 import {encodeAddress} from './addresses'
 import {CborizedCliWitness} from '../types'
@@ -35,9 +35,7 @@ const validatePoolRegUnsignedTx = (unsignedTx: _UnsignedTxParsed) => {
     unsignedTx.certificates.length !== 1 ||
     unsignedTx.certificates[0].type !== TxCertificateKeys.STAKEPOOL_REGISTRATION
   ) {
-    throw new Error(
-      'Pool registration transaction must include exactly one pool registration certficate.'
-    )
+    throw new Error('Pool registration transaction must include exactly one pool registration certficate.')
   }
   if (unsignedTx.withdrawals.length > 0) {
     throw new Error("Pool registration transaction can't include reward withdrawals.")
@@ -81,10 +79,7 @@ const parseCliOutputs = (outputs: _Output[]): TxOutput[] => {
   })
 }
 
-const parseCliCertificates = (
-  certificates: _Certificate[],
-  stakingAddress: Address
-): TxCertificate[] => {
+const parseCliCertificates = (certificates: _Certificate[], stakingAddress: Address): TxCertificate[] => {
   return certificates.map((certificate) => {
     if (certificate.type !== TxCertificateKeys.STAKEPOOL_REGISTRATION) {
       throw new InternalError(InternalErrorReason.PoolRegTxParserError) // TODO
@@ -97,10 +92,7 @@ const parseCliCertificates = (
   })
 }
 
-const parseCliWithdrawals = (
-  withdrawals: _Withdrawal[],
-  stakingAddress: Address
-): TxWithdrawal[] => {
+const parseCliWithdrawals = (withdrawals: _Withdrawal[], stakingAddress: Address): TxWithdrawal[] => {
   if (withdrawals.length > 0) throw new InternalError(InternalErrorReason.PoolRegTxParserError)
   return [] // pool reg tx cant have withdrawals
 }
@@ -110,9 +102,7 @@ const parseCliTtl = (ttl: BigInt | undefined): BigNumber | null =>
 
 const parseCliFee = (fee: BigInt): BigNumber => new BigNumber(fee.toString())
 
-const parseCliValidityIntervalStart = (
-  validityIntervalStart: BigInt | undefined
-): BigNumber | null =>
+const parseCliValidityIntervalStart = (validityIntervalStart: BigInt | undefined): BigNumber | null =>
   validityIntervalStart !== undefined ? new BigNumber(validityIntervalStart.toString()) : null
 
 const unsignedPoolTxToTxPlan = (unsignedTx: _UnsignedTxParsed, stakingAddress: Address): TxPlan => {

@@ -10,11 +10,7 @@ interface Props {
 const Branding = ({dark}: Props) => (
   <div className="branding">
     <p className={`branding-label ${dark ? 'dark' : ''}`}>Developed by</p>
-    <img
-      className="branding-logo"
-      src={dark ? LOGO_PATH_DARK : LOGO_PATH_WHITE}
-      alt="Vacuumlabs logo"
-    />
+    <img className="branding-logo" src={dark ? LOGO_PATH_DARK : LOGO_PATH_WHITE} alt="Vacuumlabs logo" />
   </div>
 )
 

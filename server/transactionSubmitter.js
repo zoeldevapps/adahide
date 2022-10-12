@@ -3,7 +3,7 @@ const Sentry = require('@sentry/node')
 const {isSameOrigin, tokenMatches} = require('./helpers/checkOrigin')
 const {backendConfig} = require('./helpers/loadConfig')
 
-module.exports = function(app) {
+module.exports = function (app) {
   // eslint-disable-next-line consistent-return
   app.post('/api/txs/submit', async (req, res) => {
     let txHash
@@ -23,16 +23,13 @@ module.exports = function(app) {
     }
 
     try {
-      const response = await fetch(
-        `${process.env.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/v2/txs/signed`,
-        {
-          method: 'POST',
-          body: JSON.stringify(signedBody),
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-          },
-        }
-      )
+      const response = await fetch(`${process.env.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/v2/txs/signed`, {
+        method: 'POST',
+        body: JSON.stringify(signedBody),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+      })
 
       if (response.status === 200) {
         return res.json({

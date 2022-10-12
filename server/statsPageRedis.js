@@ -84,7 +84,7 @@ const getStats = async () => {
 
 const isAdaAmountKey = (key) => key.search(/sentOut:|sentTotal:/) !== -1
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get('/usage_stats', async (req, res) => {
     try {
       const stats = await getStats()
@@ -94,16 +94,16 @@ module.exports = function(app) {
           (subject) => `
           <b>${subject}:</b>
           ${Object.keys(stats[subject])
-    .map(
-      (period) => `
+            .map(
+              (period) => `
             <ul>
                 <a href="#${(subject + period).replace(':', '-')}">${
-  isAdaAmountKey(period) ? `${period} (ADA)` : period
-}</a>
+                isAdaAmountKey(period) ? `${period} (ADA)` : period
+              }</a>
           </ul>
         `
-    )
-    .join('')}
+            )
+            .join('')}
       `
         )
         .join(' ')
@@ -113,8 +113,8 @@ module.exports = function(app) {
           (subject) => `
             <b>${subject}:</b>
             ${Object.keys(stats[subject])
-    .map(
-      (period) => `
+              .map(
+                (period) => `
               <ul>
                 <li id=${(subject + period).replace(':', '-')}>
                   ${isAdaAmountKey(period) ? `${period} (ADA)` : period}
@@ -122,9 +122,9 @@ module.exports = function(app) {
                 
                 <table style=";margin-left:36px;">
                   ${stats[subject][period]
-    .map((item) => {
-      const [key, value] = item
-      return `
+                    .map((item) => {
+                      const [key, value] = item
+                      return `
         
       <tr style="list-style-type:circle;">
           
@@ -132,22 +132,22 @@ module.exports = function(app) {
             <td style="text-align:end;">
               <b>
                 ${
-  isAdaAmountKey(period)
-    ? Math.round(value / 1000000).toLocaleString('en')
-    : parseInt(value, 10).toLocaleString('en')
-}
+                  isAdaAmountKey(period)
+                    ? Math.round(value / 1000000).toLocaleString('en')
+                    : parseInt(value, 10).toLocaleString('en')
+                }
     </b>
             </td>
           </tr>
           
         `
-    })
-    .join('')}
+                    })
+                    .join('')}
               </table>
             </ul>
           `
-    )
-    .join('')}
+              )
+              .join('')}
         `
         )
         .join(' ')

@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import {selectMinimalTxPlan} from '../../frontend/wallet/shelley/transaction'
 import {Address, AssetFamily, Lovelace, Token, TxType} from '../../frontend/types'
 import {UnexpectedErrorReason} from '../../frontend/errors'
@@ -25,21 +25,24 @@ const tokens = {
 const utxos = {
   utxo1: {
     txHash: 'deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-    address: 'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
+    address:
+      'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
     coins: new BigNumber(1000000) as Lovelace,
     outputIndex: 1,
     tokenBundle: [],
   },
   utxo2: {
     txHash: 'deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-    address: 'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
+    address:
+      'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
     coins: new BigNumber(2000000) as Lovelace,
     outputIndex: 0,
     tokenBundle: [],
   },
   utxoWithTokens1: {
     txHash: 'deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
-    address: 'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
+    address:
+      'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address,
     coins: new BigNumber(3000000) as Lovelace,
     outputIndex: 0,
     tokenBundle: [...Object.values(tokens)],
@@ -47,7 +50,8 @@ const utxos = {
 }
 
 const sendAdaAmountArgs = (lovelace: BigNumber) => ({
-  address: 'addr1qjag9rgwe04haycr283datdrjv3mlttalc2waz34xcct0g4uvf6gdg3dpwrsne4uqng3y47ugp2pp5dvuq0jqlperwj83r4pwxvwuxsgds90s0' as Address,
+  address:
+    'addr1qjag9rgwe04haycr283datdrjv3mlttalc2waz34xcct0g4uvf6gdg3dpwrsne4uqng3y47ugp2pp5dvuq0jqlperwj83r4pwxvwuxsgds90s0' as Address,
   coins: lovelace as Lovelace,
   sendAmount: {
     assetFamily: AssetFamily.ADA as const,
@@ -58,7 +62,8 @@ const sendAdaAmountArgs = (lovelace: BigNumber) => ({
 })
 
 const sendTokenAmountArgs = (token: Token, quantity: BigNumber) => ({
-  address: 'addr1qjag9rgwe04haycr283datdrjv3mlttalc2waz34xcct0g4uvf6gdg3dpwrsne4uqng3y47ugp2pp5dvuq0jqlperwj83r4pwxvwuxsgds90s0' as Address,
+  address:
+    'addr1qjag9rgwe04haycr283datdrjv3mlttalc2waz34xcct0g4uvf6gdg3dpwrsne4uqng3y47ugp2pp5dvuq0jqlperwj83r4pwxvwuxsgds90s0' as Address,
   coins: new BigNumber(1500000),
   sendAmount: {
     assetFamily: AssetFamily.TOKEN as const,
@@ -72,7 +77,8 @@ const sendTokenAmountArgs = (token: Token, quantity: BigNumber) => ({
   txType: TxType.SEND_ADA as const,
 })
 
-const changeAddress = 'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address
+const changeAddress =
+  'addr1q8eakg39wqlye7lzyfmh900s2luc99zf7x9vs839pn4srjs2s3ps2plp2rc2qcgfmsa8kx2kk7s9s6hfq799tmcwpvpsjv0zk3' as Address
 
 const successPlanFixtures = {
   'not add change to fee': {

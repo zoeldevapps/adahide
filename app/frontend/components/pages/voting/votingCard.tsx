@@ -13,7 +13,7 @@ import {CATALYST_MIN_THRESHOLD} from '../../../wallet/constants'
 import {CryptoProviderFeature, Lovelace} from '../../../types'
 import {toAda} from '../../../helpers/adaConverters'
 import styles from './voting.module.scss'
-import * as QRious from '../../../libs/qrious'
+import QRious from '../../../libs/qrious'
 import BigNumber from 'bignumber.js'
 
 const AppDownloadInfo = ({url, imageSrc}: {url: string; imageSrc: string}) => (
@@ -70,8 +70,7 @@ const VotingCard = (): h.JSX.Element => {
       <h2 className="card-title">Voting</h2>
       <p className="advanced-label">Download the Catalyst Voting APP</p>
       <p>
-        In order to participate in Catalyst Funds, first you have to download the Catalyst mobile
-        application:
+        In order to participate in Catalyst Funds, first you have to download the Catalyst mobile application:
       </p>
       <div className={styles.votingApps}>
         <AppDownloadInfo

@@ -144,24 +144,13 @@ const txPlanValidator = (
   if (fee.gte(balance.plus(minimalLovelaceAmount))) {
     return {code: InternalErrorReason.SendAmountCantSendAnyFunds}
   }
-  if (
-    coins
-      .plus(fee)
-      .plus(minimalLovelaceAmount)
-      .gt(balance)
-  ) {
+  if (coins.plus(fee).plus(minimalLovelaceAmount).gt(balance)) {
     return {
       code: InternalErrorReason.SendAmountInsufficientFunds,
       params: {balance},
     }
   }
-  if (
-    donationAmount.gt(0) &&
-    coins
-      .plus(fee)
-      .plus(donationAmount)
-      .gt(balance)
-  ) {
+  if (donationAmount.gt(0) && coins.plus(fee).plus(donationAmount).gt(balance)) {
     return {
       code: InternalErrorReason.DonationInsufficientBalance,
       params: {balance},

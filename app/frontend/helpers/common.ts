@@ -31,9 +31,7 @@ export const getVotingRegistrationStatus = (): VotingRegistrationStatus => {
   return {isOpen: true}
 }
 
-export const shouldDisableSendingButton = (
-  walletOperationStatusType: WalletOperationStatusType
-): boolean =>
+export const shouldDisableSendingButton = (walletOperationStatusType: WalletOperationStatusType): boolean =>
   walletOperationStatusType != null &&
   (walletOperationStatusType === 'reloading' ||
     walletOperationStatusType === 'txPending' ||

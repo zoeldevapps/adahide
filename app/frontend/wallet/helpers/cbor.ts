@@ -1,4 +1,4 @@
-import * as cbor from 'cbor'
+import cbor from 'cbor'
 
 export * from 'cbor'
 

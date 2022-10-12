@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 import BlockchainExplorer from '../../frontend/wallet/blockchain-explorer'
@@ -590,7 +590,7 @@ const expectedTxHistory = [
 ]
 
 // eslint-disable-next-line prefer-arrow-callback
-describe.skip('wallet history parsing', function() {
+describe.skip('wallet history parsing', function () {
   this.timeout(10000)
 
   it('should properly fetch wallet history', async () => {
@@ -604,7 +604,7 @@ describe.skip('wallet history parsing', function() {
 })
 
 // eslint-disable-next-line prefer-arrow-callback
-describe('wallet unspent outputs fetching', function() {
+describe('wallet unspent outputs fetching', function () {
   this.timeout(10000)
 
   it('should properly fetch unspent transaction outputs for addresses', async () => {

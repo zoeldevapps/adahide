@@ -99,18 +99,14 @@ class ContactForm extends Component<Props, {submitted: boolean}> {
               >
                 Back to AdaLite
               </button>
-              <input
-                className="button primary wide modal-button submit"
-                value="Submit"
-                type="submit"
-              />
+              <input className="button primary wide modal-button submit" value="Submit" type="submit" />
             </div>
           </form>
           <button
             onClick={this.closeContactFormModal}
             className="button close modal-close"
             {
-            ...{ariaLabel: 'Close dialog'} /* to mute ts error */
+              ...{ariaLabel: 'Close dialog'} /* to mute ts error */
             }
             onKeyDown={(e) => {
               e.key === 'Enter' && (e.target as HTMLButtonElement).click()

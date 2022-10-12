@@ -13,10 +13,10 @@ const LoadingOverlay = () => {
       </div>
       {loadingMessage
         ? loadingMessage.split('\n').map((line, i) => (
-          <p className="loading-message" key={i}>
-            {line}
-          </p>
-        ))
+            <p className="loading-message" key={i}>
+              {line}
+            </p>
+          ))
         : ''}
     </div>
   ) : null

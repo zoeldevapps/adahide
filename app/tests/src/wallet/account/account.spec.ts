@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import {accountSettings} from '../../common/account-settings'
 import {Account} from '../../../../frontend/wallet/account'
 import mnemonicToWalletSecretDef from '../../../../frontend/wallet/helpers/mnemonicToWalletSecretDef'
@@ -112,15 +112,12 @@ describe('Tx plan', () => {
 })
 
 describe('TxAux', () => {
-  ;[...Object.entries(transactionSettings), ...Object.entries(poolRegTxSettings)].forEach(
-    ([name, setting]) =>
-      it(`should calculate the right tx hash for tx with ${name}`, async () => {
-        const account = await accounts.ShelleyAccount0
-        const txHash = (
-          await account.prepareTxAux(setting.txPlanResult.txPlan, setting.ttl)
-        ).getId()
-        assert.deepEqual(txHash, setting.txHash)
-      })
+  ;[...Object.entries(transactionSettings), ...Object.entries(poolRegTxSettings)].forEach(([name, setting]) =>
+    it(`should calculate the right tx hash for tx with ${name}`, async () => {
+      const account = await accounts.ShelleyAccount0
+      const txHash = (await account.prepareTxAux(setting.txPlanResult.txPlan, setting.ttl)).getId()
+      assert.deepEqual(txHash, setting.txHash)
+    })
   )
 })
 

@@ -37,8 +37,7 @@ export const computeMinUTxOLovelaceAmount = (tokenBundle: TokenBundle): Lovelace
 
   const policyIdSize = 28 // pidSize in specs
 
-  const size =
-    6 + roundupBytesToWords(numAssets * 12 + sumAssetNameLengths + numPIDs * policyIdSize)
+  const size = 6 + roundupBytesToWords(numAssets * 12 + sumAssetNameLengths + numPIDs * policyIdSize)
 
   if (aggregatedTokenBundle.length === 0) {
     return minUTxOValue as Lovelace
@@ -54,9 +53,7 @@ export function txFeeFunction(txSizeInBytes: number): Lovelace {
   const a = new BigNumber(155381)
   const b = new BigNumber(43.946)
 
-  return a
-    .plus(new BigNumber(txSizeInBytes).times(b))
-    .integerValue(BigNumber.ROUND_CEIL) as Lovelace
+  return a.plus(new BigNumber(txSizeInBytes).times(b)).integerValue(BigNumber.ROUND_CEIL) as Lovelace
 }
 
 export function computeRequiredTxFee(
@@ -66,9 +63,7 @@ export function computeRequiredTxFee(
   withdrawals: Array<TxWithdrawal> = [],
   auxiliaryData: TxPlanAuxiliaryData | null = null
 ): Lovelace {
-  const fee = txFeeFunction(
-    estimateTxSize(inputs, outputs, certificates, withdrawals, auxiliaryData)
-  )
+  const fee = txFeeFunction(estimateTxSize(inputs, outputs, certificates, withdrawals, auxiliaryData))
   return fee
 }
 

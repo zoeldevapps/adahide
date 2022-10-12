@@ -1,7 +1,7 @@
 import {Fragment, h} from 'preact'
 import {useState, useEffect} from 'preact/hooks'
 import {encryptWithPassword} from '../../../helpers/catalyst'
-import * as QRious from '../../../libs/qrious'
+import QRious from '../../../libs/qrious'
 import Alert from '../../common/alert'
 import VotingDialogBottom from './votingDialogBottom'
 import styles from './voting.module.scss'
@@ -41,20 +41,15 @@ const QRPage = ({
         Scan this QR code using the Catalyst Voting Application and follow the instructions.
       </Alert>
       <Alert alertType="warning">
-        You will not be able to access this code after closing this dialog.{' '}
-        <strong>Download</strong> this QR code as a backup! Not having access to this QR code might{' '}
+        You will not be able to access this code after closing this dialog. <strong>Download</strong> this QR
+        code as a backup! Not having access to this QR code might{' '}
         <strong>prevent you from participating</strong> in voting.
       </Alert>
       <div className={styles.votingQr} data-cy="VotingQRCode">
         <img src={QRCode} />
       </div>
       <div className={styles.qrDownloadRow}>
-        <a
-          className="button primary"
-          data-cy="DownloadQrCode"
-          href={QRCode}
-          download="catalyst_QR.png"
-        >
+        <a className="button primary" data-cy="DownloadQrCode" href={QRCode} download="catalyst_QR.png">
           Download QR code
         </a>
       </div>

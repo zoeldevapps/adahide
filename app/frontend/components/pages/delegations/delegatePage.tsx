@@ -14,11 +14,9 @@ import DelegateInput from './delegateInput'
 import {ADALITE_CONFIG} from '../../../../frontend/config'
 import {StakepoolDataProvider} from '../../../../frontend/helpers/dataProviders/types'
 import {shouldDisableSendingButton} from '../../../helpers/common'
-import * as assert from 'assert'
+import assert from 'assert'
 
-const CalculatingFee = (): h.JSX.Element => (
-  <div className="validation-message send">Calculating fee...</div>
-)
+const CalculatingFee = (): h.JSX.Element => <div className="validation-message send">Calculating fee...</div>
 
 type DelegationValidationProps = {
   delegationValidationError: any
@@ -34,16 +32,14 @@ const DelegationValidation = ({
     <div className="validation-message transaction-success">Transaction successful!</div>
   ) : (
     delegationValidationError && (
-      <div className="validation-message error">
-        {getErrorMessage(delegationValidationError.code)}
-      </div>
+      <div className="validation-message error">{getErrorMessage(delegationValidationError.code)}</div>
     )
   )
 
 const BigDelegatorOffer = (): h.JSX.Element => (
   <div className="banner delegation-offer delegation-offer-text">
-    Due to factors such as pool saturation, maximizing staking rewards is no easy task for high
-    balance wallets like yours. Get our premium assistance via{' '}
+    Due to factors such as pool saturation, maximizing staking rewards is no easy task for high balance
+    wallets like yours. Get our premium assistance via{' '}
     <a href="https://t.me/pepo6969" target="_blank" rel="noopener">
       Telegram
     </a>{' '}
@@ -178,8 +174,7 @@ const Delegate = ({withAccordion, title}: Props): h.JSX.Element => {
 
   // init "stake pool input" and refresh it when "currentDelegation" changes
   useEffect(() => {
-    const recommendedPoolHash =
-      poolRecommendation?.recommendedPoolHash || currentDelegation?.poolHash
+    const recommendedPoolHash = poolRecommendation?.recommendedPoolHash || currentDelegation?.poolHash
 
     if (recommendedPoolHash) {
       setFieldValue(recommendedPoolHash)
@@ -203,11 +198,7 @@ const Delegate = ({withAccordion, title}: Props): h.JSX.Element => {
               value={fieldValue}
               onChange={handleOnInput}
             />
-            <StakePoolInfo
-              pool={stakePool}
-              gettingPoolInfo={gettingPoolInfo}
-              validationError={error}
-            />
+            <StakePoolInfo pool={stakePool} gettingPoolInfo={gettingPoolInfo} validationError={error} />
             <div />
           </li>
         </ul>

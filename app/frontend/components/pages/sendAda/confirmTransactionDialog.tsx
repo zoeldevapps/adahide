@@ -19,12 +19,9 @@ import {
   VotingRegistrationTransactionSummary,
   WithdrawTransactionSummary,
 } from '../../../types'
-import {
-  encodeAssetFingerprint,
-  encodeCatalystVotingKey,
-} from '../../../wallet/shelley/helpers/addresses'
+import {encodeAssetFingerprint, encodeCatalystVotingKey} from '../../../wallet/shelley/helpers/addresses'
 import {FormattedAssetItem, FormattedAssetItemProps} from '../../common/asset'
-import * as assert from 'assert'
+import assert from 'assert'
 import {isHwWallet, getDeviceBrandName} from '../../../wallet/helpers/cryptoProviderUtils'
 import {useGetCryptoProviderType} from '../../../selectors'
 import printTokenAmount from '../../../helpers/printTokenAmount'
@@ -198,17 +195,17 @@ const DeregisterStakeKeyReview = ({
   return (
     <div className="deregister-staking-key-dialog">
       <Alert alertType="warning">
-        You do NOT need to deregister to delegate to a different stake pool. You can change your
-        delegation preference at any time just by delegating to another stake pool.
+        You do NOT need to deregister to delegate to a different stake pool. You can change your delegation
+        preference at any time just by delegating to another stake pool.
       </Alert>
       <Alert alertType="warning">
-        Deregistering means this key will no longer receive rewards until you re-register the
-        staking key (usually by delegating to a pool again). Do NOT deregister if you are elligible
-        for rewards in the following epoch.
+        Deregistering means this key will no longer receive rewards until you re-register the staking key
+        (usually by delegating to a pool again). Do NOT deregister if you are elligible for rewards in the
+        following epoch.
       </Alert>
       <Alert alertType="error">
-        You should NOT deregister if this staking key is used as a stake pool's reward account, as
-        this will cause all pool operator rewards to be sent back to the reserve.
+        You should NOT deregister if this staking key is used as a stake pool's reward account, as this will
+        cause all pool operator rewards to be sent back to the reserve.
       </Alert>
       <div className="review deregister-staking-key">
         <div className="ada-label">Returned deposit</div>
@@ -245,8 +242,8 @@ const WithdrawReview = ({
   return (
     <Fragment>
       <div>
-        We are creating a transaction that will withdraw all funds from your rewards account balance
-        to your first staking address
+        We are creating a transaction that will withdraw all funds from your rewards account balance to your
+        first staking address
       </div>
       <div className="review">
         <div className="review-label">Address</div>
@@ -312,8 +309,8 @@ const ConvertFundsReview = ({
   return (
     <Fragment>
       <div>
-        We are creating a transaction that will send all funds from your non-staking addresses to
-        your first staking address
+        We are creating a transaction that will send all funds from your non-staking addresses to your first
+        staking address
       </div>
       <div className="review">
         <div className="review-label">Address</div>
@@ -377,9 +374,7 @@ const ConfirmTransactionDialog = () => {
   const hideDefaultSummary = txConfirmType === TxType.DEREGISTER_STAKE_KEY
 
   const onSubmit = () => {
-    const txSummary = isRefactoredCase
-      ? cachedTransactionSummaries[txConfirmType]
-      : transactionSummary
+    const txSummary = isRefactoredCase ? cachedTransactionSummaries[txConfirmType] : transactionSummary
     assert(txSummary != null)
     return submitTransaction({sendAddress, sourceAccountIndex, txSummary})
   }

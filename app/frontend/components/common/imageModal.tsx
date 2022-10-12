@@ -11,11 +11,7 @@ class ImageModal extends Component<Props, {}> {
   render({closeModal}) {
     return (
       <Modal onRequestClose={closeModal}>
-        <img
-          style={'width: 100%; height: 100%;'}
-          src="/delegationCycle.png"
-          alt="Delegation cycle"
-        />
+        <img style={'width: 100%; height: 100%;'} src="/delegationCycle.png" alt="Delegation cycle" />
       </Modal>
     )
   }

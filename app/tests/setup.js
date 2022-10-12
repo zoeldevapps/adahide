@@ -1,0 +1,14 @@
+// eslint-disable-next-line import/no-restricted-paths
+const {JSDOM} = require('jsdom')
+
+global.window = new JSDOM(`
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AdaLite Test Suite</title>
+<body data-config='{"ADALITE_SERVER_URL":"https://adalite.io","ADALITE_BLOCKCHAIN_EXPLORER_URL":"https://explorer.adalite.io","ADALITE_DEFAULT_ADDRESS_COUNT":10,"ADALITE_GAP_LIMIT":20,"ADALITE_DEMO_WALLET_MNEMONIC":"hill safe victory sun tired fetch police radio sport output buyer deny april fringe stumble","ADALITE_ENABLE_DEBUGGING":false,"ADALITE_APP_VERSION":"6.10.9","ADALITE_LOGOUT_AFTER":"900","ADALITE_BACKEND_TOKEN":"EhZQChlZHvaPDLqyU","ADALITE_FIXED_DONATION_VALUE":"40","ADALITE_MIN_DONATION_VALUE":"1","ADALITE_STAKE_POOL_ID":"d785ff6a030ae9d521770c00f264a2aa423e928c85fc620b13d46eda","ADALITE_ENV":"production","ADALITE_SENTRY_DSN_WEB":"https://d77d3bf9d9364597badab9c00fa59a31@sentry.io/1501383","ADALITE_DEVEL_AUTO_LOGIN":"false","ADALITE_ERROR_BANNER_CONTENT":"BEWARE, THERE ARE MULTIPLE WEBSITES LOOKING EXACTLY AS ADALITE THAT WILL STEAL YOUR FUNDS. ALWAYS MAKE SURE YOU ARE VISITING https://adalite.io","ADALITE_NETWORK":"MAINNET","ADALITE_ENABLE_BITBOX02":true,"ADALITE_ENABLE_TREZOR":true,"ADALITE_ENABLE_LEDGER":true,"ADALITE_ENFORCE_STAKEPOOL":false,"ADALITE_ENABLE_SEARCH_BY_TICKER":false,"ADALITE_NEXT_VOTING_START":1654858800000,"ADALITE_NEXT_VOTING_END":1659610800000,"ADALITE_NEXT_VOTING_ROUND_NAME":"Fund9"}'>
+</body>
+</html>
+`).window
+
+global.document = global.window.document

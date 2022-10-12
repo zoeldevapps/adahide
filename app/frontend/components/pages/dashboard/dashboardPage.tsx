@@ -1,4 +1,4 @@
-import {h, Fragment, JSX} from 'preact'
+import {h, Fragment} from 'preact'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import Balance from '../../common/balance'
@@ -47,11 +47,7 @@ const StakingPage = ({screenType}: {screenType: ScreenType}) => {
     <Fragment>
       {isSmallerThanDesktop(screenType) ? (
         <div className="dashboard mobile">
-          <DashboardMobileContent
-            subTabs={subTabs}
-            defaultSubTab={defaultSubTab}
-            mainSubTab={mainSubTab}
-          />
+          <DashboardMobileContent subTabs={subTabs} defaultSubTab={defaultSubTab} mainSubTab={mainSubTab} />
         </div>
       ) : (
         <div className="dashboard desktop">
@@ -84,11 +80,7 @@ const SendingPage = ({
     <Fragment>
       {isSmallerThanDesktop(screenType) ? (
         <div className="dashboard mobile">
-          <DashboardMobileContent
-            subTabs={subTabs}
-            defaultSubTab={defaultSubTab}
-            mainSubTab={mainSubTab}
-          />
+          <DashboardMobileContent subTabs={subTabs} defaultSubTab={defaultSubTab} mainSubTab={mainSubTab} />
           {shouldShowExportOption && <ExportCard />}
         </div>
       ) : (
@@ -133,11 +125,7 @@ const AdvancedPage = ({screenType}: {screenType: ScreenType}) => {
     <Fragment>
       {screenType < ScreenType.DESKTOP ? (
         <div className="dashboard mobile">
-          <DashboardMobileContent
-            subTabs={subTabs}
-            defaultSubTab={defaultSubTab}
-            mainSubTab={mainSubTab}
-          />
+          <DashboardMobileContent subTabs={subTabs} defaultSubTab={defaultSubTab} mainSubTab={mainSubTab} />
         </div>
       ) : (
         <div className="dashboard desktop">
@@ -162,11 +150,7 @@ const VotingPage = ({screenType}: {screenType: ScreenType}) => {
     <Fragment>
       {screenType < ScreenType.DESKTOP ? (
         <div className="dashboard mobile">
-          <DashboardMobileContent
-            subTabs={subTabs}
-            defaultSubTab={defaultSubTab}
-            mainSubTab={mainSubTab}
-          />
+          <DashboardMobileContent subTabs={subTabs} defaultSubTab={defaultSubTab} mainSubTab={mainSubTab} />
         </div>
       ) : (
         <div className="dashboard desktop">
@@ -277,9 +261,7 @@ const DashboardPage = () => {
   const MainPages: {[key in MainTabs]: h.JSX.Element} = {
     [MainTabs.ACCOUNT]: <AccountsPage screenType={screenType} />,
     [MainTabs.STAKING]: <StakingPage screenType={screenType} />,
-    [MainTabs.SEND]: (
-      <SendingPage screenType={screenType} shouldShowExportOption={shouldShowExportOption} />
-    ),
+    [MainTabs.SEND]: <SendingPage screenType={screenType} shouldShowExportOption={shouldShowExportOption} />,
     [MainTabs.RECEIVE]: <ReceivePage screenType={screenType} />,
     [MainTabs.ADVANCED]: <AdvancedPage screenType={screenType} />,
     [MainTabs.VOTING]: <VotingPage screenType={screenType} />,
@@ -315,9 +297,7 @@ const DashboardPage = () => {
               isActive={name === activeMainTab}
               setActiveTab={setActiveMainTab}
               displayName={
-                name === MainTabs.ACCOUNT
-                  ? `Account ${formatAccountIndex(activeAccountIndex)}`
-                  : null
+                name === MainTabs.ACCOUNT ? `Account ${formatAccountIndex(activeAccountIndex)}` : null
               }
             />
           ))}
@@ -346,12 +326,7 @@ const DashboardMobileContent = ({subTabs, defaultSubTab, mainSubTab}: DashboardM
       {subTabs.length > 1 && (
         <ul className="dashboard-tabs">
           {subTabs.map((name, i) => (
-            <SubTab
-              key={i}
-              name={name}
-              isActive={name === activeSubTab}
-              setActiveTab={setActiveSubTab}
-            />
+            <SubTab key={i} name={name} isActive={name === activeSubTab} setActiveTab={setActiveSubTab} />
           ))}
         </ul>
       )}

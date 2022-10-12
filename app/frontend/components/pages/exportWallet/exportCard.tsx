@@ -7,8 +7,8 @@ const ExportCard = () => (
       <div className="export-type">JSON file</div>
     </div>
     <p className="export-paragraph">
-      Key file can be used to access your wallet instead typing your mnemonic. It is encrypted by
-      the password you choose.
+      Key file can be used to access your wallet instead typing your mnemonic. It is encrypted by the password
+      you choose.
     </p>
     <button
       className="button primary outline fullwidth"

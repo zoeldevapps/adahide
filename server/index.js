@@ -48,9 +48,7 @@ if (backendConfig.ADALITE_GA_TRACKING_ID) {
 if (backendConfig.REDIS_URL) {
   app.use(require('./middlewares/statsRedis').trackVisits)
   app.use(require('./middlewares/statsRedis').trackTxSubmissions)
-  app.use(
-    require('./middlewares/basicAuth')(['/usage_stats'], {admin: backendConfig.ADALITE_STATS_PWD})
-  )
+  app.use(require('./middlewares/basicAuth')(['/usage_stats'], {admin: backendConfig.ADALITE_STATS_PWD}))
   require('./statsPageRedis')(app)
 }
 
@@ -140,15 +138,15 @@ app.get('*', (req, res) => {
           <link rel="stylesheet" type="text/css" href="css/1024-1112px.css?v=${appVersionQueryParam}">
           <link rel="icon" type="image/ico" href="assets/favicon.ico">
           ${
-  isProd
-    ? `<link rel="stylesheet" type="text/css" href="css/modules.css?v=${appVersionQueryParam}">`
-    : ''
-}
+            isProd
+              ? `<link rel="stylesheet" type="text/css" href="css/modules.css?v=${appVersionQueryParam}">`
+              : ''
+          }
           ${
-  backendConfig.ADALITE_TREZOR_CONNECT_URL
-    ? `<script src="${backendConfig.ADALITE_TREZOR_CONNECT_URL}"></script>`
-    : ''
-}
+            backendConfig.ADALITE_TREZOR_CONNECT_URL
+              ? `<script src="${backendConfig.ADALITE_TREZOR_CONNECT_URL}"></script>`
+              : ''
+          }
           <noscript>
             Your browser does not support JavaScript or it is turned off.<br/>
           </noscript>
@@ -184,8 +182,6 @@ if (enableHttps) {
   (isProd ? Promise.resolve() : devServerReady).then(() => {
     app.listen(backendConfig.PORT, () => {
       // eslint-disable-next-line no-console
-      console.log(
-        `Server is listening on ${enableHttps ? 'secure' : ''} port ${backendConfig.PORT}!`
-      )
+      console.log(`Server is listening on ${enableHttps ? 'secure' : ''} port ${backendConfig.PORT}!`)
     })
   }))()

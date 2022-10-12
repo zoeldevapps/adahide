@@ -52,16 +52,10 @@ const LoadByHardwareWalletSection = () => {
           <div className="authentication-paragraph small">
             {TrezorAffiliateLink('Support us by buying one')}
           </div>
-          <div
-            className="authentication-paragraph small"
-            dangerouslySetInnerHTML={{__html: '&nbsp;'}}
-          />
+          <div className="authentication-paragraph small" dangerouslySetInnerHTML={{__html: '&nbsp;'}} />
           <button
             disabled={!ADALITE_CONFIG.ADALITE_ENABLE_TREZOR || isMobileOnly}
-            {...tooltip(
-              'Support for Trezor is temporarily disabled',
-              !ADALITE_CONFIG.ADALITE_ENABLE_TREZOR
-            )}
+            {...tooltip('Support for Trezor is temporarily disabled', !ADALITE_CONFIG.ADALITE_ENABLE_TREZOR)}
             {...tooltip('Not supported on mobile devices', isMobileOnly)}
             className="button primary thin-data-balloon"
             onClick={() =>
@@ -79,11 +73,7 @@ const LoadByHardwareWalletSection = () => {
         </div>
         <div className="authentication-wallet">
           <div className="authentication-image-container">
-            <img
-              className="authentication-image"
-              src="assets/ledger_nano_s_x.jpg"
-              alt="Ledger Nano S/X"
-            />
+            <img className="authentication-image" src="assets/ledger_nano_s_x.jpg" alt="Ledger Nano S/X" />
           </div>
           <div className="authentication-paragraph">Ledger Nano S/S Plus/X</div>
           <div className="authentication-paragraph small">also with Android device</div>
@@ -138,10 +128,7 @@ const LoadByHardwareWalletSection = () => {
           <div className="authentication-paragraph small">
             {BitBox02AffiliateLink('Support us by buying one')}
           </div>
-          <div
-            className="authentication-paragraph small"
-            dangerouslySetInnerHTML={{__html: '&nbsp;'}}
-          />
+          <div className="authentication-paragraph small" dangerouslySetInnerHTML={{__html: '&nbsp;'}} />
           <button
             disabled={!ADALITE_CONFIG.ADALITE_ENABLE_BITBOX02 || isMobileOnly}
             {...tooltip(

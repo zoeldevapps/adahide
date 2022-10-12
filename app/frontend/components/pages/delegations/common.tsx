@@ -5,20 +5,12 @@ import {getCardanoscanUrl} from '../../../helpers/common'
 
 export const CopyPoolId = ({value}) => {
   return (
-    <CopyOnClick
-      value={value}
-      elementClass="address-link copy"
-      tooltipMessage="Pool ID copied to clipboard"
-    >
+    <CopyOnClick value={value} elementClass="address-link copy" tooltipMessage="Pool ID copied to clipboard">
       <a className="copy-text ml-8" />
     </CopyOnClick>
   )
 }
 
-export const LinkIconToPool = ({poolHash}) => (
-  <LinkIcon url={`${getCardanoscanUrl()}/pool/${poolHash}`} />
-)
+export const LinkIconToPool = ({poolHash}) => <LinkIcon url={`${getCardanoscanUrl()}/pool/${poolHash}`} />
 
-export const LinkIconToKey = ({stakeKey}) => (
-  <LinkIcon url={`${getCardanoscanUrl()}/stakekey/${stakeKey}`} />
-)
+export const LinkIconToKey = ({stakeKey}) => <LinkIcon url={`${getCardanoscanUrl()}/stakekey/${stakeKey}`} />

@@ -47,32 +47,29 @@ export const getAccountXpub = async (
   }
 }
 
-export const ShelleyStakingAccountProvider = (
-  cryptoProvider: CryptoProvider,
-  accountIndex: number
-): AddressProvider => async () => {
-  const pathStake = shelleyStakeAccountPath(accountIndex)
-  const stakeXpub = await cryptoProvider.deriveXpub(pathStake)
+export const ShelleyStakingAccountProvider =
+  (cryptoProvider: CryptoProvider, accountIndex: number): AddressProvider =>
+  async () => {
+    const pathStake = shelleyStakeAccountPath(accountIndex)
+    const stakeXpub = await cryptoProvider.deriveXpub(pathStake)
 
-  return {
-    path: pathStake,
-    address: stakingAddressFromXpub(stakeXpub, cryptoProvider.network.networkId),
+    return {
+      path: pathStake,
+      address: stakingAddressFromXpub(stakeXpub, cryptoProvider.network.networkId),
+    }
   }
-}
 
-export const ShelleyBaseAddressProvider = (
-  cryptoProvider: CryptoProvider,
-  accountIndex: number,
-  isChange: boolean
-): AddressProvider => async (i: number) => {
-  const pathSpend = shelleyPath(accountIndex, isChange, i)
-  const spendXpub = await cryptoProvider.deriveXpub(pathSpend)
+export const ShelleyBaseAddressProvider =
+  (cryptoProvider: CryptoProvider, accountIndex: number, isChange: boolean): AddressProvider =>
+  async (i: number) => {
+    const pathSpend = shelleyPath(accountIndex, isChange, i)
+    const spendXpub = await cryptoProvider.deriveXpub(pathSpend)
 
-  const pathStake = shelleyStakeAccountPath(accountIndex)
-  const stakeXpub = await cryptoProvider.deriveXpub(pathStake)
+    const pathStake = shelleyStakeAccountPath(accountIndex)
+    const stakeXpub = await cryptoProvider.deriveXpub(pathStake)
 
-  return {
-    path: pathSpend,
-    address: baseAddressFromXpub(spendXpub, stakeXpub, cryptoProvider.network.networkId),
+    return {
+      path: pathSpend,
+      address: baseAddressFromXpub(spendXpub, stakeXpub, cryptoProvider.network.networkId),
+    }
   }
-}

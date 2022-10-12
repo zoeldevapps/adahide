@@ -5,7 +5,7 @@ import actions from '../../actions'
 import Modal from './modal'
 import Alert from './alert'
 import submitFeedbackToSentry from '../../helpers/submitFeedbackToSentry'
-import * as Sentry from '@sentry/browser'
+import Sentry from '@sentry/browser'
 
 interface Props {
   sendSentry: any
@@ -13,11 +13,7 @@ interface Props {
   reloadPageOnClose: boolean
 }
 
-const UnexpectedErrorModal = ({
-  sendSentry,
-  closeUnexpectedErrorModal,
-  reloadPageOnClose,
-}: Props) => {
+const UnexpectedErrorModal = ({sendSentry, closeUnexpectedErrorModal, reloadPageOnClose}: Props) => {
   const [userEmail, setEmail] = useState('')
   const [userName, setName] = useState('')
   const [userComments, setComments] = useState('')

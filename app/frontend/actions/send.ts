@@ -11,7 +11,7 @@ import {
 import {SendTransactionSummary, TxType, Lovelace, AssetFamily, Address, SendAmount} from '../types'
 import debounceEvent from '../helpers/debounceEvent'
 import {createTokenRegistrySubject} from '../tokenRegistry/tokenRegistry'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 export default (store: Store) => {
@@ -43,8 +43,7 @@ export default (store: Store) => {
       )?.quantity
       assert(tokenBalance != null)
       const decimals =
-        getState().tokensMetadata.get(createTokenRegistrySubject(policyId, assetName))?.decimals ||
-        0
+        getState().tokensMetadata.get(createTokenRegistrySubject(policyId, assetName))?.decimals || 0
       const sendAmountValidationError = tokenAmountValidator(
         state.sendAmount.fieldValue,
         quantity,
@@ -126,12 +125,8 @@ export default (store: Store) => {
       Handling validation error should not be the responsibility of action called "calculateFee"
       */
       const validationError =
-        txPlanValidator(
-          coins,
-          txPlanResult.minimalLovelaceAmount,
-          balance,
-          txPlanResult.estimatedFee
-        ) || txPlanResult.error
+        txPlanValidator(coins, txPlanResult.minimalLovelaceAmount, balance, txPlanResult.estimatedFee) ||
+        txPlanResult.error
       setError(state, {errorName: 'sendAmountValidationError', error: validationError})
       setState({
         calculatingFee: false,

@@ -45,9 +45,7 @@ export default (store: Store) => {
       ...state,
       mnemonicAuthForm: {
         ...state.mnemonicAuthForm,
-        mnemonicInputError: mnemonicValidator(
-          sanitizeMnemonic(state.mnemonicAuthForm.mnemonicInputValue)
-        ),
+        mnemonicInputError: mnemonicValidator(sanitizeMnemonic(state.mnemonicAuthForm.mnemonicInputValue)),
       },
     })
   }

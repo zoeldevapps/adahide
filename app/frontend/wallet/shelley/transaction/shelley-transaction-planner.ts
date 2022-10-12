@@ -26,13 +26,11 @@ import {
 import {computeTxPlan, validateTxPlan} from './computeTxPlan'
 import {TxPlanDraft, TxPlanResult} from './types'
 import {computeMinUTxOLovelaceAmount} from './utils'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 const prepareTxPlanDraft = (txPlanArgs: TxPlanArgs): TxPlanDraft => {
-  const prepareSendAdaTx = (
-    txPlanArgs: SendAdaTxPlanArgs | ConvertLegacyAdaTxPlanArgs
-  ): TxPlanDraft => {
+  const prepareSendAdaTx = (txPlanArgs: SendAdaTxPlanArgs | ConvertLegacyAdaTxPlanArgs): TxPlanDraft => {
     const outputs: TxOutput[] = []
     if (txPlanArgs.sendAmount.assetFamily === AssetFamily.ADA) {
       outputs.push({
@@ -94,9 +92,7 @@ const prepareTxPlanDraft = (txPlanArgs: TxPlanArgs): TxPlanDraft => {
     }
   }
 
-  const prepareDeregisterStakingKeyTx = (
-    txPlanArgs: DeregisterStakingKeyTxPlanArgs
-  ): TxPlanDraft => {
+  const prepareDeregisterStakingKeyTx = (txPlanArgs: DeregisterStakingKeyTxPlanArgs): TxPlanDraft => {
     const {withdrawals, outputs} = prepareWithdrawalTx({
       txType: TxType.WITHDRAW,
       rewards: txPlanArgs.rewards,

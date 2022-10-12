@@ -62,10 +62,7 @@ class ExportWalletDialog extends Component<Props, State> {
       this.setState({showError: true, errorMessage: 'Wallet export failed.'})
       debugLog(e)
     }
-    setTimeout(
-      () => this.state.showError && this.setState({showError: false, errorMessage: ''}),
-      3000
-    )
+    setTimeout(() => this.state.showError && this.setState({showError: false, errorMessage: ''}), 3000)
   }
 
   isPasswordValid(password, confirmation) {
@@ -214,11 +211,7 @@ class ExportWalletDialog extends Component<Props, State> {
         <aside className="sidebar export">
           <Hint type="lose" title="Do not lose it" text="Key file cannot be recovered." />
           <Hint type="share" title="Do not Share it" text="Use it in the official AdaLite only." />
-          <Hint
-            type="backup"
-            title="Make multiple backups"
-            text="Store it safely in multiple places."
-          />
+          <Hint type="backup" title="Make multiple backups" text="Store it safely in multiple places." />
         </aside>
       </div>
     )

@@ -10,13 +10,7 @@ const ProgressStep = ({active, name}: {active: boolean; name: string}): h.JSX.El
   )
 }
 
-const ProgressBar = ({
-  stepNames,
-  activeStep,
-}: {
-  stepNames: string[]
-  activeStep: number
-}): h.JSX.Element => {
+const ProgressBar = ({stepNames, activeStep}: {stepNames: string[]; activeStep: number}): h.JSX.Element => {
   return (
     <div className={styles.progressBar}>
       {stepNames.map((step, i) => (

@@ -1,7 +1,7 @@
 import {State} from '../state'
 import {ConversionRates} from '../types'
 import request from '../wallet/helpers/request'
-import * as assert from 'assert'
+import assert from 'assert'
 
 async function getConversionRates(state: State): Promise<ConversionRates> {
   let conversionRates = state.conversionRates

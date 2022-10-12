@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import {AccountManager} from '../../../frontend/wallet/account-manager'
 import {accountManagerSettings} from '../common/account-manager-settings'
 import {ADALITE_CONFIG} from '../../../frontend/config'

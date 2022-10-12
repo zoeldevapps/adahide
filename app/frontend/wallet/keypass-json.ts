@@ -11,9 +11,7 @@ function transformPassword(password) {
 }
 
 async function verifyPassword(passwordToVerify, passwordHash) {
-  const passwordHashSplit = decodeCbor(passwordHash)
-    .toString('ascii')
-    .split('|')
+  const passwordHashSplit = decodeCbor(passwordHash).toString('ascii').split('|')
 
   const n = 1 << parseInt(passwordHashSplit[0], 10)
   const r = parseInt(passwordHashSplit[1], 10)

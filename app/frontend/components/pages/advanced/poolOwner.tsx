@@ -11,7 +11,7 @@ import {CryptoProviderFeature, PoolRegTransactionSummary} from '../../../../fron
 import {saveAs} from '../../../libs/file-saver'
 import {CborizedCliWitness} from '../../../wallet/shelley/types'
 import {transformSignatureToCliFormat} from '../../../../frontend/wallet/shelley/helpers/stakepoolRegistrationUtils'
-import * as assert from 'assert'
+import assert from 'assert'
 import {useIsWalletFeatureSupported} from '../../../selectors'
 
 interface Props {
@@ -38,16 +38,9 @@ const PoolOwnerCard = ({
   poolRegTxError,
   openPoolRegTransactionModal,
 }: Props) => {
-  const {
-    plan: poolTxPlan,
-    shouldShowPoolCertSignModal,
-    witness,
-    txBodyType,
-  } = poolRegTransactionSummary
+  const {plan: poolTxPlan, shouldShowPoolCertSignModal, witness, txBodyType} = poolRegTransactionSummary
   const [fileName, setFileName] = useState<string>('')
-  const isPoolOwnerRegistrationSupported = useIsWalletFeatureSupported(
-    CryptoProviderFeature.POOL_OWNER
-  )
+  const isPoolOwnerRegistrationSupported = useIsWalletFeatureSupported(CryptoProviderFeature.POOL_OWNER)
 
   const handleTxSign = () => {
     openPoolRegTransactionModal()
@@ -65,7 +58,7 @@ const PoolOwnerCard = ({
     await reader.readAsText(targetFile)
 
     reader.onload = ((theFile) => {
-      return async (e) => await loadPoolCertificateTx(e.target.result)
+      return async (e) => await loadPoolCertificateTx(e.target?.result)
     })(targetFile)
   }
 
@@ -139,9 +132,7 @@ const PoolOwnerCard = ({
         <div className="advanced-label">To become a pool owner</div>
         <ol>
           <li>Download Staking CBOR hex in the keys tab and send it to the Operator.</li>
-          <li>
-            Request a stake pool registration transaction from the Operator and upload it here.
-          </li>
+          <li>Request a stake pool registration transaction from the Operator and upload it here.</li>
           <li>Press the "Sign" button and review the pool registration attributes.</li>
           <li>Proceed by signing the transaction using your HW wallet.</li>
           <li>Press the "Download signature" button and send the signature the pool operator.</li>

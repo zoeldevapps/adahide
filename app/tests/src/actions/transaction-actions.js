@@ -1,4 +1,4 @@
-import {setMockState, setupInitialMockState} from './actions'
+import {setMockState, setupInitialMockState} from './actions.spec'
 import {ADALITE_CONFIG} from '../../../frontend/config'
 import mockNetwork from '../common/mock'
 import {CryptoProviderType} from '../../../frontend/wallet/types'
@@ -47,7 +47,11 @@ const sendAdaTxSettings = {
         fieldValue:
           'addr1qjag9rgwe04haycr283datdrjv3mlttalc2waz34xcct0g4uvf6gdg3dpwrsne4uqng3y47ugp2pp5dvuq0jqlperwj83r4pwxvwuxsgds90s0',
       },
-      sendAmount: {assetFamily: AssetFamily.ADA, fieldValue: '1', coins: new BigNumber(1500000)},
+      sendAmount: {
+        assetFamily: AssetFamily.ADA,
+        fieldValue: '1',
+        coins: new BigNumber(1500000),
+      },
     },
     transactionSummary: {
       fee: new BigNumber(177882),
@@ -123,10 +127,7 @@ describe('Delegation fee calculation', () => {
     it(`should calculate fee for tx with ${name}`, async () => {
       await loadTestWallet(setting.state)
       await action.calculateDelegationFee(setting.state)
-      assert.deepEqual(
-        state.cachedTransactionSummaries[TxType.DELEGATE].fee,
-        setting.transactionSummary.fee
-      )
+      assert.deepEqual(state.cachedTransactionSummaries[TxType.DELEGATE].fee, setting.transactionSummary.fee)
     })
   )
 })
@@ -145,7 +146,9 @@ describe('Voting fee calculation', () => {
   Object.entries(votingSettings).forEach(([name, setting]) =>
     it(`should calculate fee for tx with ${name}`, async () => {
       await loadTestWallet(setting.state)
-      await action.registerVotingKey(state, {votingPubKey: setting.votingPubKey})
+      await action.registerVotingKey(state, {
+        votingPubKey: setting.votingPubKey,
+      })
       assert.deepEqual(
         state.cachedTransactionSummaries[TxType.REGISTER_VOTING].fee,
         setting.transactionSummary.fee

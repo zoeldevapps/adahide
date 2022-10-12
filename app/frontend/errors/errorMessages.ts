@@ -12,11 +12,9 @@ const hwWalletTroubleshootingSuggestion =
 
 const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => string} = {
   [InternalErrorReason.SendAddressInvalidAddress]: () => 'Invalid address',
-  [InternalErrorReason.SendAddressPoolId]: () =>
-    'Invalid address, to stake your funds use the Staking tab',
+  [InternalErrorReason.SendAddressPoolId]: () => 'Invalid address, to stake your funds use the Staking tab',
   [InternalErrorReason.SendAmountIsNan]: () => 'Invalid format: Amount has to be a number',
-  [InternalErrorReason.SendAmountIsNotPositive]: () =>
-    'Invalid format: Amount has to be a positive number',
+  [InternalErrorReason.SendAmountIsNotPositive]: () => 'Invalid format: Amount has to be a positive number',
   [InternalErrorReason.SendAmountInsufficientFunds]: ({balance}) =>
     `Insufficient funds for the transaction. Your balance is ${printAda(balance)} ADA.`,
   [InternalErrorReason.SendAmountCantSendAnyFunds]: () =>
@@ -34,8 +32,7 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
     `Insufficient funds for the transaction, the minimal amount of ADA for sending the tokens is ${printAda(
       minimalLovelaceAmount
     )}`,
-  [InternalErrorReason.DonationAmountTooLow]: () =>
-    `Minimum donation is ${ADALITE_MIN_DONATION_VALUE} ADA`,
+  [InternalErrorReason.DonationAmountTooLow]: () => `Minimum donation is ${ADALITE_MIN_DONATION_VALUE} ADA`,
   [InternalErrorReason.DonationInsufficientBalance]: () => 'Insufficient balance for the donation.',
 
   [InternalErrorReason.InvalidStakepoolIdentifier]: ({hasTickerMapping}) =>
@@ -56,8 +53,9 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
   [InternalErrorReason.TransactionRejectedWhileSigning]: ({message}) =>
     `Transaction rejected while signing. ${message || hwWalletTroubleshootingSuggestion}`,
   [InternalErrorReason.TransactionNotFoundInBlockchainAfterSubmission]: ({txHash}) =>
-    `Transaction ${txHash ||
-      ''} not found in blockchain after being submitted. It may take up to an hour for the transaction to appear, if it was successful.`,
+    `Transaction ${
+      txHash || ''
+    } not found in blockchain after being submitted. It may take up to an hour for the transaction to appear, if it was successful.`,
   [InternalErrorReason.TransactionSubmissionTimedOut]: () =>
     'Transaction submission timed out, the blockchain is likely congested. It may take up to an hour for the transaction to appear, if it was successful.',
   [InternalErrorReason.TxSerializationError]: ({message}) => `TxSerializationError: ${message}`,
@@ -74,10 +72,8 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
     'OutputTooSmall: Not enough funds to make this transaction, try sending a different amount.',
   [InternalErrorReason.ChangeOutputTooSmall]: () =>
     'ChangeOutputTooSmall: Not enough funds to make this transaction, try sending a different amount.',
-  [InternalErrorReason.TxTooBig]: () =>
-    'Transaction too big, try sending less in multiple transactions.',
-  [InternalErrorReason.OutputTooBig]: () =>
-    'Transaction output is too big, try sending a diffrent amount.',
+  [InternalErrorReason.TxTooBig]: () => 'Transaction too big, try sending less in multiple transactions.',
+  [InternalErrorReason.OutputTooBig]: () => 'Transaction output is too big, try sending a diffrent amount.',
 
   [InternalErrorReason.SendAmountTooLow]: () => 'Amount too low. Minimum amount to send is 1 ADA',
   [InternalErrorReason.SendAmountBalanceTooLow]: () => 'Minimum output amount is 1 ADA.',
@@ -134,8 +130,7 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
 
   [InternalErrorReason.PoolRegIncorrectBufferLength]: ({message}) =>
     `Given property has incorrect byte length: ${message}.`,
-  [InternalErrorReason.PoolRegDuplicateOwners]: () =>
-    'The certificate contains duplicate owner hashes.',
+  [InternalErrorReason.PoolRegDuplicateOwners]: () => 'The certificate contains duplicate owner hashes.',
 
   [InternalErrorReason.PoolRegInvalidMargin]: () => 'The given pool margin is not valid.',
   [InternalErrorReason.PoolRegInvalidRelay]: () => 'Relay type is incorrect.',
@@ -146,8 +141,7 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
     `Parser error: Invalid transaction format. ${message}`,
   [InternalErrorReason.MissingOwner]: () =>
     'This HW device is not an owner of the pool stated in registration certificate.',
-  [InternalErrorReason.TransactionCorrupted]: () =>
-    'TransactionCorrupted: Transaction assembling failure.',
+  [InternalErrorReason.TransactionCorrupted]: () => 'TransactionCorrupted: Transaction assembling failure.',
   [InternalErrorReason.Error]: ({message}) => {
     const errors = {
       // an issue with CryptoToken extension allowing 2-step verification
@@ -169,22 +163,19 @@ const externalErrorMessages: {[key: string]: (params?: any) => string} = {
 
     const errors = {
       'Ledger device: Wrong Ledger app': `Ledger device: Wrong Ledger app. ${cardanoAppOpenSuggestion}`,
-      'Ledger device: Device is locked':
-        'Ledger device: Device is locked. Please unlock your device.',
+      'Ledger device: Device is locked': 'Ledger device: Device is locked. Please unlock your device.',
       'General error 0x6e01. Please consult https://github.com/cardano-foundation/ledger-app-cardano/blob/master/src/errors.h': `General error 0x6e01. ${cardanoAppOpenSuggestion}`,
     }
     return `DeviceStatusError: ${errors[message] || message}`
   },
-  [knownExternalErrors.InvalidDataProviderInitilization]: () =>
-    'Invalid data provider initilization',
+  [knownExternalErrors.InvalidDataProviderInitilization]: () => 'Invalid data provider initilization',
   [knownExternalErrors.PoolRegNoTtl]: () =>
     'TTL parameter is missing in the transaction. It is explicitly required even for the Allegra era.',
   [knownExternalErrors.PoolRegNotTheOwner]: () =>
     'This HW device is not an owner of the pool stated in registration certificate.',
   [knownExternalErrors.PoolRegInvalidFileFormat]: () =>
     'Specified file is not a cli-format pool registration certificate transaction.',
-  [knownExternalErrors.PoolRegWithdrawalDetected]: () =>
-    'The transaction must not include withdrawals.',
+  [knownExternalErrors.PoolRegWithdrawalDetected]: () => 'The transaction must not include withdrawals.',
   [knownExternalErrors.PoolRegInvalidType]: () =>
     'The certificate in transaction is not a pool registration.',
   [knownExternalErrors.PoolRegInvalidNumCerts]: () =>
@@ -195,8 +186,7 @@ const externalErrorMessages: {[key: string]: (params?: any) => string} = {
 
   [knownExternalErrors.TransportOpenUserCancelled]: ({message}) => {
     const errors = {
-      'navigator.usb is undefined':
-        'Your browser does not support WebUSB, use e.g. Google Chrome instead.',
+      'navigator.usb is undefined': 'Your browser does not support WebUSB, use e.g. Google Chrome instead.',
     }
 
     return `TransportCanceledByUser: ${message}. ${errors[message] || ''}`

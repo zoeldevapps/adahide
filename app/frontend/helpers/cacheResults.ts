@@ -5,28 +5,30 @@ type Cache<T> = {
   invalidate: () => void
 }
 
-const cacheResults = (maxAge: number) => <T extends Function>(fn: T): Cache<T> => {
-  let cacheObj = {}
+const cacheResults =
+  (maxAge: number) =>
+  <T extends Function>(fn: T): Cache<T> => {
+    let cacheObj = {}
 
-  const wrapped = (...args) => {
-    const hash = getHash(JSON.stringify(args))
-    if (!cacheObj[hash] || cacheObj[hash].timestamp + maxAge < Date.now()) {
-      cacheObj[hash] = {
-        timestamp: Date.now(),
-        data: fn(...args),
+    const wrapped = (...args) => {
+      const hash = getHash(JSON.stringify(args))
+      if (!cacheObj[hash] || cacheObj[hash].timestamp + maxAge < Date.now()) {
+        cacheObj[hash] = {
+          timestamp: Date.now(),
+          data: fn(...args),
+        }
       }
+      return cacheObj[hash].data
     }
-    return cacheObj[hash].data
-  }
 
-  const invalidate = () => {
-    cacheObj = {}
-  }
+    const invalidate = () => {
+      cacheObj = {}
+    }
 
-  return {
-    fn: (wrapped as any) as T,
-    invalidate,
+    return {
+      fn: wrapped as any as T,
+      invalidate,
+    }
   }
-}
 
 export default cacheResults

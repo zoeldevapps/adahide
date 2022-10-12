@@ -21,9 +21,7 @@ type WalletParams = {
 
 const ShelleyWallet = ({config, cryptoProvider}: WalletParams) => {
   const blockchainExplorer = BlockchainExplorer(config)
-  const tokenRegistry = new TokenRegistry(
-    `${config.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/tokens/metadata`
-  )
+  const tokenRegistry = new TokenRegistry(`${config.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/tokens/metadata`)
   const maxAccountIndex = MAX_ACCOUNT_INDEX
 
   const accountManager = AccountManager({
@@ -85,9 +83,7 @@ const ShelleyWallet = ({config, cryptoProvider}: WalletParams) => {
   ): Promise<Array<AccountInfo>> {
     const accounts = await accountManager.discoverAccounts()
     //@ts-ignore TODO: refactor type AccountInfo
-    return Promise.all(
-      accounts.map((account) => account.getAccountInfo(validStakepoolDataProvider))
-    )
+    return Promise.all(accounts.map((account) => account.getAccountInfo(validStakepoolDataProvider)))
   }
 
   function getTokensMetadata(

@@ -1,5 +1,5 @@
 import {OrderedTokenBundle, Token, TokenBundle} from '../../types'
-import * as _ from 'lodash' // TODO: import only needed methods
+import _ from 'lodash' // TODO: import only needed methods
 import {TokenObject} from '../backend-types'
 import BigNumber from 'bignumber.js'
 
@@ -45,9 +45,7 @@ export const orderTokenBundle = (tokenBundle: TokenBundle): OrderedTokenBundle =
     .mapValues((tokens) => tokens.map(({assetName, quantity}) => ({assetName, quantity})))
     .map((tokens, policyId) => ({
       policyId,
-      assets: tokens.sort((token1, token2) =>
-        compareStringsCanonically(token1.assetName, token2.assetName)
-      ),
+      assets: tokens.sort((token1, token2) => compareStringsCanonically(token1.assetName, token2.assetName)),
     }))
     .sort((token1, token2) => compareStringsCanonically(token1.policyId, token2.policyId))
     .value()

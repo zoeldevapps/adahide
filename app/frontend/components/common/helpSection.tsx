@@ -19,9 +19,7 @@ const HelpSection = connect(
   <div className="modal-instructions">
     <p>
       If you are experiencing problems, please try the following{' '}
-      <a href="https://github.com/vacuumlabs/adalite/wiki/Troubleshooting">
-        troubleshooting suggestions
-      </a>{' '}
+      <a href="https://github.com/vacuumlabs/adalite/wiki/Troubleshooting">troubleshooting suggestions</a>{' '}
       before contacting us.
     </p>
     {helpType === 'troubleshoot_and_contact' && (

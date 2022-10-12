@@ -6,10 +6,7 @@ export const poolRegTxSettings = {
     unsignedTxParsed: {
       inputs: [
         {
-          txHash: Buffer.from(
-            '3b40265111d8bb3c3c608d95b3a0bf83461ace32d79336579a1939b3aad1c0b7',
-            'hex'
-          ),
+          txHash: Buffer.from('3b40265111d8bb3c3c608d95b3a0bf83461ace32d79336579a1939b3aad1c0b7', 'hex'),
           outputIndex: 0,
         },
       ],
@@ -28,10 +25,7 @@ export const poolRegTxSettings = {
       certificates: [
         {
           type: 3,
-          poolKeyHash: Buffer.from(
-            '13381d918ec0283ceeff60f7f4fc21e1540e053ccf8a77307a7a32ad',
-            'hex'
-          ),
+          poolKeyHash: Buffer.from('13381d918ec0283ceeff60f7f4fc21e1540e053ccf8a77307a7a32ad', 'hex'),
           vrfPubKeyHash: Buffer.from(
             '07821cd344d7fd7e3ae5f2ed863218cb979ff1d59e50c4276bdc479b0d084450',
             'hex'
@@ -39,10 +33,7 @@ export const poolRegTxSettings = {
           pledge: BigInt(50000000000),
           cost: BigInt(340000000),
           margin: {numerator: 3, denominator: 100},
-          rewardAddress: Buffer.from(
-            'e1794d9b3408c9fb67b950a48a0690f070f117e9978f7fc1d120fc58ad',
-            'hex'
-          ),
+          rewardAddress: Buffer.from('e1794d9b3408c9fb67b950a48a0690f070f117e9978f7fc1d120fc58ad', 'hex'),
           poolOwnersPubKeyHashes: [
             Buffer.from('1d227aefa4b773149170885aadba30aab3127cc611ddbc4999def61c', 'hex'),
             Buffer.from('794d9b3408c9fb67b950a48a0690f070f117e9978f7fc1d120fc58ad', 'hex'),
@@ -97,7 +88,8 @@ export const poolRegTxSettings = {
         outputs: [
           {
             isChange: false as const,
-            address: 'addr1q97tqh7wzy8mnx0sr2a57c4ug40zzl222877jz06nt49g4zr43fuq3k0dfpqjh3uvqcsl2qzwuwsvuhclck3scgn3vys6wkj5d' as Address,
+            address:
+              'addr1q97tqh7wzy8mnx0sr2a57c4ug40zzl222877jz06nt49g4zr43fuq3k0dfpqjh3uvqcsl2qzwuwsvuhclck3scgn3vys6wkj5d' as Address,
             coins: new BigNumber(1) as Lovelace,
             tokenBundle: [],
           },

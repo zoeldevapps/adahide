@@ -4,12 +4,9 @@ import loadingActions from './loading'
 import errorActions from './error'
 import {CryptoProviderFeature, TxType} from '../types'
 import debugLog from '../helpers/debugLog'
-import {
-  parseCliUnsignedTx,
-  parsePoolRegTxFile,
-} from '../wallet/shelley/helpers/stakepoolRegistrationUtils'
+import {parseCliUnsignedTx, parsePoolRegTxFile} from '../wallet/shelley/helpers/stakepoolRegistrationUtils'
 import {InternalError, InternalErrorReason} from '../errors'
-import * as assert from 'assert'
+import assert from 'assert'
 import {getDeviceBrandName, isHwWallet} from '../wallet/helpers/cryptoProviderUtils'
 
 export default (store: Store) => {
@@ -93,9 +90,7 @@ export default (store: Store) => {
       const txAux = await getWallet()
         .getAccount(state.sourceAccountIndex)
         .prepareTxAux(plan, ttl || undefined, validityIntervalStart || undefined)
-      const witness = await getWallet()
-        .getAccount(state.sourceAccountIndex)
-        .witnessPoolRegTxAux(txAux)
+      const witness = await getWallet().getAccount(state.sourceAccountIndex).witnessPoolRegTxAux(txAux)
 
       setState({
         poolRegTransactionSummary: {

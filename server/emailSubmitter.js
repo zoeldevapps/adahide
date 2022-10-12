@@ -2,7 +2,7 @@ require('isomorphic-fetch')
 const {backendConfig} = require('./helpers/loadConfig')
 const {captureException} = require('@sentry/node')
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.post('/api/emails/submit', async (req, res) => {
     const listId = backendConfig.ADALITE_MAILCHIMP_LIST_ID // move to config
     const APIKey = backendConfig.ADALITE_MAILCHIMP_API_KEY
@@ -19,20 +19,17 @@ module.exports = function(app) {
     }
 
     try {
-      const response = await fetch(
-        `https://${dataCenter}.api.mailchimp.com/3.0/lists/${listId}/members/`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email_address: email,
-            status: 'subscribed',
-          }),
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-            'Authorization': `Basic ${Buffer.from(`anystring:${APIKey}`).toString('base64')}`,
-          },
-        }
-      )
+      const response = await fetch(`https://${dataCenter}.api.mailchimp.com/3.0/lists/${listId}/members/`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email_address: email,
+          status: 'subscribed',
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Authorization: `Basic ${Buffer.from(`anystring:${APIKey}`).toString('base64')}`,
+        },
+      })
 
       if (response.status === 200) {
         return res.json({

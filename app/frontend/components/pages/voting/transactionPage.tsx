@@ -30,22 +30,20 @@ const TransactionPage = ({
   return (
     <Fragment>
       <Alert alertType="info">
-        We have constructed the Voting Registration transaction, which connects the voting key to
-        this wallet. The higher amount of funds it holds, the more voting power it disposes with.{' '}
-        <strong>No funds are supposed to leave your wallet</strong>. However, the registration
-        requires paying the transaction fees.
+        We have constructed the Voting Registration transaction, which connects the voting key to this wallet.
+        The higher amount of funds it holds, the more voting power it disposes with.{' '}
+        <strong>No funds are supposed to leave your wallet</strong>. However, the registration requires paying
+        the transaction fees.
       </Alert>
       <Alert alertType="warning">
-        Make sure to keep your account balance above 500 ADA at least until the voting round starts,
-        otherwise your voting key registration would be dismissed.
+        Make sure to keep your account balance above 500 ADA at least until the voting round starts, otherwise
+        your voting key registration would be dismissed.
       </Alert>
       <WalletOperationStatusType />
       <div className={styles.reviewTransactionRow}>
         <button
           className="button primary"
-          disabled={
-            txSuccessTab === 'voting' || shouldDisableSendingButton(walletOperationStatusType)
-          }
+          disabled={txSuccessTab === 'voting' || shouldDisableSendingButton(walletOperationStatusType)}
           onClick={submitHandler}
           data-cy="VotingReviewTransactionBtn"
         >

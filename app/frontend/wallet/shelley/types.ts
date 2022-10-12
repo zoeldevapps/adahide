@@ -86,11 +86,7 @@ export type CborizedTxStakingKeyDeregistrationCert = [
   CborizedTxStakeCredential
 ]
 
-export type CborizedTxDelegationCert = [
-  TxCertificateKey.DELEGATION,
-  CborizedTxStakeCredential,
-  Buffer
-]
+export type CborizedTxDelegationCert = [TxCertificateKey.DELEGATION, CborizedTxStakeCredential, Buffer]
 
 // prettier-ignore
 export type CborizedTxSingleHostIPRelay = [
@@ -140,10 +136,7 @@ export type CborizedTxSigned = [
 
 export type CborizedTxUnsigned = [Map<TxBodyKey, any>, Buffer | null]
 
-export type CborizedTxWitnesses = Map<
-  TxWitnessKey,
-  Array<CborizedTxWitnessByron | CborizedTxWitnessShelley>
->
+export type CborizedTxWitnesses = Map<TxWitnessKey, Array<CborizedTxWitnessByron | CborizedTxWitnessShelley>>
 
 export type CborizedTxStakeCredential = [TxStakeCredentialType, Buffer]
 

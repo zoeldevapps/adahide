@@ -14,11 +14,7 @@ interface Props {
   poolCert: any
 }
 
-const SignPoolCertTxModal = ({
-  closePoolRegTransactionModal,
-  signPoolCertificateTx,
-  poolCert,
-}: Props) => {
+const SignPoolCertTxModal = ({closePoolRegTransactionModal, signPoolCertificateTx, poolCert}: Props) => {
   const {waitingHwWalletOperation} = useSelector((state) => ({
     waitingHwWalletOperation: state.waitingHwWalletOperation,
   }))
@@ -31,13 +27,9 @@ const SignPoolCertTxModal = ({
   }, [])
 
   return (
-    <Modal
-      onRequestClose={closePoolRegTransactionModal}
-      title={'Sign pool certificate transaction'}
-    >
+    <Modal onRequestClose={closePoolRegTransactionModal} title={'Sign pool certificate transaction'}>
       <div>
-        We are creating a hardware wallet signature of the given pool registration certificate
-        transaction
+        We are creating a hardware wallet signature of the given pool registration certificate transaction
       </div>
       <div className="review pool-owner">
         <Fragment>
@@ -48,13 +40,9 @@ const SignPoolCertTxModal = ({
           <div className="review-label">Reward address</div>
           <div className="review-value">{poolCert.rewardAccountHex}</div>
           <div className="ada-label">Fixed Cost</div>
-          <div className="review-value">
-            {printAda(new BigNumber(poolCert.costStr) as Lovelace)}
-          </div>
+          <div className="review-value">{printAda(new BigNumber(poolCert.costStr) as Lovelace)}</div>
           <div className="ada-label">Pledge</div>
-          <div className="review-value">
-            {printAda(new BigNumber(poolCert.pledgeStr) as Lovelace)}
-          </div>
+          <div className="review-value">{printAda(new BigNumber(poolCert.pledgeStr) as Lovelace)}</div>
           <div className="review-label">Margin</div>
           <div className="review-value">
             {(poolCert.margin.numeratorStr * 100) / poolCert.margin.denominatorStr}%

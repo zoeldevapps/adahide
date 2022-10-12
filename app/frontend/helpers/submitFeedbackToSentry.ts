@@ -19,7 +19,7 @@ async function sendFeedback(comments, email, name, eventId) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `DSN ${token}`,
+        Authorization: `DSN ${token}`,
       },
       body: JSON.stringify(params),
     })

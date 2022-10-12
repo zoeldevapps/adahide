@@ -66,12 +66,7 @@ export const YoutubeEmbed = ({embedId}) => (
   </div>
 )
 
-export const ComparisonRow = ({
-  firstItem,
-  secondItem,
-  thirdItem,
-  heading = false,
-}: ComparisonRowProps) => {
+export const ComparisonRow = ({firstItem, secondItem, thirdItem, heading = false}: ComparisonRowProps) => {
   return (
     <div className="np-comparison-row">
       {firstItem && (

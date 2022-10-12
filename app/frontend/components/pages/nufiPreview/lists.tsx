@@ -50,8 +50,7 @@ export const nufiComparisonContent = [
     nufi: true,
   },
   {
-    label:
-      'Browser extension + dApp connector to connect to NFT marketplaces, DEXes, DeFi and more',
+    label: 'Browser extension + dApp connector to connect to NFT marketplaces, DEXes, DeFi and more',
     adalite: false,
     nufi: true,
   },

@@ -13,7 +13,7 @@ import {
   DeregisterStakingKeyTransactionSummary,
 } from '../types'
 import debounceEvent from '../helpers/debounceEvent'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 export default (store: Store) => {
@@ -25,10 +25,7 @@ export default (store: Store) => {
 
   const hasPoolIdentifiersChanged = (state: State) => {
     const {shelleyDelegation: newShelleyDelegation} = getState()
-    return (
-      newShelleyDelegation?.selectedPool?.poolHash !==
-      state.shelleyDelegation?.selectedPool?.poolHash
-    )
+    return newShelleyDelegation?.selectedPool?.poolHash !== state.shelleyDelegation?.selectedPool?.poolHash
     // maybe also check if tab changed
   }
 
@@ -38,9 +35,7 @@ export default (store: Store) => {
     }
     const selectedPool = state.shelleyDelegation?.selectedPool
     const poolInfo =
-      !selectedPool?.name && selectedPool?.url
-        ? await getWallet().getPoolInfo(selectedPool?.url)
-        : null
+      !selectedPool?.name && selectedPool?.url ? await getWallet().getPoolInfo(selectedPool?.url) : null
     if (hasPoolIdentifiersChanged(state)) {
       return
     }
@@ -50,9 +45,9 @@ export default (store: Store) => {
         ...state.shelleyDelegation,
         selectedPool: selectedPool
           ? {
-            ...selectedPool,
-            ...poolInfo,
-          }
+              ...selectedPool,
+              ...poolInfo,
+            }
           : null,
         delegationFee: newState.shelleyDelegation?.delegationFee,
       },
@@ -129,8 +124,7 @@ export default (store: Store) => {
 
   const updateStakePoolIdentifier = (state: State, poolHash: string): void => {
     assert(state.validStakepoolDataProvider != null)
-    const newPool =
-      (poolHash && state.validStakepoolDataProvider.getPoolInfoByPoolHash(poolHash)) || null
+    const newPool = (poolHash && state.validStakepoolDataProvider.getPoolInfoByPoolHash(poolHash)) || null
     setState({
       shelleyDelegation: {
         ...state.shelleyDelegation,

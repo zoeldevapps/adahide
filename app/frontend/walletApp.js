@@ -17,9 +17,9 @@ if (ADALITE_CONFIG.ADALITE_TREZOR_CONNECT_URL) {
 
 // polyfill to trigger onpushstate events on history api
 // http://felix-kling.de/blog/2011/01/06/how-to-detect-history-pushstate/
-;(function(history) {
+;(function (history) {
   const pushState = history.pushState
-  history.pushState = function(state) {
+  history.pushState = function (state) {
     // must be before our function so that url changes before we dispatch the action
     const retValue = pushState.apply(history, arguments) // eslint-disable-line prefer-rest-params
     if (typeof history.onpushstate === 'function') {

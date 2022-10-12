@@ -26,12 +26,8 @@ const AccountTile = ({
   shouldShowSaturatedBanner,
   shouldShowAccountInfo,
 }: TileProps) => {
-  const {
-    setActiveAccount,
-    exploreNextAccount,
-    showDelegationModal,
-    showSendTransactionModal,
-  } = useActions(actions)
+  const {setActiveAccount, exploreNextAccount, showDelegationModal, showSendTransactionModal} =
+    useActions(actions)
   const {activeAccountIndex, walletOperationStatusType} = useSelector((state) => ({
     activeAccountIndex: state.activeAccountIndex,
     walletOperationStatusType: state.walletOperationStatusType,
@@ -106,11 +102,7 @@ const AccountTile = ({
   )
 
   return (
-    <div
-      key={accountIndex}
-      className={`card account ${isActive ? 'selected' : ''}`}
-      data-cy="AccountTile"
-    >
+    <div key={accountIndex} className={`card account ${isActive ? 'selected' : ''}`} data-cy="AccountTile">
       <div className="header-wrapper mobile">
         <h2 className="card-title small-margin">{accountLabel}</h2>
       </div>

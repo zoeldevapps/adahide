@@ -130,14 +130,11 @@ export default (store: Store) => {
           'Loading wallet data...\nIf a prompt appears, click on the Ledger device, then click "Connect."'
         )
       }
-      const cryptoProvider = await ShelleyCryptoProviderFactory.getCryptoProvider(
-        cryptoProviderType,
-        {
-          walletSecretDef,
-          network: NETWORKS[ADALITE_CONFIG.ADALITE_NETWORK],
-          config,
-        }
-      )
+      const cryptoProvider = await ShelleyCryptoProviderFactory.getCryptoProvider(cryptoProviderType, {
+        walletSecretDef,
+        network: NETWORKS[ADALITE_CONFIG.ADALITE_NETWORK],
+        config,
+      })
       loadingAction(state, 'Loading wallet data...')
       setWallet(
         await ShelleyWallet({
@@ -163,9 +160,8 @@ export default (store: Store) => {
         loadingAction(state, `Waiting for ${getDeviceBrandName(cryptoProviderInfo.type)}...`)
       }
 
-      const demoRootSecret = (
-        await mnemonicToWalletSecretDef(ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC)
-      ).rootSecret
+      const demoRootSecret = (await mnemonicToWalletSecretDef(ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC))
+        .rootSecret
       const isDemoWallet = walletSecretDef && walletSecretDef.rootSecret.equals(demoRootSecret)
       setState({
         validStakepoolDataProvider,

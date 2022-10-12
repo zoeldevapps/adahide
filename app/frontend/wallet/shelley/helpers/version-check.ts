@@ -15,8 +15,6 @@ export const hasRequiredVersion = (currentVersionStr, requiredVersionStr) => {
   return (
     current.major > required.major ||
     (current.major === required.major && current.minor > required.minor) ||
-    (current.major === required.major &&
-      current.minor === required.minor &&
-      current.patch >= required.patch)
+    (current.major === required.major && current.minor === required.minor && current.patch >= required.patch)
   )
 }

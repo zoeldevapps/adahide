@@ -6,7 +6,7 @@ import delegateActions from './delegate'
 import loadingActions from './loading'
 import commonActions from './common'
 import {AccountInfo, AssetFamily, Lovelace} from '../types'
-import * as assert from 'assert'
+import assert from 'assert'
 import {getChangeAddress} from '../wallet/account'
 import BigNumber from 'bignumber.js'
 
@@ -70,11 +70,7 @@ export default (store: Store) => {
     updateAddress(state, null, targetAddress)
   }
 
-  const showSendTransactionModal = (
-    state: State,
-    sourceAccountIndex: number,
-    targetAccountIndex: number
-  ) => {
+  const showSendTransactionModal = (state: State, sourceAccountIndex: number, targetAccountIndex: number) => {
     resetTransactionSummary(state)
     setState({
       sourceAccountIndex,

@@ -25,10 +25,7 @@ import {
 
 import {selectMinimalTxPlan, TxPlan, TxPlanResult} from './shelley/transaction'
 import {MaxAmountCalculator} from './max-amount-calculator'
-import {
-  ByronAddressProvider,
-  getAccountXpub as getAccoutXpubByron,
-} from './byron/byron-address-provider'
+import {ByronAddressProvider, getAccountXpub as getAccoutXpubByron} from './byron/byron-address-provider'
 import {bechAddressToHex, isBase, addressToHex} from './shelley/helpers/addresses'
 import {ShelleyTxAux} from './shelley/shelley-transaction'
 import blockchainExplorer from './blockchain-explorer'
@@ -59,28 +56,22 @@ type MyAddressesParams = {
   blockchainExplorer: ReturnType<typeof blockchainExplorer>
 }
 
-const MyAddresses = ({
-  accountIndex,
-  cryptoProvider,
-  gapLimit,
-  blockchainExplorer,
-}: MyAddressesParams) => {
-  const includeByron =
-    cryptoProvider.isFeatureSupported(CryptoProviderFeature.BYRON) && accountIndex === 0
+const MyAddresses = ({accountIndex, cryptoProvider, gapLimit, blockchainExplorer}: MyAddressesParams) => {
+  const includeByron = cryptoProvider.isFeatureSupported(CryptoProviderFeature.BYRON) && accountIndex === 0
   const legacyExtManager = includeByron
     ? AddressManager({
-      addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, false),
-      gapLimit,
-      blockchainExplorer,
-    })
+        addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, false),
+        gapLimit,
+        blockchainExplorer,
+      })
     : DummyAddressManager()
 
   const legacyIntManager = includeByron
     ? AddressManager({
-      addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, true),
-      gapLimit,
-      blockchainExplorer,
-    })
+        addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, true),
+        gapLimit,
+        blockchainExplorer,
+      })
     : DummyAddressManager()
 
   const accountAddrManager = AddressManager({
@@ -247,13 +238,11 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   }
 
   async function signTxAux(txAux: TxAux) {
-    const signedTx = await cryptoProvider
-      .signTx(txAux, myAddresses.fixedPathMapper())
-      .catch((e) => {
-        throw new InternalError(InternalErrorReason.TransactionRejectedWhileSigning, {
-          message: e.message,
-        })
+    const signedTx = await cryptoProvider.signTx(txAux, myAddresses.fixedPathMapper()).catch((e) => {
+      throw new InternalError(InternalErrorReason.TransactionRejectedWhileSigning, {
+        message: e.message,
       })
+    })
     return signedTx
   }
 
@@ -294,17 +283,10 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
     const baseAddressUtxos = sortedUtxos.filter(({address}) => isBase(addressToHex(address)))
     const utxosPrioritizedByAddressType = [...nonStakingUtxos, ...baseAddressUtxos]
 
-    const adaOnlyUtxos = utxosPrioritizedByAddressType.filter(
-      ({tokenBundle}) => tokenBundle.length === 0
-    )
-    const tokenUtxos = utxosPrioritizedByAddressType.filter(
-      ({tokenBundle}) => tokenBundle.length > 0
-    )
+    const adaOnlyUtxos = utxosPrioritizedByAddressType.filter(({tokenBundle}) => tokenBundle.length === 0)
+    const tokenUtxos = utxosPrioritizedByAddressType.filter(({tokenBundle}) => tokenBundle.length > 0)
 
-    if (
-      txPlanArgs.txType === TxType.SEND_ADA &&
-      txPlanArgs.sendAmount.assetFamily === AssetFamily.TOKEN
-    ) {
+    if (txPlanArgs.txType === TxType.SEND_ADA && txPlanArgs.sendAmount.assetFamily === AssetFamily.TOKEN) {
       const {policyId, assetName} = txPlanArgs.sendAmount.token
       const targetTokenUtxos = tokenUtxos.filter(({tokenBundle}) =>
         tokenBundle.some((token) => token.policyId === policyId && token.assetName === assetName)
@@ -324,11 +306,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
    *
    * TODO: refactor as suggested in https://github.com/vacuumlabs/adalite/issues/1181
    */
-  const getTxPlan = (
-    changeAddress: Address,
-    txPlanArgs: TxPlanArgs,
-    utxos: UTxO[]
-  ): TxPlanResult => {
+  const getTxPlan = (changeAddress: Address, txPlanArgs: TxPlanArgs, utxos: UTxO[]): TxPlanResult => {
     const arrangedUtxos = arrangeUtxos(utxos, txPlanArgs)
     return selectMinimalTxPlan(arrangedUtxos, changeAddress, txPlanArgs)
   }
@@ -350,10 +328,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
     const stakingHistory = await getStakingHistory(validStakepoolDataProvider)
     const visibleAddresses = await getVisibleAddresses()
     const transactionHistory = await getTxHistory()
-    const poolRecommendation = await getPoolRecommendation(
-      shelleyAccountInfo.delegation,
-      baseAddressBalance
-    )
+    const poolRecommendation = await getPoolRecommendation(shelleyAccountInfo.delegation, baseAddressBalance)
     const isUsed = await isAccountUsed()
 
     return {
@@ -380,14 +355,11 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
 
   async function getBalance() {
     const {legacy, base} = await myAddresses.discoverAllAddresses()
-    const {
-      coins: nonStakingBalance,
-      tokenBundle: nonStakingTokenBundle,
-    } = await blockchainExplorer.getBalance(legacy)
-    const {
-      coins: baseAddressBalance,
-      tokenBundle: stakingTokenBundle,
-    } = await blockchainExplorer.getBalance(base)
+    const {coins: nonStakingBalance, tokenBundle: nonStakingTokenBundle} =
+      await blockchainExplorer.getBalance(legacy)
+    const {coins: baseAddressBalance, tokenBundle: stakingTokenBundle} = await blockchainExplorer.getBalance(
+      base
+    )
     return {
       tokenBalance: aggregateTokenBundles([nonStakingTokenBundle, stakingTokenBundle]),
       baseAddressBalance,
@@ -405,10 +377,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
     validStakepoolDataProvider: StakepoolDataProvider
   ): Promise<StakingHistoryObject[]> {
     const stakingAddress = await myAddresses.getStakingAddress()
-    return blockchainExplorer.getStakingHistory(
-      bechAddressToHex(stakingAddress),
-      validStakepoolDataProvider
-    )
+    return blockchainExplorer.getStakingHistory(bechAddressToHex(stakingAddress), validStakepoolDataProvider)
   }
 
   async function getAccountXpubs() {
@@ -422,9 +391,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
 
   async function getStakingInfo(validStakepoolDataProvider: StakepoolDataProvider) {
     const stakingAddressHex = bechAddressToHex(await myAddresses.getStakingAddress())
-    const {nextRewardDetails, ...accountInfo} = await blockchainExplorer.getStakingInfo(
-      stakingAddressHex
-    )
+    const {nextRewardDetails, ...accountInfo} = await blockchainExplorer.getStakingInfo(stakingAddressHex)
     const rewardDetails = await blockchainExplorer.getRewardDetails(
       nextRewardDetails,
       accountInfo.delegation.poolHash,
@@ -510,5 +477,4 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
 
 export {Account}
 
-export const getChangeAddress = (accountInfo: AccountInfo): Address =>
-  accountInfo.visibleAddresses[0].address
+export const getChangeAddress = (accountInfo: AccountInfo): Address => accountInfo.visibleAddresses[0].address

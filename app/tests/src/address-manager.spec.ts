@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 
 import derivationSchemes from '../../frontend/wallet/helpers/derivation-schemes'
 import AddressManager from '../../frontend/wallet/address-manager'
@@ -23,7 +23,7 @@ const byronAddressManagers: ReturnType<typeof AddressManager>[] = []
 const initByronAddressManager = async (settings, i) => {
   const {cryptoSettings, isChange} = settings
 
-  let walletSecretDef
+  let walletSecretDef: any
   if (cryptoSettings.type === 'walletSecretDef') {
     walletSecretDef = {
       rootSecret: Buffer.from(cryptoSettings.secret, 'hex'),

@@ -2,11 +2,7 @@ import {Fragment, h} from 'preact'
 import {useSelector, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
 import printAda from '../../../helpers/printAda'
-import {
-  totalWalletBalanceSelector,
-  totalRewardsBalanceSelector,
-  hasStakingKey,
-} from '../../../selectors'
+import {totalWalletBalanceSelector, totalRewardsBalanceSelector, hasStakingKey} from '../../../selectors'
 import {AdaIcon} from '../../common/svg'
 import Alert from '../../common/alert'
 import {visitNufiTooltip} from '../../common/tooltip'
@@ -41,9 +37,9 @@ const AccountsDashboard = () => {
       <div className="dashboard-column account sidebar-item info">
         <Alert alertType="info sidebar">
           <p>
-            <strong>Accounts</strong> offer the possibility to split the funds on your wallet. You
-            can delegate to different stakepool from each account. Each account has its own balance,
-            set of addresses and keys.
+            <strong>Accounts</strong> offer the possibility to split the funds on your wallet. You can
+            delegate to different stakepool from each account. Each account has its own balance, set of
+            addresses and keys.
           </p>
         </Alert>
       </div>
@@ -65,17 +61,17 @@ const AccountsDashboard = () => {
       <div className="dashboard-column account sidebar-item info">
         <Alert alertType="info sidebar">
           <p>
-            Click <b>Activate/Explore</b> button to load data for related account. If you are using
-            a hardware wallet, you will be requested to export public key. Note that content on all
-            tabs corresponds to currently active account.
+            Click <b>Activate/Explore</b> button to load data for related account. If you are using a hardware
+            wallet, you will be requested to export public key. Note that content on all tabs corresponds to
+            currently active account.
           </p>
         </Alert>
       </div>
       <div className="dashboard-column account sidebar-item info">
         <Alert alertType="info sidebar">
           <p>
-            Click <b>Transfer</b> to move funds from one account to another. Select the source and
-            the destination accounts, amount of ADA and tranfer your funds.
+            Click <b>Transfer</b> to move funds from one account to another. Select the source and the
+            destination accounts, amount of ADA and tranfer your funds.
           </p>
         </Alert>
       </div>
@@ -83,9 +79,9 @@ const AccountsDashboard = () => {
         <Alert alertType="warning sidebar">
           <p>
             <b>
-              This feature is not supported on other wallets yet. If you decide to move your funds
-              to an account other than the first account, you will not see these funds in other
-              wallets such as Yoroi or Daedalus.
+              This feature is not supported on other wallets yet. If you decide to move your funds to an
+              account other than the first account, you will not see these funds in other wallets such as
+              Yoroi or Daedalus.
             </b>
           </p>
         </Alert>
@@ -105,10 +101,7 @@ const AccountsDashboard = () => {
                 <AdaIcon />
               </div>
               {conversionRates && (
-                <Conversions
-                  balance={totalWalletBalance as Lovelace}
-                  conversionRates={conversionRates}
-                />
+                <Conversions balance={totalWalletBalance as Lovelace} conversionRates={conversionRates} />
               )}
             </div>
             <div className="item">
@@ -118,10 +111,7 @@ const AccountsDashboard = () => {
                 <AdaIcon />
               </div>
               {conversionRates && (
-                <Conversions
-                  balance={totalRewardsBalance as Lovelace}
-                  conversionRates={conversionRates}
-                />
+                <Conversions balance={totalRewardsBalance as Lovelace} conversionRates={conversionRates} />
               )}
             </div>
           </div>
@@ -156,19 +146,14 @@ const AccountsDashboard = () => {
                 <AccountTile
                   key={accountInfo.accountIndex}
                   accountIndex={accountInfo.accountIndex}
-                  ticker={
-                    hasStakingKey(accountInfo) && accountInfo.shelleyAccountInfo.delegation.ticker
-                  }
+                  ticker={hasStakingKey(accountInfo) && accountInfo.shelleyAccountInfo.delegation.ticker}
                   availableBalance={accountInfo.balance}
                   rewardsBalance={accountInfo.shelleyBalances.rewardsAccountBalance}
-                  shouldShowSaturatedBanner={
-                    accountInfo.poolRecommendation.shouldShowSaturatedBanner
-                  }
+                  shouldShowSaturatedBanner={accountInfo.poolRecommendation.shouldShowSaturatedBanner}
                   shouldShowAccountInfo
                 />
               ))}
-              {accountsInfo[accountsInfo.length - 1].isUsed &&
-                accountsInfo.length - 1 < maxAccountIndex && (
+              {accountsInfo[accountsInfo.length - 1].isUsed && accountsInfo.length - 1 < maxAccountIndex && (
                 <AccountTile
                   accountIndex={accountsInfo.length}
                   ticker={null}

@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 import {orderTokenBundle} from '../../frontend/wallet/helpers/tokenFormater'
 import {encodeAssetFingerprint} from '../../frontend/wallet/shelley/helpers/addresses'
@@ -179,9 +179,7 @@ const assetFingerprintTestVectors = [
 
 describe('Asset fingerprint encoding', () => {
   it('should encode correct fingerprints for various policies and assetNames', () => {
-    const testFingerprints = assetFingerprintTestVectors.map(
-      ({assetfingerprint}) => assetfingerprint
-    )
+    const testFingerprints = assetFingerprintTestVectors.map(({assetfingerprint}) => assetfingerprint)
     const resultFingerprints = assetFingerprintTestVectors.map(({policyid, assetname}) =>
       encodeAssetFingerprint(policyid, assetname)
     )

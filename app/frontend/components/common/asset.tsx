@@ -33,14 +33,7 @@ const Icon = ({type, metadata}: IconProps) => {
   if (type === AssetFamily.ADA) return <AdaIcon />
   if (metadata) {
     if (metadata.logoBase64) {
-      return (
-        <img
-          src={`data:image/png;base64,${metadata.logoBase64}`}
-          alt="logo"
-          width="12"
-          height="12"
-        />
-      )
+      return <img src={`data:image/png;base64,${metadata.logoBase64}`} alt="logo" width="12" height="12" />
     } else {
       return <StarIcon />
     }
@@ -116,9 +109,14 @@ const getLabelVariants = (args: GetLabelVariantsArgs) => {
   }
 }
 
-const getFormattedLabelVariants = (
-  args: GetLabelVariantsArgs
-): FormattedHumanReadableLabelVariants => {
+type FormattedHumanReadableLabelVariants = {
+  type: FormattedHumanReadableLabelType
+  label: h.JSX.Element
+  labelWithIcon: h.JSX.Element
+  labelShortWithIcon: h.JSX.Element
+}
+
+const getFormattedLabelVariants = (args: GetLabelVariantsArgs): FormattedHumanReadableLabelVariants => {
   const {type, label, labelShort} = getLabelVariants(args)
 
   const LabelWrapper = ({children}: {children: h.JSX.Element | h.JSX.Element[]}) => (
@@ -131,9 +129,7 @@ const getFormattedLabelVariants = (
     </div>
   )
 
-  const icon = (
-    <Icon type={args.type} metadata={args.type === AssetFamily.TOKEN ? args.metadata : null} />
-  )
+  const icon = <Icon type={args.type} metadata={args.type === AssetFamily.TOKEN ? args.metadata : null} />
 
   return {
     type,
@@ -156,13 +152,6 @@ const getFormattedLabelVariants = (
 export type FormattedAssetItemProps = Token & {
   fingerprint: string | null
   type: AssetFamily
-}
-
-type FormattedHumanReadableLabelVariants = {
-  type: FormattedHumanReadableLabelType
-  label: h.JSX.Element
-  labelWithIcon: h.JSX.Element
-  labelShortWithIcon: h.JSX.Element
 }
 
 // Use to share common formatting, but allow for usage in different layouts
@@ -204,11 +193,11 @@ export const FormattedAssetItem = ({
       type === AssetFamily.ADA
         ? {type}
         : {
-          type,
-          metadata: metadata!,
-          assetName,
-          fingerprint: fingerprint!,
-        }
+            type,
+            metadata: metadata!,
+            assetName,
+            fingerprint: fingerprint!,
+          }
     ),
     formattedOnChainName: (() => {
       if (type !== AssetFamily.TOKEN) return null
@@ -235,15 +224,11 @@ export const FormattedAssetItem = ({
               {metadata?.name || missingValue}
             </span>
           }
-          <span className={styles.assetName}>
-            {metadata?.ticker ? ` (${metadata?.ticker})` : ''}
-          </span>
+          <span className={styles.assetName}>{metadata?.ticker ? ` (${metadata?.ticker})` : ''}</span>
         </span>
       ) : null,
     formattedAssetLink:
-      type === AssetFamily.TOKEN ? (
-        <LinkToAsset policyIdHex={policyId} assetNameHex={assetName} />
-      ) : null,
+      type === AssetFamily.TOKEN ? <LinkToAsset policyIdHex={policyId} assetNameHex={assetName} /> : null,
     formattedAmount:
       type === AssetFamily.TOKEN
         ? printTokenAmount(quantity, metadata?.decimals || 0)

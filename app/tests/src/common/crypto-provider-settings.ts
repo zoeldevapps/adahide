@@ -31,8 +31,7 @@ export const cryptoProviderSettings = [
   // SHELLEY
   {
     description: '',
-    secret:
-      'odor match funny accuse spatial copper purse milk quote wine salute three drip weasel fall',
+    secret: 'odor match funny accuse spatial copper purse milk quote wine salute three drip weasel fall',
     network: NETWORKS.MAINNET,
     type: 'mnemonic',
     isShelleyCompatible: true,
@@ -42,8 +41,7 @@ export const cryptoProviderSettings = [
 export const shelleyCryptoProviderSettings = {
   mnemonic15Word: {
     description: '',
-    secret:
-      'odor match funny accuse spatial copper purse milk quote wine salute three drip weasel fall',
+    secret: 'odor match funny accuse spatial copper purse milk quote wine salute three drip weasel fall',
     network: NETWORKS.MAINNET,
     type: 'mnemonic',
     isShelleyCompatible: true,
@@ -57,8 +55,7 @@ export const shelleyCryptoProviderSettings = {
   },
   mnemonic15WordUnused: {
     description: '',
-    secret:
-      'hazard circle fossil diamond oxygen ankle tribe broken must comic duck chef bacon truly dish',
+    secret: 'hazard circle fossil diamond oxygen ankle tribe broken must comic duck chef bacon truly dish',
     network: NETWORKS.MAINNET,
     type: 'mnemonic',
     isShelleyCompatible: true,

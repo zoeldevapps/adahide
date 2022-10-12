@@ -4,7 +4,7 @@ import commonActions from './common'
 import walletActions, {getWallet} from './wallet'
 import sleep from '../helpers/sleep'
 import {getDateDiffInSeconds} from '../helpers/common'
-import * as assert from 'assert'
+import assert from 'assert'
 
 export default (store: Store) => {
   const {setError} = errorActions(store)

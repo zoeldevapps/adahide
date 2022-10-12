@@ -98,15 +98,7 @@ const AuthTab = ({
   )
 }
 
-const AuthOption = ({
-  tabName,
-  texts,
-  tag,
-}: {
-  tabName: AuthMethodType
-  texts: Array<string>
-  tag: string
-}) => {
+const AuthOption = ({tabName, texts, tag}: {tabName: AuthMethodType; texts: Array<string>; tag: string}) => {
   const {setAuthMethod} = useActions(actions)
   return (
     <div className={`auth-option ${tabName}`} onClick={() => setAuthMethod(tabName)}>
@@ -227,12 +219,8 @@ const LoginPage = () => {
     autoLogin: state.autoLogin,
     errorBannerContent: state.errorBannerContent,
   }))
-  const {
-    closeStakingBanner,
-    setAuthMethod,
-    closeWalletLoadingErrorModal,
-    loadErrorBannerContent,
-  } = useActions(actions)
+  const {closeStakingBanner, setAuthMethod, closeWalletLoadingErrorModal, loadErrorBannerContent} =
+    useActions(actions)
 
   useEffect(() => {
     if (autoLogin && authMethod !== AuthMethodType.MNEMONIC) {

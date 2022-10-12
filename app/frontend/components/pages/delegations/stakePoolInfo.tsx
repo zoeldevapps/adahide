@@ -61,10 +61,7 @@ export const StakePoolInfo = ({
           </div>
           <div>
             <a
-              {...tooltip(
-                'Tax is deducted from the rewards that pool distributes to the delegators.',
-                true
-              )}
+              {...tooltip('Tax is deducted from the rewards that pool distributes to the delegators.', true)}
             >
               <span className="delegation show-info">{''}</span>
             </a>

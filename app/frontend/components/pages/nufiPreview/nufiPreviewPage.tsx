@@ -57,11 +57,7 @@ const NufiPreviewPage = () => {
             />
           }
           thirdItem={
-            <img
-              src="assets/nufiLogo.svg"
-              alt="NuFi - Crypto Wallet"
-              className="navbar-logo nufi"
-            />
+            <img src="assets/nufiLogo.svg" alt="NuFi - Crypto Wallet" className="navbar-logo nufi" />
           }
         />
         {nufiComparisonContent.map((row, i) => (
@@ -74,9 +70,7 @@ const NufiPreviewPage = () => {
         ))}
       </section>
       <section className="np-space-y-6" id={importSectionId}>
-        <h2 className="np-heading np-text-center">
-          How do I import my existing AdaLite wallet into NuFi?
-        </h2>
+        <h2 className="np-heading np-text-center">How do I import my existing AdaLite wallet into NuFi?</h2>
         <br />
         <div className="np-preview__guide">
           <div>
@@ -97,9 +91,7 @@ const NufiPreviewPage = () => {
         </div>
       </section>
       <section id={videoSectionId} className="np-space-y-6">
-        <h2 className="np-heading np-text-center">
-          Step-by-step guide to importing your AdaLite wallet:
-        </h2>
+        <h2 className="np-heading np-text-center">Step-by-step guide to importing your AdaLite wallet:</h2>
         <YoutubeEmbed embedId="hitK4CZfolA" />
         <br />
         <p className="np-text-section">
@@ -111,12 +103,7 @@ const NufiPreviewPage = () => {
         </p>
         <p className="np-text-section np-text-section--secondary">
           You can also ask questions about the NuFi wallet and get round-the-clock advice in{' '}
-          <a
-            className="np-link"
-            href="https://discord.com/invite/nufi"
-            target="_blank"
-            rel="noopener"
-          >
+          <a className="np-link" href="https://discord.com/invite/nufi" target="_blank" rel="noopener">
             NuFi's Discord server.
           </a>
         </p>

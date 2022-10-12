@@ -1,5 +1,5 @@
 {
-  "extends": "vacuumlabs",
+  "extends": ["vacuumlabs", "prettier"],
   "env": {
     "browser": true,
     "node": true,
@@ -8,6 +8,7 @@
   },
   "plugins": ["react-hooks", "@typescript-eslint"],
   "rules": {
+    "no-use-before-define": "off",
     "no-bitwise": "off",
     "guard-for-in": "off",
     "react/react-in-jsx-scope": "off",

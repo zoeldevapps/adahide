@@ -2,9 +2,7 @@ import {StakePoolInfo, StakePoolInfosByPoolHash} from '../../../frontend/wallet/
 import {Stakepool} from '../../../frontend/types'
 import {StakepoolDataProvider} from './types'
 
-const createStakepoolDataProvider = (
-  validStakepools: StakePoolInfosByPoolHash
-): StakepoolDataProvider => {
+const createStakepoolDataProvider = (validStakepools: StakePoolInfosByPoolHash): StakepoolDataProvider => {
   const [tickerMapping, poolHashMapping] = Object.entries(validStakepools).reduce(
     ([tickerMapping, poolHashMapping], entry) => {
       const [key, value]: [string, StakePoolInfo] = entry
@@ -20,8 +18,7 @@ const createStakepoolDataProvider = (
   )
 
   const getPoolInfoByTicker = (ticker: string): Stakepool | null => tickerMapping[ticker] ?? null
-  const getPoolInfoByPoolHash = (poolHash: string): Stakepool | null =>
-    poolHashMapping[poolHash] ?? null
+  const getPoolInfoByPoolHash = (poolHash: string): Stakepool | null => poolHashMapping[poolHash] ?? null
   const hasTickerMapping = Object.keys(tickerMapping).length !== 0
 
   return {

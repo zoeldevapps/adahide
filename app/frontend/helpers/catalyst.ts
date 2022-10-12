@@ -1,5 +1,5 @@
-import * as pbkdf2 from 'pbkdf2'
-import * as chacha from 'chacha'
+import pbkdf2 from 'pbkdf2'
+import chacha from 'chacha'
 
 // TODO: This is what yoroi uses - rewrite with packages we use
 
@@ -33,10 +33,7 @@ const cryptoRandomString = ({length}: {length: number}): string => {
   return randBytes.toString('hex')
 }
 
-export async function encryptWithPassword(
-  passwordBuf: Uint8Array,
-  dataBytes: Uint8Array
-): Promise<string> {
+export async function encryptWithPassword(passwordBuf: Uint8Array, dataBytes: Uint8Array): Promise<string> {
   const salt = Buffer.from(cryptoRandomString({length: SALT_SIZE}), 'hex')
   const nonce = Buffer.from(cryptoRandomString({length: NONCE_SIZE}), 'hex')
   const data = Buffer.from(dataBytes)

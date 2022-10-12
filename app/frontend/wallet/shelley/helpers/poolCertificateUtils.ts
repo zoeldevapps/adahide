@@ -1,9 +1,4 @@
-import {
-  TxRelayTypes,
-  _Margin,
-  _PoolRelay,
-  _StakepoolRegistrationCert,
-} from '../../../helpers/cliParser/types'
+import {TxRelayTypes, _Margin, _PoolRelay, _StakepoolRegistrationCert} from '../../../helpers/cliParser/types'
 import {InternalError, InternalErrorReason} from '../../../errors'
 
 export type TxPoolParams = {
@@ -211,11 +206,7 @@ export const parseStakepoolRegistrationCertificate = ({
   pledgeStr: pledge.toString(),
   costStr: cost.toString(),
   margin: parseStakepoolMargin(margin),
-  rewardAccountHex: buf2hexLengthCheck(
-    rewardAddress,
-    PoolParamsByteLengths.REWARD,
-    'Reward account'
-  ),
+  rewardAccountHex: buf2hexLengthCheck(rewardAddress, PoolParamsByteLengths.REWARD, 'Reward account'),
   poolOwners: parseStakepoolOwners(poolOwnersPubKeyHashes),
   relays: parseStakepoolRelays(relays),
   metadata: parseStakepoolMetadata(metadata),

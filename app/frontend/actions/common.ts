@@ -47,11 +47,7 @@ export default (store: Store) => {
     try {
       return getWallet()
         .getAccount(state.sourceAccountIndex)
-        .getTxPlan(
-          getChangeAddress(getSourceAccountInfo(state)),
-          args,
-          getSourceAccountInfo(state).utxos
-        )
+        .getTxPlan(getChangeAddress(getSourceAccountInfo(state)), args, getSourceAccountInfo(state).utxos)
     } catch (e) {
       // TODO: refactor setErrorState to check all errors if there unexpected
       if (

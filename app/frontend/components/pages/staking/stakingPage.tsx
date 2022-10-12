@@ -23,7 +23,8 @@ const ADLTPools = [
 
 const isValidEmail = (email) => {
   // eslint-disable-next-line max-len
-  const re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/gim
+  const re =
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/gim
   return re.test(email)
 }
 
@@ -92,15 +93,8 @@ const useEmailSubmitProps = () => {
 }
 
 const StakingPage = () => {
-  const {
-    email,
-    emailValid,
-    updateEmail,
-    emailSubmitSuccess,
-    emailSubmitMessage,
-    submitEmail,
-    errorMessage,
-  } = useEmailSubmitProps()
+  const {email, emailValid, updateEmail, emailSubmitSuccess, emailSubmitMessage, submitEmail, errorMessage} =
+    useEmailSubmitProps()
 
   const handleSubmit = useCallback(
     async (e) => {
@@ -117,20 +111,19 @@ const StakingPage = () => {
         <div className="staking-label">New</div>
         <h2 className="staking-title">Staking with Adalite</h2>
         <p className="staking-text">
-          After Cardano Shelley hard-fork on the July 29th staking was introduced to Cardano.
-          AdaLite will provide compatibility with the new Shelley address format and transactions.
-          We also released the staking interface for main-net. Please report any bugs that you may
-          find in our wallet. Follow our Telegram and Twitter to be informed about changes and
-          release dates for hardware wallets support.
+          After Cardano Shelley hard-fork on the July 29th staking was introduced to Cardano. AdaLite will
+          provide compatibility with the new Shelley address format and transactions. We also released the
+          staking interface for main-net. Please report any bugs that you may find in our wallet. Follow our
+          Telegram and Twitter to be informed about changes and release dates for hardware wallets support.
         </p>
         <p className="staking-text">
-          In order to stake, you need to transfer your funds from old Byron address format to new
-          Shelley address format. Transaction that will do this automatically can be created easily
-          from the staking interface.
+          In order to stake, you need to transfer your funds from old Byron address format to new Shelley
+          address format. Transaction that will do this automatically can be created easily from the staking
+          interface.
         </p>
         <p className="staking-text">
-          We are running our own reliable staking pools with a very low 3% fee. By delegating your
-          stake to us you are supporting the development of AdaLite.
+          We are running our own reliable staking pools with a very low 3% fee. By delegating your stake to us
+          you are supporting the development of AdaLite.
         </p>
 
         {window.innerWidth > 767 && (

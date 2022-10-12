@@ -51,32 +51,24 @@ import {InternalError, InternalErrorReason} from '../errors'
 import {throwIfEpochBoundary} from '../helpers/epochBoundaryUtils'
 import cacheResults from '../helpers/cacheResults'
 import {filterValidTransactions} from '../helpers/common'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 const blockchainExplorer = (ADALITE_CONFIG) => {
   const gapLimit = ADALITE_CONFIG.ADALITE_GAP_LIMIT
 
-  async function _fetchBulkAddressInfo(
-    addresses: Array<string>
-  ): Promise<BulkAddressesSummary | undefined> {
+  async function _fetchBulkAddressInfo(addresses: Array<string>): Promise<BulkAddressesSummary | undefined> {
     const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`
-    const result: BulkAddressesSummaryResponse = await request(
-      url,
-      'POST',
-      JSON.stringify(addresses),
-      {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    )
+    const result: BulkAddressesSummaryResponse = await request(url, 'POST', JSON.stringify(addresses), {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    })
     // TODO, handle 'Left'
     return 'Right' in result ? result.Right : undefined
   }
 
-  const {fn: _getAddressInfos, invalidate: invalidateGetAddressInfosCache} = cacheResults(15000)(
-    _fetchBulkAddressInfo
-  )
+  const {fn: _getAddressInfos, invalidate: invalidateGetAddressInfosCache} =
+    cacheResults(15000)(_fetchBulkAddressInfo)
 
   async function getTxHistory(addresses: Array<string>): Promise<TxSummaryEntry[]> {
     const chunks = range(0, Math.ceil(addresses.length / gapLimit))
@@ -183,9 +175,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
       assert(addressSummary != null)
       return addressSummary.caBalance.getTokens.map((token) => parseToken(token))
     })
-    const tokenBundle = aggregateTokenBundles(addressTokenBundles).filter((token) =>
-      token.quantity.gt(0)
-    )
+    const tokenBundle = aggregateTokenBundles(addressTokenBundles).filter((token) => token.quantity.gt(0))
     const coins = addressInfos.reduce((acc, elem) => {
       assert(elem != null)
       return acc.plus(elem.caBalance.getCoin)
@@ -264,7 +254,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
             'POST',
             JSON.stringify(addresses.slice(beginIndex, beginIndex + chunkSize)),
             {
-              'Accept': 'application/json',
+              Accept: 'application/json',
               'Content-Type': 'application/json',
             }
           )
@@ -322,20 +312,15 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
       request(stakingKeyRegistrationUrl).catch(() => []),
     ])
 
-    const extractUrl = (poolHash) =>
-      validStakepoolDataProvider.getPoolInfoByPoolHash(poolHash)?.url || null
+    const extractUrl = (poolHash) => validStakepoolDataProvider.getPoolInfoByPoolHash(poolHash)?.url || null
 
     const poolMetaUrls = distinct(
-      [...delegations, ...rewards]
-        .filter(({name}) => !name)
-        .map(({poolHash}) => extractUrl(poolHash))
+      [...delegations, ...rewards].filter(({name}) => !name).map(({poolHash}) => extractUrl(poolHash))
     ).filter((url) => url != null)
 
     const metaUrlToPoolNameMap = (
       await Promise.all(
-        poolMetaUrls.map((url: string) =>
-          getPoolInfo(url).then((metaData) => ({url, name: metaData.name}))
-        )
+        poolMetaUrls.map((url: string) => getPoolInfo(url).then((metaData) => ({url, name: metaData.name})))
       )
     ).reduce((map, {url, name}) => {
       map[url] = name
@@ -441,9 +426,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
         return stakePool
       }
       const poolInfo = stakePool ? await getPoolInfo(stakePool.url) : null
-      return poolInfo && 'name' in poolInfo
-        ? poolInfo
-        : ({name: UNKNOWN_POOL_NAME} as HostedPoolMetadata)
+      return poolInfo && 'name' in poolInfo ? poolInfo : ({name: UNKNOWN_POOL_NAME} as HostedPoolMetadata)
     }
 
     const nextRewardDetailsWithMetaData: Array<RewardWithMetadata> = await Promise.all(

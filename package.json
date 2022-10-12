@@ -2,7 +2,7 @@
   "name": "cardano",
   "version": "6.10.9",
   "engines": {
-    "node": "14.17"
+    "node": "16"
   },
   "description": "A simple Cardano wallet",
   "main": "app.js",
@@ -25,14 +25,10 @@
     "build": "NODE_ENV=production webpack --progress --config webpack.build.config.js",
     "install": "cd app && yarn install && cd ..",
     "dev": "yarn generate-cert && ADALITE_ENABLE_HTTPS=true PORT=${PORT:-3000} node server/index.js",
-    "test:build": "webpack --config webpack.test.config.js",
-    "test-chrome-headless": "yarn test:build && node node_modules/.bin/mocha-headless-chrome -f app/tests/index.html -a disable-web-security -a user-data-dir=app/tests/.chrome -a disable-site-isolation-trials",
+    "test": "mocha",
     "eslint": "eslint . --max-warnings=0 --ext .ts,.tsx,.js,.jsx",
     "fix": "prettier-eslint --write \"{{app/frontend,app/tests/src,server}/**/*.{ts,tsx,js,jsx,json,css},package.json}\"",
-    "generate-cert": "test -e server.cert && echo \"certificate already exists\" || openssl req -nodes -new -x509 -keyout server.key -out server.cert -subj \"/C=US\"",
-    "cypress:dev": "DOTENV_CONFIG_PATH='./app/cypress/.env.cypress' yarn run dev",
-    "cypress:open": "cd app && yarn run cypress open",
-    "cypress:run": "cd app && yarn run cypress run --headless --browser=chrome --config video=${VIDEO:-false}"
+    "generate-cert": "test -e server.cert && echo \"certificate already exists\" || openssl req -nodes -new -x509 -keyout server.key -out server.cert -subj \"/C=US\""
   },
   "husky": {
     "hooks": {
@@ -44,6 +40,10 @@
       "prettier-eslint --write",
       "git add"
     ]
+  },
+  "directories": {
+    "src": "./app/frontend",
+    "test": "./app/tests"
   },
   "dependencies": {
     "@sentry/node": "^6.15.0",
@@ -60,7 +60,6 @@
     "express-mung": "^0.5.1",
     "glob": "^7.2.0",
     "isomorphic-fetch": "^3.0.0",
-    "mocha-headless-chrome": "^2.0.3",
     "normalize-url": "^4.0.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
@@ -74,33 +73,37 @@
     "ws": "^8.4.2"
   },
   "devDependencies": {
-    "@types/mocha": "^9.1.1",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^16.11.6",
-    "@typescript-eslint/eslint-plugin": "2",
-    "@typescript-eslint/parser": "2",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
     "babel-eslint": "^8.2.2",
     "babel-polyfill": "^6.26.0",
+    "chai": "^4.3.6",
     "css-loader": "^5.2.2",
-    "eslint": "^6.0.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-config-vacuumlabs": "^1.8.2",
     "eslint-import-resolver-webpack": "^0.11.1",
-    "eslint-plugin-cypress": "^2.11.2",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-react": "^7.14.2",
-    "eslint-plugin-react-hooks": "^2.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "husky": "^3.0.0",
     "improved-yarn-audit": "^3.0.0",
+    "jsdom": "^20.0.1",
     "lint-staged": "^9.2.0",
     "mini-css-extract-plugin": "^1.5.0",
-    "prettier": "^1.19.1",
-    "prettier-eslint-cli": "^5.0.1",
+    "mocha": "^10.0.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint-cli": "^7.1.0",
     "release-it": "^15.4.2",
     "sass": "^1.32.11",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
-    "ts-loader": "^6.2.1",
-    "typescript": "3.9.2",
+    "ts-loader": "^8.4.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.5.5",
     "url-loader": "^4.1.1",
     "webpack-cli": "^4.9.1"
   },

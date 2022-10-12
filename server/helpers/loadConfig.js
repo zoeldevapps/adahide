@@ -2,9 +2,7 @@
 // keys in process .env must be referenced explicitly
 // so dotenv-webpack is able to include them in the test bundle for Mocha tests
 // if DOTENV_CONFIG_PATH is not set, default to built-in behavior
-require('dotenv').config(
-  process.env.DOTENV_CONFIG_PATH ? {path: process.env.DOTENV_CONFIG_PATH} : {}
-)
+require('dotenv').config(process.env.DOTENV_CONFIG_PATH ? {path: process.env.DOTENV_CONFIG_PATH} : {})
 
 const check = require('check-types')
 
@@ -154,9 +152,7 @@ const frontendConfig = {
    * able to intercept the requests from the frontend and mock the responses
    */
   ADALITE_BLOCKCHAIN_EXPLORER_URL:
-    ADALITE_ENABLE_SERVER_MOCKING_MODE === 'true'
-      ? ADALITE_SERVER_URL
-      : ADALITE_BLOCKCHAIN_EXPLORER_URL,
+    ADALITE_ENABLE_SERVER_MOCKING_MODE === 'true' ? ADALITE_SERVER_URL : ADALITE_BLOCKCHAIN_EXPLORER_URL,
   ADALITE_DEFAULT_ADDRESS_COUNT: parseInt(ADALITE_DEFAULT_ADDRESS_COUNT, 10),
   ADALITE_GAP_LIMIT: parseInt(ADALITE_GAP_LIMIT, 10),
   ADALITE_DEMO_WALLET_MNEMONIC,
@@ -200,9 +196,7 @@ const backendConfig = {
   ADALITE_MAILCHIMP_LIST_ID,
   ADALITE_SENTRY_DSN_SERVER,
   HEROKU_IS_REVIEW_APP,
-  ADALITE_IP_BLACKLIST: ADALITE_IP_BLACKLIST
-    ? ADALITE_IP_BLACKLIST.replace(/ /g, '').split(',')
-    : [],
+  ADALITE_IP_BLACKLIST: ADALITE_IP_BLACKLIST ? ADALITE_IP_BLACKLIST.replace(/ /g, '').split(',') : [],
 }
 
 module.exports = {

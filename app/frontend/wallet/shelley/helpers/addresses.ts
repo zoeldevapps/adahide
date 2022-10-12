@@ -32,10 +32,7 @@ export const encodeAddress = (address: Buffer): Address => {
 
 // TODO: we might want to add this to cardano-crypto.js
 export const encodeAssetFingerprint = (policyIdHex: HexString, assetNameHex: HexString): string => {
-  const data = blake2b(
-    Buffer.concat([Buffer.from(policyIdHex, 'hex'), Buffer.from(assetNameHex, 'hex')]),
-    20
-  )
+  const data = blake2b(Buffer.concat([Buffer.from(policyIdHex, 'hex'), Buffer.from(assetNameHex, 'hex')]), 20)
   return bech32.encode('asset', data)
 }
 
@@ -43,8 +40,7 @@ export const encodeCatalystVotingKey = (votingKey: HexString): string => {
   return bech32.encode('ed25519_pk', Buffer.from(votingKey, 'hex'))
 }
 
-export const assetNameHex2Readable = (assetNameHex: HexString) =>
-  Buffer.from(assetNameHex, 'hex').toString()
+export const assetNameHex2Readable = (assetNameHex: HexString) => Buffer.from(assetNameHex, 'hex').toString()
 
 export const xpub2pub = (xpub: Buffer) => xpub.slice(0, 32)
 
@@ -83,11 +79,7 @@ export const stakingAddressFromXpub = (stakeXpub: Buffer, networkId: NetworkId):
   return encodeAddress(addrBuffer)
 }
 
-export const baseAddressFromXpub = (
-  spendXpub: Buffer,
-  stakeXpub: Buffer,
-  networkId: NetworkId
-): Address => {
+export const baseAddressFromXpub = (spendXpub: Buffer, stakeXpub: Buffer, networkId: NetworkId): Address => {
   const addrBuffer = packBaseAddress(
     xpub2blake2b224Hash(spendXpub),
     xpub2blake2b224Hash(stakeXpub),

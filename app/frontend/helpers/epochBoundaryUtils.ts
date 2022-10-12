@@ -1,4 +1,4 @@
-import * as moment from 'moment'
+import moment from 'moment'
 import {InternalError, InternalErrorReason} from '../errors'
 import {OptionalParams} from '../errors/BaseError'
 

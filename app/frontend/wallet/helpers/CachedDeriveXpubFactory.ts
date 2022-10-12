@@ -19,8 +19,7 @@ function CachedDeriveXpubFactory(
     const memoKey = JSON.stringify(absDerivationPath)
 
     if (!derivedXpubs[memoKey]) {
-      const deriveHardened =
-        absDerivationPath.length === 0 || indexIsHardened(absDerivationPath.slice(-1)[0])
+      const deriveHardened = absDerivationPath.length === 0 || indexIsHardened(absDerivationPath.slice(-1)[0])
 
       /*
        * we create pubKeyBulk only if the derivation path is from shelley era

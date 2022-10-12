@@ -4,7 +4,7 @@ const sleep = require('./helpers/sleep')
 /*
  * Mocking of blockchain explorer and transaction submitter for developement purposes
  */
-module.exports = function(app) {
+module.exports = function (app) {
   app.post('/api/txs/submit', async (req, res) => {
     let txHash
     let txBody // [1, txBody] in CBOR
@@ -24,11 +24,11 @@ module.exports = function(app) {
 
     return success
       ? res.json({
-        Right: {txHash},
-      })
+          Right: {txHash},
+        })
       : res.json({
-        Left: 'Transaction network error',
-      })
+          Left: 'Transaction network error',
+        })
   })
 
   app.get('/api/txs/summary/:txHash', async (req, res) => {
@@ -71,9 +71,7 @@ module.exports = function(app) {
 
   // the remaining requests are redirected to the actual blockchain explorer
   app.get('/api/*', async (req, res) => {
-    return res.json(
-      await request(`${process.env.ADALITE_BLOCKCHAIN_EXPLORER_URL}${req.originalUrl}`)
-    )
+    return res.json(await request(`${process.env.ADALITE_BLOCKCHAIN_EXPLORER_URL}${req.originalUrl}`))
   })
 
   app.post('/api/*', async (req, res, next) => {

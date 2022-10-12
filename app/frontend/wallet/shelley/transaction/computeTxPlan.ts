@@ -43,14 +43,10 @@ export function computeTxPlan(
   auxiliaryData: TxPlanAuxiliaryData | null
 ): TxPlanResult {
   const totalRewards = withdrawals.reduce((acc, {rewards}) => acc.plus(rewards), new BigNumber(0))
-  const totalInput = inputs
-    .reduce((acc, input) => acc.plus(input.coins), new BigNumber(0))
-    .plus(totalRewards)
+  const totalInput = inputs.reduce((acc, input) => acc.plus(input.coins), new BigNumber(0)).plus(totalRewards)
   const totalInputTokens = aggregateTokenBundles(inputs.map(({tokenBundle}) => tokenBundle))
   const deposit = computeRequiredDeposit(certificates)
-  const totalOutput = outputs
-    .reduce((acc, {coins}) => acc.plus(coins), new BigNumber(0))
-    .plus(deposit)
+  const totalOutput = outputs.reduce((acc, {coins}) => acc.plus(coins), new BigNumber(0)).plus(deposit)
   const totalOutputTokens = aggregateTokenBundles(outputs.map(({tokenBundle}) => tokenBundle))
 
   // total amount of lovelace that had to be added to token-containing outputs
@@ -59,13 +55,7 @@ export function computeTxPlan(
     new BigNumber(0)
   ) as Lovelace
 
-  const feeWithoutChange = computeRequiredTxFee(
-    inputs,
-    outputs,
-    certificates,
-    withdrawals,
-    auxiliaryData
-  )
+  const feeWithoutChange = computeRequiredTxFee(inputs, outputs, certificates, withdrawals, auxiliaryData)
 
   const tokenDifference = getTokenBundlesDifference(totalInputTokens, totalOutputTokens)
 
@@ -133,9 +123,7 @@ export function computeTxPlan(
     auxiliaryData
   )
 
-  const remainingAdaOnlyChangeLovelace = totalInput
-    .minus(totalOutput)
-    .minus(feeWithAdaOnlyChange) as Lovelace
+  const remainingAdaOnlyChangeLovelace = totalInput.minus(totalOutput).minus(feeWithAdaOnlyChange) as Lovelace
 
   // We cannot create a change output with minimal ada so we add it to the fee
   if (isTokenDifferenceEmpty && remainingAdaOnlyChangeLovelace.lt(MIN_UTXO_VALUE)) {
@@ -234,10 +222,7 @@ export function computeTxPlan(
       txPlan: {
         inputs,
         outputs,
-        change: [
-          {...adaOnlyChangeOutput, coins: adaOnlyChangeOutputLovelace},
-          ...tokenChangeOutputs,
-        ],
+        change: [{...adaOnlyChangeOutput, coins: adaOnlyChangeOutputLovelace}, ...tokenChangeOutputs],
         certificates,
         deposit,
         additionalLovelaceAmount,
@@ -279,16 +264,7 @@ export const validateTxPlan = (txPlanResult: TxPlanResult): TxPlanResult => {
     return txPlanResult
   }
   const {txPlan} = txPlanResult
-  const {
-    change,
-    outputs,
-    withdrawals,
-    fee,
-    additionalLovelaceAmount,
-    certificates,
-    deposit,
-    baseFee,
-  } = txPlan
+  const {change, outputs, withdrawals, fee, additionalLovelaceAmount, certificates, deposit, baseFee} = txPlan
 
   const noTxPlan: TxPlanResult = {
     success: false,
@@ -327,9 +303,7 @@ export const validateTxPlan = (txPlanResult: TxPlanResult): TxPlanResult => {
   }
 
   if (
-    outputsWithChange.some(
-      (output) => encodeCbor(cborizeSingleTxOutput(output)).length > MAX_TX_OUTPUT_SIZE
-    )
+    outputsWithChange.some((output) => encodeCbor(cborizeSingleTxOutput(output)).length > MAX_TX_OUTPUT_SIZE)
   ) {
     return {
       ...noTxPlan,
@@ -337,20 +311,13 @@ export const validateTxPlan = (txPlanResult: TxPlanResult): TxPlanResult => {
     }
   }
 
-  const withdrawnRewards = withdrawals.reduce(
-    (acc, {rewards}) => acc.plus(rewards),
-    new BigNumber(0)
-  )
+  const withdrawnRewards = withdrawals.reduce((acc, {rewards}) => acc.plus(rewards), new BigNumber(0))
   const isDeregisteringStakeKey = certificates.some(
     (c) => c.type === CertificateType.STAKING_KEY_DEREGISTRATION
   )
   // Excluding deregistering stake key case
   // because the returned "deposit" (2 ADA) is always higher than the Tx fee
-  if (
-    withdrawnRewards.gt(0) &&
-    !isDeregisteringStakeKey &&
-    (withdrawnRewards.lt(fee) || fee.gt(baseFee))
-  ) {
+  if (withdrawnRewards.gt(0) && !isDeregisteringStakeKey && (withdrawnRewards.lt(fee) || fee.gt(baseFee))) {
     return {
       ...noTxPlan,
       error: {code: InternalErrorReason.RewardsBalanceTooLow},

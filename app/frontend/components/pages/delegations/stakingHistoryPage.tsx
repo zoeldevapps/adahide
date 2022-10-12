@@ -1,4 +1,4 @@
-import {h, Component} from 'preact'
+import {h} from 'preact'
 import actions from '../../../actions'
 import {connect} from '../../../libs/unistore/preact'
 import {LinkIconToPool} from './common'
@@ -37,11 +37,7 @@ const StakeDelegationItem = ({stakeDelegation}: {stakeDelegation: StakeDelegatio
       ) : (
         ''
       )}
-      <ViewOnCardanoScan
-        txHash={stakeDelegation.txHash}
-        suffix="?tab=delegations"
-        className="margin-top"
-      />
+      <ViewOnCardanoScan txHash={stakeDelegation.txHash} suffix="?tab=delegations" className="margin-top" />
     </li>
   )
 }
@@ -56,9 +52,7 @@ const StakingRewardItem = ({stakingReward}: {stakingReward: StakingReward}) => {
             {stakingReward.rewardType === RewardType.REGULAR && (
               <div className="label">Reward for epoch {stakingReward.forEpoch}</div>
             )}
-            {stakingReward.rewardType === RewardType.ITN && (
-              <div className="label">Reward for ITN</div>
-            )}
+            {stakingReward.rewardType === RewardType.ITN && <div className="label">Reward for ITN</div>}
             {stakingReward.rewardType === RewardType.TREASURY && (
               <div className="label">Reward for Catalyst</div>
             )}
@@ -69,9 +63,7 @@ const StakingRewardItem = ({stakingReward}: {stakingReward: StakingReward}) => {
           <div>
             <div className="grey">
               {stakingReward.rewardType === RewardType.REGULAR && stakingReward.stakePool.name}
-              {stakingReward.stakePool.id && (
-                <LinkIconToPool poolHash={stakingReward.stakePool.id} />
-              )}
+              {stakingReward.stakePool.id && <LinkIconToPool poolHash={stakingReward.stakePool.id} />}
             </div>
           </div>
         </div>
@@ -115,10 +107,7 @@ const StakingKeyRegistrationItem = ({
     <li className="staking-history-item">
       <div className="label">Staking key {stakingKeyRegistration.action}</div>
       <div className="margin-bottom">
-        <EpochDateTime
-          epoch={stakingKeyRegistration.epoch}
-          dateTime={stakingKeyRegistration.dateTime}
-        />
+        <EpochDateTime epoch={stakingKeyRegistration.epoch} dateTime={stakingKeyRegistration.dateTime} />
       </div>
       <div>
         Staking key: {formatStakingKey(stakingKeyRegistration.stakingKey, 8)}
@@ -179,40 +168,38 @@ const StakingHistoryObjectToItem = {
   ),
 }
 
-class StakingHistoryPage extends Component<Props> {
-  render() {
-    const {stakingHistory} = useActiveAccount()
-    const items = stakingHistory.map((data: StakingHistoryObject) => {
-      try {
-        return StakingHistoryObjectToItem[data.type](data)
-      } catch (e) {
-        return ''
-      }
-    })
+const StakingHistoryPage = (_props: Props) => {
+  const {stakingHistory} = useActiveAccount()
+  const items = stakingHistory.map((data: StakingHistoryObject) => {
+    try {
+      return StakingHistoryObjectToItem[data.type](data)
+    } catch (e) {
+      return ''
+    }
+  })
 
-    return (
-      <div className="staking-history card">
-        <h2 className="card-title">Staking and Rewards History</h2>
-        <div className="staking-history-warning">
-          <Alert alertType="warning">
-            Some rewards may be missing in the history.{' '}
-            <a
-              href="https://github.com/vacuumlabs/adalite/wiki/Known-issue-with-missing-rewards"
-              target="_blank"
-              rel="noopener"
-            >
-              More info
-            </a>
-          </Alert>
-        </div>
-        {stakingHistory.length === 0 ? (
-          <div className="transactions-empty">No history found</div>
-        ) : (
-          <ul className="staking-history-content">{items}</ul>
-        )}
+  return (
+    <div className="staking-history card">
+      <h2 className="card-title">Staking and Rewards History</h2>
+      <div className="staking-history-warning">
+        <Alert alertType="warning">
+          Some rewards may be missing in the history.{' '}
+          <a
+            href="https://github.com/vacuumlabs/adalite/wiki/Known-issue-with-missing-rewards"
+            target="_blank"
+            rel="noopener"
+          >
+            More info
+          </a>
+        </Alert>
       </div>
-    )
-  }
+      {stakingHistory.length === 0 ? (
+        <div className="transactions-empty">No history found</div>
+      ) : (
+        <ul className="staking-history-content">{items}</ul>
+      )}
+    </div>
+  )
 }
 
 export default connect(null, actions)(StakingHistoryPage)

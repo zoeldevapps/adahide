@@ -46,8 +46,7 @@ const AddressManager = ({addressProvider, gapLimit, blockchainExplorer}: Address
 
       isGapBlock = !(await blockchainExplorer.isSomeAddressUsed(currentAddressBlock))
 
-      addresses =
-        isGapBlock && addresses.length > 0 ? addresses : addresses.concat(currentAddressBlock)
+      addresses = isGapBlock && addresses.length > 0 ? addresses : addresses.concat(currentAddressBlock)
       from += gapLimit
     }
 

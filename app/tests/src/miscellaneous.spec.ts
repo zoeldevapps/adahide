@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import {encryptWithPassword} from '../../frontend/helpers/catalyst'
 
 describe('Catalyst voting encrypting with password', () => {

@@ -1,6 +1,6 @@
 const fetchWithTimeout = require('./helpers/fetchWithTimeout')
 
-module.exports = function(app) {
+module.exports = function (app) {
   // eslint-disable-next-line consistent-return
   app.post('/api/poolMeta', async (req, res) => {
     const poolUrl = req.body.poolUrl

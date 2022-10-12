@@ -12,8 +12,8 @@ const GenerateMnemonicDialog = (): h.JSX.Element => {
   return (
     <Modal onRequestClose={closeGenerateMnemonicDialog} title="Create a New Wallet" showWarning>
       <p className="modal-paragraph">
-        The new wallet is created together with a mnemonic phrase. Write the mnemonic phrase down,
-        you will need it to access your wallet.{' '}
+        The new wallet is created together with a mnemonic phrase. Write the mnemonic phrase down, you will
+        need it to access your wallet.{' '}
         <strong>Don’t copy it to your clipboard or save it anywhere online.</strong>
       </p>
       <div className="modal-mnemonic one-click-select">{newWalletMnemonic}</div>

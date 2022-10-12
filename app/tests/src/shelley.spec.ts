@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import * as assert from 'assert'
+import assert from 'assert'
 
 import ShelleyJsCryptoProvider from '../../frontend/wallet/shelley/shelley-js-crypto-provider'
 

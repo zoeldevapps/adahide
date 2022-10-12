@@ -32,11 +32,7 @@ const Item = ({title, displayElement, copyValue}: ItemProps) => {
   return (
     <div className="multi-asset-page-policy">
       {copyValue ? (
-        <CopyOnClick
-          value={copyValue}
-          elementClass="copy"
-          tooltipMessage={`${title} copied to clipboard`}
-        >
+        <CopyOnClick value={copyValue} elementClass="copy" tooltipMessage={`${title} copied to clipboard`}>
           {content}
         </CopyOnClick>
       ) : (
@@ -113,11 +109,7 @@ const MultiAssetsPage = () => {
                 <div className={`${styles.details} ${isExpanded ? styles.expanded : ''}`}>
                   <Item title="Name" displayElement={formattedOffChainName!} />
                   <Item title="Ticker" displayElement={formattedTicker!} />
-                  <Item
-                    title="Policy ID"
-                    displayElement={formattedPolicy!}
-                    copyValue={asset.policyId}
-                  />
+                  <Item title="Policy ID" displayElement={formattedPolicy!} copyValue={asset.policyId} />
                   <Item title="Asset name" displayElement={formattedOnChainName!} />
                   <Item
                     title="Fingerprint"

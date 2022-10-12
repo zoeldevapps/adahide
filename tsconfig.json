@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "CommonJS",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es5",
@@ -11,9 +12,7 @@
     "jsxFactory": "h",
     "baseUrl": ".",
     "paths": {
-      "preact": [
-        "app/node_modules/preact/dist/preact.d.ts"
-      ]
+      "preact": ["app/node_modules/preact/dist/preact.d.ts"]
     },
     "noErrorTruncation": true,
     "downlevelIteration": true,
@@ -28,12 +27,9 @@
       "dom"
     ]
   },
-  "include": [
-    "app/**/*"
-  ],
+  "include": ["app/**/*"],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "app/cypress/*"
+    "node_modules"
+    // "**/*.spec.ts",
   ]
 }

@@ -7,7 +7,7 @@ import printAda from '../helpers/printAda'
 import {MAX_OUTPUT_TOKENS} from './shelley/transaction/constants'
 import {createTokenChangeOutputs} from './shelley/transaction/utils'
 import printTokenAmount from '../helpers/printTokenAmount'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 function getInputBalance(inputs: Array<UTxO>): Lovelace {
@@ -23,23 +23,14 @@ export const MaxAmountCalculator = () => {
     decimals: number = 0
   ): SendAmount {
     if (sendAmount.assetFamily === AssetFamily.ADA) {
-      const inputsTokenBundle = aggregateTokenBundles(
-        profitableInputs.map(({tokenBundle}) => tokenBundle)
-      )
+      const inputsTokenBundle = aggregateTokenBundles(profitableInputs.map(({tokenBundle}) => tokenBundle))
       const inputBalance = getInputBalance(profitableInputs)
 
-      const tokenChangeOutputs = createTokenChangeOutputs(
-        address,
-        inputsTokenBundle,
-        MAX_OUTPUT_TOKENS
-      )
+      const tokenChangeOutputs = createTokenChangeOutputs(address, inputsTokenBundle, MAX_OUTPUT_TOKENS)
 
       const minimalTokenChangeLovelace: Lovelace =
         inputsTokenBundle.length > 0
-          ? (tokenChangeOutputs.reduce(
-            (acc, {coins}) => acc.plus(coins),
-            new BigNumber(0)
-          ) as Lovelace)
+          ? (tokenChangeOutputs.reduce((acc, {coins}) => acc.plus(coins), new BigNumber(0)) as Lovelace)
           : (new BigNumber(0) as Lovelace)
 
       // we also need a change output leaving tokenBundle in account
@@ -49,20 +40,14 @@ export const MaxAmountCalculator = () => {
         ...tokenChangeOutputs,
       ]
       const txFee = computeRequiredTxFee(profitableInputs, outputs)
-      const coins = BigNumber.max(
-        inputBalance.minus(txFee).minus(minimalTokenChangeLovelace),
-        0
-      ) as Lovelace
+      const coins = BigNumber.max(inputBalance.minus(txFee).minus(minimalTokenChangeLovelace), 0) as Lovelace
 
       return {assetFamily: AssetFamily.ADA, coins, fieldValue: `${printAda(coins)}`}
     } else {
-      const inputsTokenBundle = aggregateTokenBundles(
-        profitableInputs.map(({tokenBundle}) => tokenBundle)
-      )
+      const inputsTokenBundle = aggregateTokenBundles(profitableInputs.map(({tokenBundle}) => tokenBundle))
       const sendToken = inputsTokenBundle.find(
         (token) =>
-          token.policyId === sendAmount.token.policyId &&
-          token.assetName === sendAmount.token.assetName
+          token.policyId === sendAmount.token.policyId && token.assetName === sendAmount.token.assetName
       )
       assert(sendToken != null)
       return {
@@ -73,11 +58,7 @@ export const MaxAmountCalculator = () => {
     }
   }
 
-  function getMaxDonationAmount(
-    profitableInputs: UTxO[],
-    address: Address,
-    sendAmount: Lovelace
-  ): Lovelace {
+  function getMaxDonationAmount(profitableInputs: UTxO[], address: Address, sendAmount: Lovelace): Lovelace {
     const coins = getInputBalance(profitableInputs)
 
     const outputs: TxOutput[] = [

@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 
 import derivationSchemes from '../../../frontend/wallet/helpers/derivation-schemes'
 import AddressManager from '../../../frontend/wallet/address-manager'
@@ -19,15 +19,8 @@ const blockchainExplorer = BlockchainExplorer(mockConfig)
 const addressManagers = {}
 
 const initAddressManager = async (settings) => {
-  const {
-    accountIndex,
-    isChange,
-    type,
-    network,
-    shouldExportPubKeyBulk,
-    secret,
-    derivationSchemeType,
-  } = settings
+  const {accountIndex, isChange, type, network, shouldExportPubKeyBulk, secret, derivationSchemeType} =
+    settings
 
   let walletSecretDef
   if (type === 'walletSecretDef') {

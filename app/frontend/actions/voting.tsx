@@ -57,9 +57,7 @@ export default (store: Store) => {
     const stakePubKey = xpub2pub(
       Buffer.from(getSourceAccountInfo(state).stakingXpub.xpubHex, 'hex')
     ).toString('hex')
-    const nonce = await getWallet()
-      .getAccount(state.sourceAccountIndex)
-      .calculateTtl()
+    const nonce = await getWallet().getAccount(state.sourceAccountIndex).calculateTtl()
     const sourceAccount = getSourceAccountInfo(state)
     const txPlanResult = prepareTxPlan({
       txType: TxType.REGISTER_VOTING,

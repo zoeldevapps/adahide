@@ -18,14 +18,7 @@ const DownloadKey = ({cborHex}) => {
 
   const dataURI = `data:${filetype};json,${JSON.stringify(fileContents, null, 4)}`
 
-  return (
-    <a
-      href={dataURI}
-      download={filename}
-      className="download-key-text"
-      data-cy="DownloadStakeKey"
-    />
-  )
+  return <a href={dataURI} download={filename} className="download-key-text" data-cy="DownloadStakeKey" />
 }
 
 const Keys = () => {
@@ -40,25 +33,16 @@ const Keys = () => {
       <h2 className="card-title small-margin">Keys</h2>
       {byronAccountXpub && (
         <Fragment>
-          <div className="advanced-label">
-            Byron extended public key ({parsePath(byronAccountXpub.path)})
-          </div>
+          <div className="advanced-label">Byron extended public key ({parsePath(byronAccountXpub.path)})</div>
           <div className="advanced-value">{byronAccountXpub.xpubHex}</div>
         </Fragment>
       )}
-      <div className="advanced-label">
-        Shelley extended public key ({parsePath(shelleyAccountXpub.path)})
-      </div>
+      <div className="advanced-label">Shelley extended public key ({parsePath(shelleyAccountXpub.path)})</div>
       <div className="advanced-value">{shelleyAccountXpub.xpubHex}</div>
       <div className="advanced-label">
         Staking key CBOR hex ({parsePath(stakingXpub.path)})
         <DownloadKey cborHex={xpubHexToCborPubHex(stakingXpub.xpubHex)} />
-        <a
-          {...tooltip(
-            'Staking key is needed for creating the stake pool ownership certificate.',
-            true
-          )}
-        >
+        <a {...tooltip('Staking key is needed for creating the stake pool ownership certificate.', true)}>
           <span className="show-info">{''}</span>
         </a>
       </div>

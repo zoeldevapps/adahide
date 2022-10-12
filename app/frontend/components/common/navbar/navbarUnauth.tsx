@@ -22,11 +22,7 @@ const NavbarUnauth = connect(
       <h1 className="navbar-heading">
         <span className="navbar-title">AdaLite - Cardano Wallet</span>
         <a href="/">
-          <img
-            src="assets/adalite-logo.svg"
-            alt="AdaLite - Cardano Wallet"
-            className="navbar-logo"
-          />
+          <img src="assets/adalite-logo.svg" alt="AdaLite - Cardano Wallet" className="navbar-logo" />
         </a>
       </h1>
       <div className="navbar-version">{`Ver. ${APP_VERSION}`}</div>

@@ -22,7 +22,7 @@ import {
 } from '../../common/asset'
 import styles from './transactionHistory.module.scss'
 import Alert from '../../common/alert'
-import * as moment from 'moment'
+import moment from 'moment'
 import {useActiveAccount} from '../../../selectors'
 import {useSelector} from '../../../helpers/connect'
 import {createTokenRegistrySubject} from '../../../tokenRegistry/tokenRegistry'
@@ -72,12 +72,7 @@ const FormattedTransaction = ({txid}: {txid: HexString}): h.JSX.Element => (
           CardanoExplorer
         </a> */}
       <span> | </span>
-      <a
-        className="transaction-address"
-        href={`https://adaex.org/${txid}`}
-        target="_blank"
-        rel="noopener"
-      >
+      <a className="transaction-address" href={`https://adaex.org/${txid}`} target="_blank" rel="noopener">
         ADAex
       </a>
     </span>
@@ -109,8 +104,7 @@ const MultiAsset = (props: FormattedAssetItemProps) => {
                 {icon}
               </div>
             </div>
-            {formattedHumanReadableLabelVariants.type ===
-            FormattedHumanReadableLabelType.FINGERPRINT
+            {formattedHumanReadableLabelVariants.type === FormattedHumanReadableLabelType.FINGERPRINT
               ? ''
               : formattedFingerprint}
           </Fragment>
@@ -200,13 +194,13 @@ const ExportCSV = ({transactionHistory, stakingHistory}: Props): h.JSX.Element =
             ...common,
             ...(tokenEffect.quantity.gt(0)
               ? {
-                type: TxSummaryType.RECEIVED,
-                received: tokenEffect.quantity,
-              }
+                  type: TxSummaryType.RECEIVED,
+                  received: tokenEffect.quantity,
+                }
               : {
-                type: TxSummaryType.SENT,
-                sent: tokenEffect.quantity.abs(),
-              }),
+                  type: TxSummaryType.SENT,
+                  sent: tokenEffect.quantity.abs(),
+                }),
             assetFamily: AssetFamily.TOKEN,
             currency: ticker ? `${ticker} (${fingerprint})` : fingerprint,
             decimals: tokenMetadata?.decimals || 0,

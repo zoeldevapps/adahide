@@ -24,12 +24,7 @@ const InitialContent = () => (
             <li>Get started in under 30 seconds</li>
           </ul>
           <div className="my-6">
-            <a
-              className="sidebar-link"
-              href={`${window.location.origin}/nufi`}
-              rel="noopener"
-              target="blank"
-            >
+            <a className="sidebar-link" href={`${window.location.origin}/nufi`} rel="noopener" target="blank">
               Learn more
             </a>
           </div>
@@ -39,8 +34,8 @@ const InitialContent = () => (
     <div className="sidebar-item spacy">
       <Alert alertType="info sidebar">
         <p>
-          AdaLite supports three means of accessing your wallet. For enhanced security, we recommend
-          you to use a <strong>hardware wallet.</strong>
+          AdaLite supports three means of accessing your wallet. For enhanced security, we recommend you to
+          use a <strong>hardware wallet.</strong>
         </p>
         <a
           className="sidebar-link"
@@ -61,8 +56,8 @@ const MnemonicContent = () => (
       <Alert alertType="info sidebar">
         <strong>What is a mnemonic?</strong>
         <p>
-          It’s a passphrase which serves as a seed to restore the addresses and their respective
-          public and private keys associated with your wallet.
+          It’s a passphrase which serves as a seed to restore the addresses and their respective public and
+          private keys associated with your wallet.
         </p>
       </Alert>
     </div>
@@ -70,12 +65,7 @@ const MnemonicContent = () => (
       <Alert alertType="info sidebar">
         <p>
           AdaLite is fully interoperable with{' '}
-          <a
-            className="sidebar-link"
-            href="https://yoroi-wallet.com/"
-            rel="noopener"
-            target="blank"
-          >
+          <a className="sidebar-link" href="https://yoroi-wallet.com/" rel="noopener" target="blank">
             Yoroi-type
           </a>{' '}
           mnemonics (15 words) and{' '}
@@ -88,12 +78,7 @@ const MnemonicContent = () => (
             partially
           </a>{' '}
           interoperable with{' '}
-          <a
-            className="sidebar-link"
-            href="https://daedaluswallet.io/"
-            rel="noopener"
-            target="blank"
-          >
+          <a className="sidebar-link" href="https://daedaluswallet.io/" rel="noopener" target="blank">
             Daedalus-type
           </a>{' '}
           mnemonics (12, 24 or 27 words).
@@ -102,8 +87,8 @@ const MnemonicContent = () => (
     </div>
     <Alert alertType="warning sidebar">
       <p>
-        Mnemonic is not the most secure access method. For enhanced security, we strongly recommend
-        you to use a{' '}
+        Mnemonic is not the most secure access method. For enhanced security, we strongly recommend you to use
+        a{' '}
         <a
           className="sidebar-link"
           href="https://github.com/vacuumlabs/adalite/wiki/AdaLite-FAQ#hardware-wallets"
@@ -122,25 +107,20 @@ const WalletContent = () => (
     <div className="sidebar-item">
       <Alert alertType="success sidebar">
         <p>
-          <strong>Hardware wallets</strong> provide the best security for your private key since it
-          never leaves the device when signing transactions.
+          <strong>Hardware wallets</strong> provide the best security for your private key since it never
+          leaves the device when signing transactions.
         </p>
       </Alert>
     </div>
     <div className="sidebar-item">
       <p className="sidebar-paragraph">
-        Computers might be vulnerable to attacks on program and system level. Typing your mnemonic
-        directly may put your wallet at risk. We currently support Trezor Model T, Ledger Nano S/S
-        Plus/X, and BitBox02 hardware wallets.
+        Computers might be vulnerable to attacks on program and system level. Typing your mnemonic directly
+        may put your wallet at risk. We currently support Trezor Model T, Ledger Nano S/S Plus/X, and BitBox02
+        hardware wallets.
       </p>
     </div>
     <div className="sidebar-item">
-      <a
-        className="sidebar-link"
-        href="https://wiki.trezor.io/Cardano_(ADA)"
-        rel="noopener"
-        target="blank"
-      >
+      <a className="sidebar-link" href="https://wiki.trezor.io/Cardano_(ADA)" rel="noopener" target="blank">
         How to use Trezor T with AdaLite
       </a>
     </div>
@@ -183,15 +163,15 @@ const FileContent = () => (
       <Alert alertType="info sidebar">
         <strong>What is a key file?</strong>
         <p>
-          It’s an encrypted JSON file you can export and load later instead of typing the whole
-          mnemonic passphrase to access your wallet.
+          It’s an encrypted JSON file you can export and load later instead of typing the whole mnemonic
+          passphrase to access your wallet.
         </p>
       </Alert>
     </div>
     <Alert alertType="warning sidebar">
       <p>
-        The encrypted key file is not the most secure access method. For enhanced security, we
-        strongly recommend you to use a{' '}
+        The encrypted key file is not the most secure access method. For enhanced security, we strongly
+        recommend you to use a{' '}
         <a
           className="sidebar-link"
           href="https://github.com/vacuumlabs/adalite/wiki/AdaLite-FAQ#hardware-wallets"

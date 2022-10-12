@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 import {ADALITE_CONFIG} from './config'
 import {MainTabs} from './constants'
@@ -109,9 +109,7 @@ export interface State {
   }
 
   // pool registration
-  poolRegTransactionSummary:
-    | PoolRegTransactionSummary
-    | {plan: null; shouldShowPoolCertSignModal: boolean}
+  poolRegTransactionSummary: PoolRegTransactionSummary | {plan: null; shouldShowPoolCertSignModal: boolean}
   poolRegTxError?: any
 
   // address detail
@@ -158,19 +156,14 @@ const initialState: State = {
     !(window.localStorage.getItem(localStorageVars.WELCOME) === 'true') &&
     !shouldShowLogoutNotification &&
     ADALITE_CONFIG.ADALITE_DEVEL_AUTO_LOGIN !== 'true',
-  shouldShowStakingBanner: !(
-    window.localStorage.getItem(localStorageVars.STAKING_BANNER) === 'true'
-  ),
+  shouldShowStakingBanner: !(window.localStorage.getItem(localStorageVars.STAKING_BANNER) === 'true'),
   seenPremiumBanner: window.localStorage.getItem(localStorageVars.PREMIUM_BANNER) === 'true',
   shouldShowWantedAddressesModal: false,
   displayInfoModal: !(window.localStorage.getItem(localStorageVars.INFO_MODAL) === 'true'),
 
   // login / logout
-  autoLogin:
-    ADALITE_CONFIG.ADALITE_ENV === 'local' && ADALITE_CONFIG.ADALITE_DEVEL_AUTO_LOGIN === 'true',
-  authMethod: ['#trezor', '#hw-wallet'].includes(window.location.hash)
-    ? AuthMethodType.HW_WALLET
-    : null,
+  autoLogin: ADALITE_CONFIG.ADALITE_ENV === 'local' && ADALITE_CONFIG.ADALITE_DEVEL_AUTO_LOGIN === 'true',
+  authMethod: ['#trezor', '#hw-wallet'].includes(window.location.hash) ? AuthMethodType.HW_WALLET : null,
   shouldShowLogoutNotification,
   walletIsLoaded: false,
   isShelleyCompatible: true,

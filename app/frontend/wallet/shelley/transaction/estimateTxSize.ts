@@ -23,8 +23,7 @@ function estimateAuxiliaryDataSize(auxiliaryData: TxPlanAuxiliaryData) {
   switch (auxiliaryData.type) {
     case 'CATALYST_VOTING': {
       const placeholderMetaSignature = 'x'.repeat(CATALYST_SIGNATURE_BYTE_LENGTH * 2)
-      return encodeCbor(cborizeTxAuxiliaryVotingData(auxiliaryData, placeholderMetaSignature))
-        .length
+      return encodeCbor(cborizeTxAuxiliaryVotingData(auxiliaryData, placeholderMetaSignature)).length
     }
     default:
       return assertUnreachable(auxiliaryData.type)

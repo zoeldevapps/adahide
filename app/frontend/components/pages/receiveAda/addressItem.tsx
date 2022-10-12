@@ -1,7 +1,7 @@
 import {Fragment, h} from 'preact'
 import CopyOnClick from '../../common/copyOnClick'
 import AddressVerification from '../../common/addressVerification'
-import * as QRious from '../../../libs/qrious'
+import QRious from '../../../libs/qrious'
 import ViewAddressOn from './viewAddressOn'
 import {DropdownCaret} from '../../common/svg'
 import {getCardanoscanUrl} from '../../../helpers/common'
@@ -50,11 +50,7 @@ const AddressItem = ({address, bip32path, isExpanded, expand}: Props): h.JSX.Ele
   )
 
   return (
-    <div
-      className={`address ${isExpanded ? 'expanded' : ''}`}
-      onClick={expand}
-      data-cy="ReceiveAddressItem"
-    >
+    <div className={`address ${isExpanded ? 'expanded' : ''}`} onClick={expand} data-cy="ReceiveAddressItem">
       <div className="label">
         <div className="value">
           <div className="number no-select">{`/${bip32path.split('/').pop()}`}</div>

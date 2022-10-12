@@ -198,15 +198,9 @@ export type TxMultiAsset = Map<Buffer, TxAsset>
 
 export type TxOutput = [Buffer, number | [number, TxMultiAsset]]
 
-export type TxStakingKeyRegistrationCert = [
-  TxCertificateKeys.STAKING_KEY_REGISTRATION,
-  [number, Buffer]
-]
+export type TxStakingKeyRegistrationCert = [TxCertificateKeys.STAKING_KEY_REGISTRATION, [number, Buffer]]
 
-export type TxStakingKeyDeregistrationCert = [
-  TxCertificateKeys.STAKING_KEY_DEREGISTRATION,
-  [number, Buffer]
-]
+export type TxStakingKeyDeregistrationCert = [TxCertificateKeys.STAKING_KEY_DEREGISTRATION, [number, Buffer]]
 
 export type TxDelegationCert = [TxCertificateKeys.DELEGATION, [number, Buffer], Buffer]
 

@@ -3,12 +3,12 @@ import {h, JSX} from 'preact'
 const tooltip = (message, enabled, displayAlways?: boolean) => {
   return displayAlways !== undefined
     ? {
-      'data-balloon': message,
-      'data-balloon-visible': displayAlways ? 'true' : '',
-    }
+        'data-balloon': message,
+        'data-balloon-visible': displayAlways ? 'true' : '',
+      }
     : enabled && {
-      'data-balloon': message,
-    }
+        'data-balloon': message,
+      }
 }
 
 export default tooltip

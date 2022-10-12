@@ -13,20 +13,14 @@ import {useEffect, useRef} from 'preact/hooks'
 const {ADALITE_DEMO_WALLET_MNEMONIC} = ADALITE_CONFIG
 
 const MnemonicAuth = (): h.JSX.Element => {
-  const {formData, shouldShowMnemonicInfoAlert, autoLogin, displayWelcome} = useSelector(
-    (state) => ({
-      formData: state.mnemonicAuthForm,
-      displayWelcome: state.displayWelcome,
-      shouldShowMnemonicInfoAlert: state.shouldShowMnemonicInfoAlert,
-      autoLogin: state.autoLogin,
-    })
-  )
-  const {
-    updateMnemonic,
-    updateMnemonicValidationError,
-    loadWallet,
-    openGenerateMnemonicDialog,
-  } = useActions(actions)
+  const {formData, shouldShowMnemonicInfoAlert, autoLogin, displayWelcome} = useSelector((state) => ({
+    formData: state.mnemonicAuthForm,
+    displayWelcome: state.displayWelcome,
+    shouldShowMnemonicInfoAlert: state.shouldShowMnemonicInfoAlert,
+    autoLogin: state.autoLogin,
+  }))
+  const {updateMnemonic, updateMnemonicValidationError, loadWallet, openGenerateMnemonicDialog} =
+    useActions(actions)
 
   const mnemonicField = useRef<HTMLInputElement>(null)
   const goBtn = useRef<HTMLButtonElement>(null)
@@ -57,9 +51,7 @@ const MnemonicAuth = (): h.JSX.Element => {
   return (
     <div className={`authentication-content ${shouldShowMnemonicInfoAlert ? '' : 'centered'}`}>
       {shouldShowMnemonicInfoAlert && (
-        <Alert alertType="info auth">
-          Here you can use your mnemonic to access your new wallet.
-        </Alert>
+        <Alert alertType="info auth">Here you can use your mnemonic to access your new wallet.</Alert>
       )}
       <label className="authentication-label" htmlFor="mnemonic-submitted">
         Enter the 12, 15, 24 or 27-word wallet mnemonic seed phrase
@@ -108,9 +100,7 @@ const MnemonicAuth = (): h.JSX.Element => {
           Unlock
         </button>
         {formData.mnemonicInputError && (
-          <div className="validation-message error">
-            {getErrorMessage(formData.mnemonicInputError.code)}
-          </div>
+          <div className="validation-message error">{getErrorMessage(formData.mnemonicInputError.code)}</div>
         )}
       </div>
       <a

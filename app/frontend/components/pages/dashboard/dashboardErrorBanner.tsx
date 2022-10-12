@@ -12,7 +12,4 @@ const DashboardErrorBanner = ({openNonShelleyCompatibleDialog}) => {
   )
 }
 
-export default connect(
-  () => null,
-  actions
-)(DashboardErrorBanner)
+export default connect(() => null, actions)(DashboardErrorBanner)

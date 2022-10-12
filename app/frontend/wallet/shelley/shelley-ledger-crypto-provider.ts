@@ -54,15 +54,10 @@ import {
 } from '../types'
 import {TxSigned, TxAux, CborizedCliWitness, FinalizedAuxiliaryDataTx} from './types'
 import {orderTokenBundle} from '../helpers/tokenFormater'
-import {
-  InternalError,
-  InternalErrorReason,
-  UnexpectedError,
-  UnexpectedErrorReason,
-} from '../../errors'
+import {InternalError, InternalErrorReason, UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import {TxRelayType, TxStakepoolOwner, TxStakepoolRelay} from './helpers/poolCertificateUtils'
 import assertUnreachable from '../../helpers/assertUnreachable'
-import * as assert from 'assert'
+import assert from 'assert'
 import {encodeCbor} from '../helpers/cbor'
 
 let _activeTransport: Transport | null
@@ -168,10 +163,7 @@ const ShelleyLedgerCryptoProvider = async ({
     })
   }
 
-  async function displayAddressForPath(
-    absDerivationPath: BIP32Path,
-    stakingPath: BIP32Path
-  ): Promise<void> {
+  async function displayAddressForPath(absDerivationPath: BIP32Path, stakingPath: BIP32Path): Promise<void> {
     try {
       await ledger.showAddress({
         network: {networkId: network.networkId, protocolMagic: network.protocolMagic},
@@ -200,10 +192,7 @@ const ShelleyLedgerCryptoProvider = async ({
     return derivationScheme
   }
 
-  function prepareInput(
-    input: TxInput,
-    addressToAbsPathMapper: AddressToPathMapper
-  ): LedgerTypes.TxInput {
+  function prepareInput(input: TxInput, addressToAbsPathMapper: AddressToPathMapper): LedgerTypes.TxInput {
     return {
       txHashHex: input.txHash,
       outputIndex: input.outputIndex,
@@ -236,31 +225,31 @@ const ShelleyLedgerCryptoProvider = async ({
     const tokenBundle = prepareTokenBundle(output.tokenBundle)
     return output.isChange === false
       ? {
-        destination: {
-          type: LedgerTypes.TxOutputDestinationType.THIRD_PARTY,
-          params: {
-            addressHex: isShelleyFormat(output.address)
-              ? bechAddressToHex(output.address)
-              : base58AddressToHex(output.address),
-          },
-        },
-        amount: output.coins.toString(),
-        tokenBundle,
-      }
-      : {
-        destination: {
-          type: LedgerTypes.TxOutputDestinationType.DEVICE_OWNED,
-          params: {
-            type: LedgerTypes.AddressType.BASE_PAYMENT_KEY_STAKE_KEY,
+          destination: {
+            type: LedgerTypes.TxOutputDestinationType.THIRD_PARTY,
             params: {
-              spendingPath: output.spendingPath,
-              stakingPath: output.stakingPath,
+              addressHex: isShelleyFormat(output.address)
+                ? bechAddressToHex(output.address)
+                : base58AddressToHex(output.address),
             },
           },
-        },
-        amount: output.coins.toString(),
-        tokenBundle,
-      }
+          amount: output.coins.toString(),
+          tokenBundle,
+        }
+      : {
+          destination: {
+            type: LedgerTypes.TxOutputDestinationType.DEVICE_OWNED,
+            params: {
+              type: LedgerTypes.AddressType.BASE_PAYMENT_KEY_STAKE_KEY,
+              params: {
+                spendingPath: output.spendingPath,
+                stakingPath: output.stakingPath,
+              },
+            },
+          },
+          amount: output.coins.toString(),
+          tokenBundle,
+        }
   }
 
   function prepareStakingKeyRegistrationCertificate(
@@ -341,18 +330,15 @@ const ShelleyLedgerCryptoProvider = async ({
     const {data: stakingAddressBuff} = bech32.decode(stakingAddress)
     const poolOwners: LedgerTypes.PoolOwner[] = stakepoolOwners.map((owner) => {
       // TODO: helper function for slicing first bit from staking address so its stakingKeyHash
-      return !Buffer.compare(
-        Buffer.from(owner.stakingKeyHashHex, 'hex'),
-        stakingAddressBuff.slice(1)
-      )
+      return !Buffer.compare(Buffer.from(owner.stakingKeyHashHex, 'hex'), stakingAddressBuff.slice(1))
         ? {
-          type: LedgerTypes.PoolOwnerType.DEVICE_OWNED,
-          params: {stakingPath: path},
-        }
+            type: LedgerTypes.PoolOwnerType.DEVICE_OWNED,
+            params: {stakingPath: path},
+          }
         : {
-          type: LedgerTypes.PoolOwnerType.THIRD_PARTY,
-          params: {stakingKeyHashHex: owner.stakingKeyHashHex},
-        }
+            type: LedgerTypes.PoolOwnerType.THIRD_PARTY,
+            params: {stakingKeyHashHex: owner.stakingKeyHashHex},
+          }
     })
     if (!poolOwners.some((owner) => owner.type === LedgerTypes.PoolOwnerType.DEVICE_OWNED)) {
       throw new InternalError(InternalErrorReason.MissingOwner, {
@@ -537,12 +523,8 @@ const ShelleyLedgerCryptoProvider = async ({
       prepareWithdrawal(withdrawal, addressToAbsPathMapper)
     )
 
-    const validityIntervalStart = txAux.validityIntervalStart
-      ? `${txAux.validityIntervalStart}`
-      : null
-    const formattedAuxiliaryData = txAux.auxiliaryData
-      ? formatAuxiliaryData(txAux.auxiliaryData)
-      : null
+    const validityIntervalStart = txAux.validityIntervalStart ? `${txAux.validityIntervalStart}` : null
+    const formattedAuxiliaryData = txAux.auxiliaryData ? formatAuxiliaryData(txAux.auxiliaryData) : null
     const response = await ledger.signTransaction({
       signingMode,
       tx: {
@@ -571,11 +553,7 @@ const ShelleyLedgerCryptoProvider = async ({
 
     const {shelleyWitnesses, byronWitnesses} = await prepareWitnesses(response.witnesses)
     const txWitnesses = cborizeTxWitnesses(byronWitnesses, shelleyWitnesses)
-    const structuredTx = ShelleySignedTransactionStructured(
-      finalizedTxAux,
-      txWitnesses,
-      txAuxiliaryData
-    )
+    const structuredTx = ShelleySignedTransactionStructured(finalizedTxAux, txWitnesses, txAuxiliaryData)
 
     return {
       txHash: response.txHashHex,
@@ -583,10 +561,7 @@ const ShelleyLedgerCryptoProvider = async ({
     }
   }
 
-  async function signTx(
-    txAux: TxAux,
-    addressToAbsPathMapper: AddressToPathMapper
-  ): Promise<TxSigned> {
+  async function signTx(txAux: TxAux, addressToAbsPathMapper: AddressToPathMapper): Promise<TxSigned> {
     return await ledgerSignTransaction(
       txAux,
       addressToAbsPathMapper,

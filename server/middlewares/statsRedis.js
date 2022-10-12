@@ -11,10 +11,7 @@ const getRequestIp = require('../helpers/getRequestIp')
 const knownIps = new Set()
 
 function getSlicedDate() {
-  return new Date()
-    .toISOString()
-    .split('T')[0]
-    .split('-')
+  return new Date().toISOString().split('T')[0].split('-')
 }
 
 const incrCountersBy = (key, value) => {
@@ -40,8 +37,7 @@ const trackVisits = (req, res, next) => {
 const trackTxSubmissions = mung.json((body, req) => {
   if (req.originalUrl === '/api/txs/submit' && req.method === 'POST') {
     const txSubmissionType =
-      tokenMatches(req.get('token')) &&
-      isSameOrigin(req.get('origin'), backendConfig.ADALITE_SERVER_URL)
+      tokenMatches(req.get('token')) && isSameOrigin(req.get('origin'), backendConfig.ADALITE_SERVER_URL)
         ? 'txSubmissions'
         : 'otherTxSubmissions'
     const txSubmissionSuccess = body.Right ? 'successful' : 'unsuccessful'

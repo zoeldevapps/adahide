@@ -5,10 +5,8 @@ import {SuccessResponse, TokenMetadata, TokenMetadataResponse} from '../wallet/b
 
 const MAX_SUBJECTS_COUNT = 2000
 
-export const createTokenRegistrySubject = (
-  policyId: string,
-  assetName: string
-): TokenRegistrySubject => `${policyId}${assetName}` as TokenRegistrySubject
+export const createTokenRegistrySubject = (policyId: string, assetName: string): TokenRegistrySubject =>
+  `${policyId}${assetName}` as TokenRegistrySubject
 
 export class TokenRegistry {
   private readonly url: string
@@ -18,13 +16,11 @@ export class TokenRegistry {
     this.url = url
     this.fetchTokensMetadata = enableCaching
       ? // 1 hour, not really needed to refresh the cache during a single app session
-      cacheResults(60 * 60 * 1000)(this._fetchTokensMetadata).fn
+        cacheResults(60 * 60 * 1000)(this._fetchTokensMetadata).fn
       : this._fetchTokensMetadata
   }
 
-  private readonly _fetchTokensMetadata = async (
-    subjects: string[]
-  ): Promise<TokenMetadataResponse> => {
+  private readonly _fetchTokensMetadata = async (subjects: string[]): Promise<TokenMetadataResponse> => {
     if (subjects.length > MAX_SUBJECTS_COUNT) {
       return Promise.resolve({Left: 'Request over max limit'})
     }
@@ -71,9 +67,7 @@ export class TokenRegistry {
     tokens: Token[]
   ): Promise<Map<TokenRegistrySubject, RegisteredTokenMetadata>> => {
     const subjects = [
-      ...new Set(
-        tokens.map(({policyId, assetName}) => createTokenRegistrySubject(policyId, assetName))
-      ),
+      ...new Set(tokens.map(({policyId, assetName}) => createTokenRegistrySubject(policyId, assetName))),
     ]
     const tokensMetadata = await this.fetchTokensMetadata(subjects)
     return TokenRegistry.parseTokensMetadata(tokensMetadata)

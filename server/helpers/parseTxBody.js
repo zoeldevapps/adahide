@@ -28,10 +28,7 @@ const parseTxBodyTotalAmount = (txBody) => {
   return cbor
     .decode(txBody)[0]
     .get(1)
-    .reduce(
-      (acc, curr) => acc + coinsFromOutputValue(parseValueFromOutput(curr)),
-      0
-    )
+    .reduce((acc, curr) => acc + coinsFromOutputValue(parseValueFromOutput(curr)), 0)
 }
 
 module.exports = {

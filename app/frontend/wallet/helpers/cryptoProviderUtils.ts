@@ -31,9 +31,7 @@ export function isHwWallet(
     return false
   }
 
-  return [
-    CryptoProviderType.BITBOX02,
-    CryptoProviderType.LEDGER,
-    CryptoProviderType.TREZOR,
-  ].includes(providerType)
+  return [CryptoProviderType.BITBOX02, CryptoProviderType.LEDGER, CryptoProviderType.TREZOR].includes(
+    providerType
+  )
 }

@@ -1,7 +1,7 @@
 import {Address} from '../../frontend/types'
 import BigNumber from 'bignumber.js'
 import {createTokenChangeOutputs} from '../../frontend/wallet/shelley/transaction/utils'
-import * as assert from 'assert'
+import assert from 'assert'
 
 const tokens = {
   // TODO: move to constants

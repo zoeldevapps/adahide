@@ -23,11 +23,7 @@ const SaturationInfo = (pool) => {
   )
 }
 
-const CurrentDelegationPage = ({
-  revokeDelegation,
-  delegationValidationError,
-  calculatingDelegationFee,
-}) => {
+const CurrentDelegationPage = ({revokeDelegation, delegationValidationError, calculatingDelegationFee}) => {
   const {
     shelleyAccountInfo: {
       delegation: pool,
@@ -46,12 +42,8 @@ const CurrentDelegationPage = ({
               <LinkIconToPool poolHash={pool.poolHash} />
             </div>
             <div className="current-delegation-id">{pool.poolHash}</div>
-            {pool.ticker != null && (
-              <div className="current-delegation-id">Ticker: {pool.ticker}</div>
-            )}
-            {pool.margin != null && (
-              <div className="current-delegation-id">Tax: {pool.margin * 100}%</div>
-            )}
+            {pool.ticker != null && <div className="current-delegation-id">Ticker: {pool.ticker}</div>}
+            {pool.margin != null && <div className="current-delegation-id">Tax: {pool.margin * 100}%</div>}
             {pool.fixedCost != null && (
               <div className="current-delegation-id">
                 Fixed cost: {printAda(new BigNumber(pool.fixedCost) as Lovelace)}
@@ -64,9 +56,7 @@ const CurrentDelegationPage = ({
             {pool.liveStake != null && (
               <div className="current-delegation-id">
                 Live stake:{' '}
-                {parseFloat(printAda(new BigNumber(pool.liveStake) as Lovelace)).toLocaleString(
-                  'en'
-                )}
+                {parseFloat(printAda(new BigNumber(pool.liveStake) as Lovelace)).toLocaleString('en')}
               </div>
             )}
             {pool.homepage != null && (
@@ -110,8 +100,7 @@ const CurrentDelegationPage = ({
       ) : (
         <p>The funds are currently undelegated. Delegate now.</p>
       )}
-      {nearestReward &&
-        nearestReward.distributionEpoch !== currentDelegationReward.distributionEpoch && (
+      {nearestReward && nearestReward.distributionEpoch !== currentDelegationReward.distributionEpoch && (
         <Fragment>
           <h2 className="card-title margin-top small-margin">Reward from previous pool</h2>
           <div className="current-delegation-wrapper">
@@ -121,7 +110,7 @@ const CurrentDelegationPage = ({
             </div>
             <div className="current-delegation-id">{nearestReward.poolHash}</div>
             <div className="current-delegation-id">
-                Next reward:{' '}
+              Next reward:{' '}
               <EpochDateTime
                 epoch={nearestReward.distributionEpoch}
                 dateTime={new Date(nearestReward.rewardDate)}

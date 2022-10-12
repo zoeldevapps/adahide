@@ -20,10 +20,7 @@ const ErrorModals = ({
       {shouldShowTransactionErrorModal && (
         <TransactionErrorModal
           onRequestClose={closeTransactionErrorModal}
-          errorMessage={getErrorMessage(
-            transactionSubmissionError.code,
-            transactionSubmissionError.params
-          )}
+          errorMessage={getErrorMessage(transactionSubmissionError.code, transactionSubmissionError.params)}
           helpType={getErrorHelpType(transactionSubmissionError.code)}
         />
       )}

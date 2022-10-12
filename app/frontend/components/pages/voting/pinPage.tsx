@@ -45,9 +45,9 @@ const PinPage = ({
   return (
     <Fragment>
       <Alert alertType="warning">
-        This PIN will be required <strong>every time</strong> you use the Catalyst Voting
-        Application on your phone. Make sure to <strong>write it down</strong>! Losing this PIN will
-        require a <strong>new</strong> Voting Key registration!
+        This PIN will be required <strong>every time</strong> you use the Catalyst Voting Application on your
+        phone. Make sure to <strong>write it down</strong>! Losing this PIN will require a{' '}
+        <strong>new</strong> Voting Key registration!
       </Alert>
       <div className={styles.pinCodes}>
         <label htmlFor="first-pin">{VOTING_PIN_LENGTH}-digit PIN</label>

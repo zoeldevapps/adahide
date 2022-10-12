@@ -11,11 +11,6 @@ import {
 import getDonationAddress from '../../helpers/getDonationAddress'
 import {getCardanoscanUrl} from '../../helpers/common'
 
-interface Props {
-  showConversionRates: boolean
-  shouldShowContactFormModal: any
-}
-
 const showRatesOn = ['/txHistory', '/send']
 
 const Footer = () => {
@@ -30,19 +25,10 @@ const Footer = () => {
         <Branding dark={false} />
         <div className="footer-row">
           <div className="social">
-            <button
-              role="button"
-              className="social-link email"
-              onClick={shouldShowContactFormModal}
-            >
+            <button role="button" className="social-link email" onClick={shouldShowContactFormModal}>
               Contact us
             </button>
-            <a
-              href="https://t.me/AdaLite"
-              target="_blank"
-              rel="noopener"
-              className="social-link telegram"
-            >
+            <a href="https://t.me/AdaLite" target="_blank" rel="noopener" className="social-link telegram">
               Telegram
             </a>
             <a

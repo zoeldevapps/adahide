@@ -16,9 +16,7 @@ const DeregisterStakeKeyPage = () => {
   return (
     <div className="deregister-stake-key-card card">
       <h2 className="card-title small-margin">Stake Key Deregistration</h2>
-      <p className="deregister-stake-key-card-disclaimer">
-        ...if you do not want to use this wallet anymore
-      </p>
+      <p className="deregister-stake-key-card-disclaimer">...if you do not want to use this wallet anymore</p>
       <button
         disabled={shouldDisableSendingButton(walletOperationStatusType)}
         className="button secondary cancel-delegation"

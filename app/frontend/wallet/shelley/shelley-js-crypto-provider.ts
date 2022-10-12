@@ -28,13 +28,7 @@ import {
   HexString,
   Address,
 } from '../../types'
-import {
-  CryptoProviderType,
-  Network,
-  TxAuxiliaryData,
-  TxByronWitness,
-  TxShelleyWitness,
-} from '../types'
+import {CryptoProviderType, Network, TxAuxiliaryData, TxByronWitness, TxShelleyWitness} from '../types'
 import {
   TxSigned,
   TxAux,
@@ -44,7 +38,7 @@ import {
 } from './types'
 import {UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import assertUnreachable from '../../helpers/assertUnreachable'
-import * as assert from 'assert'
+import assert from 'assert'
 import {encodeCbor} from '../helpers/cbor'
 
 type CryptoProviderParams = {
@@ -107,10 +101,7 @@ CryptoProviderParams): Promise<CryptoProvider> => {
     return xpubToHdPassphrase(masterHdNode.extendedPublicKey)
   }
 
-  const prepareShelleyWitness = async (
-    txHash: HexString,
-    path: BIP32Path
-  ): Promise<TxShelleyWitness> => {
+  const prepareShelleyWitness = async (txHash: HexString, path: BIP32Path): Promise<TxShelleyWitness> => {
     const signature = await sign(txHash, path)
     const xpub = await deriveXpub(path)
     const publicKey = xpub2pub(xpub)
@@ -197,10 +188,7 @@ CryptoProviderParams): Promise<CryptoProvider> => {
   ): Promise<CborizedTxSignedStructured> {
     const {finalizedTxAux, txAuxiliaryData} = await finalizeTxAuxWithMetadata(txAux)
 
-    const {shelleyWitnesses, byronWitnesses} = await prepareWitnesses(
-      finalizedTxAux,
-      addressToPathMapper
-    )
+    const {shelleyWitnesses, byronWitnesses} = await prepareWitnesses(finalizedTxAux, addressToPathMapper)
     const txWitnesses = cborizeTxWitnesses(byronWitnesses, shelleyWitnesses)
 
     return ShelleySignedTransactionStructured(finalizedTxAux, txWitnesses, txAuxiliaryData)
@@ -225,10 +213,7 @@ CryptoProviderParams): Promise<CryptoProvider> => {
   }
 
   // eslint-disable-next-line require-await
-  async function witnessPoolRegTx(
-    txAux: TxAux,
-    addressToAbsPathMapper: AddressToPathMapper
-  ): Promise<any> {
+  async function witnessPoolRegTx(txAux: TxAux, addressToAbsPathMapper: AddressToPathMapper): Promise<any> {
     throw new UnexpectedError(UnexpectedErrorReason.UnsupportedOperationError)
   }
 

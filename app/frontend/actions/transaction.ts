@@ -21,7 +21,7 @@ import {
 import {TxPlan} from '../wallet/shelley/transaction'
 import {InternalError, InternalErrorReason} from '../errors'
 import {TxSummary} from '../wallet/backend-types'
-import * as assert from 'assert'
+import assert from 'assert'
 import {getDeviceBrandName, isHwWallet} from '../wallet/helpers/cryptoProviderUtils'
 import {getChangeAddress} from '../wallet/account'
 import BigNumber from 'bignumber.js'
@@ -58,9 +58,7 @@ export default (store: Store) => {
     let txAux
     try {
       if (txPlan) {
-        txAux = await getWallet()
-          .getAccount(sourceAccountIndex)
-          .prepareTxAux(txPlan)
+        txAux = await getWallet().getAccount(sourceAccountIndex).prepareTxAux(txPlan)
       } else {
         loadingAction(state, 'Preparing transaction plan...')
         await sleep(1000) // wait for plan to be set in case of unfortunate timing
@@ -82,8 +80,7 @@ export default (store: Store) => {
     be inferred
     */
 
-    const isTxBetweenAccounts =
-      state.activeMainTab === MainTabs.ACCOUNT && txConfirmType === TxType.SEND_ADA
+    const isTxBetweenAccounts = state.activeMainTab === MainTabs.ACCOUNT && txConfirmType === TxType.SEND_ADA
 
     const keepConfirmationDialogOpen =
       isTxBetweenAccounts ||
@@ -220,12 +217,8 @@ export default (store: Store) => {
     let sendResponse
     try {
       assert(txSummary.plan != null)
-      const txAux = await getWallet()
-        .getAccount(sourceAccountIndex)
-        .prepareTxAux(txSummary.plan)
-      const signedTx = await getWallet()
-        .getAccount(sourceAccountIndex)
-        .signTxAux(txAux)
+      const txAux = await getWallet().getAccount(sourceAccountIndex).prepareTxAux(txSummary.plan)
+      const signedTx = await getWallet().getAccount(sourceAccountIndex).signTxAux(txAux)
       if (isHwWallet(cryptoProviderType)) {
         setState({waitingHwWalletOperation: null})
         stopLoadingAction(state)

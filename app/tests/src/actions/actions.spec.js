@@ -2,13 +2,13 @@ import assert from 'assert'
 import {initialState} from '../../../frontend/state'
 import {default as actions} from '../../../frontend/actions'
 
-export const setMockState = function(state, changes) {
+export const setMockState = function (state, changes) {
   for (const [key, val] of Object.entries(changes)) {
     state[key] = val
   }
 }
 
-export const getMockState = function(state) {
+export const getMockState = function (state) {
   return state
 }
 
@@ -29,12 +29,12 @@ export function setupInitialMockState() {
 }
 
 // eslint-disable-next-line prefer-arrow-callback
-describe('Test wallet actions', function() {
+describe('Test wallet actions', function () {
   this.timeout(5000) // this doesn't work in Mocha with arrow functions
   require('./wallet-actions')
 })
 // eslint-disable-next-line prefer-arrow-callback
-describe('Test transaction actions', function() {
+describe('Test transaction actions', function () {
   this.timeout(5000) // this doesn't work in Mocha with arrow functions
   require('./transaction-actions')
 })

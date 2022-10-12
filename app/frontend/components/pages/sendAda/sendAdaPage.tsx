@@ -31,7 +31,7 @@ import {FormattedAssetItem, FormattedHumanReadableLabelType} from '../../common/
 import {shouldDisableSendingButton} from '../../../helpers/common'
 import printTokenAmount from '../../../helpers/printTokenAmount'
 import {createTokenRegistrySubject} from '../../../../frontend/tokenRegistry/tokenRegistry'
-import * as assert from 'assert'
+import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 const CalculatingFee = () => <div className="validation-message send">Calculating fee...</div>
@@ -67,9 +67,7 @@ const displayDropdownAssetItem = (props: DropdownAssetItem) => (
         <div
           className="multi-asset-item"
           data-cy={
-            props.type === AssetFamily.TOKEN
-              ? 'SendAssetDropdownTokenItem'
-              : 'SendAssetDropdownADAitem'
+            props.type === AssetFamily.TOKEN ? 'SendAssetDropdownTokenItem' : 'SendAssetDropdownADAitem'
           }
         >
           <div className="multi-asset-name-amount">
@@ -79,9 +77,7 @@ const displayDropdownAssetItem = (props: DropdownAssetItem) => (
             </div>
             <div
               className="multi-asset-amount"
-              data-cy={
-                props.type === AssetFamily.TOKEN ? 'SendAssetTokenQuantity' : 'SendAssetADAquantity'
-              }
+              data-cy={props.type === AssetFamily.TOKEN ? 'SendAssetTokenQuantity' : 'SendAssetADAquantity'}
             >
               {formattedAmount}
             </div>
@@ -126,11 +122,8 @@ const SendAdaPage = ({
     tokenDecimals:
       state.sendAmount.assetFamily === AssetFamily.TOKEN
         ? state.tokensMetadata.get(
-          createTokenRegistrySubject(
-            state.sendAmount.token.policyId,
-            state.sendAmount.token.assetName
-          )
-        )?.decimals || 0
+            createTokenRegistrySubject(state.sendAmount.token.policyId, state.sendAmount.token.assetName)
+          )?.decimals || 0
         : null,
     tokensMetadata: state.tokensMetadata,
     feeRecalculating: state.calculatingFee,
@@ -164,15 +157,18 @@ const SendAdaPage = ({
   const enableSubmit = sendAmount.fieldValue && sendAddress && !sendFormValidationError
   const isSendAddressValid = !sendAddressValidationError && sendAddress !== ''
 
-  const adaAsset: DropdownAssetItem = {
-    type: AssetFamily.ADA,
-    policyId: '',
-    assetName: 'ADA',
-    fingerprint: null,
-    quantity: balance,
-    assetNameUtf8: 'ADA',
-    ticker: 'ADA',
-  }
+  const adaAsset: DropdownAssetItem = useMemo(
+    () => ({
+      type: AssetFamily.ADA,
+      policyId: '',
+      assetName: 'ADA',
+      fingerprint: null,
+      quantity: balance,
+      assetNameUtf8: 'ADA',
+      ticker: 'ADA',
+    }),
+    [balance]
+  )
 
   const dropdownAssetItems: Array<DropdownAssetItem> = useMemo(
     () => [
@@ -187,8 +183,7 @@ const SendAdaPage = ({
             assetNameUtf8: assetNameHex2Readable(token.assetName),
             ticker:
               tokensMetadata &&
-              tokensMetadata.get(createTokenRegistrySubject(token.policyId, token.assetName))
-                ?.ticker,
+              tokensMetadata.get(createTokenRegistrySubject(token.policyId, token.assetName))?.ticker,
           })
         ),
     ],
@@ -200,8 +195,7 @@ const SendAdaPage = ({
       return adaAsset
     }
     return dropdownAssetItems.find(
-      (item) =>
-        item.assetName === sendAmount.token.assetName && item.policyId === sendAmount.token.policyId
+      (item) => item.assetName === sendAmount.token.assetName && item.policyId === sendAmount.token.policyId
     )
   }, [adaAsset, dropdownAssetItems, sendAmount])
   assert(selectedAsset != null)
@@ -214,10 +208,7 @@ const SendAdaPage = ({
     !!string && !!subString && string.toLowerCase().includes(subString.toLocaleLowerCase())
 
   const searchPredicate = useCallback(
-    (
-      query: string,
-      {policyId, assetName, fingerprint, assetNameUtf8, ticker}: DropdownAssetItem
-    ): boolean =>
+    (query: string, {policyId, assetName, fingerprint, assetNameUtf8, ticker}: DropdownAssetItem): boolean =>
       safeIncludes(query, fingerprint) ||
       safeIncludes(query, assetName) ||
       safeIncludes(query, policyId) ||
@@ -397,9 +388,9 @@ const SendAdaPage = ({
     </Fragment>
   )
 
-  const totalLovelace = (summary != null
-    ? summary.coins.plus(summary.fee).plus(summary.minimalLovelaceAmount)
-    : new BigNumber(0)) as Lovelace
+  const totalLovelace = (
+    summary != null ? summary.coins.plus(summary.fee).plus(summary.minimalLovelaceAmount) : new BigNumber(0)
+  ) as Lovelace
   const totalTokens = summary?.token ?? null
   const minimalLovelaceAmount = summary?.minimalLovelaceAmount ?? (new BigNumber(0) as Lovelace)
 
@@ -450,17 +441,13 @@ const SendAdaPage = ({
                   : 0}{' '}
                 <FormattedAssetItem {...selectedAsset}>
                   {({formattedHumanReadableLabelVariants}) => {
-                    return (
-                      <Fragment>{formattedHumanReadableLabelVariants.labelShortWithIcon}</Fragment>
-                    )
+                    return <Fragment>{formattedHumanReadableLabelVariants.labelShortWithIcon}</Fragment>
                   }}
                 </FormattedAssetItem>
               </div>
             )}
             {selectedAsset.type === AssetFamily.ADA
-              ? conversionRates && (
-                <Conversions balance={totalLovelace} conversionRates={conversionRates} />
-              )
+              ? conversionRates && <Conversions balance={totalLovelace} conversionRates={conversionRates} />
               : ''}
           </div>
           <div />
@@ -470,9 +457,7 @@ const SendAdaPage = ({
                 +{printAda(totalLovelace)}
                 <AdaIcon />
               </div>
-              {conversionRates && (
-                <Conversions balance={totalLovelace} conversionRates={conversionRates} />
-              )}
+              {conversionRates && <Conversions balance={totalLovelace} conversionRates={conversionRates} />}
             </div>
           )}
         </div>
@@ -484,9 +469,7 @@ const SendAdaPage = ({
             )}
             className="button primary medium"
             disabled={
-              !enableSubmit ||
-              feeRecalculating ||
-              shouldDisableSendingButton(walletOperationStatusType)
+              !enableSubmit || feeRecalculating || shouldDisableSendingButton(walletOperationStatusType)
             }
             onClick={submitHandler}
             ref={submitTxBtn}
@@ -497,10 +480,7 @@ const SendAdaPage = ({
           {feeRecalculating ? (
             <CalculatingFee />
           ) : (
-            <SendValidation
-              sendFormValidationError={sendFormValidationError}
-              txSuccessTab={txSuccessTab}
-            />
+            <SendValidation sendFormValidationError={sendFormValidationError} txSuccessTab={txSuccessTab} />
           )}
         </div>
       </div>

@@ -167,10 +167,7 @@ function cborizeStakingKeyRegistrationCert(
   certificate: TxStakingKeyRegistrationCert
 ): CborizedTxStakingKeyRegistrationCert {
   const stakingKeyHash: Buffer = bech32.decode(certificate.stakingAddress).data.slice(1)
-  const stakeCredential: CborizedTxStakeCredential = [
-    TxStakeCredentialType.ADDR_KEYHASH,
-    stakingKeyHash,
-  ]
+  const stakeCredential: CborizedTxStakeCredential = [TxStakeCredentialType.ADDR_KEYHASH, stakingKeyHash]
   return [TxCertificateKey.STAKING_KEY_REGISTRATION, stakeCredential]
 }
 
@@ -178,19 +175,13 @@ function cborizeStakingKeyDeregistrationCert(
   certificate: TxStakingKeyDeregistrationCert
 ): CborizedTxStakingKeyDeregistrationCert {
   const stakingKeyHash: Buffer = bech32.decode(certificate.stakingAddress).data.slice(1)
-  const stakeCredential: CborizedTxStakeCredential = [
-    TxStakeCredentialType.ADDR_KEYHASH,
-    stakingKeyHash,
-  ]
+  const stakeCredential: CborizedTxStakeCredential = [TxStakeCredentialType.ADDR_KEYHASH, stakingKeyHash]
   return [TxCertificateKey.STAKING_KEY_DEREGISTRATION, stakeCredential]
 }
 
 function cborizeDelegationCert(certificate: TxDelegationCert): CborizedTxDelegationCert {
   const stakingKeyHash: Buffer = bech32.decode(certificate.stakingAddress).data.slice(1)
-  const stakeCredential: CborizedTxStakeCredential = [
-    TxStakeCredentialType.ADDR_KEYHASH,
-    stakingKeyHash,
-  ]
+  const stakeCredential: CborizedTxStakeCredential = [TxStakeCredentialType.ADDR_KEYHASH, stakingKeyHash]
   const poolHash = Buffer.from(certificate.poolHash, 'hex')
   return [TxCertificateKey.DELEGATION, stakeCredential, poolHash]
 }
@@ -232,9 +223,9 @@ function cborizeStakepoolRegistrationCert(
     }),
     poolRegistrationParams.metadata
       ? [
-        poolRegistrationParams.metadata.metadataUrl,
-        Buffer.from(poolRegistrationParams.metadata.metadataHashHex, 'hex'),
-      ]
+          poolRegistrationParams.metadata.metadataUrl,
+          Buffer.from(poolRegistrationParams.metadata.metadataHashHex, 'hex'),
+        ]
       : null,
   ]
 }
@@ -266,12 +257,11 @@ function cborizeTxWithdrawals(withdrawals: TxWithdrawal[]): CborizedTxWithdrawal
   return txWithdrawals
 }
 
-function cborizeTxWitnessesShelley(
-  shelleyWitnesses: TxShelleyWitness[]
-): CborizedTxWitnessShelley[] {
-  const txWitnessesShelley: CborizedTxWitnessShelley[] = shelleyWitnesses.map(
-    ({publicKey, signature}) => [publicKey, signature]
-  )
+function cborizeTxWitnessesShelley(shelleyWitnesses: TxShelleyWitness[]): CborizedTxWitnessShelley[] {
+  const txWitnessesShelley: CborizedTxWitnessShelley[] = shelleyWitnesses.map(({publicKey, signature}) => [
+    publicKey,
+    signature,
+  ])
   return txWitnessesShelley
 }
 

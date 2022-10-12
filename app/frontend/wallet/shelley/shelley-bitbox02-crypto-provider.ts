@@ -35,12 +35,7 @@ import {
   TxShelleyWitness,
 } from '../types'
 import {TxSigned, TxAux, CborizedCliWitness} from './types'
-import {
-  InternalError,
-  InternalErrorReason,
-  UnexpectedError,
-  UnexpectedErrorReason,
-} from '../../errors'
+import {InternalError, InternalErrorReason, UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import {encodeCbor} from '../helpers/cbor'
 
 let _activeBitBox02: BitBox02API | null = null
@@ -163,10 +158,9 @@ const ShelleyBitBox02CryptoProvider = async ({
 
   function ensureFeatureIsSupported(feature: CryptoProviderFeature): void {
     if (!isFeatureSupported(feature)) {
-      throw new InternalError(
-        BITBOX02_ERRORS[feature] ?? BITBOX02_ERRORS[CryptoProviderFeature.MINIMAL],
-        {message: `${version.major}.${version.minor}.${version.patch}`}
-      )
+      throw new InternalError(BITBOX02_ERRORS[feature] ?? BITBOX02_ERRORS[CryptoProviderFeature.MINIMAL], {
+        message: `${version.major}.${version.minor}.${version.patch}`,
+      })
     }
   }
 
@@ -182,10 +176,7 @@ const ShelleyBitBox02CryptoProvider = async ({
     })
   }
 
-  async function displayAddressForPath(
-    absDerivationPath: BIP32Path,
-    stakingPath: BIP32Path
-  ): Promise<void> {
+  async function displayAddressForPath(absDerivationPath: BIP32Path, stakingPath: BIP32Path): Promise<void> {
     await withDevice(async (bitbox02: BitBox02API) => {
       await bitbox02.cardanoAddress(bb02Network, {
         pkhSkh: {
@@ -240,11 +231,11 @@ const ShelleyBitBox02CryptoProvider = async ({
       value: output.coins.toString(),
       scriptConfig: output.isChange
         ? {
-          pkhSkh: {
-            keypathPayment: output.spendingPath,
-            keypathStake: output.stakingPath,
-          },
-        }
+            pkhSkh: {
+              keypathPayment: output.spendingPath,
+              keypathStake: output.stakingPath,
+            },
+          }
         : undefined,
       assetGroups,
     }
@@ -290,10 +281,7 @@ const ShelleyBitBox02CryptoProvider = async ({
     }
   }
 
-  async function signTx(
-    txAux: TxAux,
-    addressToAbsPathMapper: AddressToPathMapper
-  ): Promise<TxSigned> {
+  async function signTx(txAux: TxAux, addressToAbsPathMapper: AddressToPathMapper): Promise<TxSigned> {
     const inputs = txAux.inputs.map((input) => prepareInput(input, addressToAbsPathMapper))
     const outputs = txAux.outputs.map(prepareOutput)
     const withdrawals = txAux.withdrawals.map((withdrawal) => ({
@@ -303,9 +291,7 @@ const ShelleyBitBox02CryptoProvider = async ({
     const certificates = txAux.certificates.map((certificate) =>
       prepareCertificate(certificate, addressToAbsPathMapper)
     )
-    const validityIntervalStart = txAux.validityIntervalStart
-      ? `${txAux.validityIntervalStart}`
-      : null
+    const validityIntervalStart = txAux.validityIntervalStart ? `${txAux.validityIntervalStart}` : null
 
     if (
       txAux.auxiliaryData?.type === 'CATALYST_VOTING' &&

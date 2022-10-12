@@ -3,7 +3,7 @@ import {ADALITE_CONFIG} from '../../../frontend/config'
 import {CryptoProviderType} from '../../../frontend/wallet/types'
 import mnemonicToWalletSecretDef from '../../../frontend/wallet/helpers/mnemonicToWalletSecretDef'
 import assert from 'assert'
-import {assertPropertiesEqual, setupInitialMockState} from './actions'
+import {assertPropertiesEqual, setupInitialMockState} from './actions.spec'
 import {walletSettings} from '../common/wallet-settings'
 import {AssetFamily} from '../../../frontend/types'
 import BigNumber from 'bignumber.js'
@@ -25,7 +25,11 @@ const expectedStateChanges = {
   isDemoWallet: false,
   shouldShowGenerateMnemonicDialog: false,
   // send form
-  sendAmount: {assetFamily: AssetFamily.ADA, fieldValue: '', coins: new BigNumber(0)},
+  sendAmount: {
+    assetFamily: AssetFamily.ADA,
+    fieldValue: '',
+    coins: new BigNumber(0),
+  },
   sendAddress: {fieldValue: ''},
   ticker2Id: null,
 }
@@ -72,10 +76,7 @@ it('Should properly load shelley wallet', async () => {
     ),
     expectedStakepool
   )
-  assert.deepStrictEqual(
-    state.validStakepoolDataProvider.getPoolInfoByTicker('ADLT'),
-    expectedStakepool
-  )
+  assert.deepStrictEqual(state.validStakepoolDataProvider.getPoolInfoByTicker('ADLT'), expectedStakepool)
 
   mockNet.clean()
 })

@@ -33,8 +33,7 @@ const AccountManager = ({
 
   async function addNextAccount(account) {
     await account.ensureXpubIsExported() // To ensure user exported pubkey
-    const isLastAccountUsed =
-      accounts.length > 0 ? await accounts[accounts.length - 1].isAccountUsed() : true
+    const isLastAccountUsed = accounts.length > 0 ? await accounts[accounts.length - 1].isAccountUsed() : true
     if (
       account.accountIndex !== accounts.length ||
       !isLastAccountUsed ||
@@ -46,11 +45,8 @@ const AccountManager = ({
   }
 
   async function discoverAccounts() {
-    const isBulkExportSupported = cryptoProvider.isFeatureSupported(
-      CryptoProviderFeature.BULK_EXPORT
-    )
-    const shouldExplore =
-      config.shouldExportPubKeyBulk && config.isShelleyCompatible && isBulkExportSupported
+    const isBulkExportSupported = cryptoProvider.isFeatureSupported(CryptoProviderFeature.BULK_EXPORT)
+    const shouldExplore = config.shouldExportPubKeyBulk && config.isShelleyCompatible && isBulkExportSupported
     async function _discoverNextAccount(accountIndex: number) {
       const newAccount = accounts[accountIndex] || discoverNextAccount()
       const isAccountUsed = await newAccount.isAccountUsed()

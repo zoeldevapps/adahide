@@ -1,4 +1,4 @@
-import * as assert from 'assert'
+import assert from 'assert'
 import {
   importWalletSecretDef,
   exportWalletSecretDef,
@@ -99,7 +99,7 @@ describe('Wallet export', () => {
         derivationScheme: derivationSchemes.v1,
       },
       walletPassword2,
-      'json2',
+      'json2'
     )
     const walletSecretDef = await importWalletSecretDef(walletSecretObj, walletPassword2)
 

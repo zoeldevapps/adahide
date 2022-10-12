@@ -37,8 +37,7 @@ export const isTxInput = (value: any): value is TxInput => {
 export const isTxOutput = (value: any): value is TxOutput => {
   if (Array.isArray(value) && value.length === 2) {
     const [address, amount] = value
-    const isMultiAsset = (outputAmount: any) =>
-      Array.isArray(outputAmount) && outputAmount.length === 2
+    const isMultiAsset = (outputAmount: any) => Array.isArray(outputAmount) && outputAmount.length === 2
     return Buffer.isBuffer(address) && (isUint64(amount) || isMultiAsset(amount))
   }
   return false
@@ -49,18 +48,14 @@ export const isWithdrawalsMap = (value: any): value is TxWithdrawal =>
   Array.from(value.keys()).every((key) => Buffer.isBuffer(key)) &&
   Array.from(value.values()).every((mapValue) => isUint64(mapValue))
 
-export const isTxStakingKeyRegistrationCert = (
-  value: any
-): value is TxStakingKeyRegistrationCert => {
+export const isTxStakingKeyRegistrationCert = (value: any): value is TxStakingKeyRegistrationCert => {
   if (!Array.isArray(value) || value.length !== 2) return false
   if (!Array.isArray(value[1]) || value[1].length !== 2) return false
   const [type, [, pubKeyHash]] = value
   return type === TxCertificateKeys.STAKING_KEY_REGISTRATION && Buffer.isBuffer(pubKeyHash)
 }
 
-export const isStakingKeyDeregistrationCert = (
-  value: any
-): value is TxStakingKeyDeregistrationCert => {
+export const isStakingKeyDeregistrationCert = (value: any): value is TxStakingKeyDeregistrationCert => {
   if (!Array.isArray(value) || value.length !== 2) return false
   if (!Array.isArray(value[1]) || value[1].length !== 2) return false
   const [type, [, pubKeyHash]] = value
@@ -71,11 +66,7 @@ export const isDelegationCert = (value: any): value is TxDelegationCert => {
   if (!Array.isArray(value) || value.length !== 3) return false
   if (!Array.isArray(value[1]) || value[1].length !== 2) return false
   const [type, [, pubKeyHash], poolHash] = value
-  return (
-    type === TxCertificateKeys.DELEGATION &&
-    Buffer.isBuffer(pubKeyHash) &&
-    Buffer.isBuffer(poolHash)
-  )
+  return type === TxCertificateKeys.DELEGATION && Buffer.isBuffer(pubKeyHash) && Buffer.isBuffer(poolHash)
 }
 
 export const isTxSingleHostIPRelay = (value: any): value is TxSingleHostIPRelay => {
@@ -92,11 +83,7 @@ export const isTxSingleHostIPRelay = (value: any): value is TxSingleHostIPRelay 
 export const isTxSingleHostNameRelay = (value: any): value is TxSingleHostNameRelay => {
   if (!Array.isArray(value) || value.length !== 3) return false
   const [type, portNumber, dnsName] = value
-  return (
-    type === TxRelayTypes.SINGLE_HOST_NAME &&
-    Number.isInteger(portNumber) &&
-    typeof dnsName === 'string'
-  )
+  return type === TxRelayTypes.SINGLE_HOST_NAME && Number.isInteger(portNumber) && typeof dnsName === 'string'
 }
 
 export const isTxMultiHostNameRelay = (value: any): value is TxMultiHostNameRelay => {

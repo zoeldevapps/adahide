@@ -9,9 +9,7 @@ export type BIP32Path = number[]
 
 export type Address = string & {__typeAddress: any}
 
-export type AddressProvider = (
-  i: number
-) => Promise<{
+export type AddressProvider = (i: number) => Promise<{
   path: BIP32Path
   address: Address
 }>

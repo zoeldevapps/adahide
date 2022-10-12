@@ -44,8 +44,7 @@ const SearchableSelect = <T extends {}>({
   const [visible, setVisible] = useState(false)
   const [dropdownWidth, setDropdownWidth] = useState(getDropdownWidth ? getDropdownWidth() : '')
   const [search, setSearch] = useState('')
-  const shouldShowItem = (item: T) =>
-    !search || (searchPredicate ? searchPredicate(search, item) : true)
+  const shouldShowItem = (item: T) => !search || (searchPredicate ? searchPredicate(search, item) : true)
   const showDropdown = (bool: boolean) => {
     setVisible(bool)
     setSearch('')
@@ -78,13 +77,9 @@ const SearchableSelect = <T extends {}>({
       data-cy="SendAssetDropdown"
       // TODO: remove @ts-ignore when onFocusOut is added to jsx.d.ts
       // @ts-ignore
-      onfocusout={(e) => onSubTreeBlur(e, wrapperEl, () => showDropdown(false))}
+      onfocusout={(e) => onSubTreeBlur(e, wrapperEl, () => showDropdown(false))} // eslint-disable-line
     >
-      {label && (
-        <div className={`searchable-select-label ${optionalClassName(labelClassName)}`}>
-          {label}
-        </div>
-      )}
+      {label && <div className={`searchable-select-label ${optionalClassName(labelClassName)}`}>{label}</div>}
       <div
         className={`searchable-select ${visible ? 'focus ' : ''}${optionalClassName(
           displaySelectedItemClassName

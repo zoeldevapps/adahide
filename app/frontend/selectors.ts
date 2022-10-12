@@ -43,11 +43,9 @@ export const shouldShowExportOptionSelector = (state: State): boolean => {
 TODO: decide where to keep such hooks & utils which are not really "selectors".
 As we are "in-the-middle-of-refactor", it is kept there.
 */
-export const useActiveAccount = (): AccountInfo =>
-  useSelector((state) => getActiveAccountInfo(state))
+export const useActiveAccount = (): AccountInfo => useSelector((state) => getActiveAccountInfo(state))
 
-export const hasStakingKey = (account: AccountInfo): boolean =>
-  account.shelleyAccountInfo.hasStakingKey
+export const hasStakingKey = (account: AccountInfo): boolean => account.shelleyAccountInfo.hasStakingKey
 
 export const useIsWalletFeatureSupported = (feature: CryptoProviderFeature): boolean =>
   useSelector((state) => state.cryptoProviderInfo?.supportedFeatures.includes(feature) ?? false)

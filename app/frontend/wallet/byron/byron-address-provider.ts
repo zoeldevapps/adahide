@@ -1,10 +1,4 @@
-import {
-  AddressProvider,
-  CryptoProvider,
-  CryptoProviderFeature,
-  HexString,
-  _XPubKey,
-} from '../../types'
+import {AddressProvider, CryptoProvider, CryptoProviderFeature, HexString, _XPubKey} from '../../types'
 import {packBootstrapAddress} from 'cardano-crypto.js'
 import {HARDENED_THRESHOLD} from '../constants'
 import {encodeAddress} from '../shelley/helpers/addresses'
@@ -48,32 +42,30 @@ export const getAccountXpub = async (
   }
 }
 
-export const ByronAddressProvider = (
-  cryptoProvider: CryptoProvider,
-  accountIndex: number,
-  isChange: boolean
-): AddressProvider => async (i: number) => {
-  const scheme = cryptoProvider.getDerivationScheme()
-  const pathMapper = {
-    v1: v1Path,
-    v2: v2Path,
+export const ByronAddressProvider =
+  (cryptoProvider: CryptoProvider, accountIndex: number, isChange: boolean): AddressProvider =>
+  async (i: number) => {
+    const scheme = cryptoProvider.getDerivationScheme()
+    const pathMapper = {
+      v1: v1Path,
+      v2: v2Path,
+    }
+
+    const path = pathMapper[scheme.type](accountIndex, isChange, i)
+
+    const xpub = await cryptoProvider.deriveXpub(path)
+    const hdPassphrase = scheme.type === 'v1' ? await cryptoProvider.getHdPassphrase() : undefined
+
+    return {
+      path,
+      address: encodeAddress(
+        packBootstrapAddress(
+          path,
+          xpub,
+          hdPassphrase,
+          scheme.ed25519Mode,
+          cryptoProvider.network.protocolMagic
+        )
+      ),
+    }
   }
-
-  const path = pathMapper[scheme.type](accountIndex, isChange, i)
-
-  const xpub = await cryptoProvider.deriveXpub(path)
-  const hdPassphrase = scheme.type === 'v1' ? await cryptoProvider.getHdPassphrase() : undefined
-
-  return {
-    path,
-    address: encodeAddress(
-      packBootstrapAddress(
-        path,
-        xpub,
-        hdPassphrase,
-        scheme.ed25519Mode,
-        cryptoProvider.network.protocolMagic
-      )
-    ),
-  }
-}

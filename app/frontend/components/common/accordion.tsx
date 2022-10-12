@@ -10,12 +10,9 @@ interface Props {
 
 const Accordion = ({initialVisibility, header, body}: Props) => {
   const [visible, setVisible] = useState(initialVisibility)
-  const toggleVisibility = useCallback(
-    () => {
-      setVisible(!visible)
-    },
-    [visible]
-  )
+  const toggleVisibility = useCallback(() => {
+    setVisible(!visible)
+  }, [visible])
 
   return (
     <Fragment>
