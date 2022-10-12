@@ -1,3 +1,11 @@
+# adahide wallet
+
+The Adalite wallet got discontinued in favor of [NuFi](https://nu.fi) leaving very few options to have a lightweight experience on cardano without using a full software wallet.
+An additional painpoint when developing dapps is that there is no wallet support apart from cli for private testnets, leaving dapp developers to keep using their own wallet solutions or use preprod/preview environments which are already public.
+
+
+<font size="30">LEGACY ADALITE CONTENT BELOW</font>
+
 # AdaLite wallet
 
 A very simple Cardano wallet written entirely in JS.
