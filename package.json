@@ -25,7 +25,7 @@
     "build": "NODE_ENV=production webpack --progress --config webpack.build.config.js",
     "install": "cd app && yarn install && cd ..",
     "dev": "yarn generate-cert && ADALITE_ENABLE_HTTPS=true PORT=${PORT:-3000} node server/index.js",
-    "test": "mocha",
+    "test": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
     "eslint": "eslint . --max-warnings=0 --ext .ts,.tsx,.js,.jsx",
     "fix": "prettier-eslint --write \"{{app/frontend,app/tests/src,server}/**/*.{ts,tsx,js,jsx,json,css},package.json}\"",
     "generate-cert": "test -e server.cert && echo \"certificate already exists\" || openssl req -nodes -new -x509 -keyout server.key -out server.cert -subj \"/C=US\""
