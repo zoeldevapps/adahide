@@ -1,8 +1,22 @@
 # adahide wallet
 
-The Adalite wallet got discontinued in favor of [NuFi](https://nu.fi) leaving very few options to have a lightweight experience on cardano without using a full software wallet.
+The Adalite wallet got put on life-support in favor of [NuFi](https://nu.fi) leaving very few options to have a lightweight experience on cardano without using a full software wallet.
 An additional painpoint when developing dapps is that there is no wallet support apart from cli for private testnets, leaving dapp developers to keep using their own wallet solutions or use preprod/preview environments which are already public.
 
+MVP milestones:
+
+- [] use only ogmios as blockchain explorer (losing tx history for now, replace by koios/blockfrost)
+- [] remove server-side only leaving in
+- [] make fully static build
+- [] add back history endpoints (koios/blockfrost/kupo/etc.)
+
+## Setup
+
+Ogmios requires to have the cardano configs. Fetch these from [cardano-configurations repo](https://github.com/input-output-hk/cardano-configurations).
+
+```
+git clone git@github.com:input-output-hk/cardano-configurations.git
+```
 
 <font size="30">LEGACY ADALITE CONTENT BELOW</font>
 
@@ -47,7 +61,7 @@ ADALITE_ENABLE_HTTPS=true ADALITE_PORT=3000 yarn start-server
 
 Navigate to http://localhost:3000 (or wherever you've configured) and don't forget to set `.env` to `http://localhost:3000` if you were copying the default .env.example file. You may also need to disable caching in your browser to forget previous redirects.
 
-note: `ADALITE_ENABLE_HTTPS=true` provides a self-signed https certificate, it is recommended to set the flag only when running the app locally. 
+note: `ADALITE_ENABLE_HTTPS=true` provides a self-signed https certificate, it is recommended to set the flag only when running the app locally.
 
 #### Development
 
@@ -98,18 +112,23 @@ Open `app/tests/index.html` in browser
 #### Cypress tests
 
 Cypress requires the app to be running with correct environment variables. Type
+
 ```
 yarn cypress:dev
 ```
+
 to start the app with the correct settings. It calls `yarn dev` itself, but with correct environment variables for testing.
 
 After that, you can either type
+
 ```
 yarn cypress:open
 ```
+
 to start the tests with the interactive Test runner, which allows time travel, logs, pausing, etc.
 
 Or, to run the tests in a headless fashion, type
+
 ```
 yarn cypress:run
 ```

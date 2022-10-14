@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+  cardano-node:
+    container_name: ${COMPOSE_PROJECT_NAME}-node
+    image: inputoutput/cardano-node:1.35.3-configs
+    volumes:
+      - node-db:/data/db
+      - node-ipc:/ipc
+      - ./cardano-configurations/network/${NETWORK}:/configs
+    command: 'run --config /configs/cardano-node/config.json --database-path /data/db --topology /configs/cardano-node/topology.json --socket-path /ipc/node.socket'
+    restart: unless-stopped
+
+  ogmios:
+    image: cardanosolutions/ogmios:v5.5.5_1.35.3
+    depends_on:
+      - cardano-node
+    command:
+      [
+        '--host',
+        '0.0.0.0',
+        '--node-socket',
+        '/ipc/node.socket',
+        '--node-config',
+        '/configs/cardano-node/config.json',
+      ]
+    volumes:
+      - ./cardano-configurations/network/${NETWORK}:/configs
+      - node-ipc:/ipc
+    ports:
+      - ${OGMIOS_PORT:-1337}:1337 # CONTAINER PORT MUST BE 1337
+    restart: on-failure
+
+volumes:
+  node-db:
+  node-ipc:
