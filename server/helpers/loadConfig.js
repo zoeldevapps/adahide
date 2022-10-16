@@ -79,6 +79,9 @@ const checkMap = check.map(process.env, {
 })
 
 const {
+  OGMIOS_HOST,
+  OGMIOS_PORT,
+  EXPLORER,
   PORT,
   REDIS_URL,
   ADALITE_ENABLE_DEBUGGING,
@@ -146,6 +149,9 @@ if (!check.all(checkMap)) {
 }
 
 const frontendConfig = {
+  OGMIOS_HOST,
+  OGMIOS_PORT,
+  EXPLORER,
   ADALITE_SERVER_URL,
   /*
    * if mocking is enabled, blockchain url is replaced with server url so the server is

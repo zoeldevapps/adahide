@@ -46,6 +46,7 @@
     "test": "./app/tests"
   },
   "dependencies": {
+    "@cardano-ogmios/client": "^5.5.7",
     "@sentry/node": "^6.15.0",
     "babel-regenerator-runtime": "^6.5.0",
     "body-parser": "^1.18.2",

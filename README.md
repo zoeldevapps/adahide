@@ -18,6 +18,14 @@ Ogmios requires to have the cardano configs. Fetch these from [cardano-configura
 git clone git@github.com:input-output-hk/cardano-configurations.git
 ```
 
+## Architectural changes compared to adalite
+
+The aim is to modernize and use more standard tools
+
+- use react instead of preact
+- get rid of expensive chromium & cypress test cases
+- In progress - make the site staticly built, so it can be served from CDN
+
 <font size="30">LEGACY ADALITE CONTENT BELOW</font>
 
 # AdaLite wallet

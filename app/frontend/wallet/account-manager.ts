@@ -1,6 +1,6 @@
 import {Account} from './account'
 import {CryptoProvider, CryptoProviderFeature} from '../types'
-import blockchainExplorer from './blockchain-explorer'
+import blockchainExplorer from './blockchain-explorer-adalite'
 import {UnexpectedError, UnexpectedErrorReason} from '../errors'
 
 type AccountManagerParams = {
