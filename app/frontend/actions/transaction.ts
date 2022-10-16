@@ -20,7 +20,6 @@ import {
 } from '../types'
 import {TxPlan} from '../wallet/shelley/transaction'
 import {InternalError, InternalErrorReason} from '../errors'
-import {TxSummary} from '../wallet/backend-types'
 import assert from 'assert'
 import {getDeviceBrandName, isHwWallet} from '../wallet/helpers/cryptoProviderUtils'
 import {getChangeAddress} from '../wallet/account'
@@ -151,12 +150,12 @@ export default (store: Store) => {
   ) => {
     for (let pollingCounter = 0; pollingCounter < maxRetries; pollingCounter++) {
       setWalletOperationStatusType(state, 'txPending')
-      let txInfo: TxSummary | undefined
+      let txAvailable: boolean = false
       try {
-        txInfo = await getWallet().fetchTxInfo(txHash)
+        txAvailable = await getWallet().fetchTxInfo(txHash)
         // eslint-disable-next-line no-empty
       } catch {}
-      if (txInfo !== undefined) {
+      if (txAvailable) {
         /*
          * theoretically we should clear the request cache of the wallet
          * to be sure that we fetch the current wallet state

@@ -19,6 +19,7 @@
   "scripts": {},
   "dependencies": {
     "@cardano-foundation/ledgerjs-hw-app-cardano": "^5.1.0",
+    "@cardano-ogmios/client": "^5.5.5",
     "@ledgerhq/hw-transport": "^5.51.1",
     "@ledgerhq/hw-transport-u2f": "^5.36.0-deprecated",
     "@ledgerhq/hw-transport-webhid": "^5.51.1",

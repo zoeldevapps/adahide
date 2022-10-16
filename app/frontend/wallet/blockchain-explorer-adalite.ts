@@ -37,7 +37,6 @@ import {
   BestSlotResponse,
   BulkAddressesSummary,
   CaTxEntry,
-  TxSummary,
   TxSubmission,
   StakePoolInfo,
   _Utxo,
@@ -134,11 +133,11 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
     }
   }
 
-  async function fetchTxInfo(txHash: string): Promise<TxSummary> {
+  async function fetchTxInfo(txHash: string): Promise<boolean> {
     const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/txs/summary/${txHash}`
     const response: TxSummaryResponse = await request(url)
     // @ts-ignore (TODO, handle 'Left')
-    return response.Right
+    return !!response.Right
   }
 
   async function isSomeAddressUsed(addresses: Array<string>): Promise<boolean> {

@@ -1,7 +1,7 @@
 import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
-import BlockchainExplorer from '../../frontend/wallet/blockchain-explorer'
+import BlockchainExplorer from '../../frontend/wallet/blockchain-explorer-adalite'
 import mockNetwork from './common/mock'
 
 const mockConfig = {
