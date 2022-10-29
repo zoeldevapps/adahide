@@ -5,7 +5,6 @@ import MyAddresses from './pages/receiveAda/myAddresses'
 import SendPage from './pages/sendAda/sendAdaPage'
 import LoginPage from './pages/login/loginPage'
 import ExportWalletPage from './pages/exportWallet/exportWalletPage'
-import StakingPage from './pages/staking/stakingPage'
 import {State} from '../state'
 
 const TopLevelRouter = connect((state: State) => ({
@@ -31,9 +30,6 @@ const TopLevelRouter = connect((state: State) => ({
       break
     case 'exportWallet':
       content = <ExportWalletPage />
-      break
-    case 'staking':
-      content = <StakingPage />
       break
     default:
       window.history.pushState({}, 'txHistory', 'txHistory')
