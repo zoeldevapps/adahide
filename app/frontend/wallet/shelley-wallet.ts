@@ -21,7 +21,7 @@ type WalletParams = {
 
 const ShelleyWallet = ({config, cryptoProvider}: WalletParams) => {
   const blockchainExplorer = BlockchainExplorerOgmios(config)
-  const tokenRegistry = new TokenRegistry(`${config.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/tokens/metadata`)
+  const tokenRegistry = new TokenRegistry(config.ASSET_SERVER_URL)
   const maxAccountIndex = MAX_ACCOUNT_INDEX
 
   const accountManager = AccountManager({

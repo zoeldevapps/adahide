@@ -4,7 +4,7 @@ const {parseTxBodyOutAmount, parseTxBodyTotalAmount} = require('../helpers/parse
 const ua = require('universal-analytics')
 const {backendConfig} = require('../helpers/loadConfig')
 const {captureException} = require('@sentry/node')
-const {isSameOrigin, tokenMatches} = require('../helpers/checkOrigin')
+const {tokenMatches} = require('../helpers/checkOrigin')
 const getRequestIp = require('../helpers/getRequestIp')
 
 const knownIps = new Set()

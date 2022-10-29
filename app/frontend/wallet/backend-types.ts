@@ -177,4 +177,3 @@ export type TokenMetadata = {
   logo?: TokenMetadaField
   decimals?: TokenMetadaField
 }
-export type TokenMetadataResponse = SuccessResponse<TokenMetadata[]> | FailureResponse

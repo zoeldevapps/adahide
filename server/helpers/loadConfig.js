@@ -50,6 +50,7 @@ function isIsoString(str) {
 
 const checkMap = check.map(process.env, {
   PORT: isPositiveIntString,
+  ASSET_SERVER_URL: check.nonEmptyString,
   ADALITE_ENABLE_DEBUGGING: isBoolString,
   ADALITE_BLOCKCHAIN_EXPLORER_URL: check.nonEmptyString,
   ADALITE_DEFAULT_ADDRESS_COUNT: isPositiveIntString,
@@ -81,10 +82,10 @@ const {
   OGMIOS_HOST,
   OGMIOS_PORT,
   EXPLORER,
+  ASSET_SERVER_URL,
   PORT,
   REDIS_URL,
   ADALITE_ENABLE_DEBUGGING,
-  HEROKU_APP_NAME,
   HEROKU_IS_REVIEW_APP,
   ADALITE_BLOCKCHAIN_EXPLORER_URL,
   ADALITE_DEFAULT_ADDRESS_COUNT,
@@ -142,6 +143,7 @@ const frontendConfig = {
    * if mocking is enabled, blockchain url is replaced with server url so the server is
    * able to intercept the requests from the frontend and mock the responses
    */
+  ASSET_SERVER_URL,
   ADALITE_BLOCKCHAIN_EXPLORER_URL,
   ADALITE_DEFAULT_ADDRESS_COUNT: parseInt(ADALITE_DEFAULT_ADDRESS_COUNT, 10),
   ADALITE_GAP_LIMIT: parseInt(ADALITE_GAP_LIMIT, 10),

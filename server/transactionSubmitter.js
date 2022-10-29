@@ -1,7 +1,6 @@
 require('isomorphic-fetch')
 const Sentry = require('@sentry/node')
-const {isSameOrigin, tokenMatches} = require('./helpers/checkOrigin')
-const {backendConfig} = require('./helpers/loadConfig')
+const {tokenMatches} = require('./helpers/checkOrigin')
 
 module.exports = function (app) {
   // eslint-disable-next-line consistent-return

@@ -1,16 +1,50 @@
 import request from '../wallet/helpers/request'
 import {RegisteredTokenMetadata, Token, TokenRegistrySubject} from '../types'
 import cacheResults from '../helpers/cacheResults'
-import {SuccessResponse, TokenMetadata, TokenMetadataResponse} from '../wallet/backend-types'
 
 const MAX_SUBJECTS_COUNT = 2000
+
+const assetQuery = (subject: string) => `{
+  asset(subject: "${subject}") {
+    id,
+    common {
+      name,
+      description
+    },
+    offchain {
+      ticker,
+      url,
+      logo,
+      decimals
+    }
+  }
+}
+`
+
+type TokenResponse = {
+  data: null | {
+    asset: null | {
+      id: string
+      common: {
+        name: string
+        description?: string
+      }
+      offchain: null | {
+        ticker?: string
+        url?: string
+        logo?: string
+        decimals?: number
+      }
+    }
+  }
+}
 
 export const createTokenRegistrySubject = (policyId: string, assetName: string): TokenRegistrySubject =>
   `${policyId}${assetName}` as TokenRegistrySubject
 
 export class TokenRegistry {
   private readonly url: string
-  private readonly fetchTokensMetadata: (subjects: string[]) => Promise<TokenMetadataResponse>
+  private readonly fetchTokensMetadata: (subjects: string[]) => Promise<TokenResponse[]>
 
   constructor(url: string, enableCaching: boolean = true) {
     this.url = url
@@ -20,45 +54,42 @@ export class TokenRegistry {
       : this._fetchTokensMetadata
   }
 
-  private readonly _fetchTokensMetadata = async (subjects: string[]): Promise<TokenMetadataResponse> => {
+  private readonly _fetchTokensMetadata = async (subjects: string[]): Promise<TokenResponse[]> => {
     if (subjects.length > MAX_SUBJECTS_COUNT) {
-      return Promise.resolve({Left: 'Request over max limit'})
+      return Promise.resolve([])
     }
     if (subjects.length === 0) {
-      return Promise.resolve({Right: []})
+      return Promise.resolve([])
     }
-    const requestBody = {subjects}
+    const requestBody = subjects.map((subject) => ({query: assetQuery(subject)}))
     try {
-      return await request(this.url, 'POST', JSON.stringify(requestBody), {
+      return await request(`${this.url}/graphql`, 'POST', JSON.stringify(requestBody), {
         'Content-Type': 'application/json',
       })
     } catch (e) {
-      return Promise.resolve({Left: 'An unexpected error has occurred'})
+      return Promise.resolve([])
     }
   }
 
   public static readonly parseTokensMetadata = (
-    toParse: TokenMetadataResponse
+    toParse: TokenResponse[]
   ): Map<TokenRegistrySubject, RegisteredTokenMetadata> => {
-    const isSuccessResponse = (
-      response: TokenMetadataResponse
-    ): response is SuccessResponse<TokenMetadata[]> =>
-      (response as SuccessResponse<TokenMetadata[]>).Right !== undefined
-
     const map = new Map()
-    if (isSuccessResponse(toParse)) {
-      toParse.Right.forEach((tokenMetadata) =>
-        map.set(tokenMetadata.subject, {
-          subject: tokenMetadata.subject,
-          description: tokenMetadata.description.value,
-          name: tokenMetadata.name.value,
-          ticker: tokenMetadata?.ticker?.value,
-          url: tokenMetadata?.url?.value,
-          logoBase64: tokenMetadata?.logo?.value,
-          decimals: tokenMetadata?.decimals?.value,
+
+    toParse.forEach((response) => {
+      const data = response.data?.asset
+      if (data) {
+        map.set(data.id, {
+          subject: data.id,
+          description: data.common.description,
+          name: data.common.name,
+          ticker: data.offchain?.ticker,
+          url: data.offchain?.url,
+          logoBase64: data.offchain?.logo,
+          decimals: data.offchain?.decimals,
         })
-      )
-    }
+      }
+    })
 
     return map
   }
