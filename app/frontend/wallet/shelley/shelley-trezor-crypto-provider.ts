@@ -60,7 +60,7 @@ const ShelleyTrezorCryptoProvider = async ({
 
   TrezorConnect.manifest({
     email: ADALITE_SUPPORT_EMAIL,
-    appUrl: config.ADALITE_SERVER_URL,
+    appUrl: window.location.origin,
   })
 
   const getTrezorVersion = async (): Promise<any> => {

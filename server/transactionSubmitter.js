@@ -44,10 +44,7 @@ module.exports = function (app) {
         `Submission of tx ${txHash} failed with status ${response.status} and message ${errorMessage}`
       )
 
-      if (
-        tokenMatches(req.get('token')) &&
-        isSameOrigin(req.get('origin'), backendConfig.ADALITE_SERVER_URL)
-      ) {
+      if (tokenMatches(req.get('token'))) {
         Sentry.captureException(new Error('TransactionSubmissionFailed'), {
           contexts: [{errorMessage}],
         })

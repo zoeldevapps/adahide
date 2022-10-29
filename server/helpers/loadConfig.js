@@ -51,7 +51,6 @@ function isIsoString(str) {
 const checkMap = check.map(process.env, {
   PORT: isPositiveIntString,
   ADALITE_ENABLE_DEBUGGING: isBoolString,
-  ADALITE_SERVER_URL: check.nonEmptyString,
   ADALITE_BLOCKCHAIN_EXPLORER_URL: check.nonEmptyString,
   ADALITE_DEFAULT_ADDRESS_COUNT: isPositiveIntString,
   ADALITE_GAP_LIMIT: isPositiveIntString,
@@ -119,19 +118,6 @@ const {
   ADALITE_NEXT_VOTING_ROUND_NAME,
 } = process.env
 
-let {ADALITE_SERVER_URL} = process.env
-if (HEROKU_IS_REVIEW_APP) {
-  /*
-  `HEROKU_IS_REVIEW_APP` is redundant, as checking for `HEROKU_APP_NAME` should be
-  sufficient. But as according to https://devcenter.heroku.com/articles/github-integration-review-apps#injected-environment-variables
-  this functionality is prone to change, prefer more "explicit" solution.
-  */
-  if (!HEROKU_APP_NAME) throw new Error('HEROKU_APP_NAME is empty!')
-  ADALITE_SERVER_URL = `https://${HEROKU_APP_NAME}.herokuapp.com`
-  // eslint-disable-next-line no-console
-  console.log(`Using ${ADALITE_SERVER_URL} as ADALITE_SERVER_URL`)
-}
-
 const ADALITE_BACKEND_TOKEN = process.env.ADALITE_BACKEND_TOKEN || undefined
 
 if (!check.all(checkMap)) {
@@ -152,13 +138,11 @@ const frontendConfig = {
   OGMIOS_HOST,
   OGMIOS_PORT,
   EXPLORER,
-  ADALITE_SERVER_URL,
   /*
    * if mocking is enabled, blockchain url is replaced with server url so the server is
    * able to intercept the requests from the frontend and mock the responses
    */
-  ADALITE_BLOCKCHAIN_EXPLORER_URL:
-    ADALITE_ENABLE_SERVER_MOCKING_MODE === 'true' ? ADALITE_SERVER_URL : ADALITE_BLOCKCHAIN_EXPLORER_URL,
+  ADALITE_BLOCKCHAIN_EXPLORER_URL,
   ADALITE_DEFAULT_ADDRESS_COUNT: parseInt(ADALITE_DEFAULT_ADDRESS_COUNT, 10),
   ADALITE_GAP_LIMIT: parseInt(ADALITE_GAP_LIMIT, 10),
   ADALITE_DEMO_WALLET_MNEMONIC,
@@ -195,7 +179,6 @@ const backendConfig = {
   ADALITE_MOCK_TX_SUBMISSION_SUCCESS,
   ADALITE_MOCK_TX_SUMMARY_SUCCESS,
   ADALITE_BLOCKCHAIN_EXPLORER_URL,
-  ADALITE_SERVER_URL,
   ADALITE_BACKEND_TOKEN,
   ADALITE_GA_TRACKING_ID,
   ADALITE_MAILCHIMP_API_KEY,

@@ -63,10 +63,7 @@ const trackVisits = async (req, res, next) => {
 const trackTxSubmissions = mung.jsonAsync(async (body, req) => {
   if (req.originalUrl === '/api/txs/submit' && req.method === 'POST') {
     const tokenMatched = tokenMatches(req.get('token'))
-    const txSubmissionType =
-      tokenMatched && isSameOrigin(req.get('origin'), backendConfig.ADALITE_SERVER_URL)
-        ? 'txSubmissions'
-        : 'otherTxSubmissions'
+    const txSubmissionType = tokenMatched ? 'txSubmissions' : 'otherTxSubmissions'
     const txSubmissionSuccess = body.Right ? 'successful' : 'unsuccessful'
     const txWalletType = req.get('walletType')
     const txWalletVersion = req.get('walletVersion')

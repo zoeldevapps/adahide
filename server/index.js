@@ -36,7 +36,6 @@ app.use(bodyParser.json({limit: '256kb'}))
 app.use(compression())
 
 app.enable('trust proxy') // to get the actual request protocol on heroku (important for redirect)
-app.use(require('./middlewares/redirectToBaseUrl'))
 
 // don't track in local dev => no need for local GA
 if (backendConfig.ADALITE_GA_TRACKING_ID) {
@@ -85,8 +84,6 @@ if (backendConfig.ADALITE_ENABLE_SERVER_MOCKING_MODE === 'true') {
 require('./poolInfoGetter')(app)
 
 app.get('*', (req, res) => {
-  const serverUrl = backendConfig.ADALITE_SERVER_URL
-
   // This fix to invalidate browser cache with appVersionQueryParam after app deploy is not ideal
   // because it invalidates even files that didn't really change.
   // A proper fix would require reworking the index HTML and to be assembled by webpack
@@ -117,15 +114,14 @@ app.get('*', (req, res) => {
           <meta name="twitter:site" content="@AdaLiteWallet">
           <meta name="twitter:title" content="AdaLite - Cardano Wallet" />
           <meta name="twitter:description" content="Free open-source web-browser Cardano wallet with Trezor, Ledger Nano S/S Plus/X and BitBox02 support" />
-          <meta name="twitter:image" content="${serverUrl}/assets/twitter-card.png" />
+          <meta name="twitter:image" content="https://assets.adahide.io/twitter-card.png" />
 
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="AdaLite" />
           <meta property="og:locale" content="en_US" />
-          <meta property="og:url" content="${serverUrl}">
           <meta property="og:title" content="AdaLite - Cardano Wallet">
           <meta property="og:description" content="Free open-source web-browser Cardano wallet with Trezor, Ledger Nano S/S Plus/X and BitBox02 support">
-          <meta property="og:image" content="${serverUrl}/assets/og-image.png">
+          <meta property="og:image" content="https://assets.adahide.io/og-image.png">
 
           <script src="js/init.js?v=${appVersionQueryParam}"></script>
           <link rel="stylesheet" type="text/css" href="css/nufi-preview-page-styles.css?v=${appVersionQueryParam}">
@@ -164,8 +160,6 @@ app.use(Sentry.Handlers.errorHandler())
 app.use(errorHandler)
 
 /*
- * To run server in secure mode, you need to set
- * ADALITE_SERVER_URL to 'https://localhost:3000'.
  * ADALITE_ENABLE_HTTPS is defaultly set to true
  * (in package.json -> scripts -> dev)
  */
