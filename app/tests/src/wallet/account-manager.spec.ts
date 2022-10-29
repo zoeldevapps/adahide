@@ -4,7 +4,7 @@ import {accountManagerSettings} from '../common/account-manager-settings'
 import {ADALITE_CONFIG} from '../../../frontend/config'
 import derivationSchemes from '../../../frontend/wallet/helpers/derivation-schemes'
 import mnemonicToWalletSecretDef from '../../../frontend/wallet/helpers/mnemonicToWalletSecretDef'
-import BlockchainExplorer from '../../../frontend/wallet/blockchain-explorer-adalite'
+import BlockchainExplorer from '../common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../../frontend/wallet/shelley/shelley-js-crypto-provider'
 import mockNetwork from '../common/mock'
 

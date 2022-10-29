@@ -1,4 +1,3 @@
-import BlockchainExplorer from './blockchain-explorer-adalite'
 import BlockchainExplorerOgmios from './blockchain-explorer-ogmios'
 import {AccountManager} from './account-manager'
 import {
@@ -21,8 +20,7 @@ type WalletParams = {
 }
 
 const ShelleyWallet = ({config, cryptoProvider}: WalletParams) => {
-  const blockchainExplorer =
-    config.EXPLORER === 'ogmios' ? BlockchainExplorerOgmios(config) : BlockchainExplorer(config)
+  const blockchainExplorer = BlockchainExplorerOgmios(config)
   const tokenRegistry = new TokenRegistry(`${config.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/tokens/metadata`)
   const maxAccountIndex = MAX_ACCOUNT_INDEX
 

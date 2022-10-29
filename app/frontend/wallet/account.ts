@@ -28,7 +28,7 @@ import {MaxAmountCalculator} from './max-amount-calculator'
 import {ByronAddressProvider, getAccountXpub as getAccoutXpubByron} from './byron/byron-address-provider'
 import {bechAddressToHex, isBase, addressToHex} from './shelley/helpers/addresses'
 import {ShelleyTxAux} from './shelley/shelley-transaction'
-import blockchainExplorerAdalite from './blockchain-explorer-adalite'
+import blockchainExplorer from './blockchain-explorer-ogmios'
 import {TxAux} from './shelley/types'
 import {UTxO, TxOutput, TxAuxiliaryData, TxPlanAuxiliaryData} from './types'
 import {aggregateTokenBundles} from './helpers/tokenFormater'
@@ -53,7 +53,7 @@ type MyAddressesParams = {
   accountIndex: number
   cryptoProvider: CryptoProvider
   gapLimit: number
-  blockchainExplorer: ReturnType<typeof blockchainExplorerAdalite>
+  blockchainExplorer: ReturnType<typeof blockchainExplorer>
 }
 
 const MyAddresses = ({accountIndex, cryptoProvider, gapLimit, blockchainExplorer}: MyAddressesParams) => {
@@ -166,7 +166,7 @@ const MyAddresses = ({accountIndex, cryptoProvider, gapLimit, blockchainExplorer
 type AccountParams = {
   config: any
   cryptoProvider: CryptoProvider
-  blockchainExplorer: ReturnType<typeof blockchainExplorerAdalite>
+  blockchainExplorer: ReturnType<typeof blockchainExplorer>
   accountIndex: number
 }
 

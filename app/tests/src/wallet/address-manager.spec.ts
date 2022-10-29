@@ -4,7 +4,7 @@ import derivationSchemes from '../../../frontend/wallet/helpers/derivation-schem
 import AddressManager from '../../../frontend/wallet/address-manager'
 import mnemonicToWalletSecretDef from '../../../frontend/wallet/helpers/mnemonicToWalletSecretDef'
 import {addressManagerSettings} from '../common/address-manager-settings'
-import BlockchainExplorer from '../../../frontend/wallet/blockchain-explorer-adalite'
+import BlockchainExplorer from '../common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../../frontend/wallet/shelley/shelley-js-crypto-provider'
 import {ShelleyBaseAddressProvider} from '../../../frontend/wallet/shelley/shelley-address-provider'
 

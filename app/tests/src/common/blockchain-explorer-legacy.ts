@@ -1,6 +1,6 @@
-import request from './helpers/request'
-import range from './helpers/range'
-import debugLog from '../helpers/debugLog'
+import request from '../../../frontend/wallet/helpers/request'
+import range from '../../../frontend/wallet/helpers/range'
+import debugLog from '../../../frontend/helpers/debugLog'
 import {
   StakingHistoryItemType,
   RewardWithdrawal,
@@ -18,9 +18,9 @@ import {
   Balance,
   Address,
   TokenBundle,
-} from '../types'
-import distinct from '../helpers/distinct'
-import {UNKNOWN_POOL_NAME} from './constants'
+} from '../../../frontend/types'
+import distinct from '../../../frontend/helpers/distinct'
+import {UNKNOWN_POOL_NAME} from '../../../frontend/wallet/constants'
 import {captureMessage} from '@sentry/browser'
 import {
   BulkAddressesSummaryResponse,
@@ -41,15 +41,19 @@ import {
   StakePoolInfo,
   _Utxo,
   StakePoolInfosByPoolHash,
-} from './backend-types'
-import {UTxO} from './types'
-import {aggregateTokenBundles, parseToken, getTokenBundlesDifference} from './helpers/tokenFormater'
-import {StakepoolDataProvider} from '../helpers/dataProviders/types'
-import {createStakepoolDataProvider} from '../helpers/dataProviders/stakepoolDataProvider'
-import {InternalError, InternalErrorReason} from '../errors'
-import {throwIfEpochBoundary} from '../helpers/epochBoundaryUtils'
-import cacheResults from '../helpers/cacheResults'
-import {filterValidTransactions} from '../helpers/common'
+} from '../../../frontend/wallet/backend-types'
+import {UTxO} from '../../../frontend/wallet/types'
+import {
+  aggregateTokenBundles,
+  parseToken,
+  getTokenBundlesDifference,
+} from '../../../frontend/wallet/helpers/tokenFormater'
+import {StakepoolDataProvider} from '../../../frontend/helpers/dataProviders/types'
+import {createStakepoolDataProvider} from '../../../frontend/helpers/dataProviders/stakepoolDataProvider'
+import {InternalError, InternalErrorReason} from '../../../frontend/errors'
+import {throwIfEpochBoundary} from '../../../frontend/helpers/epochBoundaryUtils'
+import cacheResults from '../../../frontend/helpers/cacheResults'
+import {filterValidTransactions} from '../../../frontend/helpers/common'
 import assert from 'assert'
 import BigNumber from 'bignumber.js'
 

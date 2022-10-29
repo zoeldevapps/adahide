@@ -1,6 +1,6 @@
 import {toBip32StringPath} from './helpers/bip32'
 import {AddressProvider, AddressToPathMapping, AddressWithMeta, BIP32Path, Address} from '../types'
-import blockchainExplorer from './blockchain-explorer-adalite'
+import blockchainExplorer from './blockchain-explorer-ogmios'
 import {UnexpectedError, UnexpectedErrorReason} from '../errors'
 
 type AddressManagerParams = {
