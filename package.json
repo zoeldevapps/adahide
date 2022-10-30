@@ -2,7 +2,7 @@
   "name": "adahide",
   "version": "0.0.1",
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "description": "A simple Cardano wallet",
   "main": "app.js",
@@ -22,8 +22,7 @@
   "homepage": "https://github.com/vacuumlabs/adalite#readme",
   "scripts": {
     "build": "NODE_ENV=production webpack --progress --config webpack.build.config.js",
-    "install": "cd app && yarn install && cd ..",
-    "dev": "yarn generate-cert",
+    "dev": "npm run generate-cert",
     "test": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
     "eslint": "eslint . --max-warnings=0 --ext .ts,.tsx,.js,.jsx",
     "fix": "prettier-eslint --write \"{{src,tests/src}/**/*.{ts,tsx,js,jsx,json,css},package.json}\"",
@@ -126,7 +125,6 @@
     "assert": "^2.0.0",
     "fetch-mock": "^6",
     "fetch-readablestream": "^0.2.0",
-    "improved-yarn-audit": "^3.0.0",
     "jsdom": "^20.0.1",
     "sinon": "^7.3.2"
   },
