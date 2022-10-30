@@ -43,10 +43,6 @@
   --color-border: var(--color-grey-light);
   --color-placeholder: var(--color-grey-1);
   --color-tooltip-background: #3e4042;
-  --color-nufi-primary: #BAE440;
-  --color-nufi-secondary: #212121;
-  --color-nufi-background: #292929;
-  --color-nufi-text: rgba(255,255,255,.7);
   --transition-easing: ease-in-out;
   --transition-time: 0.25s;
 }
@@ -78,6 +74,7 @@ body {
   padding: 0;
   font-family: JTMarnie, Arial, Helvetica, sans-serif;
   height: 100%;
+  min-height: 100vh;
   background-color: #fcfcfc;
   color: var(--color-text);
   -webkit-overflow-scrolling: touch;
@@ -898,13 +895,6 @@ button[data-balloon] {
   transform: translate(0, 0);
 }
 
-.nufi-tooltip-wrapper {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  color: var(--color-grey)
-}
-
 /* ALERTS */
 
 .alert {
@@ -960,16 +950,6 @@ button[data-balloon] {
 
 .alert.info:before {
   background-image: url('../assets/alert_icon_info.svg');
-}
-
-.alert.nufi-announcement:before {
-  background-image: url('../assets/alert_icon_nufi.svg');
-}
-
-.alert.nufi-announcement > .alert-content {
-  max-width: fit-content;
-  max-height: 300px;
-  padding-right: 5px;
 }
 
 .alert.news {
@@ -1396,18 +1376,6 @@ button[data-balloon] {
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-}
-
-.banner.nufi {
-  width: '100%';
-  padding: 0;
-  justify-content: center;
-}
-
-.banner.login-nufi {
-  display: block;
-  padding: 0;
-  margin-bottom: 25px;
 }
 
 .banner.error {
@@ -4562,10 +4530,6 @@ label.button.primary.disabled {
 .bitbox02-multiasset-warning {
   margin-bottom: 32px;
 }
-.nufi-background {
-  background: var(--color-nufi-secondary);
-}
-
 /* LISTS */
 .list-reset {
   margin:0;

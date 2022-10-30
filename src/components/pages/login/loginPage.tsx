@@ -16,7 +16,6 @@ import {State} from '../../../state'
 import {AuthMethodType, ScreenType} from '../../../types'
 import {useViewport, isBiggerThanMobile} from '../../common/viewPort'
 import assertUnreachable from '../../../helpers/assertUnreachable'
-import NufiBanner from '../../common/nufiBanner'
 
 const getAuthMethodName = (authMethod: AuthMethodType): string => {
   switch (authMethod) {
@@ -144,12 +143,6 @@ const SubCardByAuthMethod = ({authMethod}: {authMethod: AuthMethodType}) => {
   }
 }
 
-const NufiBannerWrapper = () => (
-  <div className="card banner login-nufi">
-    <NufiBanner variant="gif" />
-  </div>
-)
-
 const AuthCard = ({
   authMethod,
   screenType,
@@ -234,7 +227,6 @@ const LoginPage = () => {
       {errorBannerContent && <ErrorBanner message={errorBannerContent} />}
       <div className="page-inner">
         <main className="page-main">
-          <NufiBannerWrapper />
           {authMethod === null ? (
             <AuthCardInitial />
           ) : (

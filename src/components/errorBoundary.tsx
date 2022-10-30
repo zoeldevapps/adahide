@@ -24,12 +24,12 @@ class ErrorBoundary extends Component<Props, {}> {
     const isUnhandledError = this.state.errorCaughtAtBoundary != null
 
     return (
-      <span>
+      <>
         {!isUnhandledError && this.props.children}
         {this.props.shouldShowUnexpectedErrorModal && (
           <UnexpectedErrorModal reloadPageOnClose={isUnhandledError} />
         )}
-      </span>
+      </>
     )
   }
 }

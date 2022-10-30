@@ -43,11 +43,6 @@
     padding: 0 16px;
   }
 
-  .banner.nufi {
-    width: 100%;
-    margin-top: 40px;
-  }
-
   .banner-text {
     padding-left: 0;
     margin: 8px 0;
@@ -967,9 +962,6 @@
 
   .card-title.small-margin {
     margin: unset;
-  }
-  .navbar-logo.nufi {
-    max-width: 60px;
   }
 }
   

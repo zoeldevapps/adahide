@@ -9,29 +9,6 @@ import Alert from '../../common/alert'
 const InitialContent = () => (
   <div className="sidebar-content">
     <div className="sidebar-item spacy">
-      <Alert alertType="nufi-announcement sidebar">
-        <Fragment>
-          <p className="mb-6">
-            <strong>Want to do more with your wallet?</strong>
-            <br />
-            Switch to NuFi’s browser extension:
-            <br />
-          </p>
-          <ul className="list-reset list-style-check">
-            <li>Buy and sell on NFT marketplaces</li>
-            <li>Trade tokens on decentralized exchanges</li>
-            <li>Import your existing AdaLite wallet</li>
-            <li>Get started in under 30 seconds</li>
-          </ul>
-          <div className="my-6">
-            <a className="sidebar-link" href={`${window.location.origin}/nufi`} rel="noopener" target="blank">
-              Learn more
-            </a>
-          </div>
-        </Fragment>
-      </Alert>
-    </div>
-    <div className="sidebar-item spacy">
       <Alert alertType="info sidebar">
         <p>
           AdaLite supports three means of accessing your wallet. For enhanced security, we recommend you to

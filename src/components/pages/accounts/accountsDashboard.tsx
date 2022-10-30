@@ -5,8 +5,6 @@ import printAda from '../../../helpers/printAda'
 import {totalWalletBalanceSelector, totalRewardsBalanceSelector, hasStakingKey} from '../../../selectors'
 import {AdaIcon} from '../../common/svg'
 import Alert from '../../common/alert'
-import {visitNufiTooltip} from '../../common/tooltip'
-import NufiPageLink from '../../common/nufiPageLink'
 import AccountTile from './accountTile'
 import {Lovelace} from '../../../types'
 import Conversions from '../../common/conversions'
@@ -125,17 +123,7 @@ const AccountsDashboard = () => {
             </button>
           </div>
         </div>
-        <div>
-          {visitNufiTooltip({
-            content: (
-              <Fragment>
-                Manage accounts more easily with <NufiPageLink />
-              </Fragment>
-            ),
-            tooltipMessage:
-              'Rename accounts, hide accounts you don’t use, and display your portfolio in 25+ supported currencies. Plus, log in to your wallet quickly using a password instead of entering a seed phrase or connecting a hardware wallet device.',
-          })}
-        </div>
+        <div></div>
         <div className="mobile">
           <InfoAlert />
         </div>

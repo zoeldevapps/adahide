@@ -35,7 +35,6 @@ import DelegationModal from '../accounts/delegationModal'
 import VotingCard from '../voting/votingCard'
 import VotingDialog from '../voting/votingDialog'
 import {WalletOperationStatusType} from './walletOperationStatus'
-import NufiBanner from '../../common/nufiBanner'
 import {isEqual} from 'lodash'
 
 const StakingPage = ({screenType}: {screenType: ScreenType}) => {
@@ -301,7 +300,6 @@ const DashboardPage = () => {
             />
           ))}
         </ul>
-        {window.innerWidth < 1024 && <NufiBanner variant="static" />}
         <div style={{minWidth: '200px'}}>
           <WalletOperationStatusType />
         </div>

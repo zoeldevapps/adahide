@@ -21,8 +21,7 @@ import {
 import {AdaIcon} from '../../common/svg'
 import {parseCoins, parseTokenAmount} from '../../../helpers/validators'
 import {assetNameHex2Readable, encodeAssetFingerprint} from '../../../wallet/shelley/helpers/addresses'
-import tooltip, {visitNufiTooltip} from '../../common/tooltip'
-import NufiPageLink from '../../common/nufiPageLink'
+import tooltip from '../../common/tooltip'
 import {FormattedAssetItem, FormattedHumanReadableLabelType} from '../../common/asset'
 import {shouldDisableSendingButton} from '../../../helpers/common'
 import printTokenAmount from '../../../helpers/printTokenAmount'
@@ -479,15 +478,6 @@ const SendAdaPage = ({
           )}
         </div>
       </div>
-      {visitNufiTooltip({
-        content: (
-          <Fragment>
-            Visually manage NFTs and send multiple assets together with <NufiPageLink />
-          </Fragment>
-        ),
-        tooltipMessage:
-          'Visually manage and bulk-send NFTs, and enjoy advanced asset management with multi-asset sending and the fiat value of Cardano tokens displayed in your chosen currency.',
-      })}
     </div>
   )
 }

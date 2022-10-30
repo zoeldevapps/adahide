@@ -3,8 +3,7 @@ import printAda from '../../../helpers/printAda'
 import {AdaIcon} from '../../common/svg'
 import actions from '../../../actions'
 import {connect} from 'unistore/react'
-import tooltip, {visitNufiTooltip} from '../../common/tooltip'
-import NufiPageLink from '../../common/nufiPageLink'
+import tooltip from '../../common/tooltip'
 import toLocalDate from '../../../helpers/toLocalDate'
 import {State} from '../../../state'
 import {shouldDisableSendingButton} from '../../../helpers/common'
@@ -146,15 +145,6 @@ const ShelleyBalances = ({
           )}
         </div>
       </div>
-      {visitNufiTooltip({
-        content: (
-          <Fragment>
-            Enjoy a feature-rich staking dashboard with <NufiPageLink />
-          </Fragment>
-        ),
-        tooltipMessage:
-          'Manage multiple staking accounts side by side, with rewards APR and epoch information at a glance.',
-      })}
     </div>
   )
 }
