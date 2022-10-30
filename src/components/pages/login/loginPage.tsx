@@ -7,7 +7,6 @@ import HardwareAuth from './hardwareAuth'
 import GenerateMnemonicDialog from './generateMnemonicDialog'
 import LogoutNotification from './logoutNotification'
 import LoginPageSidebar from './loginPageSidebar'
-import StakingBanner from './stakingBanner'
 import ErrorBanner from './errorBanner'
 import Tag from '../../common/tag'
 import WalletLoadingErrorModal from './walletLoadingErrorModal'
@@ -198,7 +197,6 @@ const LoginPage = () => {
     walletLoadingError,
     shouldShowGenerateMnemonicDialog,
     shouldShowWalletLoadingErrorModal,
-    shouldShowStakingBanner,
     autoLogin,
     errorBannerContent,
   } = useSelector((state: State) => ({
@@ -207,12 +205,10 @@ const LoginPage = () => {
     walletLoadingError: state.walletLoadingError,
     shouldShowGenerateMnemonicDialog: state.shouldShowGenerateMnemonicDialog,
     shouldShowWalletLoadingErrorModal: state.shouldShowWalletLoadingErrorModal,
-    shouldShowStakingBanner: state.shouldShowStakingBanner,
     autoLogin: state.autoLogin,
     errorBannerContent: state.errorBannerContent,
   }))
-  const {closeStakingBanner, setAuthMethod, closeWalletLoadingErrorModal, loadErrorBannerContent} =
-    useActions(actions)
+  const {setAuthMethod, closeWalletLoadingErrorModal, loadErrorBannerContent} = useActions(actions)
 
   useEffect(() => {
     if (autoLogin && authMethod !== AuthMethodType.MNEMONIC) {
@@ -223,7 +219,6 @@ const LoginPage = () => {
 
   return (
     <div className="page-wrapper">
-      {shouldShowStakingBanner && <StakingBanner onRequestClose={() => closeStakingBanner()} />}
       {errorBannerContent && <ErrorBanner message={errorBannerContent} />}
       <div className="page-inner">
         <main className="page-main">

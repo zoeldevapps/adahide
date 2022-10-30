@@ -39,13 +39,6 @@ export default (store: Store) => {
     })
   }
 
-  const closeStakingBanner = (state) => {
-    window.localStorage.setItem(localStorageVars.STAKING_BANNER, 'true')
-    setState({
-      shouldShowStakingBanner: false,
-    })
-  }
-
   const closePremiumBanner = (state) => {
     window.localStorage.setItem(localStorageVars.PREMIUM_BANNER, 'true')
     setState({
@@ -87,10 +80,8 @@ export default (store: Store) => {
 
   const loadErrorBannerContent = (state) => {
     const errorBannerContent = ADALITE_CONFIG.ADALITE_ERROR_BANNER_CONTENT
-    const shouldShowErrorBanner = !!errorBannerContent
     setState({
       errorBannerContent,
-      shouldShowStakingBanner: shouldShowErrorBanner ? false : state.shouldShowStakingBanner,
     })
   }
 
@@ -129,7 +120,6 @@ export default (store: Store) => {
     closeUnexpectedErrorModal,
     shouldShowContactFormModal,
     closeContactFormModal,
-    closeStakingBanner,
     setActiveMainTab,
     loadErrorBannerContent,
     openInfoModal,

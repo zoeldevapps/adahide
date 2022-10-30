@@ -2,7 +2,6 @@ import {Component, Fragment} from 'react'
 import {connect} from 'unistore/react'
 import actions from '../../actions'
 import Modal from './modal'
-import ImageModal from './imageModal'
 import {localStorageVars} from '../../localStorage'
 import {State} from '../../state'
 
@@ -27,16 +26,14 @@ interface Props {
   closeInfoModal: (dontShowAgain: boolean) => void
 }
 
-class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean; shouldShowImage}> {
+class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean}> {
   constructor(props) {
     super(props)
     this.state = {
       dontShowAgainCheckbox: window.localStorage.getItem(localStorageVars.INFO_MODAL) === 'true',
-      shouldShowImage: false,
     }
     this.checkboxClick = this.checkboxClick.bind(this)
     this.closeInfoModal = this.closeInfoModal.bind(this)
-    this.toggleImage = this.toggleImage.bind(this)
   }
 
   checkboxClick() {
@@ -47,14 +44,8 @@ class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean; should
     this.props.closeInfoModal(this.state.dontShowAgainCheckbox)
   }
 
-  toggleImage(shouldShowImage) {
-    this.setState({
-      shouldShowImage,
-    })
-  }
-
   render() {
-    const {dontShowAgainCheckbox, shouldShowImage} = this.state
+    const {dontShowAgainCheckbox} = this.state
     return (
       <Modal>
         <section className="welcome">
@@ -98,7 +89,6 @@ class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean; should
             </button>
           </div>
         </section>
-        {shouldShowImage && <ImageModal closeModal={() => this.toggleImage(false)} />}
       </Modal>
     )
   }

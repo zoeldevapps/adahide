@@ -1,4 +1,3 @@
-import {Fragment} from 'react'
 import {useSelector} from '../../../helpers/connect'
 import {State} from '../../../state'
 import {AuthMethodType} from '../../../types'

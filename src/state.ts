@@ -43,7 +43,6 @@ export interface State {
 
   // cache
   displayWelcome: boolean
-  shouldShowStakingBanner: boolean
   displayInfoModal: boolean
   seenPremiumBanner: boolean
   shouldShowWantedAddressesModal: boolean
@@ -156,7 +155,6 @@ const initialState: State = {
     !(window.localStorage.getItem(localStorageVars.WELCOME) === 'true') &&
     !shouldShowLogoutNotification &&
     ADALITE_CONFIG.ADALITE_DEVEL_AUTO_LOGIN !== 'true',
-  shouldShowStakingBanner: !(window.localStorage.getItem(localStorageVars.STAKING_BANNER) === 'true'),
   seenPremiumBanner: window.localStorage.getItem(localStorageVars.PREMIUM_BANNER) === 'true',
   shouldShowWantedAddressesModal: false,
   displayInfoModal: !(window.localStorage.getItem(localStorageVars.INFO_MODAL) === 'true'),
