@@ -15,14 +15,14 @@ if (!isProd) {
   We are not using "glob" to get all files in "css" folder as order of files matters.
   */
   const cssPathnames = [
-    './app/public/css/nufi-preview-page-styles.css',
-    './app/public/css/styles.css',
-    './app/public/css/0-767px.css',
-    './app/public/css/0-1024px.css',
-    './app/public/css/0-1366px.css',
-    './app/public/css/767-1366px.css',
-    './app/public/css/768-1024px.css',
-    './app/public/css/1024-1112px.css',
+    './public/css/nufi-preview-page-styles.css',
+    './public/css/styles.css',
+    './public/css/0-767px.css',
+    './public/css/0-1024px.css',
+    './public/css/0-1366px.css',
+    './public/css/767-1366px.css',
+    './public/css/768-1024px.css',
+    './public/css/1024-1112px.css',
   ]
   // Check if "cssPathnames" are up-to-date with css files stored in "app/public/css" folder
   if (

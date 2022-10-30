@@ -1,0 +1,129 @@
+import {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import onSubTreeBlur from '../../helpers/onSubTreeBlur'
+
+interface Props<T> {
+  wrapperClassName?: string
+  label?: string | JSX.Element
+  labelClassName?: string
+  items: T[]
+  selectedItem: T | undefined
+  displaySelectedItem?: (t: T | undefined) => string | JSX.Element
+  displaySelectedItemClassName?: string
+  displayItem?: (t: T) => string | JSX.Element
+  onSelect: (t: T) => void
+  showSearch: boolean
+  searchPredicate?: (query: string, t: T) => boolean
+  searchPlaceholder?: string
+  dropdownClassName?: string
+  getDropdownWidth?: () => string
+  disabled: boolean
+}
+
+// <T extends {}> is workaround for <T> being recognized as JSX element instead of generics
+const SearchableSelect = <T extends {}>({
+  wrapperClassName,
+  label,
+  labelClassName,
+  items,
+  selectedItem,
+  displaySelectedItem,
+  displaySelectedItemClassName,
+  displayItem,
+  onSelect,
+  showSearch,
+  searchPredicate,
+  searchPlaceholder,
+  dropdownClassName,
+  getDropdownWidth,
+  disabled,
+}: Props<T>) => {
+  const inputEl = useRef<HTMLInputElement>(null)
+  const dropdownEl = useRef<HTMLDivElement>(null)
+  const wrapperEl = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  const [dropdownWidth, setDropdownWidth] = useState(getDropdownWidth ? getDropdownWidth() : '')
+  const [search, setSearch] = useState('')
+  const shouldShowItem = (item: T) => !search || (searchPredicate ? searchPredicate(search, item) : true)
+  const showDropdown = (bool: boolean) => {
+    setVisible(bool)
+    setSearch('')
+    if (bool && inputEl?.current) {
+      inputEl.current.focus()
+    }
+  }
+
+  useEffect(() => {
+    if (dropdownEl.current) {
+      dropdownEl.current.scrollTop = 0
+    }
+  })
+
+  useLayoutEffect(() => {
+    if (getDropdownWidth) {
+      const handleResize = () => setDropdownWidth(getDropdownWidth())
+      handleResize()
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+    return () => null
+  }, [getDropdownWidth])
+
+  const optionalClassName = (className?: string) => (className != null ? className : '')
+
+  return (
+    <div
+      className={`searchable-select-wrapper ${optionalClassName(wrapperClassName)}`}
+      tabIndex={0}
+      ref={wrapperEl}
+      data-cy="SendAssetDropdown"
+      // TODO: remove @ts-ignore when onFocusOut is added to jsx.d.ts
+      // @ts-ignore
+      onfocusout={(e) => onSubTreeBlur(e, wrapperEl, () => showDropdown(false))} // eslint-disable-line
+    >
+      {label && <div className={`searchable-select-label ${optionalClassName(labelClassName)}`}>{label}</div>}
+      <div
+        className={`searchable-select ${visible ? 'focus ' : ''}${optionalClassName(
+          displaySelectedItemClassName
+        )}`}
+        onClick={() => showDropdown(!disabled && !visible)}
+      >
+        {displaySelectedItem ? displaySelectedItem(selectedItem) : <div>{`${selectedItem}`}</div>}
+      </div>
+      <div
+        ref={dropdownEl}
+        className={`searchable-select-dropdown ${visible ? '' : 'hide'} ${optionalClassName(
+          dropdownClassName
+        )}`}
+        style={getDropdownWidth ? {width: dropdownWidth} : undefined}
+      >
+        {showSearch && (
+          <input
+            ref={inputEl}
+            type="text"
+            className="searchable-select-input"
+            value={search}
+            onInput={(event: any) => setSearch(event.target.value)}
+            placeholder={searchPlaceholder != null ? searchPlaceholder : ''}
+          />
+        )}
+        <div>
+          {items &&
+            items.map((item, i) => (
+              <div
+                className={`searchable-select-item ${shouldShowItem(item) ? '' : 'hide'}`}
+                key={i}
+                onClick={() => {
+                  setVisible(false)
+                  onSelect(item)
+                }}
+              >
+                {displayItem ? displayItem(item) : <div>{`${item}`}</div>}
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SearchableSelect
