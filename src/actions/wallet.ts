@@ -20,7 +20,7 @@ import {State, Store} from '../state'
 import errorActions from './error'
 import loadingActions from './loading'
 
-import {saveAs} from '../libs/file-saver'
+import {saveAs} from 'file-saver'
 import {exportWalletSecretDef} from '../wallet/keypass-json'
 import {getDefaultLedgerTransportType} from '../wallet/shelley/helpers/transports'
 import {getDeviceBrandName, isHwWallet} from '../wallet/helpers/cryptoProviderUtils'

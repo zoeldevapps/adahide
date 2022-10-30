@@ -1,0 +1,10 @@
+diff --git a/node_modules/@cardanosolutions/json-bigint/lib/stringify.js b/node_modules/@cardanosolutions/json-bigint/lib/stringify.js
+index 3bd5269..f62b820 100644
+--- a/node_modules/@cardanosolutions/json-bigint/lib/stringify.js
++++ b/node_modules/@cardanosolutions/json-bigint/lib/stringify.js
+@@ -1,4 +1,4 @@
+-var BigNumber = require('bignumber.js');
++var BigNumber = require('bignumber.js').BigNumber;
+ 
+ /*
+     json2.js
