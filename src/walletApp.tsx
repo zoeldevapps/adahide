@@ -1,5 +1,3 @@
-import 'babel-polyfill'
-
 import {createRoot} from 'react-dom/client'
 import {Provider as UnistoreStoreProvider} from 'unistore/react'
 import {StoreProvider as HooksStoreProvider} from './libs/unistore-hooks'
