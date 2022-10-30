@@ -1,6 +1,6 @@
 {
-  "name": "cardano",
-  "version": "6.10.9",
+  "name": "adahide",
+  "version": "0.0.1",
   "engines": {
     "node": "16"
   },
@@ -21,13 +21,12 @@
   },
   "homepage": "https://github.com/vacuumlabs/adalite#readme",
   "scripts": {
-    "start-server": "NODE_ENV=production node server/index.js",
     "build": "NODE_ENV=production webpack --progress --config webpack.build.config.js",
     "install": "cd app && yarn install && cd ..",
-    "dev": "yarn generate-cert && ADALITE_ENABLE_HTTPS=true PORT=${PORT:-3000} node server/index.js",
+    "dev": "yarn generate-cert",
     "test": "TS_NODE_PROJECT='./tsconfig.test.json' mocha",
     "eslint": "eslint . --max-warnings=0 --ext .ts,.tsx,.js,.jsx",
-    "fix": "prettier-eslint --write \"{{app/frontend,app/tests/src,server}/**/*.{ts,tsx,js,jsx,json,css},package.json}\"",
+    "fix": "prettier-eslint --write \"{{src,tests/src}/**/*.{ts,tsx,js,jsx,json,css},package.json}\"",
     "generate-cert": "test -e server.cert && echo \"certificate already exists\" || openssl req -nodes -new -x509 -keyout server.key -out server.cert -subj \"/C=US\""
   },
   "husky": {
@@ -36,21 +35,20 @@
     }
   },
   "lint-staged": {
-    "{{app/frontend,app/tests/src,server}/**/*.{ts,tsx,js,jsx,json,css},package.json}": [
+    "{{src,tests/src}/**/*.{ts,tsx,js,jsx,json,css},package.json}": [
       "prettier-eslint --write",
       "git add"
     ]
   },
   "directories": {
-    "src": "./app/frontend",
-    "test": "./app/tests"
+    "src": "./src",
+    "test": "./tests"
   },
   "dependencies": {
     "@cardano-ogmios/client": "^5.5.7",
     "@sentry/node": "^6.15.0",
     "babel-regenerator-runtime": "^6.5.0",
     "body-parser": "^1.18.2",
-    "cbor": "^8.1.0",
     "check-types": "^8.0.2",
     "compression": "^1.7.2",
     "device": "^0.3.9",
@@ -64,14 +62,32 @@
     "normalize-url": "^4.0.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
-    "redis": "^3.1.2",
-    "redisscan": "^2.0.0",
     "stream-browserify": "^3.0.0",
     "universal-analytics": "^0.5.3",
-    "webpack": "^5.62.1",
-    "webpack-dev-middleware": "^5.2.1",
-    "webpack-hot-middleware": "^2.25.1",
-    "ws": "^8.4.2"
+    "ws": "^8.4.2",
+    "@cardano-foundation/ledgerjs-hw-app-cardano": "^5.1.0",
+    "@ledgerhq/hw-transport": "^5.51.1",
+    "@ledgerhq/hw-transport-u2f": "^5.36.0-deprecated",
+    "@ledgerhq/hw-transport-webhid": "^5.51.1",
+    "@ledgerhq/hw-transport-webusb": "^5.53.1",
+    "@sentry/browser": "^6.15.0",
+    "@trezor/connect-web": "9.0.0",
+    "@types/lodash": "^4.14.168",
+    "babel-polyfill": "6.26.0",
+    "bignumber.js": "^9.0.2",
+    "bip39-light": "^1.0.7",
+    "bitbox02-api": "^0.13.0",
+    "cardano-crypto.js": "^6.1.0",
+    "cbor": "^8.1.0",
+    "chacha": "^2.1.0",
+    "js-base64": "^3.7.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "pbkdf2": "^3.1.2",
+    "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "unistore": "^3.5.2"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.0",
@@ -91,8 +107,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "husky": "^3.0.0",
-    "improved-yarn-audit": "^3.0.0",
-    "jsdom": "^20.0.1",
     "lint-staged": "^9.2.0",
     "mini-css-extract-plugin": "^1.5.0",
     "mocha": "^10.0.0",
@@ -106,7 +120,15 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.5.5",
     "url-loader": "^4.1.1",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "@types/fetch-mock": "^6",
+    "@types/react": "^18.0.21",
+    "assert": "^2.0.0",
+    "fetch-mock": "^6",
+    "fetch-readablestream": "^0.2.0",
+    "improved-yarn-audit": "^3.0.0",
+    "jsdom": "^20.0.1",
+    "sinon": "^7.3.2"
   },
   "resolutions": {
     "redisscan/redis": "^3.1.2",
@@ -114,6 +136,7 @@
     "eslint/**/glob-parent": "^5.1.2",
     "eslint/**/ansi-regex": "^5",
     "prettier-eslint-cli/**/ansi-regex": "^5",
-    "isomorphic-fetch/**/node-fetch": "^2.6.7"
+    "isomorphic-fetch/**/node-fetch": "^2.6.7",
+    "@trezor/connect/**/node-fetch": "^2.6.7"
   }
 }
