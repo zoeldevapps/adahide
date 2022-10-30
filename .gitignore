@@ -15,3 +15,5 @@ server.cert
 server.key
 
 cardano-configurations
+.env*
+!.env.example

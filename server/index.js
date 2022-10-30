@@ -76,9 +76,8 @@ app.use((req, res, next) => {
 })
 
 if (backendConfig.ADALITE_ENABLE_SERVER_MOCKING_MODE === 'true') {
-  require('./mocking')(app)
+  // pass
 } else {
-  require('./transactionSubmitter')(app)
   require('./emailSubmitter')(app)
 }
 require('./poolInfoGetter')(app)
