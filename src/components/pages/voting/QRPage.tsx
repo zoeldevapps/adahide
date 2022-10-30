@@ -1,6 +1,6 @@
 import {Fragment, useState, useEffect} from 'react'
 import {encryptWithPassword} from '../../../helpers/catalyst'
-import QRious from '../../../libs/qrious'
+import QRious from 'qrious'
 import Alert from '../../common/alert'
 import VotingDialogBottom from './votingDialogBottom'
 import styles from './voting.module.scss'

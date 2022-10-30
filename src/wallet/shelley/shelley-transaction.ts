@@ -1,5 +1,5 @@
 import {blake2b, base58, bech32} from 'cardano-crypto.js'
-import {encodeCbor, decodeCbor, Tagged as CborTagged} from '../helpers/cbor'
+import {Tagged as CborTagged} from 'cbor'
 import {isShelleyFormat} from './helpers/addresses'
 import {
   TxAuxiliaryData,
@@ -46,6 +46,7 @@ import {UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import {ipv4AddressToBuf, ipv6AddressToBuf, TxRelayType} from './helpers/poolCertificateUtils'
 import {orderTokenBundle} from '../helpers/tokenFormater'
 import BigNumber from 'bignumber.js'
+import {decodeCbor, encodeCbor} from '../helpers/cbor'
 
 function ShelleyTxAux({
   inputs,

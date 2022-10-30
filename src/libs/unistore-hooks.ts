@@ -21,7 +21,7 @@ const select = (properties) => {
   }
 }
 
-export const StoreContext = createContext(null)
+export const StoreContext = createContext<any>(null)
 
 export const StoreProvider = StoreContext.Provider
 
@@ -41,6 +41,7 @@ export const useSelector = (selector, equalityFn = refEquality) => {
 
   try {
     if (selectorRef.current !== selector || onChangeErrorRef.current) {
+      // @ts-ignore
       const state = store.getState()
       selectedState = isSelectorStr ? select(selector)(state) : selector(state)
     } else {
@@ -52,6 +53,7 @@ export const useSelector = (selector, equalityFn = refEquality) => {
     if (onChangeErrorRef.current) {
       errorMessage +=
         '\nThe error may be related to the previous error:' +
+        // @ts-ignore
         `\n${onChangeErrorRef.current.stack}\n\nOriginal stack trace:`
     }
 
@@ -64,26 +66,26 @@ export const useSelector = (selector, equalityFn = refEquality) => {
     onChangeErrorRef.current = null
   })
 
-  useIsomorphicLayoutEffect(
-    () => {
-      const checkForUpdates = () => {
-        try {
-          const newSelectedState = selectorRef.current(store.getState())
-          if (equalityFn(newSelectedState, selectedStateRef.current)) return
-          selectedStateRef.current = newSelectedState
-        } catch (err) {
-          onChangeErrorRef.current = err
-        }
-
-        forceRerender({})
+  useIsomorphicLayoutEffect(() => {
+    const checkForUpdates = () => {
+      try {
+        // @ts-ignore
+        const newSelectedState = selectorRef.current(store.getState())
+        if (equalityFn(newSelectedState, selectedStateRef.current)) return
+        selectedStateRef.current = newSelectedState
+      } catch (err) {
+        onChangeErrorRef.current = err
       }
 
-      const unsubscribe = store.subscribe(checkForUpdates)
-      checkForUpdates()
-      return () => unsubscribe()
-    },
-    [store]
-  )
+      // @ts-ignore
+      forceRerender({})
+    }
+
+    // @ts-ignore
+    const unsubscribe = store.subscribe(checkForUpdates)
+    checkForUpdates()
+    return () => unsubscribe()
+  }, [store])
 
   return selectedState
 }
@@ -91,5 +93,6 @@ export const useSelector = (selector, equalityFn = refEquality) => {
 export const useAction = (action) => {
   const store = useStore()
 
+  // @ts-ignore
   return useMemo(() => store.action(action), [store, action])
 }

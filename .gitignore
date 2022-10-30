@@ -17,3 +17,7 @@ server.key
 cardano-configurations
 .env*
 !.env.example
+
+dist
+dist-ssr
+*.local

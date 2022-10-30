@@ -12,7 +12,7 @@ import {CATALYST_MIN_THRESHOLD} from '../../../wallet/constants'
 import {CryptoProviderFeature, Lovelace} from '../../../types'
 import {toAda} from '../../../helpers/adaConverters'
 import styles from './voting.module.scss'
-import QRious from '../../../libs/qrious'
+import QRious from 'qrious'
 import BigNumber from 'bignumber.js'
 
 const AppDownloadInfo = ({url, imageSrc}: {url: string; imageSrc: string}) => (

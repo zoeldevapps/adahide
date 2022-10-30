@@ -1,3 +1,4 @@
+/*
 declare module '*.scss' {
   const content: Record<string, string>
   export default content
@@ -7,26 +8,27 @@ declare module '*.svg' {
   const content: any
   export default content
 }
+*/
 
 declare module 'bitbox02-api' {
   export function getDevicePath(options?: {forceBridge: boolean}): string
 
   type CardanoNetwork = 0 | 1
 
-  export type constants = {
+  export const constants = {
     Status: {
-      PairingFailed: string
-    }
+      PairingFailed: string,
+    },
     Product: {
-      BitBox02Multi: string
-      BitBox02BTCOnly: string
-    }
+      BitBox02Multi: string,
+      BitBox02BTCOnly: string,
+    },
     messages: {
       CardanoNetwork: {
-        CardanoMainnet: CardanoNetwork
-        CardanoTestnet: CardanoNetwork
-      }
-    }
+        CardanoMainnet: CardanoNetwork,
+        CardanoTestnet: CardanoNetwork,
+      },
+    },
   }
 
   class Firmware {

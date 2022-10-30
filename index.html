@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adahide - Cardano Wallet</title>
+    <meta http-equiv="Content-Security-Policy" content="CSP_CONTENT" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="description"
+      content="Free open-source web-browser Cardano wallet with Trezor, Ledger Nano S/S Plus/X and BitBox02 support. Highly secure and accessible from everywhere."
+    />
+    <meta name="keywords" content="Cardano, Ada, Wallet, Cryptocurrency, Adalite, Trezor, Adahide" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@adahideio" />
+    <meta name="twitter:title" content="Adahide - Cardano Wallet" />
+    <meta
+      name="twitter:description"
+      content="Free open-source web-browser Cardano wallet with Trezor, Ledger Nano S/S Plus/X and BitBox02 support"
+    />
+    <meta name="twitter:image" content="https://assets.adahide.io/twitter-card.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Adahide" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Adahide - Cardano Wallet" />
+    <meta
+      property="og:description"
+      content="Free open-source web-browser Cardano wallet with Trezor, Ledger Nano S/S Plus/X and BitBox02 support"
+    />
+    <meta property="og:image" content="https://assets.adahide.io/og-image.png" />
+    <link rel="stylesheet" type="text/css" href="/css/nufi-preview-page-styles.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/0-767px.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/0-1366px.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/767-1366px.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/768-1024px.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/0-1024px.css?v=APP_VERSION" />
+    <link rel="stylesheet" type="text/css" href="/css/1024-1112px.css?v=APP_VERSION" />
+    <link rel="icon" type="image/ico" href="assets/favicon.ico" />
+    <script src="TREZOR_CONNECT_URL"></script>
+    <noscript> Your browser does not support JavaScript or it is turned off.<br /> </noscript>
+  </head>
+  <!-- prettier-ignore -->
+  <body data-config='DATA_CONFIG'>
+    <div id="root" style="width: 100%; height: 100%"></div>
+    <script type="module" src="/src/nodespecific.ts"></script>
+    <script type="module" src="/src/walletApp.tsx"></script>
+  </body>
+</html>
