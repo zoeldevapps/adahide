@@ -24,7 +24,7 @@ const ShelleyBalances = ({
     },
   } = useActiveAccount()
   return (
-    <div>
+    <>
       <div className="rewards card compact">
         <h2 className="card-title staking-balances-title">
           Available balance
@@ -145,7 +145,7 @@ const ShelleyBalances = ({
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

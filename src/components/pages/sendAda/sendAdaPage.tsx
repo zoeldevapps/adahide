@@ -389,7 +389,7 @@ const SendAdaPage = ({
   const minimalLovelaceAmount = summary?.minimalLovelaceAmount ?? (new BigNumber(0) as Lovelace)
 
   return (
-    <div>
+    <>
       <div className="send card compact" ref={sendCardDiv}>
         <h2 className={`card-title ${isModal ? 'show' : ''}`}>{title}</h2>
         {isModal ? accountSwitch : addressInput}
@@ -478,7 +478,7 @@ const SendAdaPage = ({
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
