@@ -131,8 +131,6 @@ export default defineConfig({
   },
   plugins: [htmlPlugin(), react(), basicSsl()],
   build: {
-    target: 'es2015',
-    sourcemap: true,
     rollupOptions: {
       plugins: [
         inject({
