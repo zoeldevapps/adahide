@@ -26,7 +26,7 @@ The aim is to modernize and use more standard tools
 - get rid of expensive chromium & cypress test cases
 - In progress - make the site staticly built, so it can be served from CDN
 
-<font size="30">LEGACY ADALITE CONTENT BELOW</font>
+<font size="30">LEGACY ADAHIDE CONTENT BELOW</font>
 
 # AdaLite wallet
 
@@ -64,12 +64,12 @@ e.g. by `cp .env.example .env`
 ```
 yarn install
 yarn build
-ADALITE_ENABLE_HTTPS=true ADALITE_PORT=3000 yarn start-server
+ADAHIDE_ENABLE_HTTPS=true ADAHIDE_PORT=3000 yarn start-server
 ```
 
 Navigate to http://localhost:3000 (or wherever you've configured) and don't forget to set `.env` to `http://localhost:3000` if you were copying the default .env.example file. You may also need to disable caching in your browser to forget previous redirects.
 
-note: `ADALITE_ENABLE_HTTPS=true` provides a self-signed https certificate, it is recommended to set the flag only when running the app locally.
+note: `ADAHIDE_ENABLE_HTTPS=true` provides a self-signed https certificate, it is recommended to set the flag only when running the app locally.
 
 #### Development
 
@@ -90,16 +90,16 @@ For creating releases we use tool [release-it](https://webpro.github.io/release-
 in .env set the following values (your local settings may differ but by default this should work):
 
 ```
-ADALITE_ENABLE_SERVER_MOCKING_MODE = true
-ADALITE_MOCK_TX_SUBMISSION_SUCCESS = true
-ADALITE_MOCK_TX_SUMMARY_SUCCESS = false
+ADAHIDE_ENABLE_SERVER_MOCKING_MODE = true
+ADAHIDE_MOCK_TX_SUBMISSION_SUCCESS = true
+ADAHIDE_MOCK_TX_SUMMARY_SUCCESS = false
 ```
 
-The `ADALITE_ENABLE_SERVER_MOCKING_MODE` flag tells the server to start in mocking mode to avoid submitting transactions to the actual blockchain. Moreover, it mocks certain blockchain explorer endpoints to fake the transaction submission.
+The `ADAHIDE_ENABLE_SERVER_MOCKING_MODE` flag tells the server to start in mocking mode to avoid submitting transactions to the actual blockchain. Moreover, it mocks certain blockchain explorer endpoints to fake the transaction submission.
 
-`ADALITE_MOCK_TX_SUBMISSION_SUCCESS` tells the mock server whether it has to return a success response for tx submission or not.
+`ADAHIDE_MOCK_TX_SUBMISSION_SUCCESS` tells the mock server whether it has to return a success response for tx submission or not.
 
-`ADALITE_MOCK_TX_SUMMARY_SUCCESS` tells the mock server whether to return that the transaction exists in the blockchain or not - this is useful for polling for transaction status after submission.
+`ADAHIDE_MOCK_TX_SUMMARY_SUCCESS` tells the mock server whether to return that the transaction exists in the blockchain or not - this is useful for polling for transaction status after submission.
 
 ## Test
 

@@ -176,7 +176,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   const myAddresses = MyAddresses({
     accountIndex,
     cryptoProvider,
-    gapLimit: config.ADALITE_GAP_LIMIT,
+    gapLimit: config.ADAHIDE_GAP_LIMIT,
     blockchainExplorer,
   })
 
@@ -433,9 +433,9 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   async function getPoolRecommendation(pool: any, stakeAmount: Lovelace): Promise<any> {
     const poolHash = pool ? pool.poolHash : null
     const poolRecommendation = await blockchainExplorer.getPoolRecommendation(poolHash, stakeAmount)
-    if (!poolRecommendation.recommendedPoolHash || config.ADALITE_ENFORCE_STAKEPOOL) {
+    if (!poolRecommendation.recommendedPoolHash || config.ADAHIDE_ENFORCE_STAKEPOOL) {
       Object.assign(poolRecommendation, {
-        recommendedPoolHash: config.ADALITE_STAKE_POOL_ID,
+        recommendedPoolHash: config.ADAHIDE_STAKE_POOL_ID,
       })
     }
     const delegatesToRecommended = poolRecommendation.recommendedPoolHash === pool.poolHash

@@ -1,10 +1,10 @@
 import {Component} from 'react'
 import {connect} from 'unistore/react'
 import actions from '../actions'
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {sessionStorageVars} from '../sessionStorage'
 
-const {ADALITE_LOGOUT_AFTER} = ADALITE_CONFIG
+const {ADAHIDE_LOGOUT_AFTER} = ADAHIDE_CONFIG
 
 interface Props {
   logout: () => void
@@ -28,7 +28,7 @@ class AutoLogout extends Component<Props, {}> {
   resetTimer() {
     if (this.props.walletIsLoaded) {
       clearTimeout(this.timer)
-      this.timer = setTimeout(this.logout, ADALITE_LOGOUT_AFTER * 1000)
+      this.timer = setTimeout(this.logout, ADAHIDE_LOGOUT_AFTER * 1000)
     }
   }
 

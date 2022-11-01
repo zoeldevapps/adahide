@@ -1,7 +1,7 @@
 import assert from 'assert'
 import {AccountManager} from '../../../src/wallet/account-manager'
 import {accountManagerSettings} from '../common/account-manager-settings'
-import {ADALITE_CONFIG} from '../../../src/config'
+import {ADAHIDE_CONFIG} from '../../../src/config'
 import derivationSchemes from '../../../src/wallet/helpers/derivation-schemes'
 import mnemonicToWalletSecretDef from '../../../src/wallet/helpers/mnemonicToWalletSecretDef'
 import BlockchainExplorer from '../common/blockchain-explorer-legacy'
@@ -20,8 +20,8 @@ const initAccountManager = async (settings) => {
     isShelleyCompatible,
     maxAccountIndex,
   } = settings
-  const config = {...ADALITE_CONFIG, isShelleyCompatible, shouldExportPubKeyBulk}
-  const blockchainExplorer = BlockchainExplorer(ADALITE_CONFIG)
+  const config = {...ADAHIDE_CONFIG, isShelleyCompatible, shouldExportPubKeyBulk}
+  const blockchainExplorer = BlockchainExplorer(ADAHIDE_CONFIG)
 
   let walletSecretDef
   if (type === 'walletSecretDef') {
@@ -54,7 +54,7 @@ describe('Account discovery', () => {
   Object.entries(accountManagerSettings).forEach(([name, setting]) =>
     it(`should discover the right amount of accounts ${name}`, async () => {
       const accountManager = accountManagers[name]
-      const mockNet = mockNetwork(ADALITE_CONFIG)
+      const mockNet = mockNetwork(ADAHIDE_CONFIG)
       mockNet.mockBulkAddressSummaryEndpoint()
       const accounts = await accountManager.discoverAccounts()
       assert.equal(accounts.length, setting.expectedNumberOfDiscoveredAccounts)
@@ -65,7 +65,7 @@ describe('Account discovery', () => {
 
 describe('Account exploration', () => {
   it('should not add account if previous wasnt used', async () => {
-    const mockNet = mockNetwork(ADALITE_CONFIG)
+    const mockNet = mockNetwork(ADAHIDE_CONFIG)
     mockNet.mockBulkAddressSummaryEndpoint()
     const accountManager = accountManagers.withMultipleUsedAccounts
     const accountsLength = (await accountManager.discoverAccounts()).length
@@ -83,7 +83,7 @@ describe('Account exploration', () => {
   it('should add consequent new account if previous was used', async () => {
     // this concerns the case when the bulk export is disabled
     // as with enabled bulk export all used accounts are discovered at first go
-    const mockNet = mockNetwork(ADALITE_CONFIG)
+    const mockNet = mockNetwork(ADAHIDE_CONFIG)
     mockNet.mockBulkAddressSummaryEndpoint()
     const accountManager = accountManagers.withDisabledBulkExport
     const accountsLength = (await accountManager.discoverAccounts()).length

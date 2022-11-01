@@ -1,6 +1,6 @@
 import styles from './exchange.module.scss'
-import {ADALITE_CONFIG} from '../../../config'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+import {ADAHIDE_CONFIG} from '../../../config'
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 const Exchange = () => (
   <div className="wrap">

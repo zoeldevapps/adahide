@@ -1,7 +1,7 @@
 import {Store, State} from '../state'
 import delegateActions from './delegate'
 import commonActions from './common'
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {MainTabs} from '../constants'
 import {localStorageVars} from '../localStorage'
 import {AuthMethodType} from '../types'
@@ -79,7 +79,7 @@ export default (store: Store) => {
   }
 
   const loadErrorBannerContent = (state) => {
-    const errorBannerContent = ADALITE_CONFIG.ADALITE_ERROR_BANNER_CONTENT
+    const errorBannerContent = ADAHIDE_CONFIG.ADAHIDE_ERROR_BANNER_CONTENT
     setState({
       errorBannerContent,
     })

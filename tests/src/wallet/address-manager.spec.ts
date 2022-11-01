@@ -9,10 +9,10 @@ import ShelleyJsCryptoProvider from '../../../src/wallet/shelley/shelley-js-cryp
 import {ShelleyBaseAddressProvider} from '../../../src/wallet/shelley/shelley-address-provider'
 
 const mockConfig = {
-  ADALITE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',
-  ADALITE_SERVER_URL: 'http://localhost:3000',
-  ADALITE_DEFAULT_ADDRESS_COUNT: 10,
-  ADALITE_GAP_LIMIT: 10,
+  ADAHIDE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',
+  ADAHIDE_SERVER_URL: 'http://localhost:3000',
+  ADAHIDE_DEFAULT_ADDRESS_COUNT: 10,
+  ADAHIDE_GAP_LIMIT: 10,
 }
 
 const blockchainExplorer = BlockchainExplorer(mockConfig)
@@ -42,7 +42,7 @@ const initAddressManager = async (settings) => {
 
   return AddressManager({
     addressProvider,
-    gapLimit: mockConfig.ADALITE_GAP_LIMIT,
+    gapLimit: mockConfig.ADAHIDE_GAP_LIMIT,
     blockchainExplorer,
   })
 }

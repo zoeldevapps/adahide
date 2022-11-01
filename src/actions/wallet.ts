@@ -7,7 +7,7 @@ import mnemonicToWalletSecretDef from '../wallet/helpers/mnemonicToWalletSecretD
 import debugLog from '../helpers/debugLog'
 import getConversionRates from '../helpers/getConversionRates'
 
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {
   AccountInfo,
   Lovelace,
@@ -113,7 +113,7 @@ export default (store: Store) => {
       }
     }
     const config = {
-      ...ADALITE_CONFIG,
+      ...ADAHIDE_CONFIG,
       isShelleyCompatible,
       shouldExportPubKeyBulk,
       ledgerTransportType,
@@ -132,7 +132,7 @@ export default (store: Store) => {
       }
       const cryptoProvider = await ShelleyCryptoProviderFactory.getCryptoProvider(cryptoProviderType, {
         walletSecretDef,
-        network: NETWORKS[ADALITE_CONFIG.ADALITE_NETWORK],
+        network: NETWORKS[ADAHIDE_CONFIG.ADAHIDE_NETWORK],
         config,
       })
       loadingAction(state, 'Loading wallet data...')
@@ -160,7 +160,7 @@ export default (store: Store) => {
         loadingAction(state, `Waiting for ${getDeviceBrandName(cryptoProviderInfo.type)}...`)
       }
 
-      const demoRootSecret = (await mnemonicToWalletSecretDef(ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC))
+      const demoRootSecret = (await mnemonicToWalletSecretDef(ADAHIDE_CONFIG.ADAHIDE_DEMO_WALLET_MNEMONIC))
         .rootSecret
       const isDemoWallet = walletSecretDef && walletSecretDef.rootSecret.equals(demoRootSecret)
       setState({
@@ -208,7 +208,7 @@ export default (store: Store) => {
   const loadDemoWallet = (state: State) => {
     setState({
       mnemonicAuthForm: {
-        mnemonicInputValue: ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC,
+        mnemonicInputValue: ADAHIDE_CONFIG.ADAHIDE_DEMO_WALLET_MNEMONIC,
         mnemonicInputError: null,
         formIsValid: true,
       },

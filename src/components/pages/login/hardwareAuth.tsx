@@ -1,7 +1,7 @@
 import {Fragment, useState, useCallback} from 'react'
 import {CryptoProviderType} from '../../../wallet/types'
 import {TrezorLogoWhite, LedgerLogoWhite, BitBoxLogoWhite} from '../../common/svg'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import tooltip from '../../common/tooltip'
 import {useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
@@ -53,8 +53,8 @@ const LoadByHardwareWalletSection = () => {
           </div>
           <div className="authentication-paragraph small" dangerouslySetInnerHTML={{__html: '&nbsp;'}} />
           <button
-            disabled={!ADALITE_CONFIG.ADALITE_ENABLE_TREZOR || isMobileOnly}
-            {...tooltip('Support for Trezor is temporarily disabled', !ADALITE_CONFIG.ADALITE_ENABLE_TREZOR)}
+            disabled={!ADAHIDE_CONFIG.ADAHIDE_ENABLE_TREZOR || isMobileOnly}
+            {...tooltip('Support for Trezor is temporarily disabled', !ADAHIDE_CONFIG.ADAHIDE_ENABLE_TREZOR)}
             {...tooltip('Not supported on mobile devices', isMobileOnly)}
             className="button primary thin-data-balloon"
             onClick={() =>
@@ -83,9 +83,9 @@ const LoadByHardwareWalletSection = () => {
             <button
               {...tooltip(
                 'Support for Ledger is temporarily disabled',
-                !ADALITE_CONFIG.ADALITE_ENABLE_LEDGER
+                !ADAHIDE_CONFIG.ADAHIDE_ENABLE_LEDGER
               )}
-              disabled={!ADALITE_CONFIG.ADALITE_ENABLE_LEDGER}
+              disabled={!ADAHIDE_CONFIG.ADAHIDE_ENABLE_LEDGER}
               className={`button primary thin-data-balloon ${styles.ledgerButton}`}
               onClick={() =>
                 loadWallet({
@@ -129,10 +129,10 @@ const LoadByHardwareWalletSection = () => {
           </div>
           <div className="authentication-paragraph small" dangerouslySetInnerHTML={{__html: '&nbsp;'}} />
           <button
-            disabled={!ADALITE_CONFIG.ADALITE_ENABLE_BITBOX02 || isMobileOnly}
+            disabled={!ADAHIDE_CONFIG.ADAHIDE_ENABLE_BITBOX02 || isMobileOnly}
             {...tooltip(
               'Support for BitBox02 is temporarily disabled',
-              !ADALITE_CONFIG.ADALITE_ENABLE_BITBOX02
+              !ADAHIDE_CONFIG.ADAHIDE_ENABLE_BITBOX02
             )}
             {...tooltip('Not supported on mobile devices', isMobileOnly)}
             className="button primary thin-data-balloon"

@@ -1,5 +1,5 @@
 import {setMockState, setupInitialMockState} from './actions.spec'
-import {ADALITE_CONFIG} from '../../../src/config'
+import {ADAHIDE_CONFIG} from '../../../src/config'
 import mockNetwork from '../common/mock'
 import {CryptoProviderType} from '../../../src/wallet/types'
 import mnemonicToWalletSecretDef from '../../../src/wallet/helpers/mnemonicToWalletSecretDef'
@@ -15,8 +15,8 @@ beforeEach(() => {
 })
 
 before(() => {
-  ADALITE_CONFIG.ADALITE_NETWORK = 'MAINNET'
-  const mockNet = mockNetwork(ADALITE_CONFIG)
+  ADAHIDE_CONFIG.ADAHIDE_NETWORK = 'MAINNET'
+  const mockNet = mockNetwork(ADAHIDE_CONFIG)
   mockNet.mockBulkAddressSummaryEndpoint()
   mockNet.mockGetAccountInfo()
   mockNet.mockGetStakePools()

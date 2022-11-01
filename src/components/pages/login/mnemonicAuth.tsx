@@ -6,10 +6,10 @@ import {CryptoProviderType} from '../../../wallet/types'
 import tooltip from '../../common/tooltip'
 import Alert from '../../common/alert'
 import sanitizeMnemonic from '../../../helpers/sanitizeMnemonic'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import {useEffect, useRef} from 'react'
 
-const {ADALITE_DEMO_WALLET_MNEMONIC} = ADALITE_CONFIG
+const {ADAHIDE_DEMO_WALLET_MNEMONIC} = ADAHIDE_CONFIG
 
 const MnemonicAuth = (): JSX.Element => {
   const {formData, shouldShowMnemonicInfoAlert, autoLogin, displayWelcome} = useSelector((state) => ({
@@ -33,7 +33,7 @@ const MnemonicAuth = (): JSX.Element => {
   useEffect(() => {
     // meant only for development in order to speed up the process of unlocking wallet
     async function autoDemoLogin() {
-      const sanitizedMnemonic = sanitizeMnemonic(ADALITE_DEMO_WALLET_MNEMONIC)
+      const sanitizedMnemonic = sanitizeMnemonic(ADAHIDE_DEMO_WALLET_MNEMONIC)
       await loadWallet({
         cryptoProviderType: CryptoProviderType.WALLET_SECRET,
         walletSecretDef: await mnemonicToWalletSecretDef(sanitizedMnemonic),

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import CachedDeriveXpubFactory from '../helpers/CachedDeriveXpubFactory'
-import {ADALITE_SUPPORT_EMAIL, TREZOR_ERRORS, TREZOR_VERSIONS} from '../constants'
+import {ADAHIDE_SUPPORT_EMAIL, TREZOR_ERRORS, TREZOR_VERSIONS} from '../constants'
 import derivationSchemes from '../helpers/derivation-schemes'
 import {InternalError, InternalErrorReason, UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import debugLog from '../../helpers/debugLog'
@@ -59,7 +59,7 @@ const ShelleyTrezorCryptoProvider = async ({
   const derivationScheme = derivationSchemes.v2
 
   TrezorConnect.manifest({
-    email: ADALITE_SUPPORT_EMAIL,
+    email: ADAHIDE_SUPPORT_EMAIL,
     appUrl: window.location.origin,
   })
 

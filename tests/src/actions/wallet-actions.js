@@ -1,5 +1,5 @@
 import mockNetwork from '../common/mock'
-import {ADALITE_CONFIG} from '../../../src/config'
+import {ADAHIDE_CONFIG} from '../../../src/config'
 import {CryptoProviderType} from '../../../src/wallet/types'
 import mnemonicToWalletSecretDef from '../../../src/wallet/helpers/mnemonicToWalletSecretDef'
 import assert from 'assert'
@@ -46,8 +46,8 @@ const expectedStakepool = {
 }
 
 it('Should properly load shelley wallet', async () => {
-  ADALITE_CONFIG.ADALITE_NETWORK = 'MAINNET'
-  const mockNet = mockNetwork(ADALITE_CONFIG)
+  ADAHIDE_CONFIG.ADAHIDE_NETWORK = 'MAINNET'
+  const mockNet = mockNetwork(ADAHIDE_CONFIG)
   mockNet.mockBulkAddressSummaryEndpoint()
   mockNet.mockGetAccountInfo()
   mockNet.mockGetStakePools()

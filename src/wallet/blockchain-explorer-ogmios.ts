@@ -40,7 +40,7 @@ import {TxSubmissionClient} from '@cardano-ogmios/client/dist/TxSubmission'
  * It uses the deprecated utxo listing, which in itself is running in linear time
  * over all utxos.
  */
-const blockchainExplorer = (ADALITE_CONFIG) => {
+const blockchainExplorer = (ADAHIDE_CONFIG) => {
   let _context: InteractionContext | null = null
   let _ogmiosStateQueryClient: StateQueryClient | null = null
   let _ogmiosSubmitClient: TxSubmissionClient | null = null
@@ -60,7 +60,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
           _ogmiosStateQueryClient = null
           _ogmiosSubmitClient = null
         },
-        {connection: {port: ADALITE_CONFIG.OGMIOS_PORT}}
+        {connection: {port: ADAHIDE_CONFIG.OGMIOS_PORT}}
       )
     }
     return _context

@@ -1,8 +1,8 @@
 import {connect, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import {useEffect} from 'react'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
   let scrollDestination: any

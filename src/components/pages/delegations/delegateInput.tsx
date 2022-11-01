@@ -1,6 +1,6 @@
 import {Fragment} from 'react'
 import {useSelector} from '../../../helpers/connect'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import assert from 'assert'
 
 type StakePoolLabelProps = {
@@ -36,7 +36,7 @@ const DelegateInput = ({disabled, value, onChange}: Props): JSX.Element => {
   const isTicker = !!(value && !!validStakepoolDataProvider.getPoolInfoByTicker(value))
   const isPoolHash = !!(value && !!validStakepoolDataProvider.getPoolInfoByPoolHash(value))
   const tickerSearchEnabled = !!(
-    ADALITE_CONFIG.ADALITE_ENABLE_SEARCH_BY_TICKER && validStakepoolDataProvider?.hasTickerMapping
+    ADAHIDE_CONFIG.ADAHIDE_ENABLE_SEARCH_BY_TICKER && validStakepoolDataProvider?.hasTickerMapping
   )
 
   return (

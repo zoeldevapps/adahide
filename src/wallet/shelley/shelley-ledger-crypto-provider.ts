@@ -103,7 +103,7 @@ const ShelleyLedgerCryptoProvider = async ({
   config,
 }: CryptoProviderParams): Promise<CryptoProvider> => {
   const transport = await getLedgerTransport(config.ledgerTransportType)
-  transport.setExchangeTimeout(config.ADALITE_LOGOUT_AFTER * 1000)
+  transport.setExchangeTimeout(config.ADAHIDE_LOGOUT_AFTER * 1000)
   const ledger = new Ledger(transport)
   const derivationScheme = derivationSchemes.v2
 

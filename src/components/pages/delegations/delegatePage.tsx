@@ -10,7 +10,7 @@ import Accordion from '../../common/accordion'
 import {isBigDelegatorSelector} from '../../../selectors'
 import {StakePoolInfo} from './stakePoolInfo'
 import DelegateInput from './delegateInput'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import {StakepoolDataProvider} from '../../../helpers/dataProviders/types'
 import {shouldDisableSendingButton} from '../../../helpers/common'
 import assert from 'assert'
@@ -62,7 +62,7 @@ const validateInput = (
   fieldValue: string,
   validStakepoolDataProvider: StakepoolDataProvider
 ): ValidatedInput => {
-  if (ADALITE_CONFIG.ADALITE_ENABLE_SEARCH_BY_TICKER) {
+  if (ADAHIDE_CONFIG.ADAHIDE_ENABLE_SEARCH_BY_TICKER) {
     const pool =
       validStakepoolDataProvider.getPoolInfoByPoolHash(fieldValue) ||
       validStakepoolDataProvider.getPoolInfoByTicker(fieldValue)

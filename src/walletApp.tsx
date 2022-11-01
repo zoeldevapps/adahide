@@ -5,12 +5,12 @@ import {StoreProvider as HooksStoreProvider} from './libs/unistore-hooks'
 import App from './components/app'
 
 import {createStore} from './store'
-import {ADALITE_CONFIG} from './config'
+import {ADAHIDE_CONFIG} from './config'
 
 import {init} from '@sentry/browser'
 
-if (ADALITE_CONFIG.ADALITE_TREZOR_CONNECT_URL) {
-  const url = new URL(ADALITE_CONFIG.ADALITE_TREZOR_CONNECT_URL)
+if (ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL) {
+  const url = new URL(ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL)
   // @ts-ignore
   window.__TREZOR_CONNECT_SRC = `${url.origin}/`
 }
@@ -71,8 +71,8 @@ window.onhashchange = () =>
   })
 
 init({
-  dsn: ADALITE_CONFIG.ADALITE_SENTRY_DSN_WEB,
-  environment: ADALITE_CONFIG.ADALITE_ENV,
+  dsn: ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN_WEB,
+  environment: ADAHIDE_CONFIG.ADAHIDE_ENV,
   // debug: true,
   beforeSend(event) {
     if (!event.exception) return event

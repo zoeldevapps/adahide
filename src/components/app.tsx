@@ -7,12 +7,12 @@ import LoadingOverlay from './common/loadingOverlay'
 import NavbarAuth from './common/navbar/navbarAuth'
 import NavbarUnauth from './common/navbar/navbarUnauth'
 import AutoLogout from './autoLogout'
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import Exchange from './pages/exchange/exchange'
 import ErrorBoundary from './errorBoundary'
 import {State} from '../state'
 
-const {ADALITE_LOGOUT_AFTER} = ADALITE_CONFIG
+const {ADAHIDE_LOGOUT_AFTER} = ADAHIDE_CONFIG
 
 const Navbar = connect((state: State) => ({walletIsLoaded: state.walletIsLoaded}))(({walletIsLoaded}) =>
   walletIsLoaded ? <NavbarAuth /> : <NavbarUnauth />
@@ -35,7 +35,7 @@ const App = connect((state: State) => ({
         <Navbar />
         <TopLevelRouter />
         <Footer />
-        {ADALITE_LOGOUT_AFTER > 0 && <AutoLogout />}
+        {ADAHIDE_LOGOUT_AFTER > 0 && <AutoLogout />}
         {displayWelcome && <Welcome />}
         {shouldShowContactFormModal && <ContactForm />}
       </ErrorBoundary>

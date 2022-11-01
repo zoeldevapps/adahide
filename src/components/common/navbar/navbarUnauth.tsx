@@ -1,8 +1,8 @@
 import {connect} from '../../../helpers/connect'
 import actions from '../../../actions'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import isLeftClick from '../../../helpers/isLeftClick'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 interface Props {
   pathname: string
