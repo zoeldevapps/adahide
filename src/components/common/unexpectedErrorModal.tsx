@@ -4,7 +4,7 @@ import actions from '../../actions'
 import Modal from './modal'
 import Alert from './alert'
 import submitFeedbackToSentry from '../../helpers/submitFeedbackToSentry'
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/react'
 import {State} from '../../state'
 
 interface Props {

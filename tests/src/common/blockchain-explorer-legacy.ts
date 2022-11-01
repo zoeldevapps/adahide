@@ -21,7 +21,7 @@ import {
 } from '../../../src/types'
 import distinct from '../../../src/helpers/distinct'
 import {UNKNOWN_POOL_NAME} from '../../../src/wallet/constants'
-import {captureMessage} from '@sentry/browser'
+import {captureMessage} from '@sentry/react'
 import {
   BulkAddressesSummaryResponse,
   TxSummaryResponse,

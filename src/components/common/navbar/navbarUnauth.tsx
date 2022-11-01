@@ -27,16 +27,6 @@ const NavbarUnauth = connect(
       <div className="navbar-version">{`Ver. ${APP_VERSION}`}</div>
       <div className="navbar-content">
         <a
-          className="navbar-link primary"
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            window.history.pushState({}, 'staking', 'staking')
-          }}
-        >
-          Staking
-        </a>
-        <a
           className="navbar-link"
           href="#"
           onClick={(e) => {

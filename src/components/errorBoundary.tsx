@@ -1,5 +1,5 @@
 import {Component, ReactNode} from 'react'
-import {captureException} from '@sentry/browser'
+import {captureException} from '@sentry/react'
 import {connect} from 'unistore/react'
 import actions from '../actions'
 import UnexpectedErrorModal from './common/unexpectedErrorModal'

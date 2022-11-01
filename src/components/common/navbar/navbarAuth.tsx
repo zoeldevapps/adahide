@@ -64,7 +64,7 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
           </a>
           <a
             className="navbar-link"
-            href="https://github.com/vacuumlabs/adahide/wiki"
+            href="https://github.com/zoeldev/adahide/wiki"
             target="_blank"
             rel="noopener"
           >

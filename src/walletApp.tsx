@@ -2,12 +2,13 @@ import {createRoot} from 'react-dom/client'
 import {Provider as UnistoreStoreProvider} from 'unistore/react'
 import {StoreProvider as HooksStoreProvider} from './libs/unistore-hooks'
 
+import * as Sentry from '@sentry/react'
+import {BrowserTracing} from '@sentry/tracing'
+
 import App from './components/app'
 
 import {createStore} from './store'
 import {ADAHIDE_CONFIG} from './config'
-
-import {init} from '@sentry/browser'
 
 if (ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL) {
   const url = new URL(ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL)
@@ -70,8 +71,8 @@ window.onhashchange = () =>
     },
   })
 
-init({
-  dsn: ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN_WEB,
+Sentry.init({
+  dsn: ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN,
   environment: ADAHIDE_CONFIG.ADAHIDE_ENV,
   // debug: true,
   beforeSend(event) {
@@ -95,6 +96,12 @@ init({
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1678243
     'XDR encoding failure',
   ],
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
 })
 
 const root = createRoot(document.getElementById('root') as HTMLElement)

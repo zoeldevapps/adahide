@@ -13,7 +13,7 @@ async function sendFeedback(comments, email, name, eventId) {
     comments,
   }
   const url = SENTRY_USER_FEEDBACK_API
-  const token = ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN_WEB
+  const token = ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN
   try {
     await fetch(url, {
       method: 'POST',
