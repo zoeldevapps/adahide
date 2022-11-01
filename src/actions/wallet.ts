@@ -1,4 +1,4 @@
-import {NETWORKS, WANTED_DELEGATOR_STAKING_ADDRESSES} from '../wallet/constants'
+import {NETWORKS} from '../wallet/constants'
 import {CryptoProviderType} from '../wallet/types'
 import ShelleyCryptoProviderFactory from '../wallet/shelley/shelley-crypto-provider-factory'
 import {ShelleyWallet} from '../wallet/shelley-wallet'
@@ -41,13 +41,6 @@ export const getWallet = (): Wallet => {
     throw new Error('Wallet is not loaded')
   }
   return wallet
-}
-const accountsIncludeStakingAddresses = (
-  accountsInfo: Array<AccountInfo>,
-  soughtAddresses: Array<string>
-): boolean => {
-  const stakingAddresses = accountsInfo.map((accountInfo) => accountInfo.stakingAddress)
-  return stakingAddresses.some((address) => soughtAddresses.includes(address))
 }
 
 export default (store: Store) => {
@@ -149,10 +142,6 @@ export default (store: Store) => {
       const shouldShowSaturatedBanner = getShouldShowSaturatedBanner(accountsInfo)
 
       const maxAccountIndex = wallet.getMaxAccountIndex()
-      const shouldShowWantedAddressesModal = accountsIncludeStakingAddresses(
-        accountsInfo,
-        WANTED_DELEGATOR_STAKING_ADDRESSES
-      )
 
       const cryptoProviderInfo = wallet.getCryptoProviderInfo()
       const usingHwWallet = isHwWallet(cryptoProviderInfo.type)
@@ -178,7 +167,6 @@ export default (store: Store) => {
         cryptoProviderInfo,
         isDemoWallet,
         shouldShowNonShelleyCompatibleDialog: !isShelleyCompatible,
-        shouldShowWantedAddressesModal,
         shouldShowGenerateMnemonicDialog: false,
         shouldShowAddressVerification: usingHwWallet,
         // send form

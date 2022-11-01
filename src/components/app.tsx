@@ -1,7 +1,6 @@
 import {connect} from 'unistore/react'
 import {TopLevelRouter} from './router'
 import Welcome from './common/welcome'
-import ContactForm from './common/contactForm'
 import Footer from './common/footer'
 import LoadingOverlay from './common/loadingOverlay'
 import NavbarAuth from './common/navbar/navbarAuth'
@@ -21,9 +20,7 @@ const Navbar = connect((state: State) => ({walletIsLoaded: state.walletIsLoaded}
 const App = connect((state: State) => ({
   pathname: state.router.pathname,
   displayWelcome: state.displayWelcome,
-  shouldShowContactFormModal: state.shouldShowContactFormModal,
-  shouldShowUnexpectedErrorModal: state.shouldShowUnexpectedErrorModal,
-}))(({pathname, displayWelcome, shouldShowContactFormModal, shouldShowUnexpectedErrorModal}) => {
+}))(({pathname, displayWelcome}) => {
   const currentTab = pathname.split('/')[1]
   if (currentTab === 'exchange') {
     return <Exchange />
@@ -37,7 +34,6 @@ const App = connect((state: State) => ({
         <Footer />
         {ADAHIDE_LOGOUT_AFTER > 0 && <AutoLogout />}
         {displayWelcome && <Welcome />}
-        {shouldShowContactFormModal && <ContactForm />}
       </ErrorBoundary>
     </div>
   )

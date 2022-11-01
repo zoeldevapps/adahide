@@ -547,7 +547,7 @@ const ShelleyLedgerCryptoProvider = async ({
 
     if (response.txHashHex !== finalizedTxAux.getId()) {
       throw new InternalError(InternalErrorReason.TxSerializationError, {
-        message: 'Tx serialization mismatch between Ledger and Adalite',
+        message: 'Tx serialization mismatch between Ledger and Adahide',
       })
     }
 

@@ -10,7 +10,7 @@ const InitialContent = () => (
     <div className="sidebar-item spacy">
       <Alert alertType="info sidebar">
         <p>
-          AdaLite supports three means of accessing your wallet. For enhanced security, we recommend you to
+          Adahide supports three means of accessing your wallet. For enhanced security, we recommend you to
           use a <strong>hardware wallet.</strong>
         </p>
         <a
@@ -40,7 +40,7 @@ const MnemonicContent = () => (
     <div className="sidebar-item spacy">
       <Alert alertType="info sidebar">
         <p>
-          AdaLite is fully interoperable with{' '}
+          Adahide is fully interoperable with{' '}
           <a className="sidebar-link" href="https://yoroi-wallet.com/" rel="noopener" target="blank">
             Yoroi-type
           </a>{' '}
@@ -97,7 +97,7 @@ const WalletContent = () => (
     </div>
     <div className="sidebar-item">
       <a className="sidebar-link" href="https://wiki.trezor.io/Cardano_(ADA)" rel="noopener" target="blank">
-        How to use Trezor T with AdaLite
+        How to use Trezor T with Adahide
       </a>
     </div>
     <div className="sidebar-item">
@@ -107,7 +107,7 @@ const WalletContent = () => (
         rel="noopener"
         target="blank"
       >
-        How to use Ledger Nano S/S Plus/X with AdaLite
+        How to use Ledger Nano S/S Plus/X with Adahide
       </a>
     </div>
     <div className="sidebar-item">
@@ -117,7 +117,7 @@ const WalletContent = () => (
         rel="noopener"
         target="blank"
       >
-        How to use BitBox02 with AdaLite
+        How to use BitBox02 with Adahide
       </a>
     </div>
     <div className="sidebar-item">

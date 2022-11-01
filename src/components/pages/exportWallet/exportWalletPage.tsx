@@ -210,7 +210,7 @@ class ExportWalletDialog extends Component<Props, State> {
         </main>
         <aside className="sidebar export">
           <Hint type="lose" title="Do not lose it" text="Key file cannot be recovered." />
-          <Hint type="share" title="Do not Share it" text="Use it in the official AdaLite only." />
+          <Hint type="share" title="Do not Share it" text="Use it in the official Adahide only." />
           <Hint type="backup" title="Make multiple backups" text="Store it safely in multiple places." />
         </aside>
       </div>

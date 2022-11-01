@@ -1,9 +1,5 @@
 import {State, getActiveAccountInfo} from './state'
-import {
-  BIG_DELEGATOR_THRESHOLD,
-  CATALYST_MIN_THRESHOLD,
-  PREMIUM_MEMBER_BALANCE_TRESHOLD,
-} from './wallet/constants'
+import {CATALYST_MIN_THRESHOLD} from './wallet/constants'
 import {useSelector} from './helpers/connect'
 import {AccountInfo, AuthMethodType, CryptoProviderFeature} from './types'
 import {CryptoProviderType} from './wallet/types'
@@ -23,16 +19,6 @@ export const totalRewardsBalanceSelector = (state: State): BigNumber =>
     (a, {shelleyBalances}) => shelleyBalances.rewardsAccountBalance.plus(a),
     new BigNumber(0)
   )
-
-export const isBigDelegatorSelector = (state: State): boolean => {
-  const totalWalletBalance = totalWalletBalanceSelector(state)
-  return totalWalletBalance.gt(BIG_DELEGATOR_THRESHOLD)
-}
-
-export const shouldShowPremiumBannerSelector = (state: State): boolean => {
-  const totalWalletBalance = totalWalletBalanceSelector(state)
-  return !state.seenPremiumBanner && totalWalletBalance.gt(PREMIUM_MEMBER_BALANCE_TRESHOLD)
-}
 
 export const shouldShowExportOptionSelector = (state: State): boolean => {
   const {authMethod} = state

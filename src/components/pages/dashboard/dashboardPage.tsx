@@ -15,9 +15,7 @@ import ShelleyBalances from '../delegations/shelleyBalances'
 import {MainTab, SubTab} from './tabs'
 import InfoModal from '../../common/infoModal'
 import NotShelleyCompatibleDialog from '../login/nonShelleyCompatibleDialog'
-import WantedAddressesModal from '../login/wantedAddressesModal'
 import DashboardErrorBanner from './dashboardErrorBanner'
-import PremiumBanner from './premiumBanner'
 import SaturationErrorBanner from './saturationErrorBanner'
 import Keys from '../advanced/keys'
 import AccountsDashboard from '../accounts/accountsDashboard'
@@ -26,7 +24,7 @@ import ErrorModals from './errorModals'
 import {SubTabs, MainTabs} from '../../../constants'
 import {useViewport, isSmallerThanDesktop} from '../../common/viewPort'
 import {ScreenType} from '../../../types'
-import {shouldShowExportOptionSelector, shouldShowPremiumBannerSelector} from '../../../selectors'
+import {shouldShowExportOptionSelector} from '../../../selectors'
 import ReceiveRedirect from '../receiveAda/receiveRedirect'
 import {formatAccountIndex} from '../../../helpers/formatAccountIndex'
 import ConfirmTransactionDialog from '../sendAda/confirmTransactionDialog'
@@ -217,11 +215,9 @@ const DashboardPage = () => {
     displayInfoModal,
     isShelleyCompatible,
     shouldShowNonShelleyCompatibleDialog,
-    shouldShowPremiumBanner,
     shouldShowSaturatedBanner,
     activeAccountIndex,
     shouldShowExportOption,
-    shouldShowWantedAddressesModal,
     shouldShowConfirmTransactionDialog,
     shouldShowSendTransactionModal,
     shouldShowDelegationModal,
@@ -232,11 +228,9 @@ const DashboardPage = () => {
       displayInfoModal: state.displayInfoModal,
       isShelleyCompatible: state.isShelleyCompatible,
       shouldShowNonShelleyCompatibleDialog: state.shouldShowNonShelleyCompatibleDialog,
-      shouldShowPremiumBanner: shouldShowPremiumBannerSelector(state),
       shouldShowSaturatedBanner: state.shouldShowSaturatedBanner,
       activeAccountIndex: state.activeAccountIndex,
       shouldShowExportOption: shouldShowExportOptionSelector(state),
-      shouldShowWantedAddressesModal: state.shouldShowWantedAddressesModal,
       shouldShowConfirmTransactionDialog: state.shouldShowConfirmTransactionDialog,
       shouldShowSendTransactionModal: state.shouldShowSendTransactionModal,
       shouldShowDelegationModal: state.shouldShowDelegationModal,
@@ -273,11 +267,9 @@ const DashboardPage = () => {
       {shouldShowDelegationModal && <DelegationModal />}
       {shouldShowVotingDialog && <VotingDialog />}
       {shouldShowConfirmTransactionDialog && <ConfirmTransactionDialog />}
-      {shouldShowWantedAddressesModal && <WantedAddressesModal />}
       {isShelleyCompatible && displayInfoModal && <InfoModal />}
       {shouldShowNonShelleyCompatibleDialog && <NotShelleyCompatibleDialog />}
       {!isShelleyCompatible && <DashboardErrorBanner />}
-      {shouldShowPremiumBanner && <PremiumBanner />}
       {shouldShowSaturatedBanner && <SaturationErrorBanner />}
 
       <div className="page-wrapper-header">

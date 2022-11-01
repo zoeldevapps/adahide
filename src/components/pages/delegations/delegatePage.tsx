@@ -7,7 +7,6 @@ import {AdaIcon} from '../../common/svg'
 import {getErrorMessage} from '../../../errors'
 import {getSourceAccountInfo} from '../../../state'
 import Accordion from '../../common/accordion'
-import {isBigDelegatorSelector} from '../../../selectors'
 import {StakePoolInfo} from './stakePoolInfo'
 import DelegateInput from './delegateInput'
 import {ADAHIDE_CONFIG} from '../../../config'
@@ -34,17 +33,6 @@ const DelegationValidation = ({
       <div className="validation-message error">{getErrorMessage(delegationValidationError.code)}</div>
     )
   )
-
-const BigDelegatorOffer = (): JSX.Element => (
-  <div className="banner delegation-offer delegation-offer-text">
-    Due to factors such as pool saturation, maximizing staking rewards is no easy task for high balance
-    wallets like yours. Get our premium assistance via{' '}
-    <a href="https://t.me/pepo6969" target="_blank" rel="noopener">
-      Telegram
-    </a>{' '}
-    or at <a href={'mailto:michal.petro@vacuumlabs.com'}>michal.petro@vacuumlabs.com</a>.
-  </div>
-)
 
 // REFACTOR: (Untyped errors): move to types
 // is "hasTickerMapping" something specific or general?
@@ -113,7 +101,6 @@ const Delegate = ({withAccordion, title}: Props): JSX.Element => {
     delegationFee,
     delegationValidationError,
     gettingPoolInfo,
-    isBigDelegator,
     isShelleyCompatible,
     poolRecommendation,
     validStakepoolDataProvider,
@@ -129,7 +116,6 @@ const Delegate = ({withAccordion, title}: Props): JSX.Element => {
     gettingPoolInfo: state.gettingPoolInfo,
     isShelleyCompatible: state.isShelleyCompatible,
     poolRecommendation: getSourceAccountInfo(state).poolRecommendation,
-    isBigDelegator: isBigDelegatorSelector(state),
     validStakepoolDataProvider: state.validStakepoolDataProvider,
     walletOperationStatusType: state.walletOperationStatusType,
   }))
@@ -191,7 +177,6 @@ const Delegate = ({withAccordion, title}: Props): JSX.Element => {
       <div>
         <ul className="stake-pool-list">
           <li className="stake-pool-item">
-            {isBigDelegator && <BigDelegatorOffer />}
             <DelegateInput
               disabled={shouldDisableSendingButton(walletOperationStatusType)}
               value={fieldValue}

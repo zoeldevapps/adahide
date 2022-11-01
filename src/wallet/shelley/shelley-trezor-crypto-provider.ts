@@ -452,7 +452,7 @@ const ShelleyTrezorCryptoProvider = async ({
 
     if (response.payload.hash !== finalizedTxAux.getId()) {
       throw new InternalError(InternalErrorReason.TxSerializationError, {
-        message: 'Tx serialization mismatch between Trezor and Adalite',
+        message: 'Tx serialization mismatch between Trezor and Adahide',
       })
     }
 

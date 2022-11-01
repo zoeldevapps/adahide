@@ -48,7 +48,7 @@ const UnexpectedErrorModal = ({sendSentry, closeUnexpectedErrorModal, reloadPage
   return (
     <Modal onRequestClose={cancelAndClose} title="Something went wrong.">
       <div className="modal-section">
-        <p className="instruction">Do you want to inform Adalite about this error?</p>
+        <p className="instruction">Do you want to inform Adahide about this error?</p>
         <p className="instruction">Tell us what happened!</p>
       </div>
       <div className="contact-form">

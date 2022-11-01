@@ -304,7 +304,6 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
    * utxos being passed from outside is a tradeoff against encapsulation of the Account object
    * which should otherwise manage them internally
    *
-   * TODO: refactor as suggested in https://github.com/vacuumlabs/adalite/issues/1181
    */
   const getTxPlan = (changeAddress: Address, txPlanArgs: TxPlanArgs, utxos: UTxO[]): TxPlanResult => {
     const arrangedUtxos = arrangeUtxos(utxos, txPlanArgs)

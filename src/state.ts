@@ -38,14 +38,11 @@ export interface State {
   shouldShowUnexpectedErrorModal: boolean
   error?: any
   activeMainTab: MainTabs
-  shouldShowContactFormModal?: boolean
   conversionRates: ConversionRates | null
 
   // cache
   displayWelcome: boolean
   displayInfoModal: boolean
-  seenPremiumBanner: boolean
-  shouldShowWantedAddressesModal: boolean
 
   // login / logout
   autoLogin: boolean
@@ -155,8 +152,6 @@ const initialState: State = {
     !(window.localStorage.getItem(localStorageVars.WELCOME) === 'true') &&
     !shouldShowLogoutNotification &&
     ADAHIDE_CONFIG.ADAHIDE_DEVEL_AUTO_LOGIN !== 'true',
-  seenPremiumBanner: window.localStorage.getItem(localStorageVars.PREMIUM_BANNER) === 'true',
-  shouldShowWantedAddressesModal: false,
   displayInfoModal: !(window.localStorage.getItem(localStorageVars.INFO_MODAL) === 'true'),
 
   // login / logout

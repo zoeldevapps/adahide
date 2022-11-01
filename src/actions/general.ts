@@ -39,25 +39,6 @@ export default (store: Store) => {
     })
   }
 
-  const closePremiumBanner = (state) => {
-    window.localStorage.setItem(localStorageVars.PREMIUM_BANNER, 'true')
-    setState({
-      seenPremiumBanner: true,
-    })
-  }
-
-  const shouldShowContactFormModal = (state) => {
-    setState({
-      shouldShowContactFormModal: true,
-    })
-  }
-
-  const closeContactFormModal = (state) => {
-    setState({
-      shouldShowContactFormModal: false,
-    })
-  }
-
   const closeLogoutNotification = (state) => {
     setState({
       shouldShowLogoutNotification: false,
@@ -107,28 +88,18 @@ export default (store: Store) => {
     })
   }
 
-  const closeWantedAddressModal = (state) => {
-    setState({
-      shouldShowWantedAddressesModal: false,
-    })
-  }
-
   return {
     openWelcome,
     closeWelcome,
     closeLogoutNotification,
     closeUnexpectedErrorModal,
-    shouldShowContactFormModal,
-    closeContactFormModal,
     setActiveMainTab,
     loadErrorBannerContent,
     openInfoModal,
     closeInfoModal,
-    closePremiumBanner,
     setAuthMethod,
     closeNonShelleyCompatibleDialog,
     openNonShelleyCompatibleDialog,
     closeWalletLoadingErrorModal,
-    closeWantedAddressModal,
   }
 }

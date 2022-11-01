@@ -62,22 +62,16 @@ export const DEFAULT_TTL_SLOTS = 3600 // 1 hour
 
 export const DELAY_AFTER_TOO_MANY_REQUESTS = 2000
 
-export const ADAHIDE_SUPPORT_EMAIL = 'info@adalite.io'
+export const ADAHIDE_SUPPORT_EMAIL = 'contact@zoeldev.com'
 
 export const SENTRY_USER_FEEDBACK_API =
   'https://sentry.io/api/0/projects/vacuumlabs-sro/adalite-frontend/user-feedback/'
 
 export const UNKNOWN_POOL_NAME = '<Unknown pool>'
 
-export const PREMIUM_MEMBER_BALANCE_TRESHOLD = 2500000000000
-
-export const BIG_DELEGATOR_THRESHOLD = 10000000000000
-
 export const CATALYST_MIN_THRESHOLD = 500000000
 
 export const WANTED_DELEGATOR_ADDRESSES = []
-
-export const WANTED_DELEGATOR_STAKING_ADDRESSES = []
 
 export const SATURATION_POINT = 66800000000000
 
