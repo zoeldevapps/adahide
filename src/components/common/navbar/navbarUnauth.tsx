@@ -1,8 +1,8 @@
 import {connect} from '../../../helpers/connect'
 import actions from '../../../actions'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import isLeftClick from '../../../helpers/isLeftClick'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 interface Props {
   pathname: string
@@ -19,23 +19,13 @@ const NavbarUnauth = connect(
   <nav className="navbar">
     <div className="navbar-wrapper">
       <h1 className="navbar-heading">
-        <span className="navbar-title">AdaLite - Cardano Wallet</span>
+        <span className="navbar-title">Adahide</span>
         <a href="/">
-          <img src="assets/adalite-logo.svg" alt="AdaLite - Cardano Wallet" className="navbar-logo" />
+          <img src="assets/adahide-logo.svg" alt="Adahide" className="navbar-logo" />
         </a>
       </h1>
       <div className="navbar-version">{`Ver. ${APP_VERSION}`}</div>
       <div className="navbar-content">
-        <a
-          className="navbar-link primary"
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            window.history.pushState({}, 'staking', 'staking')
-          }}
-        >
-          Staking
-        </a>
         <a
           className="navbar-link"
           href="#"
@@ -48,7 +38,7 @@ const NavbarUnauth = connect(
         </a>
         <a
           className="navbar-link"
-          href="https://github.com/vacuumlabs/adalite/wiki"
+          href="https://github.com/vacuumlabs/adahide/wiki"
           target="_blank"
           rel="noopener"
         >

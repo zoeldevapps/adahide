@@ -21,7 +21,7 @@ import {
 } from '../../../src/types'
 import distinct from '../../../src/helpers/distinct'
 import {UNKNOWN_POOL_NAME} from '../../../src/wallet/constants'
-import {captureMessage} from '@sentry/browser'
+import {captureMessage} from '@sentry/react'
 import {
   BulkAddressesSummaryResponse,
   TxSummaryResponse,
@@ -57,11 +57,11 @@ import {filterValidTransactions} from '../../../src/helpers/common'
 import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
-const blockchainExplorer = (ADALITE_CONFIG) => {
-  const gapLimit = ADALITE_CONFIG.ADALITE_GAP_LIMIT
+const blockchainExplorer = (ADAHIDE_CONFIG) => {
+  const gapLimit = ADAHIDE_CONFIG.ADAHIDE_GAP_LIMIT
 
   async function _fetchBulkAddressInfo(addresses: Array<string>): Promise<BulkAddressesSummary | undefined> {
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`
     const result: BulkAddressesSummaryResponse = await request(url, 'POST', JSON.stringify(addresses), {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
   }
 
   async function fetchTxInfo(txHash: string): Promise<boolean> {
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/txs/summary/${txHash}`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/txs/summary/${txHash}`
     const response: TxSummaryResponse = await request(url)
     // @ts-ignore (TODO, handle 'Left')
     return !!response.Right
@@ -190,9 +190,9 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
   }
 
   async function submitTxRaw(txHash, txBody, params): Promise<TxSubmission> {
-    const token = ADALITE_CONFIG.ADALITE_BACKEND_TOKEN
+    const token = ADAHIDE_CONFIG.ADAHIDE_BACKEND_TOKEN
     const response: SubmitResponse = await request(
-      `${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/txs/submit`,
+      `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/txs/submit`,
       'POST',
       JSON.stringify({
         txHash,
@@ -247,7 +247,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
     const chunkSize = 50
     const chunks = range(0, Math.ceil(addresses.length / chunkSize))
 
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`
     const response = (
       await Promise.all(
         chunks.map(async (index) => {
@@ -284,7 +284,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
 
   async function getPoolInfo(url: string): Promise<HostedPoolMetadata> {
     const response: HostedPoolMetadata = await request(
-      `${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/poolMeta`,
+      `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/poolMeta`,
       'POST',
       JSON.stringify({poolUrl: url}),
       {'Content-Type': 'application/json'}
@@ -298,10 +298,10 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
     stakingKeyHashHex: HexString,
     validStakepoolDataProvider: StakepoolDataProvider
   ): Promise<StakingHistoryObject[]> {
-    const delegationsUrl = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/delegationHistory/${stakingKeyHashHex}`
-    const rewardsUrl = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/rewardHistory/${stakingKeyHashHex}`
-    const withdrawalsUrl = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/withdrawalHistory/${stakingKeyHashHex}`
-    const stakingKeyRegistrationUrl = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/stakeRegistrationHistory/${stakingKeyHashHex}`
+    const delegationsUrl = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/delegationHistory/${stakingKeyHashHex}`
+    const rewardsUrl = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/rewardHistory/${stakingKeyHashHex}`
+    const withdrawalsUrl = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/withdrawalHistory/${stakingKeyHashHex}`
+    const stakingKeyRegistrationUrl = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/stakeRegistrationHistory/${stakingKeyHashHex}`
 
     const [delegations, rewards, withdrawals, stakingKeyRegistrations]: [
       Array<DelegationHistoryEntry>,
@@ -468,9 +468,9 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
     poolHash: string,
     stakeAmount: Lovelace
   ): Promise<PoolRecommendationResponse> {
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/poolRecommendation/poolHash/${poolHash}/stake/${stakeAmount}`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/poolRecommendation/poolHash/${poolHash}/stake/${stakeAmount}`
     return request(url).catch(() => ({
-      recommendedPoolHash: ADALITE_CONFIG.ADALITE_STAKE_POOL_ID,
+      recommendedPoolHash: ADAHIDE_CONFIG.ADAHIDE_STAKE_POOL_ID,
       isInRecommendedPoolSet: true,
       status: 'GivedPoolOk',
       isInPrivatePoolSet: false,
@@ -479,7 +479,7 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
   }
 
   async function getStakingInfo(stakingKeyHashHex: HexString): Promise<StakingInfoResponse> {
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/info/${stakingKeyHashHex}`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/info/${stakingKeyHashHex}`
     const response = await request(url)
     // if we fail to recieve poolMeta from backend
     // TODO: IMHO we shouldn't freestyle append poolInfo here, it breaks types easily
@@ -497,13 +497,13 @@ const blockchainExplorer = (ADALITE_CONFIG) => {
   }
 
   async function getStakepoolDataProvider(): Promise<StakepoolDataProvider> {
-    const url = `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/v2/stakePools`
+    const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/v2/stakePools`
     const validStakepools: StakePoolInfosByPoolHash = await request(url)
     return createStakepoolDataProvider(validStakepools)
   }
 
   function getBestSlot(): Promise<BestSlotResponse> {
-    return request(`${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/v2/bestSlot`)
+    return request(`${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/v2/bestSlot`)
   }
 
   function invalidateCache() {

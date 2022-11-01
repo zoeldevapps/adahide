@@ -1,6 +1,6 @@
 import sleep from './sleep'
 import debugLog from './debugLog'
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {SENTRY_USER_FEEDBACK_API} from '../wallet/constants'
 
 async function sendFeedback(comments, email, name, eventId) {
@@ -13,7 +13,7 @@ async function sendFeedback(comments, email, name, eventId) {
     comments,
   }
   const url = SENTRY_USER_FEEDBACK_API
-  const token = ADALITE_CONFIG.ADALITE_SENTRY_DSN_WEB
+  const token = ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN
   try {
     await fetch(url, {
       method: 'POST',

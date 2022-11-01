@@ -1,8 +1,8 @@
 import {connect, useActions} from '../../../helpers/connect'
 import actions from '../../../actions'
-import {ADALITE_CONFIG} from '../../../config'
+import {ADAHIDE_CONFIG} from '../../../config'
 import {useEffect} from 'react'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
   let scrollDestination: any
@@ -28,7 +28,7 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
     >
       <div className="navbar-wrapper">
         <h1 className="navbar-heading">
-          <span className="navbar-title">AdaLite - Cardano Wallet</span>
+          <span className="navbar-title">Adahide - Cardano Wallet</span>
           <a
             href="#"
             onClick={(e) => {
@@ -36,7 +36,7 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
               window.history.pushState({}, 'txHistory', 'txHistory')
             }}
           >
-            <img src="assets/adalite-logo.svg" alt="AdaLite - Cardano Wallet" className="navbar-logo" />
+            <img src="assets/adahide-logo.svg" alt="Adahide" className="navbar-logo" />
           </a>
         </h1>
         {isDemoWallet && <div className="navbar-demo">Accessing demo wallet</div>}
@@ -64,7 +64,7 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
           </a>
           <a
             className="navbar-link"
-            href="https://github.com/vacuumlabs/adalite/wiki/AdaLite-FAQ"
+            href="https://github.com/zoeldev/adahide/wiki"
             target="_blank"
             rel="noopener"
           >

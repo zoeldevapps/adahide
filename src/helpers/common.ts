@@ -1,4 +1,4 @@
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {TxSummaryEntry, WalletOperationStatusType} from '../types'
 import {CaTxEntry} from '../wallet/backend-types'
 
@@ -15,16 +15,16 @@ type VotingRegistrationStatus =
 
 export const getVotingRegistrationStatus = (): VotingRegistrationStatus => {
   const now = Date.now()
-  if (now < ADALITE_CONFIG.ADALITE_NEXT_VOTING_START) {
+  if (now < ADAHIDE_CONFIG.ADAHIDE_NEXT_VOTING_START) {
     return {
       isOpen: false,
-      explanation: `Registration for ${ADALITE_CONFIG.ADALITE_NEXT_VOTING_ROUND_NAME} Voting not open yet.`,
+      explanation: `Registration for ${ADAHIDE_CONFIG.ADAHIDE_NEXT_VOTING_ROUND_NAME} Voting not open yet.`,
     }
   }
-  if (now > ADALITE_CONFIG.ADALITE_NEXT_VOTING_END) {
+  if (now > ADAHIDE_CONFIG.ADAHIDE_NEXT_VOTING_END) {
     return {
       isOpen: false,
-      explanation: `Registration for ${ADALITE_CONFIG.ADALITE_NEXT_VOTING_ROUND_NAME} Voting closed.`,
+      explanation: `Registration for ${ADAHIDE_CONFIG.ADAHIDE_NEXT_VOTING_ROUND_NAME} Voting closed.`,
     }
   }
 
@@ -47,7 +47,7 @@ export function getDateDiffInSeconds(date1: Date, date2: Date) {
 }
 
 export function getCardanoscanUrl() {
-  return ADALITE_CONFIG.ADALITE_NETWORK === 'mainnet'
+  return ADAHIDE_CONFIG.ADAHIDE_NETWORK === 'mainnet'
     ? 'https://cardanoscan.io'
     : 'https://testnet.cardanoscan.io'
 }

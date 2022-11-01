@@ -2,15 +2,16 @@ import {createRoot} from 'react-dom/client'
 import {Provider as UnistoreStoreProvider} from 'unistore/react'
 import {StoreProvider as HooksStoreProvider} from './libs/unistore-hooks'
 
+import * as Sentry from '@sentry/react'
+import {BrowserTracing} from '@sentry/tracing'
+
 import App from './components/app'
 
 import {createStore} from './store'
-import {ADALITE_CONFIG} from './config'
+import {ADAHIDE_CONFIG} from './config'
 
-import {init} from '@sentry/browser'
-
-if (ADALITE_CONFIG.ADALITE_TREZOR_CONNECT_URL) {
-  const url = new URL(ADALITE_CONFIG.ADALITE_TREZOR_CONNECT_URL)
+if (ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL) {
+  const url = new URL(ADAHIDE_CONFIG.ADAHIDE_TREZOR_CONNECT_URL)
   // @ts-ignore
   window.__TREZOR_CONNECT_SRC = `${url.origin}/`
 }
@@ -70,9 +71,9 @@ window.onhashchange = () =>
     },
   })
 
-init({
-  dsn: ADALITE_CONFIG.ADALITE_SENTRY_DSN_WEB,
-  environment: ADALITE_CONFIG.ADALITE_ENV,
+Sentry.init({
+  dsn: ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN,
+  environment: ADAHIDE_CONFIG.ADAHIDE_ENV,
   // debug: true,
   beforeSend(event) {
     if (!event.exception) return event
@@ -94,10 +95,13 @@ init({
     // FF 83.0 specific error to be ignored
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1678243
     'XDR encoding failure',
-    // Eternl wallet error, unrelated to Adalite
-    // https://github.com/ccwalletio/tracker/issues/119
-    'WebAssembly.instantiate(): expected magic word',
   ],
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
 })
 
 const root = createRoot(document.getElementById('root') as HTMLElement)

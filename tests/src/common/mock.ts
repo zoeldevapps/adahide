@@ -2,14 +2,14 @@ import fetchMock from 'fetch-mock'
 import singleAddressesMock from './singleAddressesMock'
 import utxoMock from './utxoMock'
 
-const mock = (ADALITE_CONFIG) => {
+const mock = (ADAHIDE_CONFIG) => {
   function clean() {
     fetchMock.restore()
   }
 
   function mockBulkAddressSummaryEndpoint() {
     fetchMock.post(
-      `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`,
+      `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`,
       (url, options) => {
         const summary = {
           caAddresses: [] as string[],
@@ -39,7 +39,7 @@ const mock = (ADALITE_CONFIG) => {
         }
       },
       {
-        name: `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`,
+        name: `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`,
         overwriteRoutes: true,
       }
     )
@@ -54,7 +54,7 @@ const mock = (ADALITE_CONFIG) => {
     }
 
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/info/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/info/`,
       response: {
         status: 200,
         body: acctInfoMock,
@@ -78,7 +78,7 @@ const mock = (ADALITE_CONFIG) => {
     }
 
     fetchMock.mock({
-      matcher: `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/v2/stakePools`,
+      matcher: `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/v2/stakePools`,
       response: {
         status: 200,
         body: stakePoolsMock,
@@ -112,7 +112,7 @@ const mock = (ADALITE_CONFIG) => {
     }
     for (const request in requestsAndResponses) {
       fetchMock.mock({
-        matcher: `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/txs/raw/${request}`,
+        matcher: `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/txs/raw/${request}`,
         response: {
           status: 200,
           body: requestsAndResponses[request],
@@ -138,7 +138,7 @@ const mock = (ADALITE_CONFIG) => {
         // eslint-disable-next-line no-loop-func
         matcher: (url, opts) => {
           return (
-            url === `${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/txs/submit` && opts && opts.body === request
+            url === `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/txs/submit` && opts && opts.body === request
           )
         },
         response: {
@@ -151,7 +151,7 @@ const mock = (ADALITE_CONFIG) => {
     }
 
     fetchMock.mock({
-      matcher: `${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/txs/submit`,
+      matcher: `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/txs/submit`,
       response: {
         status: 200,
         body: {
@@ -165,7 +165,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockUtxoEndpoint() {
     fetchMock.post(
-      `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`,
+      `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`,
       (url, options) => {
         let utxos = []
         // @ts-expect-error options.body doesn't seem to have a reasonable type
@@ -179,7 +179,7 @@ const mock = (ADALITE_CONFIG) => {
         }
       },
       {
-        name: `${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`,
+        name: `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/utxo`,
         overwriteRoutes: true,
       }
     )
@@ -187,7 +187,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockPoolMeta() {
     fetchMock.post(
-      `${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/poolMeta`,
+      `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/poolMeta`,
       {
         status: 200,
         body: {
@@ -223,7 +223,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockAccountDelegationHistory() {
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/delegationHistory/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/delegationHistory/`,
       response: {
         status: 200,
         body: [
@@ -247,7 +247,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockAccountStakeRegistrationHistory() {
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/stakeRegistrationHistory/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/stakeRegistrationHistory/`,
       response: {
         status: 200,
         body: [
@@ -265,7 +265,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockWithdrawalHistory() {
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/withdrawalHistory/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/withdrawalHistory/`,
       response: {
         status: 200,
         body: [],
@@ -276,7 +276,7 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockRewardHistory() {
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/rewardHistory/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/rewardHistory/`,
       response: {
         status: 200,
         body: [],
@@ -287,11 +287,11 @@ const mock = (ADALITE_CONFIG) => {
 
   function mockPoolRecommendation() {
     fetchMock.mock({
-      matcher: `begin:${ADALITE_CONFIG.ADALITE_BLOCKCHAIN_EXPLORER_URL}/api/account/poolRecommendation/`,
+      matcher: `begin:${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/poolRecommendation/`,
       response: {
         status: 200,
         body: {
-          recommendedPoolHash: ADALITE_CONFIG.ADALITE_STAKE_POOL_ID,
+          recommendedPoolHash: ADAHIDE_CONFIG.ADAHIDE_STAKE_POOL_ID,
           isInRecommendedPoolSet: true,
           status: 'GivedPoolOk',
           isInPrivatePoolSet: false,
@@ -304,7 +304,7 @@ const mock = (ADALITE_CONFIG) => {
   }
 
   function mockTokenRegistry() {
-    fetchMock.post(`begin:${ADALITE_CONFIG.ADALITE_SERVER_URL}/api/bulk/tokens/metadata`, {
+    fetchMock.post(`begin:${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/bulk/tokens/metadata`, {
       status: 200,
       body: [],
       sendAsJson: true,

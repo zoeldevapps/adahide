@@ -4,7 +4,7 @@ import {Account} from '../../../../src/wallet/account'
 import mnemonicToWalletSecretDef from '../../../../src/wallet/helpers/mnemonicToWalletSecretDef'
 import BlockchainExplorer from '../../common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../../../src/wallet/shelley/shelley-js-crypto-provider'
-import {ADALITE_CONFIG} from '../../../../src/config'
+import {ADAHIDE_CONFIG} from '../../../../src/config'
 import {transactionSettings} from '../../common/tx-settings'
 import {poolRegTxSettings} from '../../common/pool-reg-tx-settings'
 import mockNetwork from '../../common/mock'
@@ -24,8 +24,8 @@ const initAccount = async (settings) => {
     shouldExportPubKeyBulk,
     isShelleyCompatible,
   } = settings
-  const config = {...ADALITE_CONFIG, isShelleyCompatible, shouldExportPubKeyBulk}
-  const blockchainExplorer = BlockchainExplorer(ADALITE_CONFIG)
+  const config = {...ADAHIDE_CONFIG, isShelleyCompatible, shouldExportPubKeyBulk}
+  const blockchainExplorer = BlockchainExplorer(ADAHIDE_CONFIG)
 
   let walletSecretDef
   if (type === 'walletSecretDef') {
@@ -52,8 +52,8 @@ const initAccount = async (settings) => {
 }
 
 before(async () => {
-  ADALITE_CONFIG.ADALITE_NETWORK = 'MAINNET'
-  const mockNet = mockNetwork(ADALITE_CONFIG)
+  ADAHIDE_CONFIG.ADAHIDE_NETWORK = 'MAINNET'
+  const mockNet = mockNetwork(ADAHIDE_CONFIG)
   mockNet.mockBulkAddressSummaryEndpoint()
   mockNet.mockGetAccountInfo()
   mockNet.mockGetStakePools()

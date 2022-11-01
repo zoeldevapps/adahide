@@ -23,7 +23,7 @@ const NonShelleyCompatibleWarningDialog = (): JSX.Element => {
       </Alert>
       <div />
       <p>
-        To use your wallet to full extend please follow this guide to converting your wallet to AdaLite
+        To use your wallet to full extend please follow this guide to converting your wallet to Adahide
         Shelley-compatible wallet.
       </p>
       <ol>

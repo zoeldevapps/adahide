@@ -1,4 +1,4 @@
-import {NETWORKS, WANTED_DELEGATOR_STAKING_ADDRESSES} from '../wallet/constants'
+import {NETWORKS} from '../wallet/constants'
 import {CryptoProviderType} from '../wallet/types'
 import ShelleyCryptoProviderFactory from '../wallet/shelley/shelley-crypto-provider-factory'
 import {ShelleyWallet} from '../wallet/shelley-wallet'
@@ -7,7 +7,7 @@ import mnemonicToWalletSecretDef from '../wallet/helpers/mnemonicToWalletSecretD
 import debugLog from '../helpers/debugLog'
 import getConversionRates from '../helpers/getConversionRates'
 
-import {ADALITE_CONFIG} from '../config'
+import {ADAHIDE_CONFIG} from '../config'
 import {
   AccountInfo,
   Lovelace,
@@ -41,13 +41,6 @@ export const getWallet = (): Wallet => {
     throw new Error('Wallet is not loaded')
   }
   return wallet
-}
-const accountsIncludeStakingAddresses = (
-  accountsInfo: Array<AccountInfo>,
-  soughtAddresses: Array<string>
-): boolean => {
-  const stakingAddresses = accountsInfo.map((accountInfo) => accountInfo.stakingAddress)
-  return stakingAddresses.some((address) => soughtAddresses.includes(address))
 }
 
 export default (store: Store) => {
@@ -113,7 +106,7 @@ export default (store: Store) => {
       }
     }
     const config = {
-      ...ADALITE_CONFIG,
+      ...ADAHIDE_CONFIG,
       isShelleyCompatible,
       shouldExportPubKeyBulk,
       ledgerTransportType,
@@ -132,7 +125,7 @@ export default (store: Store) => {
       }
       const cryptoProvider = await ShelleyCryptoProviderFactory.getCryptoProvider(cryptoProviderType, {
         walletSecretDef,
-        network: NETWORKS[ADALITE_CONFIG.ADALITE_NETWORK],
+        network: NETWORKS[ADAHIDE_CONFIG.ADAHIDE_NETWORK],
         config,
       })
       loadingAction(state, 'Loading wallet data...')
@@ -149,10 +142,6 @@ export default (store: Store) => {
       const shouldShowSaturatedBanner = getShouldShowSaturatedBanner(accountsInfo)
 
       const maxAccountIndex = wallet.getMaxAccountIndex()
-      const shouldShowWantedAddressesModal = accountsIncludeStakingAddresses(
-        accountsInfo,
-        WANTED_DELEGATOR_STAKING_ADDRESSES
-      )
 
       const cryptoProviderInfo = wallet.getCryptoProviderInfo()
       const usingHwWallet = isHwWallet(cryptoProviderInfo.type)
@@ -160,7 +149,7 @@ export default (store: Store) => {
         loadingAction(state, `Waiting for ${getDeviceBrandName(cryptoProviderInfo.type)}...`)
       }
 
-      const demoRootSecret = (await mnemonicToWalletSecretDef(ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC))
+      const demoRootSecret = (await mnemonicToWalletSecretDef(ADAHIDE_CONFIG.ADAHIDE_DEMO_WALLET_MNEMONIC))
         .rootSecret
       const isDemoWallet = walletSecretDef && walletSecretDef.rootSecret.equals(demoRootSecret)
       setState({
@@ -178,7 +167,6 @@ export default (store: Store) => {
         cryptoProviderInfo,
         isDemoWallet,
         shouldShowNonShelleyCompatibleDialog: !isShelleyCompatible,
-        shouldShowWantedAddressesModal,
         shouldShowGenerateMnemonicDialog: false,
         shouldShowAddressVerification: usingHwWallet,
         // send form
@@ -208,7 +196,7 @@ export default (store: Store) => {
   const loadDemoWallet = (state: State) => {
     setState({
       mnemonicAuthForm: {
-        mnemonicInputValue: ADALITE_CONFIG.ADALITE_DEMO_WALLET_MNEMONIC,
+        mnemonicInputValue: ADAHIDE_CONFIG.ADAHIDE_DEMO_WALLET_MNEMONIC,
         mnemonicInputError: null,
         formIsValid: true,
       },

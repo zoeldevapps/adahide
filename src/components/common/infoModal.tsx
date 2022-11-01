@@ -57,11 +57,12 @@ class InfoModal extends Component<Props, {dontShowAgainCheckbox: boolean}> {
                 <Fragment>
                   <Article title="Adalite fork Adahide - The beginnings" icon="">
                     <p className="info-spaced-paragraph">
-                      AdaLite was put on life-support in favor in favor of a the multi-chain NuFi wallet.
-                      While NuFi is great we wanted a much lighter experience more focused on open-source and
-                      developer experience. Both AdaLite and NuFi rely on heavy backend services. The aim of
-                      Adahide is to be a much lighter infrastructure-wise - just requiring node + ogmios to
-                      run -, or use existing SaS solutions (like blockfrost, koios) for more advanced things.
+                      AdaLite was put on life-support in favor of a the multi-chain NuFi wallet. While NuFi is
+                      great, we wanted a much lighter infrastructure-wise. Something truly lighter. Both
+                      AdaLite and NuFi rely on heavy backend services. The aim of Adahide is to be a much
+                      lighter infrastructure-wise - just requiring node + ogmios to run -, or use existing SaS
+                      solutions (like blockfrost, koios) for more advanced things. Anything on top of this
+                      base should be modular.
                     </p>
                   </Article>
                 </Fragment>

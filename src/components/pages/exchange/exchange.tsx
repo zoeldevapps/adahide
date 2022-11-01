@@ -1,15 +1,15 @@
 import styles from './exchange.module.scss'
-import {ADALITE_CONFIG} from '../../../config'
-const APP_VERSION = ADALITE_CONFIG.ADALITE_APP_VERSION
+import {ADAHIDE_CONFIG} from '../../../config'
+const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
 const Exchange = () => (
   <div className="wrap">
     <nav className="navbar">
       <div className={`navbar-wrapper ${styles.navbarWrapper}`}>
         <h1 className={`navbar-heading ${styles.navbarHeading}`}>
-          <span className={`navbar-title ${styles.navbarTitle}`}>AdaLite - Cardano Wallet</span>
+          <span className={`navbar-title ${styles.navbarTitle}`}>Adahide - a cardano wallet</span>
           <a href="/">
-            <img src="assets/adalite-logo.svg" alt="AdaLite - Cardano Wallet" className="navbar-logo" />
+            <img src="assets/adahide-logo.svg" alt="Adahide" className="navbar-logo" />
           </a>
         </h1>
         <div className={`navbar-version ${styles.navbarVersion}`}>{`Ver. ${APP_VERSION}`}</div>

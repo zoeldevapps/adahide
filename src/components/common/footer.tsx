@@ -1,5 +1,4 @@
-import {useSelector, useActions} from '../../helpers/connect'
-import actions from '../../actions'
+import {useSelector} from '../../helpers/connect'
 import Branding from './branding'
 import {
   BTC_BLOCKCHAIN_EXPLORER,
@@ -16,7 +15,6 @@ const Footer = () => {
   const showConversionRates = useSelector(
     (state) => showRatesOn.indexOf(state.router.pathname) !== -1 && state.walletIsLoaded
   )
-  const {shouldShowContactFormModal} = useActions(actions)
 
   return (
     <footer className="footer">
@@ -24,14 +22,8 @@ const Footer = () => {
         <Branding dark={false} />
         <div className="footer-row">
           <div className="social">
-            <button role="button" className="social-link email" onClick={shouldShowContactFormModal}>
-              Contact us
-            </button>
-            <a href="https://t.me/AdaLite" target="_blank" rel="noopener" className="social-link telegram">
-              Telegram
-            </a>
             <a
-              href="https://github.com/vacuumlabs/adalite"
+              href="https://github.com/zoeldevapps/adahide"
               target="_blank"
               rel="noopener"
               className="social-link github"
@@ -39,12 +31,21 @@ const Footer = () => {
               View on Github
             </a>
             <a
-              href="https://twitter.com/AdaLiteWallet"
+              href="https://twitter.com/adahideio"
               target="_blank"
               rel="noopener"
               className="social-link twitter"
             >
               Twitter
+            </a>
+
+            <a
+              href="https://discord.gg/5AJgwkepyUo"
+              target="_blank"
+              rel="noopener"
+              className="social-link discord"
+            >
+              Discord
             </a>
           </div>
           <div className="donations">
@@ -71,7 +72,7 @@ const Footer = () => {
               className="donations-item ada"
               href={`${getCardanoscanUrl()}/address/${getDonationAddress()}`}
               target="_blank"
-              title="Donate via Adalite"
+              title="Donate via Adahide"
               rel="noopener"
             >
               ADA

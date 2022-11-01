@@ -176,7 +176,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   const myAddresses = MyAddresses({
     accountIndex,
     cryptoProvider,
-    gapLimit: config.ADALITE_GAP_LIMIT,
+    gapLimit: config.ADAHIDE_GAP_LIMIT,
     blockchainExplorer,
   })
 
@@ -304,7 +304,6 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
    * utxos being passed from outside is a tradeoff against encapsulation of the Account object
    * which should otherwise manage them internally
    *
-   * TODO: refactor as suggested in https://github.com/vacuumlabs/adalite/issues/1181
    */
   const getTxPlan = (changeAddress: Address, txPlanArgs: TxPlanArgs, utxos: UTxO[]): TxPlanResult => {
     const arrangedUtxos = arrangeUtxos(utxos, txPlanArgs)
@@ -433,9 +432,9 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   async function getPoolRecommendation(pool: any, stakeAmount: Lovelace): Promise<any> {
     const poolHash = pool ? pool.poolHash : null
     const poolRecommendation = await blockchainExplorer.getPoolRecommendation(poolHash, stakeAmount)
-    if (!poolRecommendation.recommendedPoolHash || config.ADALITE_ENFORCE_STAKEPOOL) {
+    if (!poolRecommendation.recommendedPoolHash || config.ADAHIDE_ENFORCE_STAKEPOOL) {
       Object.assign(poolRecommendation, {
-        recommendedPoolHash: config.ADALITE_STAKE_POOL_ID,
+        recommendedPoolHash: config.ADAHIDE_STAKE_POOL_ID,
       })
     }
     const delegatesToRecommended = poolRecommendation.recommendedPoolHash === pool.poolHash
