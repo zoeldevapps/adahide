@@ -9,10 +9,10 @@ export const MAX_UINT64 = new BigNumber(2).pow(64).minus(1)
 export const MAX_ADDRESS_INFO_AGE = 10000
 export const BTC_BLOCKCHAIN_EXPLORER = 'https://www.blockchain.com/btc/address/'
 export const ETH_BLOCKCHAIN_EXPLORER = 'https://etherscan.io/address/'
-export const BTC_DONATION_ADDRESS = 'bc1qjdvjjhm5ynucwltmrxpnk6van4ve06528x6q99'
-export const ETH_DONATION_ADDRESS = '0xe1575549f79742d21E56426a1F9AD26997F5B9fb'
+export const BTC_DONATION_ADDRESS = 'bc1qsgf4q99jjxzm7jqmzhm3tzgz5f4zcgnfemauvt'
+export const ETH_DONATION_ADDRESS = '0xE43B415C894a06F426EFe42b916b61dA78Fd5C4d'
 export const ADA_DONATION_ADDRESS =
-  'addr1qxfxlatvpnl7wywyz6g4vqyfgmf9mdyjsh3hnec0yuvrhk8jh8axm6pzha46j5e7j3a2mjdvnpufphgjawhyh0tg9r3sk85ls4'
+  'addr1qx4a4yw54jzq78f5y58ru9yx3cjuwwulq2cnweg2fypqe74xjr24v3vw44mpe4vge0la5lzc7nf3rszlyl9gspjqxvqq9r0v3h'
 
 export const TX_WITNESS_SIZES = {
   byronv2: 139,
