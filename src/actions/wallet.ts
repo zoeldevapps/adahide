@@ -2,7 +2,6 @@ import {NETWORKS} from '../wallet/constants'
 import {CryptoProviderType} from '../wallet/types'
 import ShelleyCryptoProviderFactory from '../wallet/shelley/shelley-crypto-provider-factory'
 import {ShelleyWallet} from '../wallet/shelley-wallet'
-import mnemonicToWalletSecretDef from '../wallet/helpers/mnemonicToWalletSecretDef'
 
 import debugLog from '../helpers/debugLog'
 import getConversionRates from '../helpers/getConversionRates'

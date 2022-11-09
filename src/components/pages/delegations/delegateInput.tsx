@@ -1,6 +1,5 @@
 import {Fragment} from 'react'
 import {useSelector} from '../../../helpers/connect'
-import {ADAHIDE_CONFIG} from '../../../config'
 import assert from 'assert'
 
 type StakePoolLabelProps = {

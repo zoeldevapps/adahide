@@ -8,7 +8,6 @@ import BlockchainExplorer from './common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../src/wallet/shelley/shelley-js-crypto-provider'
 import mockNetwork from './common/mock'
 import {ByronAddressProvider} from '../../src/wallet/byron/byron-address-provider'
-import {GAP_LIMIT} from '../../src/wallet/constants'
 
 const mockConfig = {
   ADAHIDE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',

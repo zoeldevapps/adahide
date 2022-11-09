@@ -1,6 +1,5 @@
 import assert from 'assert'
 import BigNumber from 'bignumber.js'
-import {ADAHIDE_CONFIG} from './config'
 import {MainTabs} from './constants'
 import {InternalErrorReason} from './errors'
 import {StakepoolDataProvider} from './helpers/dataProviders/types'

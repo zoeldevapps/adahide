@@ -1,7 +1,6 @@
 import {Store, State} from '../state'
 import delegateActions from './delegate'
 import commonActions from './common'
-import {ADAHIDE_CONFIG} from '../config'
 import {MainTabs} from '../constants'
 import {localStorageVars} from '../localStorage'
 import {AuthMethodType} from '../types'
