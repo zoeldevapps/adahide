@@ -20,6 +20,7 @@ export const TX_WITNESS_SIZES = {
   byronV1: 170,
 }
 
+export const GAP_LIMIT = 20
 export const MAX_TX_SIZE = 16384
 export const MAX_TX_OUTPUT_SIZE = 4000
 export const CATALYST_SIGNATURE_BYTE_LENGTH = 64

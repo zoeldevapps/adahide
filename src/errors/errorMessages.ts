@@ -1,11 +1,9 @@
 import printAda from '../helpers/printAda'
 import debugLog from '../helpers/debugLog'
-import {ADAHIDE_CONFIG} from '../config'
 import {BITBOX02_VERSIONS, LEDGER_VERSIONS, TREZOR_VERSIONS} from '../wallet/constants'
 import {CryptoProviderFeature} from '../types'
 import {knownExternalErrors, InternalErrorReason} from '.'
-
-const {ADAHIDE_MIN_DONATION_VALUE} = ADAHIDE_CONFIG
+import {MIN_UTXO_VALUE} from '../wallet/shelley/transaction/constants'
 
 const hwWalletTroubleshootingSuggestion =
   'Make sure other apps (e.g. Ledger Live) or websites interacting with your HW wallet are closed. Also make sure to use the latest available version of the Cardano app/firmware on your HW wallet and web browser.'
@@ -32,7 +30,8 @@ const internalErrorMessages: {[key in InternalErrorReason]: (params?: any) => st
     `Insufficient funds for the transaction, the minimal amount of ADA for sending the tokens is ${printAda(
       minimalLovelaceAmount
     )}`,
-  [InternalErrorReason.DonationAmountTooLow]: () => `Minimum donation is ${ADAHIDE_MIN_DONATION_VALUE} ADA`,
+  [InternalErrorReason.DonationAmountTooLow]: () =>
+    `Minimum donation is ${MIN_UTXO_VALUE} ADA due to blockchain requirements`,
   [InternalErrorReason.DonationInsufficientBalance]: () => 'Insufficient balance for the donation.',
 
   [InternalErrorReason.InvalidStakepoolIdentifier]: ({hasTickerMapping}) =>

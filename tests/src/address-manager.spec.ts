@@ -8,12 +8,11 @@ import BlockchainExplorer from './common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../src/wallet/shelley/shelley-js-crypto-provider'
 import mockNetwork from './common/mock'
 import {ByronAddressProvider} from '../../src/wallet/byron/byron-address-provider'
+import {GAP_LIMIT} from '../../src/wallet/constants'
 
 const mockConfig = {
   ADAHIDE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',
   ADAHIDE_SERVER_URL: 'http://localhost:3000',
-  ADAHIDE_DEFAULT_ADDRESS_COUNT: 10,
-  ADAHIDE_GAP_LIMIT: 10,
 }
 
 const blockchainExplorer = BlockchainExplorer(mockConfig)
@@ -43,7 +42,7 @@ const initByronAddressManager = async (settings, i) => {
 
   byronAddressManagers[i] = AddressManager({
     addressProvider,
-    gapLimit: mockConfig.ADAHIDE_GAP_LIMIT,
+    gapLimit: 10,
     blockchainExplorer,
   })
 }

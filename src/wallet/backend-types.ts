@@ -84,7 +84,6 @@ export enum PoolRecommendationStatus {
 
 export type PoolRecommendationResponse = StakePoolInfoExtended & {
   status: PoolRecommendationStatus
-  recommendedPoolHash: string
   isInRecommendedPoolSet: boolean
   isInPrivatePoolSet: boolean
   isRecommendationPrivate: boolean

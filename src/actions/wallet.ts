@@ -149,9 +149,6 @@ export default (store: Store) => {
         loadingAction(state, `Waiting for ${getDeviceBrandName(cryptoProviderInfo.type)}...`)
       }
 
-      const demoRootSecret = (await mnemonicToWalletSecretDef(ADAHIDE_CONFIG.ADAHIDE_DEMO_WALLET_MNEMONIC))
-        .rootSecret
-      const isDemoWallet = walletSecretDef && walletSecretDef.rootSecret.equals(demoRootSecret)
       setState({
         validStakepoolDataProvider,
         accountsInfo,
@@ -165,7 +162,6 @@ export default (store: Store) => {
           formIsValid: false,
         },
         cryptoProviderInfo,
-        isDemoWallet,
         shouldShowNonShelleyCompatibleDialog: !isShelleyCompatible,
         shouldShowGenerateMnemonicDialog: false,
         shouldShowAddressVerification: usingHwWallet,

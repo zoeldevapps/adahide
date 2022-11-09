@@ -1,5 +1,5 @@
 import AddressManager from './address-manager'
-import {DEFAULT_TTL_SLOTS} from './constants'
+import {DEFAULT_TTL_SLOTS, GAP_LIMIT} from './constants'
 import {
   AddressToPathMapper,
   AddressToPathMapping,
@@ -176,7 +176,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   const myAddresses = MyAddresses({
     accountIndex,
     cryptoProvider,
-    gapLimit: config.ADAHIDE_GAP_LIMIT,
+    gapLimit: GAP_LIMIT,
     blockchainExplorer,
   })
 
@@ -432,16 +432,10 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   async function getPoolRecommendation(pool: any, stakeAmount: Lovelace): Promise<any> {
     const poolHash = pool ? pool.poolHash : null
     const poolRecommendation = await blockchainExplorer.getPoolRecommendation(poolHash, stakeAmount)
-    if (!poolRecommendation.recommendedPoolHash || config.ADAHIDE_ENFORCE_STAKEPOOL) {
-      Object.assign(poolRecommendation, {
-        recommendedPoolHash: config.ADAHIDE_STAKE_POOL_ID,
-      })
-    }
-    const delegatesToRecommended = poolRecommendation.recommendedPoolHash === pool.poolHash
+
     return {
       ...poolRecommendation,
-      shouldShowSaturatedBanner:
-        !delegatesToRecommended && poolRecommendation.status === 'GivenPoolSaturated',
+      shouldShowSaturatedBanner: poolRecommendation.status === 'GivenPoolSaturated',
     }
   }
 

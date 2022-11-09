@@ -104,7 +104,7 @@
   }
 
   .button.secondary.convert::before {
-    content: 'Convert'
+    content: 'Convert';
   }
 
   .button.secondary.balance {
@@ -116,11 +116,12 @@
   .accordion {
     cursor: unset;
   }
-  
-  .accordion-panel.hidden, .accordion-panel.shown {
+
+  .accordion-panel.hidden,
+  .accordion-panel.shown {
     max-height: unset;
   }
-  
+
   .accordion-icon {
     display: none;
   }
@@ -132,28 +133,9 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
   }
 
-  .navbar.demo {
-    padding-top: 64px;
-  }
-
   .navbar.authed {
     padding-bottom: 0;
     box-shadow: unset;
-  }
-
-  .navbar.demo::before {
-    display: none;
-  }
-
-  .navbar-demo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 12px 16px;
-    text-align: center;
-    border-radius: 0;
   }
 
   .navbar-wrapper {
@@ -415,7 +397,7 @@
     flex-direction: column;
     text-align: center;
   }
-  
+
   .dashboard-column .card.account-aggregated {
     flex-direction: column;
     text-align: center;
@@ -621,10 +603,6 @@
     margin: 16px auto;
   }
 
-  .page-demo {
-    margin-top: 40px;
-  }
-
   /* DROPDOWN */
 
   .dropdown.auth {
@@ -661,7 +639,7 @@
   }
 
   /* TOOLTIP */
-  
+
   [data-balloon]::after {
     position: fixed;
     top: unset;
@@ -675,7 +653,7 @@
   .wide-data-balloon[data-balloon]::after {
     min-width: unset;
   }
-  
+
   [data-balloon]::before {
     display: none;
   }
@@ -690,7 +668,7 @@
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
-    transform: translateX(-50%)
+    transform: translateX(-50%);
   }
 
   /* ADDRESSES */
@@ -853,7 +831,10 @@
     display: block;
     content: '';
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     box-shadow: unset;
     border-radius: unset;
     border-bottom: 1px transparent;
@@ -885,7 +866,6 @@
     background-color: var(--color-brand);
     border-radius: 50%;
   }
-  
 
   /* SEND ADA */
 
@@ -898,12 +878,12 @@
   }
 
   .send-values,
-  .send-total  {
+  .send-total {
     grid-template-columns: 72px 1fr;
     grid-column-gap: 24px;
   }
 
-  .send-values.dropdowns  {
+  .send-values.dropdowns {
     grid-template-columns: 72px 1fr;
     grid-column-gap: 24px;
   }
@@ -964,4 +944,3 @@
     margin: unset;
   }
 }
-  

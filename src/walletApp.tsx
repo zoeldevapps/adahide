@@ -73,7 +73,7 @@ window.onhashchange = () =>
 
 Sentry.init({
   dsn: ADAHIDE_CONFIG.ADAHIDE_SENTRY_DSN,
-  environment: ADAHIDE_CONFIG.ADAHIDE_ENV,
+  environment: import.meta.env.MODE,
   // debug: true,
   beforeSend(event) {
     if (!event.exception) return event

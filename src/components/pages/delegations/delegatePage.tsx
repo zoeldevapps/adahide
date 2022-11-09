@@ -50,27 +50,18 @@ const validateInput = (
   fieldValue: string,
   validStakepoolDataProvider: StakepoolDataProvider
 ): ValidatedInput => {
-  if (ADAHIDE_CONFIG.ADAHIDE_ENABLE_SEARCH_BY_TICKER) {
-    const pool =
-      validStakepoolDataProvider.getPoolInfoByPoolHash(fieldValue) ||
-      validStakepoolDataProvider.getPoolInfoByTicker(fieldValue)
-    if (pool) return {poolHash: pool.poolHash, error: null}
-
-    const hasTickerMapping = validStakepoolDataProvider.hasTickerMapping
-    const isTickerString = fieldValue.length <= 5 && fieldValue.toUpperCase() === fieldValue
-    const poolHash = null
-    if (!hasTickerMapping && isTickerString) {
-      return {poolHash, error: {code: 'TickerSearchDisabled'}}
-    }
-    return {poolHash, error: {code: 'InvalidStakepoolIdentifier', params: {hasTickerMapping}}}
-  }
-
-  const pool = validStakepoolDataProvider.getPoolInfoByPoolHash(fieldValue)
+  const pool =
+    validStakepoolDataProvider.getPoolInfoByPoolHash(fieldValue) ||
+    validStakepoolDataProvider.getPoolInfoByTicker(fieldValue)
   if (pool) return {poolHash: pool.poolHash, error: null}
-  return {
-    poolHash: null,
-    error: {code: 'InvalidStakepoolIdentifier', params: {hasTickerMapping: false}},
+
+  const hasTickerMapping = validStakepoolDataProvider.hasTickerMapping
+  const isTickerString = fieldValue.length <= 5 && fieldValue.toUpperCase() === fieldValue
+  const poolHash = null
+  if (!hasTickerMapping && isTickerString) {
+    return {poolHash, error: {code: 'TickerSearchDisabled'}}
   }
+  return {poolHash, error: {code: 'InvalidStakepoolIdentifier', params: {hasTickerMapping}}}
 }
 
 // TODO: we may create general util from this
@@ -159,11 +150,11 @@ const Delegate = ({withAccordion, title}: Props): JSX.Element => {
 
   // init "stake pool input" and refresh it when "currentDelegation" changes
   useEffect(() => {
-    const recommendedPoolHash = poolRecommendation?.recommendedPoolHash || currentDelegation?.poolHash
+    const poolHash = currentDelegation?.poolHash
 
-    if (recommendedPoolHash) {
-      setFieldValue(recommendedPoolHash)
-      handleInputValidation(recommendedPoolHash)
+    if (poolHash) {
+      setFieldValue(poolHash)
+      handleInputValidation(poolHash)
     }
   }, [currentDelegation, handleInputValidation, poolRecommendation])
 

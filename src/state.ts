@@ -34,7 +34,6 @@ export interface State {
     event?: any
     resolve?: (shouldSend: boolean) => void
   }
-  errorBannerContent: string
   shouldShowUnexpectedErrorModal: boolean
   error?: any
   activeMainTab: MainTabs
@@ -45,7 +44,6 @@ export interface State {
   displayInfoModal: boolean
 
   // login / logout
-  autoLogin: boolean
   authMethod: AuthMethodType | null
   shouldShowLogoutNotification: boolean
   walletIsLoaded: boolean
@@ -60,7 +58,6 @@ export interface State {
     formIsValid: boolean
   }
   cryptoProviderInfo?: CryptoProviderInfo
-  isDemoWallet?: boolean
   shouldShowGenerateMnemonicDialog?: boolean
   shouldShowMnemonicInfoAlert: boolean
 
@@ -143,19 +140,15 @@ const initialState: State = {
     hint: 'Hint: Ensure that your mnemonic is without mistake.',
   },
   sendSentry: {},
-  errorBannerContent: '',
   shouldShowUnexpectedErrorModal: false,
   activeMainTab: MainTabs.SEND,
 
   // cache
   displayWelcome:
-    !(window.localStorage.getItem(localStorageVars.WELCOME) === 'true') &&
-    !shouldShowLogoutNotification &&
-    ADAHIDE_CONFIG.ADAHIDE_DEVEL_AUTO_LOGIN !== 'true',
+    !(window.localStorage.getItem(localStorageVars.WELCOME) === 'true') && !shouldShowLogoutNotification,
   displayInfoModal: !(window.localStorage.getItem(localStorageVars.INFO_MODAL) === 'true'),
 
   // login / logout
-  autoLogin: ADAHIDE_CONFIG.ADAHIDE_ENV === 'local' && ADAHIDE_CONFIG.ADAHIDE_DEVEL_AUTO_LOGIN === 'true',
   authMethod: ['#trezor', '#hw-wallet'].includes(window.location.hash) ? AuthMethodType.HW_WALLET : null,
   shouldShowLogoutNotification,
   walletIsLoaded: false,
@@ -240,7 +233,6 @@ const initialState: State = {
         isInRecommendedPoolSet: false,
         isInPrivatePoolSet: false,
         isRecommendationPrivate: false,
-        recommendedPoolHash: '',
         status: '',
         shouldShowSaturatedBanner: false,
       },

@@ -20,7 +20,7 @@ import {
   TokenBundle,
 } from '../../../src/types'
 import distinct from '../../../src/helpers/distinct'
-import {UNKNOWN_POOL_NAME} from '../../../src/wallet/constants'
+import {GAP_LIMIT, UNKNOWN_POOL_NAME} from '../../../src/wallet/constants'
 import {captureMessage} from '@sentry/react'
 import {
   BulkAddressesSummaryResponse,
@@ -58,7 +58,7 @@ import assert from 'assert'
 import BigNumber from 'bignumber.js'
 
 const blockchainExplorer = (ADAHIDE_CONFIG) => {
-  const gapLimit = ADAHIDE_CONFIG.ADAHIDE_GAP_LIMIT
+  const gapLimit = GAP_LIMIT
 
   async function _fetchBulkAddressInfo(addresses: Array<string>): Promise<BulkAddressesSummary | undefined> {
     const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/bulk/addresses/summary`
@@ -190,7 +190,6 @@ const blockchainExplorer = (ADAHIDE_CONFIG) => {
   }
 
   async function submitTxRaw(txHash, txBody, params): Promise<TxSubmission> {
-    const token = ADAHIDE_CONFIG.ADAHIDE_BACKEND_TOKEN
     const response: SubmitResponse = await request(
       `${ADAHIDE_CONFIG.ADAHIDE_SERVER_URL}/api/txs/submit`,
       'POST',
@@ -201,7 +200,6 @@ const blockchainExplorer = (ADAHIDE_CONFIG) => {
       {
         'Content-Type': 'application/json',
         ...params,
-        ...(token ? {token} : {}),
       }
     )
     if (!('Right' in response)) {
@@ -470,7 +468,6 @@ const blockchainExplorer = (ADAHIDE_CONFIG) => {
   ): Promise<PoolRecommendationResponse> {
     const url = `${ADAHIDE_CONFIG.ADAHIDE_BLOCKCHAIN_EXPLORER_URL}/api/account/poolRecommendation/poolHash/${poolHash}/stake/${stakeAmount}`
     return request(url).catch(() => ({
-      recommendedPoolHash: ADAHIDE_CONFIG.ADAHIDE_STAKE_POOL_ID,
       isInRecommendedPoolSet: true,
       status: 'GivedPoolOk',
       isInPrivatePoolSet: false,

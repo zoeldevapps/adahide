@@ -59,13 +59,6 @@ export default (store: Store) => {
     })
   }
 
-  const loadErrorBannerContent = (state) => {
-    const errorBannerContent = ADAHIDE_CONFIG.ADAHIDE_ERROR_BANNER_CONTENT
-    setState({
-      errorBannerContent,
-    })
-  }
-
   const setAuthMethod = (state: State, authMethod: AuthMethodType): void => {
     setState({authMethod})
   }
@@ -94,7 +87,6 @@ export default (store: Store) => {
     closeLogoutNotification,
     closeUnexpectedErrorModal,
     setActiveMainTab,
-    loadErrorBannerContent,
     openInfoModal,
     closeInfoModal,
     setAuthMethod,

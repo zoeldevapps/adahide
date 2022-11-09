@@ -72,25 +72,6 @@
     padding-bottom: 8px;
   }
 
-  .navbar.demo {
-    padding-top: 48px;
-  }
-
-  .navbar.demo::before {
-    display: none;
-  }
-
-  .navbar-demo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 12px 16px;
-    text-align: center;
-    border-radius: 0;
-  }
-
   /* FOOTER */
 
   .footer {
@@ -137,11 +118,12 @@
   .accordion {
     cursor: unset;
   }
-  
-  .accordion-panel.hidden, .accordion-panel.shown {
+
+  .accordion-panel.hidden,
+  .accordion-panel.shown {
     max-height: unset;
   }
-  
+
   .accordion-icon {
     display: none;
   }
@@ -342,7 +324,10 @@
     display: block;
     content: '';
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     box-shadow: unset;
     border-radius: unset;
   }
@@ -521,6 +506,4 @@
   .card.account-aggregated > .balance .item {
     width: 50%;
   }
-  
 }
-

@@ -4,7 +4,7 @@ import {ADAHIDE_CONFIG} from '../../../config'
 import {useEffect} from 'react'
 const APP_VERSION = ADAHIDE_CONFIG.ADAHIDE_APP_VERSION
 
-const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
+const NavbarAuth = () => {
   let scrollDestination: any
   const {openWelcome, openInfoModal, logout} = useActions(actions)
 
@@ -21,7 +21,7 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
   })
   return (
     <nav
-      className={`navbar authed ${isDemoWallet ? 'demo' : ''}`}
+      className={`navbar authed`}
       ref={(element) => {
         scrollDestination = element
       }}
@@ -39,7 +39,6 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
             <img src="assets/adahide-logo.svg" alt="Adahide" className="navbar-logo" />
           </a>
         </h1>
-        {isDemoWallet && <div className="navbar-demo">Accessing demo wallet</div>}
         <div className="navbar-version">{`Ver. ${APP_VERSION}`}</div>
         <div className="navbar-content">
           <a
@@ -81,7 +80,6 @@ const NavbarAuth = ({isDemoWallet}: {isDemoWallet: boolean}) => {
 
 export default connect(
   (state) => ({
-    isDemoWallet: state.isDemoWallet,
     router: state.router,
   }),
   actions

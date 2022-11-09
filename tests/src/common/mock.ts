@@ -291,7 +291,6 @@ const mock = (ADAHIDE_CONFIG) => {
       response: {
         status: 200,
         body: {
-          recommendedPoolHash: ADAHIDE_CONFIG.ADAHIDE_STAKE_POOL_ID,
           isInRecommendedPoolSet: true,
           status: 'GivedPoolOk',
           isInPrivatePoolSet: false,

@@ -12,11 +12,10 @@ import {useEffect, useRef} from 'react'
 const {ADAHIDE_DEMO_WALLET_MNEMONIC} = ADAHIDE_CONFIG
 
 const MnemonicAuth = (): JSX.Element => {
-  const {formData, shouldShowMnemonicInfoAlert, autoLogin, displayWelcome} = useSelector((state) => ({
+  const {formData, shouldShowMnemonicInfoAlert, displayWelcome} = useSelector((state) => ({
     formData: state.mnemonicAuthForm,
     displayWelcome: state.displayWelcome,
     shouldShowMnemonicInfoAlert: state.shouldShowMnemonicInfoAlert,
-    autoLogin: state.autoLogin,
   }))
   const {updateMnemonic, updateMnemonicValidationError, loadWallet, openGenerateMnemonicDialog} =
     useActions(actions)
@@ -40,10 +39,10 @@ const MnemonicAuth = (): JSX.Element => {
         shouldExportPubKeyBulk: true,
       })
     }
-    if (autoLogin) {
+    if (ADAHIDE_DEMO_WALLET_MNEMONIC) {
       autoDemoLogin()
     }
-  }, [autoLogin, loadWallet])
+  }, [loadWallet])
 
   const sanitizedMnemonic = sanitizeMnemonic(formData.mnemonicInputValue)
 

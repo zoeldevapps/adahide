@@ -233,7 +233,6 @@ const blockchainExplorer = (ADAHIDE_CONFIG) => {
     // ⚠️ WARN
     // this gives invalid data
     return Promise.resolve({
-      recommendedPoolHash: '',
       isInRecommendedPoolSet: true,
       status: 'GivedPoolOk',
       isInPrivatePoolSet: false,

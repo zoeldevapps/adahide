@@ -7,8 +7,6 @@ import mockNetwork from './common/mock'
 const mockConfig = {
   ADAHIDE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',
   ADAHIDE_SERVER_URL: 'http://localhost:3000',
-  ADAHIDE_DEFAULT_ADDRESS_COUNT: 20,
-  ADAHIDE_GAP_LIMIT: 20,
 }
 
 const blockchainExplorer = BlockchainExplorer(mockConfig)

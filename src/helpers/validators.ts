@@ -1,5 +1,4 @@
 import {isValidBootstrapAddress, isValidShelleyAddress} from 'cardano-crypto.js'
-import {ADAHIDE_CONFIG} from '../config'
 import {toCoins} from './adaConverters'
 import {validateMnemonic} from '../wallet/mnemonic'
 import {Lovelace, Ada} from '../types'
@@ -7,8 +6,8 @@ import {MAX_UINT64, NETWORKS} from '../wallet/constants'
 import {InternalErrorReason} from '../errors'
 import printTokenAmount from './printTokenAmount'
 import BigNumber from 'bignumber.js'
+import {MIN_UTXO_VALUE} from '../wallet/shelley/transaction/constants'
 
-const {ADAHIDE_MIN_DONATION_VALUE} = ADAHIDE_CONFIG
 const parseToLovelace = (str: string): Lovelace =>
   // Math.round to solve edge cases in floating number precision like '8.131699'
   toCoins(new BigNumber(str) as Ada) as Lovelace
@@ -118,11 +117,7 @@ const donationAmountValidator = (fieldValue: string, coins: Lovelace, balance: L
   if (amountError) {
     return amountError
   }
-  if (
-    fieldValue !== '' &&
-    coins.gte(0) &&
-    coins < toCoins(new BigNumber(ADAHIDE_MIN_DONATION_VALUE) as Ada)
-  ) {
+  if (fieldValue !== '' && coins.gte(0) && coins < new BigNumber(MIN_UTXO_VALUE)) {
     return {code: InternalErrorReason.DonationAmountTooLow}
   }
   return null

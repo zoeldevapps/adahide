@@ -197,29 +197,17 @@ const LoginPage = () => {
     walletLoadingError,
     shouldShowGenerateMnemonicDialog,
     shouldShowWalletLoadingErrorModal,
-    autoLogin,
-    errorBannerContent,
   } = useSelector((state: State) => ({
     authMethod: state.authMethod,
     shouldShowLogoutNotification: state.shouldShowLogoutNotification,
     walletLoadingError: state.walletLoadingError,
     shouldShowGenerateMnemonicDialog: state.shouldShowGenerateMnemonicDialog,
     shouldShowWalletLoadingErrorModal: state.shouldShowWalletLoadingErrorModal,
-    autoLogin: state.autoLogin,
-    errorBannerContent: state.errorBannerContent,
   }))
-  const {setAuthMethod, closeWalletLoadingErrorModal, loadErrorBannerContent} = useActions(actions)
-
-  useEffect(() => {
-    if (autoLogin && authMethod !== AuthMethodType.MNEMONIC) {
-      setAuthMethod(AuthMethodType.MNEMONIC)
-    }
-    loadErrorBannerContent()
-  }, []) // eslint-disable-line
+  const {closeWalletLoadingErrorModal} = useActions(actions)
 
   return (
     <div className="page-wrapper">
-      {errorBannerContent && <ErrorBanner message={errorBannerContent} />}
       <div className="page-inner">
         <main className="page-main">
           {authMethod === null ? (

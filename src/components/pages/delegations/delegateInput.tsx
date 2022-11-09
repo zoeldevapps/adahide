@@ -35,9 +35,7 @@ const DelegateInput = ({disabled, value, onChange}: Props): JSX.Element => {
 
   const isTicker = !!(value && !!validStakepoolDataProvider.getPoolInfoByTicker(value))
   const isPoolHash = !!(value && !!validStakepoolDataProvider.getPoolInfoByPoolHash(value))
-  const tickerSearchEnabled = !!(
-    ADAHIDE_CONFIG.ADAHIDE_ENABLE_SEARCH_BY_TICKER && validStakepoolDataProvider?.hasTickerMapping
-  )
+  const tickerSearchEnabled = !!validStakepoolDataProvider?.hasTickerMapping
 
   return (
     <Fragment>
