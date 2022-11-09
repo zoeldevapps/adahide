@@ -1,0 +1,11 @@
+{
+  "name": "adahide-firefox-extension",
+  "version": "1.0.0",
+  "scripts": {
+    "run:wsl": "cd src && web-ext run --firefox=\"/mnt/c/Program Files/Mozilla Firefox/firefox.exe\""
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "web-ext": "^7.3.1"
+  }
+}

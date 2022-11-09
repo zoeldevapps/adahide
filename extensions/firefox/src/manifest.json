@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Adahide extension",
+  "description": "Adahide connector extension",
+  "version": "1.0",
+  "homepage_url": "https://github.com/zoeldevapps/adahide",
+  "permissions": ["find", "tabs", "notifications"],
+  "icons": {
+    "48": "icons/logo_48.png"
+  },
+
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Open/Focus Adahide",
+    "default_icon": {
+      "48": "icons/logo_48.png"
+    }
+  },
+
+  "background": {
+    "scripts": ["broker.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/"],
+      "js": ["client.js"]
+    }
+  ]
+}
