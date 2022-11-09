@@ -4,7 +4,6 @@ const config = `{
   "ADAHIDE_DEFAULT_ADDRESS_COUNT": 10,
   "ADAHIDE_GAP_LIMIT": 20,
   "ADAHIDE_DEMO_WALLET_MNEMONIC": "quit gloom sell coil mosquito capital silk climb around fabric drink hood patient more whip",
-  "ADAHIDE_ENABLE_DEBUGGING": false,
   "ADAHIDE_APP_VERSION": "3.7.0",
   "ADAHIDE_LOGOUT_AFTER": "900",
   "ADAHIDE_TREZOR_CONNECT_URL": "",

@@ -1,9 +1,5 @@
-import {ADAHIDE_CONFIG} from '../config'
-
 function debugLog(item) {
-  // patched to work with tests, added `ADAHIDE_CONFIG &&`,
-  // because config is loaded from html body, which is not present in tests
-  if (ADAHIDE_CONFIG && ADAHIDE_CONFIG.ADAHIDE_ENABLE_DEBUGGING) {
+  if (import.meta.env.DEV) {
     let msgToLog = ''
     if (item instanceof Error) {
       msgToLog = JSON.stringify(item, Object.getOwnPropertyNames(item))
