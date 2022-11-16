@@ -108,6 +108,7 @@ export default defineConfig({
   },
   plugins: [htmlPlugin(), react(), basicSsl()],
   build: {
+    manifest: true, // used to detect build changes
     rollupOptions: {
       plugins: [
         inject({
