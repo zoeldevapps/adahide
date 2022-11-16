@@ -50,6 +50,7 @@
     "@ledgerhq/hw-transport-u2f": "^5.36.0-deprecated",
     "@ledgerhq/hw-transport-webhid": "^6.27.6",
     "@ledgerhq/hw-transport-webusb": "^6.27.6",
+    "@radix-ui/react-toast": "^1.1.1",
     "@sentry/react": "^7.17.3",
     "@sentry/tracing": "^7.17.3",
     "@trezor/connect-web": "^9.0.3",
@@ -72,6 +73,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "stream-browserify": "^3.0.0",
+    "swr": "^2.0.0-rc.0",
     "unistore": "^3.5.2"
   },
   "devDependencies": {
@@ -109,6 +111,7 @@
     "release-it": "^15.4.2",
     "sass": "^1.55.00",
     "typescript": "^4.8.4",
+    "typescript-plugin-css-modules": "^3.4.0",
     "vite": "^3.2.1"
   }
 }
