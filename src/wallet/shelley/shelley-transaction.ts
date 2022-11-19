@@ -1,4 +1,4 @@
-import {blake2b, base58, bech32} from 'cardano-crypto.js'
+import {blake2b, base58, bech32} from 'cardano-glue'
 import {Tagged as CborTagged} from 'cbor'
 import {isShelleyFormat} from './helpers/addresses'
 import {
@@ -323,9 +323,9 @@ const cborizeTxVotingRegistration = ({
   stakePubKey,
   rewardDestinationAddress,
   nonce,
-}: TxPlanVotingAuxiliaryData): [number, Map<number, Buffer | BigInt>] => [
+}: TxPlanVotingAuxiliaryData): [number, Map<number, Buffer | BigInt | number>] => [
   61284,
-  new Map<number, Buffer | BigInt>([
+  new Map<number, Buffer | BigInt | number>([
     [1, Buffer.from(votingPubKey, 'hex')],
     [2, Buffer.from(stakePubKey, 'hex')],
     [3, bech32.decode(rewardDestinationAddress.address).data],
@@ -337,7 +337,7 @@ const cborizeTxAuxiliaryVotingData = (
   txAuxiliaryData: TxPlanAuxiliaryData,
   signatureHex: string
 ): CborizedVotingRegistrationMetadata => [
-  new Map<number, Map<number, Buffer | BigInt>>([
+  new Map<number, Map<number, Buffer | BigInt | number>>([
     cborizeTxVotingRegistration(txAuxiliaryData),
     [61285, new Map<number, Buffer>([[1, Buffer.from(signatureHex, 'hex')]])],
   ]),

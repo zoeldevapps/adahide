@@ -1,6 +1,6 @@
 /* based on https://github.com/input-output-hk/cardano-crypto/blob/master/cbits/encrypted_sign.c */
 
-import {cardanoMemoryCombine, blake2b, scrypt} from 'cardano-crypto.js'
+import {cardanoMemoryCombine, blake2b, scrypt} from 'cardano-glue'
 import derivationSchemes from './helpers/derivation-schemes'
 
 import {HARDENED_THRESHOLD} from './constants'

@@ -9,7 +9,8 @@ import {
   getPubKeyBlake2b224Hash,
   getShelleyAddressNetworkId,
   blake2b,
-} from 'cardano-crypto.js'
+  isValidShelleyAddress,
+} from 'cardano-glue'
 import {HARDENED_THRESHOLD} from '../../constants'
 import {NetworkId} from '../../types'
 import {encodeCbor} from '../../helpers/cbor'
@@ -27,10 +28,10 @@ export const encodeAddress = (address: Buffer): Address => {
   }
   const isTestnet = getShelleyAddressNetworkId(address) === NetworkId.TESTNET_OR_PREPROD
   const addressPrefix = `${addressPrefixes[addressType]}${isTestnet ? '_test' : ''}`
-  return bech32.encode(addressPrefix, address)
+  return bech32.encode(addressPrefix, address) as Address
 }
 
-// TODO: we might want to add this to cardano-crypto.js
+// TODO: we might want to add this to cardano-glue
 export const encodeAssetFingerprint = (policyIdHex: HexString, assetNameHex: HexString): string => {
   const data = blake2b(Buffer.concat([Buffer.from(policyIdHex, 'hex'), Buffer.from(assetNameHex, 'hex')]), 20)
   return bech32.encode('asset', data)
@@ -58,9 +59,9 @@ export const isV1Address = (address: string) => address.startsWith('D')
 export const xpubHexToCborPubHex = (xpubHex: HexString) =>
   encodeCbor(Buffer.from(xpubHex, 'hex').slice(0, 32)).toString('hex')
 
-// TODO: replace this with isValidShelleyAddress from cardano-crypto.js
+// TODO: replace this with isValidShelleyAddress from cardano-glue
 export const isShelleyFormat = (address: string): boolean => {
-  return address.startsWith('addr') || address.startsWith('stake')
+  return isValidShelleyAddress(address)
 }
 
 export const bechAddressToHex = (address: string): HexString => {

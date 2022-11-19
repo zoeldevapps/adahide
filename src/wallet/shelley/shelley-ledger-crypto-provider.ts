@@ -13,7 +13,7 @@ import {
 } from './shelley-transaction'
 import {hasRequiredVersion} from './helpers/version-check'
 import {LEDGER_VERSIONS, LEDGER_ERRORS} from '../constants'
-import {bech32} from 'cardano-crypto.js'
+import {bech32} from 'cardano-glue'
 import {
   bechAddressToHex,
   isShelleyPath,
@@ -151,7 +151,7 @@ const ShelleyLedgerCryptoProvider = async ({
     }
   }
 
-  function getHdPassphrase(): void {
+  function getHdPassphrase(): Promise<void> {
     throw new UnexpectedError(UnexpectedErrorReason.UnsupportedOperationError, {
       message: 'This operation is not supported on LedgerCryptoProvider!',
     })

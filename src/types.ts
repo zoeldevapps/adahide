@@ -37,7 +37,7 @@ export interface CryptoProvider {
   getType: () => CryptoProviderType
   getDerivationScheme: () => DerivationScheme
   deriveXpub: (derivationPath: BIP32Path) => Promise<Buffer>
-  getHdPassphrase: () => Buffer | void
+  getHdPassphrase: () => Promise<Buffer | void>
   _sign: (message: HexString, absDerivationPath: BIP32Path) => void
   ensureFeatureIsSupported: (feature: CryptoProviderFeature) => void
   isFeatureSupported: (feature: CryptoProviderFeature) => boolean

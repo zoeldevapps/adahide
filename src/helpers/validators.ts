@@ -1,4 +1,4 @@
-import {isValidBootstrapAddress, isValidShelleyAddress} from 'cardano-crypto.js'
+import {isValidBootstrapAddress, isValidShelleyAddress} from 'cardano-glue'
 import {toCoins} from './adaConverters'
 import {validateMnemonic} from '../wallet/mnemonic'
 import {Lovelace, Ada} from '../types'

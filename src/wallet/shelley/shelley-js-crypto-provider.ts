@@ -7,7 +7,7 @@ import {
   base58,
   getBootstrapAddressAttributes,
   blake2b,
-} from 'cardano-crypto.js'
+} from 'cardano-glue'
 
 import HdNode, {_HdNode} from '../helpers/hd-node'
 import {
@@ -97,7 +97,7 @@ CryptoProviderParams): Promise<CryptoProvider> => {
     return tx
   }
 
-  function getHdPassphrase(): Buffer {
+  function getHdPassphrase(): Promise<Buffer> {
     return xpubToHdPassphrase(masterHdNode.extendedPublicKey)
   }
 

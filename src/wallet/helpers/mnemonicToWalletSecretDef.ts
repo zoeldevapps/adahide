@@ -1,4 +1,4 @@
-import {decodePaperWalletMnemonic, mnemonicToRootKeypair} from 'cardano-crypto.js'
+import {decodePaperWalletMnemonic, mnemonicToRootKeypair} from 'cardano-glue'
 import {WalletSecretDef} from '../../types'
 
 import {validateMnemonic, isMnemonicInPaperWalletFormat} from '../mnemonic'

@@ -74,7 +74,7 @@ export type CborizedTxOutput = [Buffer, CborizedTxAmount]
 
 export type CborizedTxWithdrawals = Map<Buffer, BigInt>
 
-export type CborizedVotingRegistrationMetadata = [Map<number, Map<number, Buffer | BigInt>>, []]
+export type CborizedVotingRegistrationMetadata = [Map<number, Map<number, Buffer | BigInt | number>>, []]
 
 export type CborizedTxStakingKeyRegistrationCert = [
   TxCertificateKey.STAKING_KEY_REGISTRATION,
