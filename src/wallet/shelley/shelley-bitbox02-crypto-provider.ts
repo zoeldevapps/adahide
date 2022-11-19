@@ -164,7 +164,7 @@ const ShelleyBitBox02CryptoProvider = async ({
     }
   }
 
-  function getHdPassphrase(): void {
+  function getHdPassphrase(): Promise<void> {
     throw new UnexpectedError(UnexpectedErrorReason.UnsupportedOperationError, {
       message: 'Operation not supported',
     })

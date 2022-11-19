@@ -59,7 +59,7 @@
     "bip39-light": "^1.0.7",
     "bitbox02-api": "^0.15.0",
     "buffer": "^6.0.3",
-    "cardano-crypto.js": "^6.1.1",
+    "cardano-glue": "^7.0.2",
     "cbor": "^8.1.0",
     "chacha": "^2.1.0",
     "file-saver": "^2.0.5",

@@ -1,5 +1,5 @@
 import {AddressProvider, CryptoProvider, CryptoProviderFeature, HexString, _XPubKey} from '../../types'
-import {packBootstrapAddress} from 'cardano-crypto.js'
+import {packBootstrapAddress} from 'cardano-glue'
 import {HARDENED_THRESHOLD} from '../constants'
 import {encodeAddress} from '../shelley/helpers/addresses'
 

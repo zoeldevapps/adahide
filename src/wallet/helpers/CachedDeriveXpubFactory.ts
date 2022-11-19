@@ -1,6 +1,6 @@
 import indexIsHardened from './indexIsHardened'
 import {HARDENED_THRESHOLD} from './../constants'
-import {derivePublic as deriveChildXpub} from 'cardano-crypto.js'
+import {derivePublic as deriveChildXpub} from 'cardano-glue'
 import {isShelleyPath} from '../../wallet/shelley/helpers/addresses'
 import {BIP32Path} from '../../types'
 import {UnexpectedError, UnexpectedErrorReason} from '../../errors'

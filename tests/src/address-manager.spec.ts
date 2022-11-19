@@ -8,6 +8,7 @@ import BlockchainExplorer from './common/blockchain-explorer-legacy'
 import ShelleyJsCryptoProvider from '../../src/wallet/shelley/shelley-js-crypto-provider'
 import mockNetwork from './common/mock'
 import {ByronAddressProvider} from '../../src/wallet/byron/byron-address-provider'
+import {WalletSecretDef} from '../../src/types'
 
 const mockConfig = {
   ADAHIDE_BLOCKCHAIN_EXPLORER_URL: 'https://explorer.adalite.io',
@@ -21,7 +22,7 @@ const byronAddressManagers: ReturnType<typeof AddressManager>[] = []
 const initByronAddressManager = async (settings, i) => {
   const {cryptoSettings, isChange} = settings
 
-  let walletSecretDef: any
+  let walletSecretDef: WalletSecretDef
   if (cryptoSettings.type === 'walletSecretDef') {
     walletSecretDef = {
       rootSecret: Buffer.from(cryptoSettings.secret, 'hex'),

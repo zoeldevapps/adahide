@@ -4,7 +4,7 @@ import {ADAHIDE_SUPPORT_EMAIL, TREZOR_ERRORS, TREZOR_VERSIONS} from '../constant
 import derivationSchemes from '../helpers/derivation-schemes'
 import {InternalError, InternalErrorReason, UnexpectedError, UnexpectedErrorReason} from '../../errors'
 import debugLog from '../../helpers/debugLog'
-import {AddressTypes, bech32} from 'cardano-crypto.js'
+import {bech32} from 'cardano-glue'
 import {hasRequiredVersion} from './helpers/version-check'
 import {
   CryptoProvider,
@@ -113,7 +113,7 @@ const ShelleyTrezorCryptoProvider = async ({
     }
   }
 
-  function getHdPassphrase(): void {
+  function getHdPassphrase(): Promise<void> {
     throw new UnexpectedError(UnexpectedErrorReason.UnsupportedOperationError, {
       message: 'This operation is not supported on TrezorCryptoProvider!',
     })
@@ -127,7 +127,7 @@ const ShelleyTrezorCryptoProvider = async ({
 
   async function displayAddressForPath(absDerivationPath: BIP32Path, stakingPath: BIP32Path): Promise<void> {
     const addressParameters: TrezorTypes.CardanoAddressParameters = {
-      addressType: AddressTypes.BASE, // TODO: retrieve from address
+      addressType: TrezorTypes.PROTO.CardanoAddressType.BASE, // TODO: retrieve from address
       path: absDerivationPath,
       stakingPath,
     }
@@ -185,7 +185,7 @@ const ShelleyTrezorCryptoProvider = async ({
       : {
           amount: `${output.coins}`,
           addressParameters: {
-            addressType: AddressTypes.BASE, // TODO: retrieve from the address
+            addressType: TrezorTypes.PROTO.CardanoAddressType.BASE, // TODO: retrieve from the address
             path: output.spendingPath,
             stakingPath: output.stakingPath,
           },
@@ -366,7 +366,7 @@ const ShelleyTrezorCryptoProvider = async ({
             votingPublicKey: txAuxiliaryData.votingPubKey,
             stakingPath: txAuxiliaryData.rewardDestinationAddress.stakingPath,
             rewardAddressParameters: {
-              addressType: AddressTypes.REWARD,
+              addressType: TrezorTypes.PROTO.CardanoAddressType.REWARD,
               path: txAuxiliaryData.rewardDestinationAddress.stakingPath,
             },
             nonce: `${txAuxiliaryData.nonce}`,
