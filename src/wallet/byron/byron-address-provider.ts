@@ -56,16 +56,17 @@ export const ByronAddressProvider =
     const xpub = await cryptoProvider.deriveXpub(path)
     const hdPassphrase = scheme.type === 'v1' ? await cryptoProvider.getHdPassphrase() : undefined
 
+    const packedAddress = packBootstrapAddress(
+      path,
+      xpub,
+      hdPassphrase,
+      scheme.ed25519Mode,
+      cryptoProvider.network.protocolMagic
+    )
+    const address = encodeAddress(packedAddress)
+
     return {
       path,
-      address: encodeAddress(
-        packBootstrapAddress(
-          path,
-          xpub,
-          hdPassphrase,
-          scheme.ed25519Mode,
-          cryptoProvider.network.protocolMagic
-        )
-      ),
+      address,
     }
   }

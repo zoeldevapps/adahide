@@ -21,3 +21,6 @@ cardano-configurations
 dist
 dist-ssr
 *.local
+
+# html from visualizer
+stats.html

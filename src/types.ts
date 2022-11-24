@@ -122,6 +122,7 @@ export enum LedgerTransportChoice {
   U2F = 'U2F',
   WEB_USB = 'WebUSB',
   WEB_HID = 'WebHID',
+  HTTP = 'HTTP',
 }
 
 export type LedgerTransportType = Exclude<LedgerTransportChoice, LedgerTransportChoice.DEFAULT>
