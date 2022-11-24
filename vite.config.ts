@@ -3,6 +3,8 @@ import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import dotenv from 'dotenv'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {visualizer} from 'rollup-plugin-visualizer'
 
 // TODO add production envvars
 dotenv.config()
@@ -106,7 +108,7 @@ export default defineConfig({
     port: Number(process.env.PORT || 3000),
     https: true,
   },
-  plugins: [htmlPlugin(), react(), basicSsl()],
+  plugins: [htmlPlugin(), react(), basicSsl(), visualizer()],
   build: {
     manifest: true, // used to detect build changes
     rollupOptions: {

@@ -17,6 +17,15 @@ const LoadByHardwareWalletSection = () => {
     window.localStorage.getItem(localStorageVars.BULK_EXPORT) !== 'true'
   )
   const [ledgerTransportChoice, setLedgerTransportChoice] = useState(LedgerTransportChoice.DEFAULT)
+  const handleLedgerTransportSelect = useCallback(
+    (choice: LedgerTransportChoice) => {
+      if (choice === LedgerTransportChoice.HTTP) {
+        open('ledgerlive://bridge?appName=Cardano%20ADA', '_blank')
+      }
+      setLedgerTransportChoice(choice)
+    },
+    [setLedgerTransportChoice]
+  )
   const toggleBulkExport = useCallback(() => {
     window.localStorage.setItem(localStorageVars.BULK_EXPORT, `${enableBulkExport}`)
     setBulkExport(!enableBulkExport)
@@ -114,7 +123,7 @@ const LoadByHardwareWalletSection = () => {
               </div>
               <LedgerTransportSelect
                 selectedItem={ledgerTransportChoice}
-                onSelect={setLedgerTransportChoice}
+                onSelect={handleLedgerTransportSelect}
               />
             </div>
           </div>

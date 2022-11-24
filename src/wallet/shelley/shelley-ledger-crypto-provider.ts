@@ -2,6 +2,7 @@ import Transport from '@ledgerhq/hw-transport'
 import LedgerTransportU2F from '@ledgerhq/hw-transport-u2f'
 import LedgerTransportWebUsb from '@ledgerhq/hw-transport-webusb'
 import LedgerTransportWebHid from '@ledgerhq/hw-transport-webhid'
+import LedgerTransportHttp from '@ledgerhq/hw-transport-http'
 import Ledger, * as LedgerTypes from '@cardano-foundation/ledgerjs-hw-app-cardano'
 import CachedDeriveXpubFactory from '../helpers/CachedDeriveXpubFactory'
 import {
@@ -60,6 +61,9 @@ import assertUnreachable from '../../helpers/assertUnreachable'
 import assert from 'assert'
 import {encodeCbor} from '../helpers/cbor'
 
+// assuming a local ledger bridge running
+const HTTP_TRANPORT_URL = 'ws://localhost:8435'
+
 let _activeTransport: Transport | null
 const getLedgerTransport = async (ledgerTransportType: LedgerTransportType): Promise<Transport> => {
   if (_activeTransport != null) {
@@ -84,6 +88,13 @@ const getLedgerTransport = async (ledgerTransportType: LedgerTransportType): Pro
       break
     case LedgerTransportChoice.WEB_USB:
       _activeTransport = await LedgerTransportWebUsb.create()
+      break
+    case LedgerTransportChoice.HTTP:
+      // here we should be able to import directly HttpTransport, instead of that Ledger
+      // offers a wrapper that returns a `StaticTransport` instance
+      // we need to expect the error to avoid typing errors
+      // @ts-expect-error
+      _activeTransport = await LedgerTransportHttp(HTTP_TRANPORT_URL).open(HTTP_TRANPORT_URL)
       break
     default:
       return assertUnreachable(ledgerTransportType)
