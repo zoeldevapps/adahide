@@ -18,6 +18,11 @@ Ogmios requires to have the cardano configs. Fetch these from [cardano-configura
 git clone git@github.com:input-output-hk/cardano-configurations.git
 ```
 
+setup for docker
+```
+mkdir -p docker-data
+```
+
 ## Architectural changes compared to adalite
 
 The aim is to modernize and use more standard tools

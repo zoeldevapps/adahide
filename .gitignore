@@ -24,3 +24,5 @@ dist-ssr
 
 # html from visualizer
 stats.html
+
+docker-data*
