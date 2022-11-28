@@ -17,6 +17,7 @@ server.key
 cardano-configurations
 .env*
 !.env.example
+docker-compose.override.yml
 
 dist
 dist-ssr

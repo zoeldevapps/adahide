@@ -1,0 +1,8 @@
+version: '3.5'
+
+services:
+  cardano-node:
+    user: 1000:1000
+    
+  ogmios:
+    user: 1000:1000

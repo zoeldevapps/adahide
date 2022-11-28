@@ -5,22 +5,45 @@ An additional painpoint when developing dapps is that there is no wallet support
 
 MVP milestones:
 
-- [] use only ogmios as blockchain explorer (losing tx history for now, replace by koios/blockfrost)
-- [] remove server-side only leaving in
-- [] make fully static build
-- [] add back history endpoints (koios/blockfrost/kupo/etc.)
+- [x] use only ogmios as blockchain explorer (losing tx history for now, replace by koios/blockfrost/kupo)
+- [x] remove server-side only leaving in fe
+- [x] make fully static build
+- [ ] add back token metadata
+- [ ] add back stakepool information
+- [ ] fix
+- [ ] add back history endpoints (koios/blockfrost/kupo/etc.)
 
 ## Setup
 
 Ogmios requires to have the cardano configs. Fetch these from [cardano-configurations repo](https://github.com/input-output-hk/cardano-configurations).
 
-```
+```bash
 git clone git@github.com:input-output-hk/cardano-configurations.git
 ```
 
-setup for docker
+> On mainnet it's recommended to also edit the topology file, to connect to relays other than the iohk main relay.
+
+Copy .env and edit the settings:
+
+```bash
+cp .env.example .env
+vim .env
 ```
-mkdir -p docker-data
+
+### Setup with docker
+
+Make sure that the mapped folders are there:
+```bash
+mkdir -p docker-data/node-db
+mkdir -p docker-data/node-ipc
+```
+where `docker-data` is the folder you set in the `.env`
+
+If you are on linux, additionally copy the docker-compose override to make sure the folders
+are not filled with root data:
+
+```bash
+cp ./docker-compose.override.yml.example docker-compose.override.yml
 ```
 
 ## Architectural changes compared to adalite
@@ -29,7 +52,8 @@ The aim is to modernize and use more standard tools
 
 - use react instead of preact
 - get rid of expensive chromium & cypress test cases
-- In progress - make the site staticly built, so it can be served from CDN
+- make the site staticly built, so it can be served from CDN
+- use ogmios as a blockchain explorer backend (except tx history, token & stakepool metadata)
 
 <font size="30">LEGACY ADAHIDE CONTENT BELOW</font>
 
