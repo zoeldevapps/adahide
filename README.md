@@ -1,4 +1,4 @@
-# adahide wallet
+# Adahide wallet
 
 The Adalite wallet got put on life-support in favor of [NuFi](https://nu.fi) leaving very few options to have a lightweight experience on cardano without using a full software wallet.
 An additional painpoint when developing dapps is that there is no wallet support apart from cli for private testnets, leaving dapp developers to keep using their own wallet solutions or use preprod/preview environments which are already public.
@@ -12,6 +12,14 @@ MVP milestones:
 - [ ] add back stakepool information
 - [ ] fix
 - [ ] add back history endpoints (koios/blockfrost/kupo/etc.)
+
+## Community & Support
+
+Any little bit helps, if it's posting about a [bug](https://github.com/zoeldevapps/adahide/issues/new?template=bug_report.md), asking for a [feature](https://github.com/zoeldevapps/adahide/issues/new?template=feature_request.md) or just joining communities below. Additionally zou can become a [sponsor](https://github.com/sponsors/zoeldevapps) and get a mention below.
+
+* [Discord](https://discord.gg/5AJgwkepyU)
+* [Twitter](https://twitter.com/adahideio)
+* [Medium](https://medium.com/@adahide)
 
 ## Setup
 
@@ -55,7 +63,7 @@ The aim is to modernize and use more standard tools
 - make the site staticly built, so it can be served from CDN
 - use ogmios as a blockchain explorer backend (except tx history, token & stakepool metadata)
 
-<font size="30">LEGACY ADAHIDE CONTENT BELOW</font>
+<font size="30">LEGACY ADALITE CONTENT BELOW</font>
 
 # AdaLite wallet
 
