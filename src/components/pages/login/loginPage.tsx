@@ -7,6 +7,7 @@ import HardwareAuth from './hardwareAuth'
 import GenerateMnemonicDialog from './generateMnemonicDialog'
 import LogoutNotification from './logoutNotification'
 import LoginPageSidebar from './loginPageSidebar'
+import * as Section from '../../common/section'
 import Tag from '../../common/tag'
 import WalletLoadingErrorModal from './walletLoadingErrorModal'
 import {getErrorHelpType, getErrorMessage} from '../../../errors'
@@ -14,6 +15,8 @@ import {State} from '../../../state'
 import {AuthMethodType, ScreenType} from '../../../types'
 import {useViewport, isBiggerThanMobile} from '../../common/viewPort'
 import assertUnreachable from '../../../helpers/assertUnreachable'
+import {GearIcon, LockOpen1Icon} from '@radix-ui/react-icons'
+import {WalletOptions} from './walletOptions'
 
 const getAuthMethodName = (authMethod: AuthMethodType): string => {
   switch (authMethod) {
@@ -112,19 +115,34 @@ const AuthOption = ({tabName, texts, tag}: {tabName: AuthMethodType; texts: Arra
 const AuthCardInitial = () => (
   <div className="authentication card initial">
     <h2 className="authentication-title">How do you want to access your Cardano Wallet?</h2>
-    <div className="auth-options">
-      <AuthOption
-        tabName={AuthMethodType.MNEMONIC}
-        texts={['12, 15, 24 or 27 word passphrase']}
-        tag={'fastest'}
-      />
-      <AuthOption
-        tabName={AuthMethodType.HW_WALLET}
-        texts={['Trezor T', 'Ledger Nano S/S Plus/X', 'Android device & Ledger', 'BitBox02']}
-        tag={'recommended'}
-      />
-      <AuthOption tabName={AuthMethodType.KEY_FILE} texts={['Encrypted .JSON file']} tag={''} />
-    </div>
+    <Section.Root>
+      <Section.Header>
+        <GearIcon /> Wallet options
+      </Section.Header>
+      <Section.Body>
+        <WalletOptions />
+      </Section.Body>
+    </Section.Root>
+    <Section.Root>
+      <Section.Header>
+        <LockOpen1Icon /> Security
+      </Section.Header>
+      <Section.Body>
+        <div className="auth-options">
+          <AuthOption
+            tabName={AuthMethodType.MNEMONIC}
+            texts={['12, 15, 24 or 27 word passphrase']}
+            tag={'fastest'}
+          />
+          <AuthOption
+            tabName={AuthMethodType.HW_WALLET}
+            texts={['Trezor T', 'Ledger Nano S/S Plus/X', 'Android device & Ledger', 'BitBox02']}
+            tag={'recommended'}
+          />
+          <AuthOption tabName={AuthMethodType.KEY_FILE} texts={['Encrypted .JSON file']} tag={''} />
+        </div>
+      </Section.Body>
+    </Section.Root>
   </div>
 )
 
