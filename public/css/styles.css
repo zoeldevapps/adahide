@@ -57,7 +57,9 @@
   --transition-time: 0.25s;
   /* standards */
   --box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  --box-shadow-selected: 0 0 0 2px black;
   --border-radius: 12px;
+  --border-radius-button: 4px;
 }
 
 /* NORMALIZE */
@@ -198,6 +200,11 @@ p.hey {
 
 .shrinkable {
   min-width: 0;
+}
+
+button {
+  border: none;
+  padding: unset;
 }
 
 /* SELECTABILITY */
@@ -974,8 +981,6 @@ button[data-balloon] {
 
 .alert-content {
   text-align: left;
-  max-height: 220px;
-  overflow: auto;
 }
 
 .alert.sidebar {

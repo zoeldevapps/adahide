@@ -22,6 +22,18 @@ const InitialContent = () => (
           What is a Hardware Wallet
         </a>
       </Alert>
+      <Alert alertType="info sidebar">
+        <p>
+          In single address mode only the first address is used for a single account for reading balance and
+          transactions. Having multiple addresses can increase privacy, but goes against stake delegation. If
+          a single staking key is used for a single account (usually the case), the different addresses can be
+          groupped and nullify the privacy pre-cautions.
+        </p>
+        <p>
+          By default HD wallets are used for compatibility reasons, but single address mode can be much
+          quicker.
+        </p>
+      </Alert>
     </div>
   </div>
 )
