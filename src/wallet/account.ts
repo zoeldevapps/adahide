@@ -30,7 +30,7 @@ import {bechAddressToHex, isBase, addressToHex} from './shelley/helpers/addresse
 import {ShelleyTxAux} from './shelley/shelley-transaction'
 import blockchainExplorer from './blockchain-explorer-ogmios'
 import {TxAux} from './shelley/types'
-import {UTxO, TxOutput, TxAuxiliaryData, TxPlanAuxiliaryData} from './types'
+import {UTxO, TxOutput, TxAuxiliaryData, TxPlanAuxiliaryData, AddressDerivationType} from './types'
 import {aggregateTokenBundles} from './helpers/tokenFormater'
 import {StakepoolDataProvider} from '../helpers/dataProviders/types'
 import {unsignedPoolTxToTxPlan} from './shelley/helpers/stakepoolRegistrationUtils'
@@ -52,45 +52,62 @@ export default DummyAddressManager
 type MyAddressesParams = {
   accountIndex: number
   cryptoProvider: CryptoProvider
+  addressDerivationType: AddressDerivationType
   gapLimit: number
   blockchainExplorer: ReturnType<typeof blockchainExplorer>
 }
 
-const MyAddresses = ({accountIndex, cryptoProvider, gapLimit, blockchainExplorer}: MyAddressesParams) => {
+const MyAddresses = ({
+  accountIndex,
+  addressDerivationType,
+  cryptoProvider,
+  gapLimit,
+  blockchainExplorer,
+}: MyAddressesParams) => {
   const includeByron = cryptoProvider.isFeatureSupported(CryptoProviderFeature.BYRON) && accountIndex === 0
-  const legacyExtManager = includeByron
-    ? AddressManager({
-        addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, false),
-        gapLimit,
-        blockchainExplorer,
-      })
-    : DummyAddressManager()
+  const legacyExtManager =
+    includeByron && addressDerivationType === 'hd'
+      ? AddressManager({
+          addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, false),
+          addressDerivationType,
+          gapLimit,
+          blockchainExplorer,
+        })
+      : DummyAddressManager()
 
-  const legacyIntManager = includeByron
-    ? AddressManager({
-        addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, true),
-        gapLimit,
-        blockchainExplorer,
-      })
-    : DummyAddressManager()
+  const legacyIntManager =
+    includeByron && addressDerivationType === 'hd'
+      ? AddressManager({
+          addressProvider: ByronAddressProvider(cryptoProvider, accountIndex, true),
+          addressDerivationType,
+          gapLimit,
+          blockchainExplorer,
+        })
+      : DummyAddressManager()
 
   const accountAddrManager = AddressManager({
     addressProvider: ShelleyStakingAccountProvider(cryptoProvider, accountIndex),
+    addressDerivationType,
     gapLimit: 1,
     blockchainExplorer,
   })
 
   const baseExtAddrManager = AddressManager({
     addressProvider: ShelleyBaseAddressProvider(cryptoProvider, accountIndex, false),
+    addressDerivationType,
     gapLimit,
     blockchainExplorer,
   })
 
-  const baseIntAddrManager = AddressManager({
-    addressProvider: ShelleyBaseAddressProvider(cryptoProvider, accountIndex, true),
-    gapLimit,
-    blockchainExplorer,
-  })
+  const baseIntAddrManager =
+    addressDerivationType === 'hd'
+      ? AddressManager({
+          addressProvider: ShelleyBaseAddressProvider(cryptoProvider, accountIndex, true),
+          addressDerivationType,
+          gapLimit,
+          blockchainExplorer,
+        })
+      : DummyAddressManager()
 
   async function discoverAllAddresses() {
     const baseInt = await baseIntAddrManager.discoverAddresses()
@@ -142,7 +159,10 @@ const MyAddresses = ({accountIndex, cryptoProvider, gapLimit, blockchainExplorer
   async function areAddressesUsed(): Promise<boolean> {
     // we check only the external addresses since internal should not be used before external
     // https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#address-gap-limit
-    const baseExt = await baseExtAddrManager._deriveAddresses(0, gapLimit)
+    const baseExt = await baseExtAddrManager._deriveAddresses(
+      0,
+      addressDerivationType === 'single' ? 1 : gapLimit
+    )
     return await blockchainExplorer.isSomeAddressUsed(baseExt)
   }
 
@@ -176,6 +196,7 @@ const Account = ({config, cryptoProvider, blockchainExplorer, accountIndex}: Acc
   const myAddresses = MyAddresses({
     accountIndex,
     cryptoProvider,
+    addressDerivationType: config.addressDerivationType,
     gapLimit: GAP_LIMIT,
     blockchainExplorer,
   })

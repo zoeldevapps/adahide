@@ -24,6 +24,7 @@ import {exportWalletSecretDef} from '../wallet/keypass-json'
 import {getDefaultLedgerTransportType} from '../wallet/shelley/helpers/transports'
 import {getDeviceBrandName, isHwWallet} from '../wallet/helpers/cryptoProviderUtils'
 import BigNumber from 'bignumber.js'
+import {useAuthStore} from '../store/auth'
 
 // TODO: we may be able to remove this, kept for backwards compatibility
 const getShouldShowSaturatedBanner = (accountsInfo: Array<AccountInfo>) =>
@@ -104,8 +105,11 @@ export default (store: Store) => {
         stopLoadingAction(state)
       }
     }
+
+    const walletOptions = useAuthStore.getState()
     const config = {
       ...ADAHIDE_CONFIG,
+      addressDerivationType: walletOptions.derivationType,
       isShelleyCompatible,
       shouldExportPubKeyBulk,
       ledgerTransportType,

@@ -2,14 +2,21 @@ import {toBip32StringPath} from './helpers/bip32'
 import {AddressProvider, AddressToPathMapping, AddressWithMeta, BIP32Path, Address} from '../types'
 import blockchainExplorer from './blockchain-explorer-ogmios'
 import {UnexpectedError, UnexpectedErrorReason} from '../errors'
+import {AddressDerivationType} from './types'
 
 type AddressManagerParams = {
   addressProvider: AddressProvider
+  addressDerivationType: AddressDerivationType
   gapLimit: number
   blockchainExplorer: ReturnType<typeof blockchainExplorer>
 }
 
-const AddressManager = ({addressProvider, gapLimit, blockchainExplorer}: AddressManagerParams) => {
+const AddressManager = ({
+  addressProvider,
+  addressDerivationType,
+  gapLimit,
+  blockchainExplorer,
+}: AddressManagerParams) => {
   if (!gapLimit) {
     throw new UnexpectedError(UnexpectedErrorReason.ParamsValidationError, {
       message: `Invalid gap limit: ${gapLimit}`,
@@ -37,20 +44,23 @@ const AddressManager = ({addressProvider, gapLimit, blockchainExplorer}: Address
   }
 
   async function discoverAddresses(): Promise<Address[]> {
-    let addresses: Address[] = []
-    let from = 0
-    let isGapBlock = false
+    if (addressDerivationType === 'single') {
+      return deriveAddressesBlock(0, 1)
+    } else {
+      let addresses: Address[] = []
+      let from = 0
+      let isGapBlock = false
+      while (!isGapBlock) {
+        const currentAddressBlock = await deriveAddressesBlock(from, from + gapLimit)
 
-    while (!isGapBlock) {
-      const currentAddressBlock = await deriveAddressesBlock(from, from + gapLimit)
+        isGapBlock = !(await blockchainExplorer.isSomeAddressUsed(currentAddressBlock))
 
-      isGapBlock = !(await blockchainExplorer.isSomeAddressUsed(currentAddressBlock))
+        addresses = isGapBlock && addresses.length > 0 ? addresses : addresses.concat(currentAddressBlock)
+        from += gapLimit
+      }
 
-      addresses = isGapBlock && addresses.length > 0 ? addresses : addresses.concat(currentAddressBlock)
-      from += gapLimit
+      return addresses
     }
-
-    return addresses
   }
 
   // TODO(ppershing): we can probably get this info more easily
