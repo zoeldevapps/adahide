@@ -44,6 +44,8 @@ export enum CryptoProviderType {
   WALLET_SECRET = 'WALLET_SECRET',
 }
 
+export type AddressDerivationType = 'hd' | 'single'
+
 export type HwWalletCryptoProviderType = Exclude<CryptoProviderType, CryptoProviderType.WALLET_SECRET>
 
 export type CryptoProviderInfo = {
